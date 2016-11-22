@@ -1,0 +1,32 @@
+<include file="Common:pageheader_start" />
+<include file="Common:pageheader_end" />
+<div id="Right">
+	<div class="contentArea">
+		<div class="Item hr">
+			<!-- 
+			<div class="current">{$currentNav}</div>
+			 -->
+			 <div class="current">专属定制</div>
+		</div>
+		<volist name="cList" id="item">
+		<form action="" method="post">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0"
+				class="table1">
+				<tr>
+					<th width="120">用户名：</th>
+					<td><input name="username" type="text" class="input" size="40"
+						value="{$item.u_email}" /></td>
+				</tr>
+				<tr>
+					<th valign="top">商品ID：</th>
+					<td><textarea name="productids" cols="100" rows="3">{$item.pids}</textarea></td>
+				</tr>
+			</table>
+		</form>
+		</volist>
+		<div class="commonBtnArea">
+			<button class="btn submit">提交</button>
+		</div>
+	</div>
+</div>
+<include file="Common:pagefooter" />

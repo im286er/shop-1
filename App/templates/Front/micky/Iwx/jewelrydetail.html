@@ -1,0 +1,105 @@
+<{include file=C('IWXHEADER_START')}>
+<link rel="stylesheet" type="text/css" href="__MSTATIC__/css/layerslider.css">
+<script src="__MSTATIC__/js/greensock.js"></script>
+<script src="__MSTATIC__/js/layerslider.transitions.js"></script>
+<script src="__MSTATIC__/js/layerslider.kreaturamedia.jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="__MSTATIC__/css/doge.mobile.css">
+<link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/bootstrap.min.css">
+<link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/fonts.css">
+<link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/top.css">
+<link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/footer.css">
+<{include file=C('IWXHEADER_END')}>
+<div class="prd">
+	<div class="prd-introframe">
+		<div class="tablayer layer-info">
+			<!--<div class="author"><span class="powered">Design By</span><a class="avatar" href="javascript:void(0);"><img src="__UPLOAD__/avatar/<{$userBasic_au.u_avatar|replace:'/o/':'/s/96_96_'}>"/></a>
+				<div class="author-info">
+					<h4><{$userProf.u_firstname}></h4>
+				</div>
+			</div>-->
+			<div class="prd-gal-holder">
+				<div class="prd-gal" style="width: 560px; height: 420px; max-width: 560px;">
+					<{foreach $cinfo.icon as $res}>
+						<div class="ls-slide"> <img src="<{$res}>" class="ls-l" alt="Slide background"> </div>
+					<{/foreach}>
+				</div>
+			</div>
+			<div class="prd-info-holder">
+				<div class="prd-info">
+					<p><{$cinfo['intro1']}></p>
+					<div class="buildit">
+						<a href="__DOC__/index/diy-jewelryeditall-cid-<{$cinfo['cid']}>-mmode-1-type-iwx" class="btn btn-action" id="go-ordergen"><i>开始订购<span>￥<b><{$cinfo['startprice']}></b>.00 起</span></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="findmore">向下滑动,看看还有什么?<br>
+		<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></div>
+		<div class="clear"></div>
+	</div>
+	<{if $cinfo['intro3']}>
+	<div class="dividing">
+		<h2>
+			<label class="skew"><i>商品介绍</i></label>
+		</h2>
+	</div>
+	<div class="contentex">
+		<{$cinfo['intro3']}>
+	</div>
+	<{/if}>
+	
+	<div class="dividing">
+		<h2>
+			<label class="skew"><i>精美的包装</i></label>
+		</h2>
+	</div>
+	<div class="box1">
+		<img src="__MSTATIC__/imgs/jewelry/f/baozhuang.jpg" alt=""/>
+		<h3>我们不会忽略每一个细节。</h3>
+	</div>
+	<div class="dividing" id="gohere">
+		<h2>
+			<label class="skew"><i>定制只属于您的首饰</i></label>
+		</h2>
+	</div>
+	<div class="box1">
+		<h2>心动了么？<br>现在立即开始创造你的首饰！</h2>
+		<!--<div class="buildit">
+			<a href="__DOC__/index/diy-jewelryeditall-cid-<{$cinfo['cid']}>-mmode-1-type-iwx" class="btn btn-action"><i>立即开始定制<span>￥<b><{$cinfo['startprice']}></b>.00 起</span></i></a>
+		</div>-->
+	</div>
+</div>
+<script src="__NEOSTATIC__/js/doge.webglchk.js"></script>
+<script>
+$(document).ready(function(e) {
+	$(".author").fadeTo(500, 1);
+	var initheight=$(window).height()
+	$(".prd-introframe").css("min-height", initheight-100);
+	$(".prd-gal").layerSlider({
+		pauseOnHover: false,
+		navStartStop: false,
+		showCircleTimer: false,
+		thumbnailNavigation: 'disabled',
+		skin: 'fullwidth',
+        skinsPath: '__MSTATIC__/js/ls-skins/'
+	}); 
+//	$("#go-ordergen").click(function(e) {
+//		$("html, body").animate({
+//            scrollTop: $("#gohere").offset().top + "px"
+//        }, {
+//            duration: 500,
+//            easing: "swing"
+//        });
+//        return false;
+//	});
+	var iswgl = isSupportWebGL();
+	//console.info(iswgl);
+	if (iswgl) {
+		$(".btn-action").attr('href',"__DOC__/index/diy-jewelryeditall-curMenu-1-cid-<{$cinfo['cid']}>-mmode-1-type-iwx");
+	} else {
+		// 跳转至非DIY物品
+		$(".btn-action").attr('href','__APP__/wx-productdetail-curMenu-1-id-<{$cpid}>.html');
+	}
+}); 
+</script>
+<{include file=C('IWXFOOTER')}>

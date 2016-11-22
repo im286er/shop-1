@@ -1,0 +1,103 @@
+<include file="Common:pageheader_start" />
+<include file="Common:pageheader_end" />
+<div id="Right">
+		<h3>垂直销售类商品列表</h3>
+		<if condition="$ErrInfo">
+		<div class="errorinfo">{$ErrInfo}</div>
+		</if>
+		<br>
+		<div><form method="post">
+		<tr>
+			<td>名称包含: <input type="text" name="producttitle" class="input" value="{$producttitle}"></td>
+			<td>价格范围: <input type="text" name="low_price" class="input" value="{$lo_price}">至<input type="text" name="hi_price" class="input" value="{$hi_price}"></td>
+			<td>商品品类: <select name="category"><option value="0" selected="selected">不限</option>{$pcatectrl}</select></td>
+			<td>活动标签: <select name="productwp"><option value="0" selected="selected">不限</option>{$pwpctrl}</select></td>
+			<td>发布状态: <select name="audit"><option value="all" selected="selected">不限</option>{$pslabctrl}</select></td>
+			<td><input type="submit"></td>
+		</tr>
+		</form></div>
+		<br>
+           	<if condition='$PI.now gt $PI["disppage"]'><a href="{$BaseUrl|substr=0,-5}/page/1"><<</a>&nbsp;&nbsp;</if>
+             <if condition='$PI["pre"]'><a href="{$BaseUrl|substr=0,-5}/page/{$PI.pre}"><</a>&nbsp;&nbsp;
+             <else /><a href="javascript:void(0)" class="here"><</a>&nbsp;&nbsp;</if>
+             <for start="$PI.start" end='($PI["disppage"]+$PI["start"])'>
+            <if condition='$i eq $PI["now"]'><span class='current' style='font-size: 18px;'>{$i}</span>&nbsp;&nbsp;<else /><a href="{$BaseUrl|substr=0,-5}/page/{$i}">{$i}</a>&nbsp;&nbsp;</if>
+             </for>
+             <if condition='$PI["next"]'><a href="{$BaseUrl|substr=0,-5}/page/{$PI.next}">></a>
+             <else /><a href="javascript:void(0)" class="current">></a></if>
+             <if condition='$PI.now lt ($PI["totalpage"]-$PI["disppage"])'><a href="{$BaseUrl|substr=0,-5}/page/{$PI.totalpage}">>></a></if>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0"
+			class="tab">
+			<tr bgcolor=#E0E0E0>
+				<td width="50">ID</td>
+				<td width="64">缩略图</td>
+				<td width="400">商品名称 || 促销文案 || 促销水印</td>
+				<td width="100">商品主类型</td>
+				<td width="100">商品所有人</td>
+				<td width="100">起始价</td>
+				<td width="50">显示排序</td>
+				<td width="50">状态*</td>
+				<td width="140">最后修改</td>
+				<td>操作</td>
+			</tr>
+			<volist name="listTable" id="item">
+			<tr pid="{$item.p_id}">
+				<td>{$item.p_id}</td>
+				<td><div class="thumbs"><a href="__APP__/Endproduct/editproduct/id/{$item.p_id}"><img src="__DOC__{$item.p_cover}" height="64px" width="64px" /></a></div></td>
+				<td>{$item.p_name} || <if condition='$item.p_onsaleintro eq ""'>无文案 <else />{$item.p_onsaleintro}</if> || <if condition='$item.p_wpid eq "0"'>无水印<else />{$item.pwp_title}</if></td>
+				<td><a href="__APP__/Endproduct/defineprop/id/{$item.p_maintype}" target="_blank">{$item.ipt_name}</a></td>
+				<td>{$item.u_dispname}</td>
+				<td>{$item.p_price}</td>
+				<td edit="0" fd="dispweight">{$item.p_dispweight}</td>
+				<td><a href="javascript:void(0);" class="opStatus" val="{$item.p_slabel}">
+				<if condition="$item.p_slabel eq 0">No<else />Yes</if>
+				</a></td>
+				<td>{$item.p_lastupdate}</td>
+				<td><a href="__APP__/Endproduct/editproduct/id/{$item.p_id}">编辑</a> | <a href="__ADMINAPP__/product_photo/edit/pid/{$item.p_id}" target="_blank">相册</a> | <a href="__APP__/Endproduct/listdetail/id/{$item.p_id}" target="_blank">商品明细</a> | <a href="__APP__/Endproduct/selectdetail/id/{$item.p_id}" target="_blank">选择器</a> | <a href="__APP__/diy/AddNDiyToProduct/id/{$item.p_id}" target="_blank">分类器</a></td>
+			</tr>
+			</volist>
+		</table>
+<if condition='$PI.now gt $PI["disppage"]'><a href="{$BaseUrl|substr=0,-5}/page/1"><<</a>&nbsp;&nbsp;</if>
+             <if condition='$PI["pre"]'><a href="{$BaseUrl|substr=0,-5}/page/{$PI.pre}"><</a>&nbsp;&nbsp;
+             <else /><a href="javascript:void(0)" class="here"><</a>&nbsp;&nbsp;</if>
+             <for start="$PI.start" end='($PI["disppage"]+$PI["start"])'>
+            <if condition='$i eq $PI["now"]'><span class='current' style='font-size: 18px;'>{$i}</span>&nbsp;&nbsp;<else /><a href="{$BaseUrl|substr=0,-5}/page/{$i}">{$i}</a>&nbsp;&nbsp;</if>
+             </for>
+             <if condition='$PI["next"]'><a href="{$BaseUrl|substr=0,-5}/page/{$PI.next}">></a>
+             <else /><a href="javascript:void(0)" class="current">></a></if>
+             <if condition='$PI.now lt ($PI["totalpage"]-$PI["disppage"])'><a href="{$BaseUrl|substr=0,-5}/page/{$PI.totalpage}">>></a></if>
+</div>
+<script type="text/javascript">
+//快捷启用禁用操作
+$(".opStatus").click(function(){
+    var obj=$(this);
+    var id=$(this).parents("tr").attr("pid");
+    var status=$(this).attr("val");
+    $.getJSON("__APP__/Endproduct/opdetailstat", { pid:id, status:status }, function(json){
+        if(json.status==1){
+            // popup.success(json.info);
+            $(obj).attr("val",json.data.status).html(status==1?"No":"Yes");
+        }else{
+            // popup.alert(json.info);
+        }
+    });
+});
+
+//快捷改变操作排序dblclick
+	$("tbody>tr>td[fd]").click(function(){
+		var inval = $(this).html();
+		var infd = $(this).attr("fd");
+		var inid =  $(this).parents("tr").attr("pid");
+		if($(this).attr('edit')==0){
+			$(this).attr('edit','1').html("<input class='input' size='5' id='edit_"+infd+"_"+inid+"' value='"+inval+"' />").find("input").select();
+		}
+		$("#edit_"+infd+"_"+inid).focus().bind("blur",function(){
+			var editval = $(this).val();
+			$(this).parents("td").html(editval).attr('edit','0');
+			if(inval!=editval){
+				$.post("__APP__/Endproduct/opdispweight",{pid:inid,fd:infd,dispweight:editval});
+			}
+		})
+	});
+</script>
+<include file="Common:pagefooter" />

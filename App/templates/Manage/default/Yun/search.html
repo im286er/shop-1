@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>云端模块-{$site.SITE_INFO.name}</title>
+<php>
+$addCss="";
+            $addJs="";
+            $currentNav ='云端模块 > 文件搜索';
+            </php>
+            <include file="Common:intohead" />
+            </head>
+            <body>
+<!-- AP Element::AjaxInfo //-->
+<div class="ajaxinfo">
+	<h3></h3>
+</div>
+<!-- End of AP Element::AjaxInfo //-->
+<div class="wrap"> <include file="Common:head" />
+              <div class="mainBody"> <include file="Common:left" />
+    <div id="Right">
+                  <div class="Item hr">
+        <div class="current">文件搜索</div>
+      </div>
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+        <form method="post" name="theForm1" enctype="multipart/form-data">
+                      关键字：
+                      <input type="input" name="keywords" />
+                      打印状态：
+                      <select name="status">
+            <option value="">请选择</option>
+            <option value="1">可打印</option>
+            <option value="2">不可打印</option>
+          </select>
+                      文件格式：
+                      <select name="format">
+            <option value="">请选择</option>
+            <option value="1">STL</option>
+            <option value="2">ZIP</option>
+          </select>
+                      排序：
+                      <select name="order">
+            <option value="createdate_desc">最近上传</option>
+            <option value="createdate_asc">最早上传</option>
+          </select>
+                      <input type="submit" value="搜索">
+                        </input>
+                      
+                    </form>
+      </table>
+                  <!-- 查询结果 -->
+                  <gt name="totalcount" value="0">
+        <div class="Item hr">
+                      <div class="current">搜索结果</div>
+                    </div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                      <tr style="background:#999999">
+            <td>云ID</td>
+            <td>文件名</td>
+            <td>文件格式</td>
+            <td>打印状态</td>
+            <td>MD5码</td>
+            <td>修改日期</td>
+            <td>操作</td>
+          </tr>
+                      <foreach name="filelist" item="file">
+            <tr>
+                          <td>{$file.yf_id}</td>
+                          <td>{$file.uf_fullname}</td>
+                          <td>{$file.yf_ext}</td>
+                          <td>{$file.pm_status}</td>
+                          <td>{$file.yf_md5_hex}</td>
+                          <td>{$file.uf_lastupdate}</td>
+                          <td><button onclick="#" value="{$file.yf_id}" class="btn_cart" style="cursor:pointer">加入购物车</button></td>
+                        </tr>
+          </foreach>
+                    </table>
+      </gt>
+                </div>
+  </div>
+            </div>
+<div class="clear"></div>
+<include file="Common:foot" />
+</body>
+<script type="text/javascript">
+$(document).ready(function(e) {
+  //购买的AJAX调用
+  $(".btn_cart").click(function(event){
+	 var CART_TYP = 2;
+	 var PMA_ID = 1;
+	 var YF_ID = $(this).attr("value");
+	 $.ajax({
+	   url:'__APP__/Cart/addproduct',
+	   type:'get',
+       cache:false,
+       dataType:'json',
+       data:{
+		   yf_id : YF_ID,
+		   pma_id : PMA_ID,
+		   uc_type : CART_TYP
+	   },
+       success: function(data,textStatus){
+         if(data.isSuccess == true){
+           //成功加入购物车
+		   $(".ajaxinfo h3").text('已加入购物车');
+		   $(".ajaxinfo").fadeIn(1500).delay(2000).fadeOut(1500);
+           return;
+         }else{
+		   //出错
+		   $(".ajaxinfo h3").text('购买失败');
+		   $(".ajaxinfo").fadeIn(1500).delay(2000).fadeOut(1500);
+		   return;
+         }
+       },
+       error: function(Request,Status,Error) {alert(Request + '|' + Status + '|' +Error);}
+	});
+  });
+});
+	</script>
+</html>

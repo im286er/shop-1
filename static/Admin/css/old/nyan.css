@@ -1,0 +1,182 @@
+@charset "utf-8";
+/* 
+	Project Nyan ~ Core CSS. / (C)2013 Erinago / (C)2010-2013 Nagomi Mind
+	Rev. 2.1.6 M1 / Last Update: March 8, 2013
+	
+	For Program 3D Factory used only!
+*/
+
+
+/* avater */
+.avater { border: 1px solid #FFF; -webkit-box-shadow: 0 0 5px #C8C8C8; -moz-box-shadow: 0 0 5px #C8C8C8; box-shadow: 0 0 5px #C8C8C8; behavior: url(../../images/iefix/pie.htc); }
+.avater, .avater img { border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px;  }
+.avater.amin, .avater.amin img { width: 45px; height: 45px;  }
+.avater.alarge, .avater.alarge img  { width: 80px; height: 80px }
+
+/* nya */
+.nya { margin-bottom: 17px; border: 1px solid #D1D1D1; background: #FFF; }
+.nya.nal { padding-top: 0px }
+.nya-inner { padding: 12px; background: url(../../images/nyan/common/nya_bg_rap.jpg) repeat-x; line-height: 150%; }
+.nya-inner h2 { font-weight: normal; line-height: 40px; font: 20px/1 "Microsoft Yahei", "微软雅黑", "STHeiti Light", SimSun; }
+.nya-inner h2 span { color: #CCC; font-size: 14px; float: right; font-family: Arial, SimSun, \5b8b\4f53, Helvetica, sans-serif; }
+.nya-inner h4 { font-weight: normal; line-height: 40px; font: 18px/1 "Microsoft Yahei", "微软雅黑", "STHeiti Light", SimSun; }
+.nya-inner h5 { font-size: 12px; font-weight: normal }
+.nya-inner h3 { float: left; padding: 10px 0 15px 10px; color: #191919; font-weight: normal; font: 20px/1 "Microsoft Yahei", "微软雅黑", "STHeiti Light", SimSun }
+.nya-inner h3 span { padding-left: 20px; color: #CCC; font-size: 16px }
+/* nya.with-cate-switcher */
+.nya.with-cate-switcher ul.nav { float: right; height: auto; height: 20px; padding: 10px 10px 15px }
+.nya.with-cate-switcher ul.nav li { float: left; height: 20px }
+.nya.with-cate-switcher ul.nav li a.it { color: #FFF; background: #7EB8DD }
+.nya.with-cate-switcher ul.nav li a { display: block; margin-left: 2px; padding: 5px 15px; color: #666; font-size: 12px; border-radius: 3px; -khtml-border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+.nya.with-cate-switcher ul.nav li a:hover { color: #FFF; text-decoration: none; background: #0074BE }
+
+
+
+/* ====================================================================================================== */
+/* nya.home-panel */
+.nya.welcome .nya-inner { height: 300px; padding: 0; background: #F7F7F7 }
+.nya.welcome .homesearch-container { margin: 70px 30px }
+.nya.welcome .enterlib { position: absolute; display: block; top: 155px; right: 35px; width: 260px; height: 75px; color: #FFF; text-align: right; z-index: 600 }
+.nya.welcome .enterlib .enterwb { float: right; width: 260px; height: 35px; margin-top: 7px; padding-right: 24px; text-align: right; background: url(../../images/nyan/guide/more_s.png) right 1px no-repeat; text-shadow: 1px 1px 1px #333; font: 20px/1 "Microsoft Yahei", "微软雅黑", "STHeiti Light", SimSun; }
+.nya.welcome .enterlib .logo { float: right }
+.nya.welcome .enterlib:hover { color: #CCC }
+.nya.welcome .slideshow { position: absolute; top: 1px; left: 1px; width: 956px; height: 298px }
+.nya.welcome .slideshow img { width: 956px; height: 298px }
+
+.nya.welcome .tguider { position: absolute; left: 1px; bottom: 1px; width: 100% }
+.nya.welcome .tguider .caseshare { background: #008641 }
+.nya.welcome .tguider .caseshare:hover { background: #00A763 }
+.nya.welcome .tguider .caseprint { background: #CD4900 }
+.nya.welcome .tguider .caseprint:hover { background: #DD6D00 }
+.nya.welcome .tguider .casefind { background: #0072BC }
+.nya.welcome .tguider .casefind:hover { background: #0096D1 }
+.nya.welcome .tguider li { float: left; display: block; width: 318px; height: 34px; margin-right: 1px; font-size: 16px; line-height: 34px; cursor: pointer; }
+.nya.welcome .tguider li b { float: right; padding-right: 10px; color: #FFF; font-weight: normal; font-size: 22px; font-family: Verdana }
+.nya.welcome .tguider li a { padding-left: 28px; color: #FFF }
+.nya.welcome .tguider li a:hover { text-decoration: none }
+
+.nya.recentitem { width: 696px }
+.nya.recentitem .nya-inner { height: 370px }
+
+.nya.hottopic { width: 246px; }
+.nya.hottopic .nya-inner { height: 370px; }
+.nya.hottopic .topicbox { width: 220px; height: 80px; margin: 0 auto 15px; background-color: #FFF; background-position: 50%; }
+.nya.hottopic .topicbox span { position: relative; display: block; top: 55px; left: 0px; height: 25px; padding: 0 5px; color: #FFF; font-weight: bold; text-align: center; opacity: 0.6; line-height: 25px; filter: alpha(opacity=60); background: #000; }
+
+.nya.expro .expro-bywork-ul { padding: 8px; _padding-top: 0 }
+.nya.expro .expro-bywork-ul li.ntr { padding-right: 0 }
+.nya.expro .expro-bywork-ul li { float: left; width: 160px; padding: 0 21px 10px 5px }
+.nya.expro .expro-bywork-ul li .industrybox { width: 160px; height: 90px; margin-bottom: 5px; background: 50% }
+.nya.expro .expro-bywork-ul li .industrybox.case1 { background-image: url(../../images/nyan/guide/buliding.jpg) }
+.nya.expro .expro-bywork-ul li .industrybox.case2 { background-image: url(../../images/nyan/guide/military.jpg) }
+.nya.expro .expro-bywork-ul li .industrybox.case3 { background-image: url(../../images/nyan/guide/industry.jpg) }
+.nya.expro .expro-bywork-ul li .industrybox.case4 { background-image: url(../../images/nyan/guide/medicine.jpg) }
+.nya.expro .expro-bywork-ul li .industrybox.case5 { background-image: url(../../images/nyan/guide/transport.jpg) }
+.nya.expro .expro-bywork-ul li .industrybox span { position: absolute; display: block; left: 0px; bottom: 0px; height: 26px; color: #FFF; font-size: 14px; text-indent: 10px; text-align: left; line-height: 26px }
+.nya.expro .expro-bywork-ul li .industrybox img { width: 160px; height: 89px }
+.nya.expro .expro-bywork-ul li .industrybox a { position: relative; display: block; border: 1px solid #E5E5E5 }
+.nya.expro .expro-bywork-ul li .industrybox a:hover { font-weight: bold; text-decoration: none; border: 1px solid #666; background: url(../../images/nyan/guide/more_s.png) 130px 68px no-repeat; }
+.nya.expro .expro-bywork-ul li .tags { width: 160px; line-height: 175% }
+.nya.expro .expro-bywork-ul li .tags a { display: inline-block; margin: 0 3px; color: #333 }
+
+.nya.hotitem { padding-bottom: 15px }
+.nya.hotitem h4 { margin-bottom: 10px; padding: 10px 5px; margin: 0 10px; border-bottom: 1px solid #CCC; line-height: 20px }
+.nya.hotitem h4 .more { float: right; padding: 0px 10px 0 0; margin: 2px 0; font: 12px Verdana, Tahoma, Arial, SimSun, "宋体", Helvetica, sans-serif; }
+.nya.hotitem .recentitem-ul {  margin: 5px }
+.nya.topmember .recentuser-ul { padding: 10px 12px; height: 1%; }
+
+
+/*******************************************************************************/
+.items .nya.column-left { width: 660px; float: left }
+.items .nya.column-right { width: 245px; float: right; margin-right: 35px; }
+
+
+.items .pal-general { padding: 25px 20px; border-bottom: 1px solid #E1E1E1; }
+.items .pal-general .slideselecter { border: 1px solid #DDD; margin: 18px 0; padding: 8px; background: #F4F4F4; height: 96px; }
+.items .pal-general .slideselecter a { border: 1px solid #FFF; width: 80px; height: 80px; display: inline-block; }
+.items .pal-general .slideselecter a:hover {  border: 1px solid #AAA; }
+.items .pal-general .slideselecter a.st { border: 1px solid #0074B9}
+.items .pal-general .slideselecter a img { width: 80px; height: 80px; background: #E8E8E8; }
+.items .pal-general .slideselecter .thumbs { height: 96px; overflow: auto; white-space:nowrap; }
+.items .pal-general .slideselecter .thumbs ul { height: 80px;  white-space:nowrap; }
+.items .pal-general .slideselecter .thumbs ul li { display: inline;}
+.items .pal-general .slideshow { min-height: 602px; border: 1px solid #DDD; width:602px; padding: 8px; background: #F4F4F4; margin-bottom: 18px; }
+.items .pal-general .slideshow img { width: 600px; height: auto; border: 1px solid #E6E6E6; background: #E8E8E8; }
+.items .pal-general .tags-container { width: 390px; border-right: 1px solid #EEEEEE }
+.items .pal-general .tags-container .tags { clear: left; padding: 20px 0; width: 99%;}
+.items .pal-general .tags-container .tags a { padding: 4px 10px; background: #F9F9F9; border: 1px solid #EFEFEF; margin-right: 7px; color: #555;  border-radius: 3px; -khtml-border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; behavior: url(../../images/iefix/pie.htc); display: inline-block; margin-bottom: 8px; }
+.items .pal-general .tags-container .tags a:hover { background:#F7F7F7; border-color: #B4B4B4; }
+.items .download-container { width: 210px; padding: 10px 0; height: 55px; }
+
+.abutton {  box-shadow: 0 0 4px #999; -webkit-box-shadow: 0 0 4px #999; -moz-box-shadow: 0 0 4px #999; font-size: 14px; color: #FFF; display: inline-block; border-radius: 3px; -khtml-border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; padding-top: 8px; padding-bottom: 8px; line-height: 18px;  } 
+.abutton i { font-size: 10px; color: #BBB;  -webkit-text-size-adjust: none; display: block;}
+.abutton.download { width: 85px; background: #0074B9 url(../../images/icons/download.png) 18px center no-repeat; border: 1px solid #0080CC; padding-left: 55px; margin-right: 6px;}
+.abutton.mark { width: 50px; background: #D1480E; border: 1px solid #E95110; text-align: center; }
+.abutton.mark i { text-align: center; }
+
+.items .pal-lightlighs { border-top: 1px solid #F5F5F5; border-bottom: 1px solid #E1E1E1; background: #FBFBFB; padding: 16px 20px; }
+
+.filetype li { color: #333; line-height: 125%; padding: 5px 0; }
+.filetype li i { color: #AAA; float: right; }
+.filetype li span { display: block;  color: #AAA; }
+
+.attribute-hr { position: absolute; }
+.attribute li { color: #333; line-height: 200%;   }
+.attribute li span { width: 90px; display: inline-block; float: right; }
+
+.items .pal-more { border-top: 1px solid #F5F5F5; border-bottom: 1px solid #E1E1E1;  background: none; padding: 20px; }
+.items .pal-more .description { line-height: 175%; color: #666;  font-family: Arial, SimSun, \5b8b\4f53, Helvetica, sans-serif;  }
+.items .pal-more .description p { margin-bottom: 10px; }
+.items .pal-more.pal-attribute { position: relative; }
+.items .pal-more.pal-attribute .vhr { position: absolute; border-right: 1px solid #EEE; height: 290px; width: 100px; }
+
+.items .pal-bottom { border-top: 1px solid #F5F5F5; padding: 15px 20px; }
+
+.items .pal-moreitems {border-top: 1px solid #F5F5F5; padding: 20px 10px;  }
+
+.items .nya-inner h4 { padding-left: 10px; }
+.items .nya-inner h5 { font-weight: bold; padding-bottom: 10px; }
+
+.cc-license { padding: 10px 0; text-align: center; display: block;  border: 1px solid #EFEFEF; background: #F9F9F9; margin: 10px 0; color: #999; }
+.cc-license span { display: block;  text-align: center; line-height: 125%; padding-top: 7px; }
+.cc-license:hover { border: 1px solid #333; background: #999; color: #FFF; }
+.link-ul .vstar { padding: 5px 0 0 25px; background: url(../../images/icons/vstar.png) left 12px no-repeat; display: block}
+
+.link-ul a{ line-height: 28px; color: #0072BF; }
+.link-ul a:hover { color: #53A9FF; }
+
+.listitem-ul { padding: 10px 0; }
+.listitem-thumbnail li { float: left; padding: 10px 10px 0; }
+.listitem-thumbnail li a.thumblink { display: block; }
+.listitem-thumbnail li a.thumblink:hover { }
+.listitem-thumbnail li .detials { padding: 2px; width: 96px }
+.listitem-ul li .detials h5 a { line-height: 20px; color: #666; }
+.listitem-ul li .detials .exts a { line-height: 16px; color: #AAA; padding-right: 8px; font-family: Verdana, Tahoma, Arial, sans-serif; display: inline-block; }
+
+.listitem-thumbnail.thumb-mid li { width: 100px; } 
+.listitem-thumbnail.thumb-mid li a.thumblink img { width: 100px; height: 100px; }
+
+.recentitem-ul { padding: 0 5px }
+.recentitem-thumbnail li { float: left; padding: 6px; }
+.recentitem-thumbnail li a.thumblink { display: block; width: 80px; height: 80px; border: 1px solid #FFF; box-shadow: 0 0 3px #ACACAC; -webkit-box-shadow: 0 0 3px #ACACAC; -moz-box-shadow: 0 0 3px #ACACAC; behavior: url(../../images/iefix/pie.htc); }
+.recentitem-thumbnail li a.thumblink:hover { border: 1px solid #999 }
+.recentitem-thumbnail li a.thumblink img { width: 80px; height: 80px; }
+.recentitem-thumbnail li .detials { display: none }
+
+.recentitem-list li { float: left; width: 96%; padding: 7px 6px; clear: both; }
+.recentitem-list li a.thumblink { float: left; display: block; width: 60px; height: 60px; border: 1px solid #FFF; box-shadow: 0 0 3px #ACACAC; -webkit-box-shadow: 0 0 3px #ACACAC; -moz-box-shadow: 0 0 3px #ACACAC;  behavior: url(../../images/iefix/pie.htc);  }
+.recentitem-list li a.thumblink img { width: 60px; height: 60px; }
+.recentitem-list li .detials { float: left; padding: 0 10px 0 15px; color: #999; line-height: 165% }
+.recentitem-list li .detials .column { display: inline-block; width: 90px }
+.recentitem-list li .detials h5 { width: 186px; padding: 0; line-height: 20px }
+.recentitem-ul .detials .hehe { text-align: left; z-index: 1; animation: ease; animation-delay: 5; animation-name: maho; margin: auto; alignment-baseline: baseline; word-wrap: break-word; }
+.recentitem-list li:hover { background: #F8F8F8 }
+.recentuser-min li { float: left; width: 25%; padding: 5px 0 }
+.recentuser-min li .detials { float: left; padding: 0 10px 0 15px; color: #999; line-height: 165% }
+.recentuser-min li .detials h5 { padding: 0; line-height: 20px }
+.recentuser-min li .avater { float: left }
+
+.recentitem-ul .detials h5 a, .recentuser-ul .detials h5 a { color: #333 }
+.recentitem-ul .detials a, .recentuser-ul .detials a { display: block; color: #999 }
+.recentitem-ul .detials a:hover, .recentuser-ul .detials a:hover { color: #0074C0 }
+

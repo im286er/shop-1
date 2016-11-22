@@ -1,0 +1,116 @@
+<{include file=C('HEADPAGE_START')}>
+<style>
+.lg-slideshow { margin:0 auto; background:#fff; height: 520px; position: relative; }
+.lg-slideshow .content { width:100%; height: 520px; float:left; position:relative; z-index:1;  border-bottom: 1px #333 solid; }
+.lg-slideshow .discription { width:258px; float:right; height:320px;}
+
+.lg-slideshow .content { position:relative;height:520px; width:100%;  }
+.lg-slideshow .content li { float:left; position:absolute; left:0; top:0; width: 100%; height: 520px; background-position: center center; background-repeat: no-repeat; }
+.lg-slideshow .content li img { }
+.lg-slideshow .content li .inner { width: 960px; margin: 0 auto; position: relative; height: 520px; } 
+.lg-slideshow .content li .inner .inner-content { position: absolute; bottom: 45px; right: 0px; margin-right: 60px; margin-bottom: 30px; }
+.lg-slideshow .content li .inner .inner-content a { padding: 15px 20px; background: #de4a4a; width: 180px; text-align: center;  color: #FFF; font-size: 17px; }
+.lg-slideshow .content li .inner .inner-content a:hover { border-color: #c64545; background-color: #c64545; }
+.lg-slideshow .content li .inner h3 { color: #fff; margin-bottom: 0px; font-size: 18px; font-family: "Microsoft Yahei"; text-shadow: 1px 1px #333; } 
+.lg-slideshow .content li .inner p {font-family: "Microsoft Yahei"; line-height:150%; color:#CCC; font-size:16px; margin: 5px 0; text-shadow: 1px 1px #222; } 
+.lg-slideshow .content li .inner p a.more { margin-top: 15px; line-height: 20px; text-shadow: 0px 1px #333; margin-right: 5px; color: #FFF; font-size: 14px;} 
+
+.lg-slideshow .page-num { position: absolute; width: 80px; left: 50%; margin-left: -500px;  top: 470px; z-index: 2; padding: 0 10px;}
+.lg-slideshow .page-num li { float: right; width:12px; cursor:pointer; font-weight:600; background:#333; color:#fff; height:12px; line-height:25px; text-align:center; margin-bottom:10px; border-radius: 100%; margin-left: 10px; border: 1px solid #444; text-indent: -9999px}
+.lg-slideshow .page-num li.select {background:#de4a4a; border: 1px solid #de4a4a;}
+.lg-slideshow .page-num li:hover {background:#666; border: 1px solid #777;}
+
+.lg-slideshow .discription { display: none; }
+.lg-slideshow .discription .statistics { padding-left:10px; margin:20px; }
+.lg-slideshow .discription .title { font-size:18px; font-weight:600; color:#333; font-family: "Microsoft Yahei";}
+.lg-slideshow .discription .description { font-size:12px; margin-top:20px; line-height:22px; color:#;}
+</style>
+
+<{include file=C('HEADPAGE_END')}>
+<!-- 1.1.1 SlideShow Control -->
+<div class="lg-slideshow">
+
+<ul class="content">
+    <{foreach $ShopIndexPic as $Result}>
+        <li style="background-image:url(<{$Result.pic}>)">
+            <div class="inner">
+                <div class="inner-content">
+                    <{$Result.content}>
+                </div>
+            </div>
+        </li>
+      <{/foreach}>  
+</ul>
+    <ul class="page-num"> 
+		<li>3</li>
+		<li>2</li>
+		<li class="select">1</li>
+	</ul>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/com.slideshow.js"></script>
+
+
+<div>
+	<div class="container index width1000">
+		<div class="clear"></div>
+		<div class="featured cate cate-grid width1000">
+			<h2>3D打印机</h2>
+			<ul class="featured prod fr items-grid-nd flat-s  setting-gird wid960">
+			<{foreach $ProductList as $Result}>
+				<li class="liwidth">
+				<span class="thumb"><a href="__DOC__/index/shop-detail-id-<{$Result.p_id}>.html"><img alt=<{$Result.p_name}> src="__DOC__<{$Result.p_cover}>" title="<{$Result.p_name}>"/></a>
+				</span>
+				<h3><a title="<{$Result.p_name}>" href="__DOC__/index/shop-detail-id-<{$Result.p_id}>.html"><{$Result.p_name}></a></h3>
+               	<div class="itemstatus" style=" padding-bottom: 0px; height: 30px; line-height: 30px;">￥<{$Result.p_price|string_format:"%.2f"}></div>
+				</li>
+             <{/foreach}>
+             
+        
+             
+        
+			   
+            		</ul>
+		<div class="clear"></div>
+
+			</div>
+			<div class="clear"></div>
+		
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+<div class="clear"></div>
+
+
+<div>
+	<div class="container index width1000">
+		<div class="clear"></div>
+		<div class="featured cate cate-grid width1000">
+			<h2>打印耗材</h2>
+			<ul class="featured prod fr items-grid-nd flat-s  setting-gird wid960">
+			 
+           <{foreach $ProductListHC as $Result}>
+			    <li class="liwidth">
+				<span class="thumb"><a href="__DOC__/index/shop-detail-id-<{$Result.p_id}>.html"><img alt=<{$Result.p_name}> src="__DOC__<{$Result.p_cover}>" title="<{$Result.p_name}>"/></a>
+				</span>
+				<h3><a title="<{$Result.p_name}>" href="/index/shop-detail-id-<{$Result.p_id}>.html"><{$Result.p_name}></a></h3>
+               	<div class="itemstatus" style=" padding-bottom: 0px; height: 30px; line-height: 30px;">￥<{$Result.p_price|string_format:"%.2f"}></div>	
+				</li>
+           <{/foreach}>  
+           </ul>
+		<div class="clear"></div>
+
+			</div>
+			<div class="clear"></div>
+
+			
+            </ul>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+<div class="clear"></div>
+
+<{include file=C('FOOTPAGE')}>
+

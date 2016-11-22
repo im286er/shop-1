@@ -1,0 +1,39 @@
+<{include file=C('HEADPAGE_START')}>
+<{include file=C('HEADPAGE_END')}>
+<div id="help-file">
+	<div class="help-list">
+
+
+		<dl>
+			<{foreach from=$menus item="menu" key="k"}>
+			<dt><{$k}></dt>
+			<{foreach from=$menu item="child" key="kk"}>
+			<dd>
+				<a href="__DOC__/index/help-index-id-<{$kk}>.html" class="st"><{$child}></a>
+			</dd>
+			<{/foreach}> <{/foreach}>
+			<!-- <dt>浏览3D城</dt>
+			<dd><a href="#">发现创意</a></dd>
+			<dd><a href="#">浏览3D模型库</a></dd>
+			<dd><a href="#">浏览3D素材库</a></dd>
+			<dd><a href="#">寻找3D教程</a></dd>
+			<dd><a href="#">免费3D模型</a></dd>
+			<dt>分享3D模型</dt>
+			<dd><a href="#">创意成型</a></dd>
+			<dd><a href="#">3D市场</a></dd>
+			<dd><a href="#">免费资源库</a></dd>
+			<dt>帮助和支持</dt>
+			<dd><a href="#">购物流程</a></dd>
+			<dd><a href="#">3D打印服务流程</a></dd>
+			<dd><a href="#">版权问题</a></dd>
+			<dd><a href="#">配送方式</a></dd> -->
+		</dl>
+	</div>
+	<div class="article">
+		<h2><{$showdoc[0]['title']}></h2>
+		<div class="content">
+		<{$showdoc[0]['content']}>
+		</div>
+	</div>
+</div>
+<{include file=C('FOOTPAGE')}>

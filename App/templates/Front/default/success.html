@@ -1,0 +1,36 @@
+<{include file="./pageheader_start.html"}>
+<{include file="./pageheader_end.html"}>
+<div class="login">
+	<div class="login-content" style="width:600px; ">
+		<h4>提示</h4><br><br>
+        <br><br>
+			<p class="showinfo"><{$message}></p>	
+            <p class="showinfolist"><span><input type="button"  value="返回上一页面" class="more yellow-btn" id="goback">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="button"  value="注册新账户" onclick="javascript:window.location.href='__APP__/register'" class="more whitenew-btn"></span></p>
+        <p class="showtz">正在跳转,请稍等 <b id="wait"><{$waitSecond}></b> 秒...</p>
+        <p class="showtext"><a href="__FRONTIDX__">@ 蔚图网</a></p>
+	</div>
+</div>
+
+
+
+<script type="text/javascript">
+				$('#goback').click(function(e) {
+					window.location.href="<{$jumpUrl}>";
+				});
+</script> 
+<{include file="./pagefooter.html"}>
+
+
+<script type="text/javascript">
+(function(){
+var wait = document.getElementById('wait'),href = "<{$jumpUrl}>";
+var interval = setInterval(function(){
+	var time = --wait.innerHTML;
+	if(time == 0) {
+		location.href = href;
+		clearInterval(interval);
+	};
+}, 1000);
+})();
+</script>
+<{include file="./pagefooter.html"}>

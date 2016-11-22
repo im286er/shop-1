@@ -1,0 +1,78 @@
+@charset "utf-8";
+/* 
+	Project Kana ~ Reset and Basic CSS. / (C)2012 Erinago / (C)2010-2013 Nagomi Mind
+*/
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, dialog, div, dl, dt, em, embed, fieldset, figcaption, figure, font, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, hr, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, meter, nav, object, ol, output, p, pre, progress, q, rp, rt, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video, xmp { margin: 0; padding: 0; border: 0; outline: 0; font-weight: inherit; font-style: inherit; font-family: inherit; font-size: 100%; text-align: left; vertical-align: baseline; }
+html, body { height: 100%; }
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block }
+b, strong { font-weight: bold }
+em { font-style: italic }
+img { color: transparent; font-size: 0; vertical-align: middle; -ms-interpolation-mode: bicubic; }
+ol, ul { list-style: none } 
+li { display: list-item }
+table { border-collapse: collapse; border-spacing: 0; }
+th, td, caption { font-weight: normal; vertical-align: top; text-align: right; }
+input, select { vertical-align: middle; -webkit-appearance: none; border-radius: 0; }
+blockquote, q { quotes: none }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+:focus { outline: 0 }
+/* Clears */
+.cleared { clear: both; position: relative; zoom: 1; }
+.cleared:after { clear: both; content: ""; display: block; height: 0; width: 0; line-height: 0; }
+.clear { clear: both; display: block; }
+.clear-r { clear: right }
+.clear-l { clear: left }
+/* Position */
+.pr { position: relative }
+.pa { position: absolute }
+.mid { margin-left: auto; margin-right: auto; }
+.fl { float: left }
+.fr { float: right }
+.center { text-align: center }
+.justify { text-align: justify }
+.left { text-align: left }
+.right { text-align: right }
+/* Element */
+.b { font-weight: bold }
+.n { font-weight: normal }
+.clickable { cursor: pointer }
+.dragable { cursor: move }
+.hr { border-top: 1px solid #CCC; line-height: 1; height: 0; }
+.hr.dashed { border-style: dashed }
+.hide { display: none }
+.block { display: block }
+.inline { display: inline }
+.inline-block { display: inline-block; *display: inline; *zoom: 1; }
+.overflow { overflow: hidden }
+.overflow-y { overflow-y: hidden }
+.overflow-x { overflow-x: hidden }
+.double-bottom-line {border-bottom:1px solid #fff; -moz-box-shadow:0px -1px 1px #C0AD92 inset;	-webkit-box-shadow:0px -1px 1px #C0AD92 inset; box-shadow:0px -1px 1px #C0AD92 inset;}
+.double-top-line {border-top:1px solid #C0AD92; -moz-box-shadow:0px 1px 0px #fff inset;	-webkit-box-shadow:0px 1px 1px #fff inset; box-shadow:0px 1px 1px #fff inset;}
+/* Fixes */
+.mt10 { margin-top: 10px }
+.mb5 { margin-bottom: 5px }
+.mb10 { margin-bottom: 10px }
+.mb15 { margin-bottom: 15px }
+.mb20 { margin-bottom: 20px }
+.mr5 { margin-right: 5px }
+.mr10 { margin-right: 10px }
+.mr15 { margin-right: 15px }
+.mr20 { margin-right: 20px }
+.p5 { padding: 5px }
+.p10 { padding: 10px }
+.p15 { padding: 15px }
+.p20 { padding: 20px }
+.p-l {padding-left:15px;}
+/* Font Styles */
+.f10, small, .small, .f9 { font-size: 10px; -webkit-text-size-adjust: none; }
+.f12, .normal { font-size: 12px }
+.f14 { font-size: 14px }
+.f16, .large { font-size: 16px }
+.f20 { font-size: 20px }
+.f24 { font-size: 24px }
+.f32 { font-size: 32px }
+/* Colors */
+.s1 {color:#416B80;}
+.s2 {color:#999;}
+.s3 {color:#333;}
+.s4 {color:#990033;}

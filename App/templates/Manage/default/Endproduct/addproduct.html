@@ -1,0 +1,201 @@
+<include file="Common:pageheader_start" />
+<include file="Common:pageheader_end" />
+<div id="Right">
+	<div class="contentArea">
+		<div class="Item hr">
+			<!-- 
+			<div class="current">{$currentNav}</div>
+			 -->
+			 <if condition="$act eq 'editproduct'">
+			 	<div class="current">编辑商品</div>
+			 <else />
+			 	<div class="current">添加新商品</div>
+			 </if>
+		</div>
+		
+		<form action="" method="post">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0"
+				class="table1">
+				<tr>
+					<th width="120">名称：</th>
+					<td><input name="product_name" type="text" class="input" maxlength="120" size="40"
+						value="{$product.p_name}" /></td>
+				</tr>
+				<tr>
+					<th width="120">起始价：</th>
+					<td><input name="price" type="text" class="input" size="40"
+						value="{$product.p_price}" /></td>
+				</tr>
+				<tr>
+					<th>所属商品主类型：</th>
+					<td><select name="product_maintype">{$mtOptionCtrl}</select></td>
+				</tr>
+				<tr>
+					<th width="120">售贩单位：</th>
+					<td><input name="unitname" type="text" class="input" size="10"
+						value="{$product.p_unitname}" /></td>
+				</tr>
+				<tr>
+					<th>所有人：</th>
+					<td><select name="product_author">{$authorOptionCtrl}</select></td>
+				</tr>
+                <tr>
+                    <th>APP显示：</th>
+                    <td>
+                        <if condition="$product.p_lictype eq '1'">
+                            <input type="radio" value="1" name="p_lictype" id="p_lictype_1" checked> <label for="p_lictype_1">显示</label> &nbsp;&nbsp;
+                            <input type="radio" value="0" name="p_lictype" id="p_lictype_0"> <label for="p_lictype_0">不显示</label>
+                        <else/>
+                            <input type="radio" value="1" name="p_lictype" id="p_lictype_1" > <label for="p_lictype_1">显示</label> &nbsp;&nbsp;
+                            <input type="radio" value="0" name="p_lictype" id="p_lictype_0" checked> <label for="p_lictype_0">不显示</label>
+                        </if>
+
+                    </td>
+                </tr>
+				<tr>
+					<th>促销水印：</th>
+					<td><select name="product_waterproof"><option value="0" selected="selected">请选择</option>{$wpOptionCtrl}</select></td>
+				</tr>
+				<tr>
+					<th  valign="top">促销文案：</th>
+					<td><textarea name="product_onsaleintro" id="product_onsaleintro" cols="109" rows="10">{$product.p_onsaleintro}</textarea></td>
+				</tr>
+				<tr>
+					<th  valign="top">相关商品：</th>
+					<td><textarea name="product_relation" id="product_relation" cols="109" rows="10">{$product.p_relation}</textarea></td>
+				</tr>
+				<tr>
+					<th  valign="top">简短介绍：</th>
+					<td><textarea name="mini" cols="109" rows="10">{$product.p_mini}</textarea></td>
+				</tr>
+				<tr>
+					<th valign="top">介绍：</th>
+					<td><textarea name="desc" id="desc" class="css_textarea">{$product.p_intro}</textarea></td>
+				</tr>
+				<tr>
+					<th valign="top">手机端介绍：</th>
+					<td><textarea name="mdesc" id="mdesc" class="css_textarea">{$product.p_introm}</textarea></td>
+				</tr>
+
+				<tr>
+					<th valign="top">关键字：</th>
+					<td><textarea name="tags" id="tags" cols="109" rows="10">{$product.p_tags}</textarea></td>
+				</tr>
+                <tr>
+                    <th valign="top">列表变换图：</th>
+                    <td>
+                        <input type="text" name="p_awards" id="p_awards" value="{$product.p_awards}" class="css_textimage">
+                        <input type="button" id="p_awards_img" value="选择图片">
+                    </td>
+                </tr>
+			</table>
+			<if condition="$act eq 'editproduct'">
+				<input type="hidden" name="act" value="{$act}">
+				<input type="hidden" name="pid" value="{$product.p_id}">
+				<input type="hidden" name="oldtags" value="{$product.p_tags}">
+			</if>
+		</form>
+		<div class="commonBtnArea">
+			<button class="btn submit">提交</button>
+		</div>
+	</div>
+</div>
+<script>
+	var htmlbl_2='mdesc';
+	if(htmlbl_2){
+		KindEditor.ready(function(K) {
+			var editor2 = K.create('textarea[name='+ htmlbl_2 +']', {
+				height : "600px",
+				width : "800px",
+				cssPath : '__PUBLIC__/kindeditor/plugins/code/prettify.css',
+				uploadJson : '__PUBLIC__/kindeditor/php/upload_json.php',
+				fileManagerJson : '__PUBLIC__/kindeditor/php/file_manager_json.php',
+				allowFileManager : true,
+				afterBlur: function(){
+					this.sync();
+				},
+				afterCreate : function() {
+					var self = this;
+					K.ctrl(document, 13, function() {
+						self.sync();
+						K('form[name=example1]')[0].submit();
+					});
+					K.ctrl(self.edit.doc, 13, function() {
+						self.sync();
+						K('form[name=example1]')[0].submit();
+					});
+				}
+			});
+			prettyPrint();
+		});
+	}
+</script>
+
+
+<script>
+	var htmlbl='desc';
+	if(htmlbl){
+		KindEditor.ready(function(K) {
+			var editor1 = K.create('textarea[name='+ htmlbl +']', {
+				height : "600px",
+				width : "800px",
+				cssPath : '__PUBLIC__/kindeditor/plugins/code/prettify.css',
+				uploadJson : '__PUBLIC__/kindeditor/php/upload_json.php',
+				fileManagerJson : '__PUBLIC__/kindeditor/php/file_manager_json.php',
+				allowFileManager : true,
+				afterBlur: function(){
+					this.sync();
+				},
+				afterCreate : function() {
+					var self = this;
+					K.ctrl(document, 13, function() {
+						self.sync();
+						K('form[name=example]')[0].submit();
+					});
+					K.ctrl(self.edit.doc, 13, function() {
+						self.sync();
+						K('form[name=example]')[0].submit();
+					});
+				}
+			});
+			prettyPrint();
+		});
+	}
+</script>
+<script>
+    KindEditor.ready(function(K) {
+        var editor1 = K.create('textarea[name=p_awards]', {
+            cssPath : '__PUBLIC__/kindeditor/plugins/code/prettify.css',
+            uploadJson : '__PUBLIC__/kindeditor/php/upload_json.php',
+            fileManagerJson : '__PUBLIC__/kindeditor/php/file_manager_json.php',
+            allowFileManager : true,
+            afterCreate : function() {
+                var self = this;
+                K.ctrl(document, 13, function() {
+                    self.sync();
+                    K('form[name=example]')[0].submit();
+                });
+                K.ctrl(self.edit.doc, 13, function() {
+                    self.sync();
+                    K('form[name=example]')[0].submit();
+                });
+            }
+        });
+        prettyPrint();
+    });
+</script>
+
+<script>
+	KindEditor.ready(function(K) {
+		var editor = K.editor({	allowFileManager : true});
+		K('#p_awards_img').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#p_awards').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#p_awards').val(url);editor.hideDialog();}});
+			});
+		});
+	});
+</script>
+<include file="Common:pagefooter" />

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$jump_label.title}</title>
+<meta name="viewport" content="user-scalable=no, width=device-width" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link href="__PUBLIC__/css/init.css" rel="stylesheet" media="all" type="text/css" />
+<link href="__PUBLIC__/css/admin-init.css" rel="stylesheet" media="screen" type="text/css" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/js/iefix-pie.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="infoshell face">
+  <div class="ctr">
+    <h1>:)</h1>
+	<h3>\\ System Information</h3>
+    <h2>{$message}</h2>
+    <div class="llbuttom">
+          <button class="blue" type="button" id="goback">继续操作</button>
+      </div>
+      <script type="text/javascript">
+      $('#goback').click(function(e) {
+              window.location.href="{$jumpUrl}";
+      });
+      </script> 
+  </div>
+</div>
+<div class="infoshell bg"></div>
+<div class="footbar face">
+	<ul>
+		<li><a>正在跳转，请稍等 ... 请稍等 <b id="wait">{$waitSecond}</b> 秒</a></li>
+	</ul>
+	<a class="fr" href="/">©2013 3D Factory</a> </div>
+<div class="footbar bg"></div>
+<script type="text/javascript">
+(function(){
+var wait = document.getElementById('wait'),href = "{$jumpUrl}";
+var interval = setInterval(function(){
+	var time = --wait.innerHTML;
+	if(time == 0) {
+		location.href = href;
+		clearInterval(interval);
+	};
+}, 1000);
+})();
+</script>
+</body>
+</html>

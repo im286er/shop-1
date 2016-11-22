@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>闺蜜节活动详情-{$site.SITE_INFO.name}</title>
+	<include file="Common:intohead" />
+	</head>
+	<body>
+		<div class="wrap">
+		<include file="Common:head" />
+			<div class="mainBody">
+              	<include file="Common:left" />
+    				<div id="Right">
+                 		<div class="Item hr">
+        					<div class="current">闺蜜节活动详情</div>
+        					<h3> 本次活动已发放 <b style='color:green'>{$num}</b> 张优惠券 ,已被使用  <b style='color:red'>{$num_used}</b> 张</h3>					
+        					<table class='tab'>
+        					<tr>
+        					<td>序号</td>
+        					<td>优惠码</td>
+        					<td>用户名</td>
+        					<td>昵称</td>
+        					<td>状态</td>
+        					<td>创建时间</td>
+        					</tr>
+        					<volist name='list' id='vo'>
+        					<tr>
+        					<td>{$vo.ec_id}</td>
+        					<td>{$vo.ec_code}</td>
+        					<td>{$vo.ec_owner}</td>
+        					<td>{$vo.u_dispname}</td>
+        					<td>
+        					<if condition="$vo.ec_status eq 1">正常
+        					<elseif condition="$vo.ec_status eq 2"/>已充值
+        					<elseif condition="$vo.ec_status eq 0"/>未激活
+        					<else />状态不可用
+        					</if>
+        					</td>
+        					<td>{$vo.ec_ctime}</td>
+        					</tr>
+        					</volist>        					
+        					</table>
+        					{$show}
+        					
+      					</div>
+      				</div>
+      		</div>
+      	</div>
+<div class="clear"></div>
+<include file="Common:foot" />
+</body>
+</html>

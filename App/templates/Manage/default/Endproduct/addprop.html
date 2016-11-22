@@ -1,0 +1,47 @@
+<include file="Common:pageheader_start" />
+<include file="Common:pageheader_end" />
+<div id="Right">
+	<div class="contentArea">
+		<div class="Item hr">
+			<!-- 
+			<div class="current">{$currentNav}</div>
+			 -->
+			 <if condition="$act eq 'editprop'">
+			 	<div class="current">编辑- {$mainType.ipt_name} 属性</div>
+			 <else />
+			 	<div class="current">添加- {$mainType.ipt_name} 属性</div>
+			 </if>
+		</div>
+		
+		<form action="" method="post">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0"
+				class="table1">
+				<tr>
+					<th width="120">属性名称：</th>
+					<td><input name="prop_name" type="text" class="input" size="40"
+						value="{$propRes.ipp_name}" /></td>
+				</tr>
+				<tr>
+					<th width="120">属性权重：</th>
+					<td><input name="prop_weight" type="text" class="input" size="40"
+						value="{$propRes.ipp_weight}" /></td>
+				</tr>
+				<tr>
+					<th valign="top">属性值集合：</th>
+					<td><textarea name="prop_vals" cols="100" rows="3">{$propRes.ipp_vals}</textarea></td>
+				</tr>
+			</table>
+			<if condition="$act eq 'editprop'">
+				<input type="hidden" name="act" value="{$act}">
+				<input type="hidden" name="prop_id" value="{$propRes.ipp_id}">
+				<input type="hidden" name="old_propvals" value="{$propRes.ipp_vals}">
+			<else />
+				<input type="hidden" name="type_id" value="{$mainType.ipt_id}">
+			</if>
+		</form>
+		<div class="commonBtnArea">
+			<button class="btn submit">提交</button>
+		</div>
+	</div>
+</div>
+<include file="Common:pagefooter" />

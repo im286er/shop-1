@@ -1,0 +1,434 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/yagami_global.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title><{$page_title}></title>
+<!-- InstanceEndEditable -->
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<link href="__PUBLIC__/themes/default/css/init.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/themes/default/css/yagami.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.js"></script>
+<!-- InstanceBeginEditable name="head" -->
+<script type="text/javascript" src="__PUBLIC__/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/history.js"></script>
+
+<script type="text/javascript">
+function showLoader(){
+	$('.loading').fadeIn(200);
+}
+function hideLoader(){
+	$('.loading').fadeOut(200);
+	
+	var cur_page = parseInt($("#currentPage").val());
+	var total_page = parseInt($("#totalPage").text());
+	if (cur_page >= total_page){
+		$('#loadPageNext').addClass('disabled');
+	}else{
+		$('#loadPageNext').removeClass('disabled');
+	}
+	
+	if (cur_page == 1){
+		$('#loadPagePre').addClass('disabled');
+	}else{
+		$('#loadPagePre').removeClass('disabled');
+	}
+};
+
+function clickIt(act){
+	/*
+	showLoader();
+	$("#ajax_act").val(act);
+	$("#currentPage").val(1);
+	$("#totalPage").load("ajax.php?" + act + "&show=num", function(){
+		$("#items").load("ajax.php?" + act + "&page=1", hideLoader);	
+	});
+	*/
+	showLoader();
+	$("#ajax_act").val(act);
+	$("#currentPage").val(1);
+	$("#totalPage").load("__DOC__/dvs.php/ajax/index/" + act + "/show/num", function(){
+	$("#items").load("__DOC__/dvs.php/ajax/index/" + act + "/page/1", hideLoader);
+		$("#shownavi").load("__DOC__/dvs.php/ajax/index/" + act + "/show/navi");	
+	});
+	
+}
+$(document).ready(function(){
+	
+	//history
+	display();
+	
+	if ($("#searchbox").val().length <= 0){
+		$("#lab_startsearch").show();	
+	}
+	
+	$("#navsearch").submit(function(){
+		var key_word = $("#searchbox").val();
+		key_word = key_word.replace(/^\s+|\s+$/g,""); 
+		if (key_word.length <= 0){
+			return false;	
+		}else{
+			//var href = 'search.php?searchbox=' + UrlEncode(key_word);
+			var url_keyword = encodeURIComponent(key_word);
+			var href = '__DOC__/dvs.php/store/search/tags/' + url_keyword;
+			do_add(href);
+		}
+	});
+	
+	$("a").live('click', function(event){
+		//alert($(this).attr('href'));
+		var href = $(this).attr('href');
+		do_add(href);
+	});
+	
+	/*
+	$("#navsearch").submit(function(){
+		$("#searchbox").val('');
+	});
+	*/
+	
+	/*
+	$("#filter_format").bind("click",function() { 
+					$(".select ul").hide();
+               		$(this).find("ul").fadeIn();
+				});
+	$("#filter_format").bind("click",function() { 
+                	$(this).fadeOut();
+					return false;
+				});
+	*/
+	
+	$("#filter_info").click(function(){
+		$("#filter_info ul").slideToggle();
+	});
+	
+	$("#all_info li").click(function(){
+		$("#show_info").text($(this).text());
+		var filter = $(this).attr('filter');
+		var ajax_act = $("#ajax_act").val();
+		var pattern = /(&|\?)filter=[^&]+/;
+		ajax_act = ajax_act.replace(pattern,"");
+		ajax_act += '&filter=' + filter;
+		clickIt(ajax_act);
+	});
+	
+	$("#filter_format").click(function(){
+		$("#filter_format ul").slideToggle();
+		
+	});
+	
+	$("#all_format li").click(function(){
+		$("#show_format").text($(this).text());
+		var ajax_act = $("#ajax_act").val();
+		var pattern = /(&|\?)tools=[^&]+/;
+		ajax_act = ajax_act.replace(pattern,"");
+		ajax_act += '&tools=' + $(this).val();
+		clickIt(ajax_act);
+	});
+	
+	//$("#menu_list ul.menu_body").css('display','none');
+	
+	/*
+	$("#menu_list ul.menu_body li a").click(function(){
+		$(this).parent("li").addClass("t").siblings("li").removeClass("t");
+	 }
+	);
+	*/
+	
+	$("#isAssembly").click(function(){
+		var ajax_act = $("#ajax_act").val();
+		ajax_act = ajax_act.replace(/(&|\?)isAssembly=[^&]+/,"");
+		if ($(this).attr("class") == 'checkbox checked'){
+			ajax_act += '&isAssembly=0';
+			clickIt(ajax_act);
+			$(this).removeClass("checked");
+		}else{
+			ajax_act += '&isAssembly=1';
+			clickIt(ajax_act);
+			$(this).addClass("checked");
+		}
+	 }
+	);
+	
+	$("#isAnimation").click(function(){
+		var ajax_act = $("#ajax_act").val();
+		ajax_act = ajax_act.replace(/(&|\?)isAnimation=[^&]+/,"");
+		if ($(this).attr("class") == 'checkbox checked'){
+			ajax_act += '&isAnimation=0';
+			clickIt(ajax_act);
+			$(this).removeClass("checked");
+		}else{
+			ajax_act += '&isAnimation=1';
+			clickIt(ajax_act);
+			$(this).addClass("checked");
+		}
+	 }
+	);
+	
+	$("#menu_list li.menu_handle").click(function(){
+		//$(this).next("ul.menu_body").slideToggle(300).siblings("ul.menu_body").slideUp("slow");
+		/*
+		var menu_hand = $("#menu_hand").val();
+		if ($(this).index() == menu_hand){
+			$(this).next("ul.menu_body").siblings("ul.menu_body").slideUp("slow");	
+		}else{
+			$("#menu_hand").val($(this).index());
+			$(this).next("ul.menu_body").slideToggle(300).siblings("ul.menu_body").slideUp("slow");	
+		}
+		*/
+	 }
+	);
+
+	$("#currentPage").change(function(){
+		var cur_page = parseInt($("#currentPage").val());
+		var next_page = cur_page;
+		var total_page = parseInt($("#totalPage").text());
+		var ajax_act = $("#ajax_act").val();
+		if ((next_page <= total_page) && (next_page >= 1)){
+			showLoader();
+			$("#currentPage").attr('value', next_page);
+			$("#items").load("__DOC__/dvs.php/ajax/index/" + ajax_act + "/page/" + next_page, hideLoader);
+		}
+		return false;
+	});
+	
+	$("#loadPageNext").click(function(){
+		var cur_page = parseInt($("#currentPage").val());
+		var next_page = cur_page + 1;
+		var total_page = parseInt($("#totalPage").text());
+		var ajax_act = $("#ajax_act").val();
+		if ((next_page <= total_page) && (next_page >= 1)){
+			showLoader();
+			$("#currentPage").attr('value', next_page);
+			$("#items").load("__DOC__/dvs.php/ajax/index/" + ajax_act + "/page/" + next_page, hideLoader);
+		
+		}
+		return false;
+	});
+	
+	$("#loadPagePre").click(function(){
+		var cur_page = parseInt($("#currentPage").val());
+		var pre_page = cur_page - 1;
+		var total_page = parseInt($("#totalPage").text());
+		var ajax_act = $("#ajax_act").val();
+		if ((pre_page >= 1) && (pre_page <= total_page)){
+			showLoader();
+			$("#currentPage").attr('value', pre_page);
+			$("#items").load("__DOC__/dvs.php/ajax/index/" + ajax_act + "/page/" + pre_page, hideLoader);
+		}
+		return false;
+	});
+		
+	showLoader();
+	//$("#items").load("ajax.php?{$ajax_act}&page=1", hideLoader);
+});
+</script>
+<!-- InstanceEndEditable -->
+</head>
+<body>
+
+<div class="container">
+<!-- InstanceBeginEditable name="maincontent" -->
+  <div class="navbar basic">
+    <div class="navsearch-container fr">
+      <form class="navsearch" action="__APP__/store/search" method="post" id="navsearch">
+        <input id="searchbox" name="tags" type="text" value="" />
+        <label id="lab_startsearch" style="display:none">Search ...</label>
+        <input type="hidden" id="format_act" value="" />
+        <input type="hidden" id="info_act" value="" />
+        <input type="hidden" id="ajax_act" value="{$ajax_act}" />
+        <input type="hidden" id="price_act" value="" />
+        <input type="hidden" id="menu_hand" value="" />
+        <button type="submit">搜索</button>
+      </form>
+      <script type="text/javascript">
+			$("#searchbox").focus(function(){
+				$("#lab_startsearch").fadeOut();
+			});
+			$("#lab_startsearch").click(function(){
+				$("#searchbox").focus();
+				return false;
+			});
+			
+			$("#searchbox").focusout(function(){
+				//$("#searchbox").val().length > 0 ?  alert($("#searchbox").val()) : $("#lab_startsearch").fadeIn();
+				if ($("#searchbox").val().length <= 0){
+					$("#lab_startsearch").fadeIn();
+				}
+			});
+			
+			</script> 
+    </div>
+    <ul class="nav" id="nav">
+
+    <li class="icon home"><a href="javascript:void(0)" onclick="ShowModel()"><span>本地资源</span></a></li>
+	<!-- <li class="icon help"><a href="welcome.html"><span>帮助</span></a></li> -->
+    </ul>
+    <div class="pointinfo"><{$uhtml}></div>
+  </div>
+  <div class="content store">
+  <div id="accordion" class="sidebar fl"><{$slideBar}></div>
+  <script type="text/javascript">
+		var h3 = 0;
+		$("#accordion h3").each(function() {
+			h3+=$(this).height()+3;			
+		});
+		$("#accordion div").height($("#accordion").height()-h3);
+		$(function() {
+		 	$('#accordion div').jScrollPane();
+		});
+		</script>
+  <div class="master-container">
+    <div class="master">
+      <div class="mask"></div>
+      <div class="conform">
+        <div class="ditels">
+      
+         	<{if $model.isbuy eq 1}>
+         	 	<h2>欢迎下载<span> <{$model.p_name|getname}></span></h2>
+          	<span class="costs">您已经购买过此模型</span>
+          	<div>
+            <div class="controls fr"> <a id="cmask" href="javascript:void(0);" class="button thin"><span>取消</span></a> </div>
+            <a href="__DOC__/down/id/<{$model.p_id}>" class="lsbutton blue download"><span>现在下载</span></a> 
+        	<{else}>
+            <h2>购买确认<span> <{$model.p_name|getname}></span></h2>
+            <span class="costs"><{$alertshow.text}><i><{$model.show_price}> <{$alertshow.unit}></i></span>
+            <div>
+            	<div class="controls fr"> <a id="cmask" href="javascript:void(0);" class="button thin"><span>取消</span></a></div>
+            <a href="__APP__/store/down/id/<{$model.p_id}>/cateid/<{$cateid}>/cate/<{$cate}>" class="lsbutton orange buynow"><span><{$alertshow.buttontext}></span></a> 
+        <{/if}>
+        		</div>
+      </div>
+      </div>
+        <div class="controls fr topline">
+        	<a id="viewditels" href="javascript:void(0);" class="button thin center-chid"><span>详细信息</span></a>
+        </div>
+        <h2><{$model.p_name|getname}></h2>
+        <div class="ditels-container">
+          <div class="ditels-content-container">
+            <div class="slideshow"><img src="__DOC__<{$model.p_cover}>" alt="" class="imgbackground"/></div>
+            <!-- toggle detail start -->
+            <div class="ditels hide">
+              <div class="introduction">
+                <p><{$model.modelDesc}></p>
+              </div>
+              <div class="attributes">
+                <ul>
+                  <li>多边形面数<span><{$model.pm_mash}></span></li>
+                  <li>包含贴图<span><{if $model.pm_istexture eq 1}>是<{else}>否<{/if}></span></li>
+                  <li>包含材质<span><{if $model.pm_ismaterials eq 1}>是<{else}>否<{/if}></span></li>
+                </ul>
+              </div>
+            </div>
+           <!-- toggle detail end -->
+          </div>
+          <div class="ditels"> 
+          <{if $model.isbuy eq 1}>
+          <!--
+            <div class="fr"> <span class="costs">您已经购买过此模型</span><a id="makesure" class="lsbutton blue download"><span>现在下载</span></a></div>
+            -->
+            <div class="fr"> 
+            	<span class="costs">您已经兑换过此模型</span>
+            	<a href="__APP__/store/down/id/<{$model.p_id}>/cateid/<{$cateid}>/cate/<{$cate}>" class="lsbutton blue download"><span>现在下载</span></a>
+            </div>
+      	 <{else}>
+            	<!--  <div class="fr"> 
+            		<span class="costs">需要<i><{$model.p_price}></i>元</span>
+            		<{if $f_userid}>
+            			<{if $userrcoin gte $model.p_price}>
+            				<a id="makesure_buy" class="lsbutton orange buynow" ><span>支付下载</span></a>
+            			<{else}>
+            				<a id="makesure_alert_buy" class="lsbutton orange buynow" ><span>支付下载</span></a>
+            			<{/if}>
+            		<{else}>
+            			<a id="makelogin" class="lsbutton orange buynow"><span>支付下载</span></a>
+            		<{/if}>
+            	</div> -->
+            	
+      
+            	<div class="fr"> 
+            		<span class="costs">需要<i><{$model.show_price}></i><{$alertshow.unit}></span>
+            		<{if $f_userid}>
+            			<{if $usercoin gte $model.show_price}>
+            				<a id="makesure" class="lsbutton orange buynow" ><span><{$alertshow.buttontext}></span></a>
+            			<{else}>
+            				<a id="makesure_alert" class="lsbutton orange buynow" ><span><{$alertshow.buttontext}></span></a>
+            			<{/if}>
+            		<{else}>
+            			<a id="makelogin" class="lsbutton orange buynow"><span><{$alertshow.buttontext}></span></a>
+            		<{/if}>
+            	</div>
+       <{/if}>
+            <h5><{$model.pct_name}> 
+            		<{$model.pct_ext}>
+            		
+            </h5>
+            <div class="function">
+              <p>
+              <{if $model.pm_ismorenode eq 1}>可装配, <{else}>不可装配, <{/if}>
+              <{if $model.pm_isanimation eq 1}>包含动画脚本, <{else}>无动画脚本, <{/if}>
+              <{if $model.pm_isrendered eq 1}>已经渲染 <{else}>无渲染<{/if}></p>
+            </div>
+            <div class="itemcode">Product ID: <{$model.p_id}></div>
+          </div>
+        </div>
+        <script type="text/javascript">
+				$(function() {
+					$('.ditels .function').jScrollPane();
+				});
+				var viewstate=1;
+				$("#viewditels").bind("click",function() { 
+					if(viewstate==1){
+						$(this).find("span").html("缩略图");
+						$('.ditels-content-container .slideshow').hide(0,function(){
+							$('.ditels-content-container .ditels').fadeIn();
+							viewstate=0;
+							$('.ditels .introduction').jScrollPane();
+						});
+					} else {
+						$(this).find("span").html("详细信息");
+						$('.ditels-content-container .ditels').hide(0,function(){						
+							$('.ditels-content-container .slideshow').fadeIn();
+							viewstate=1;	
+						});
+					}
+				});
+				$("#cmask").bind("click",function() { 
+					$(".master .mask").fadeOut();
+					$(".master .conform").hide();
+				});
+				
+				$("#makesure").bind("click",function() {
+					$.post('__APP__/ajax/index/act/isBuy/id/<{$model.p_id}>/lictype/<{$model.p_lictype}>',
+					function (data){
+						if (data == '0'){
+							$(".master .mask").fadeIn();
+							$(".master .conform").show();
+						}else{
+							window.location = window.location.href;
+						}
+					});
+				});
+				$("#makesure_alert").bind("click",function() {
+					alert('<{$alertshow.notice}>');
+				})
+				
+				
+				$("#makesure_alert_buy").bind("click",function() {
+					alert('很抱歉!您的账户金额不足！请联系客服.');
+				})
+				$("#makelogin").bind("click",function() {
+					alert("抱歉，未登录，请在右上方登录后操作.");
+				});
+				</script> 
+      </div>
+    </div>
+  </div>
+  <!-- InstanceEndEditable -->
+</div>
+</body>
+<!-- InstanceEnd -->
+<div id="output" style="margin-top:40px;"></div>
+</html>

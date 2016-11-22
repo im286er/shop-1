@@ -1,0 +1,77 @@
+<include file="Common:pageheader_start" />
+<include file="Common:pageheader_end" />
+<link href="__DOC__/App/templates/Manage/default/Public/Css/jquery-ui.css" rel="stylesheet" media="all" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/Js/jquery-ui.js"></script>
+<div id="Right">
+	<div class="contentArea">
+		<div class="Item hr">
+			<!-- 
+			<div class="current">{$currentNav}</div>
+			 -->
+			 <if condition="$act eq 'editsp'">
+			 	<div class="current">编辑活动</div>
+			 <else />
+			 	<div class="current">添加新活动</div>
+			 </if>
+		</div>
+		<form action="" method="post">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0"
+				class="table1">
+				<tr>
+					<th width="120">活动名称：</th>
+					<td><input name="sp_name" type="text" class="input" maxlength="120" size="40"
+						value="{$spmain.spm_title}" /></td>
+				</tr>
+				<tr>
+					<th width="120">开始时间：</th>
+					<td><input name="begindate" id="begindate" type="text" class="input" size="40"
+						value="{$spmain.spm_begin}" /></td>
+				</tr>
+				<tr>
+					<th width="120">结束时间：</th>
+					<td><input name="enddate" id="enddate" type="text" class="input" size="40"
+						value="{$spmain.spm_end}" /></td>
+				</tr>
+				<tr>
+					<th>活动类型：</th>
+					<td><select name="sp_maintype">{$spTypeOptionCtrl}</select></td>
+				</tr>
+				<tr>
+					<th  valign="top">活动商品：</th>
+					<td><textarea name="sp_pids" id="sp_pids" cols="109" rows="10">{$spmain.spm_pids}</textarea></td>
+				</tr>
+				<tr>
+					<th  valign="top">活动介绍：</th>
+					<td><textarea name="sp_intro" id="sp_intro" cols="109" rows="10">{$spmain.spm_intro}</textarea></td>
+				</tr>
+			</table>
+			<if condition="$act eq 'editsp'">
+				<input type="hidden" name="act" value="{$act}">
+				<input type="hidden" name="spid" value="{$spmain.spm_id}">
+			</if>
+		</form>
+		<div class="commonBtnArea">
+			<button class="btn submit">提交</button>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$( "#begindate" ).datepicker({
+	      defaultDate: "+1w",
+	      changeMonth: true,
+	      numberOfMonths: 3,
+	      onClose: function( selectedDate ) {
+	        $( "#enddate" ).datepicker( "o ption", "minDate", selectedDate );
+	      }
+	});
+	
+	$( "#enddate" ).datepicker({
+	      defaultDate: "+1w",
+	      changeMonth: true,
+	      numberOfMonths: 3,
+	      onClose: function( selectedDate ) {
+	        $( "#begindate" ).datepicker( "option", "maxDate", selectedDate );
+	      }
+	});
+</script>
+<include file="Common:pagefooter" />

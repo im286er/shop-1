@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>订单流程管理{$site.SITE_INFO.name}</title>
+<include file="Common:intohead" />
+</head>
+<style>
+.ipt { text-align:right	
+}
+</style>
+<body>
+	<div class="wrap">
+		<include file="Common:head" />
+		<div class="mainBody">
+			<include file="Common:left" />
+			<div id="Right">
+				<div class="Item hr">
+					<div class="current">编辑</div>
+
+					<form>
+						<p>订单ID：{$list['up_orderid']}</p>
+						<p>份数:{$list['bm_count']}</p>
+						<p>支付日期：{$list['up_orderbacktime']}</p>
+						<p>
+							产品图:<img src="{$list['bm_covert']}"></img>
+						</p>
+						<p>材质：{$list['bm_material']}</p>
+						<p>制作要求：{$list['bm_mname']}</p>
+						<p>类别:{$list['bm_typename']}</p>
+						
+						<p>原始体积：{$list['bm_rcapacity']}</p>
+
+						<p>链条属性：{$list['bm_chain']}</p>
+						<p>出售价格:{$list['bm_price']}</p>
+						
+						<div class="ipt">
+							克数:<input name="" type="text" /><br /> 
+						异常状态  正常:<input type="radio" name='bm_errorstatus' value="1"/> 异常:<input type="radio" name='bm_errorstatus' value="2"/><br/>
+							
+							备注：
+							<textarea rows="" cols=""></textarea>
+							<br /> <input type="submit" />
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<include file="Common:foot" />
+</body>
+</html>

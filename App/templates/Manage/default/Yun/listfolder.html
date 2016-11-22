@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>云端模块-{$site.SITE_INFO.name}</title>
+        <php>
+            $addCss="";
+            $addJs="";
+            $currentNav ='云端模块 > 文件夹列表';
+        </php>
+        <include file="Common:intohead" />
+    </head>
+    <body>
+        <div class="wrap">
+            <include file="Common:head" />
+            <div class="mainBody">
+                <include file="Common:left" />
+                <div id="Right">
+                    <div class="Item hr">
+                        <div class="current">文件夹列表</div>
+                    </div>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                    <tr style="background:#999999">
+                    	<td>文件夹ID</td>
+                        <td>文件夹名</td>
+                        <td>编辑</td>
+                    </tr>
+                    <foreach name="folderlist" item="folder">
+                    <tr>
+                    	<td>{$folder.ufo_id}</td>
+                        <td>{$folder.ufo_name}</td>
+                        <td><a href="__APP__/yun/renamefolder/folderid/{$folder.ufo_id}">重命名</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="__APP__/yun/removefolder/folderid/{$folder.ufo_id}">删除</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="__APP__/yun/removefolder/folderid/{$folder.ufo_id}">删除</a></td>
+                    </tr>
+                    </foreach>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <include file="Common:foot" />
+    </body>
+</html>

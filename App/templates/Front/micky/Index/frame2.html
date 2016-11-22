@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo To Third</title>
+    <script src="__DOC__/Public/static/IgniteBridge.min.js"></script>
+    <style type="text/css">
+        @font-face {
+            font-family: 'symbol';
+            src: url('../doge/fonts/symbol/symbol.eot');
+            src: url('../doge/fonts/symbol/symbol.eot?#iefix') format('embedded-opentype'),
+            url('../doge/fonts/symbol/symbol.woff') format('woff'),
+            url('../doge/fonts/symbol/symbol.ttf') format('truetype'),
+            url('../doge/fonts/symbol/symbol.svg#FontomasCustomRegular') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+        /*加入符号字体库 [zhengweifu 2015-01-13 start */
+        html, body { font-family: "Helvetica Neue", Helvetica, Arial, symbol;}
+        /* 加入符号字体库 [zhengweifu 2015-01-13 end] -->*/
+    </style>
+</head>
+<body>
+<div class="container">
+    <p>
+<!--
+        <iframe id="ignite-iframe" src="http://www.ignjewelry.com/index/diy-jewelryeditall-clientUserId-7527e753haDVW6AAQBVA-cid-56" width="100%" height="700px" frameborder="0" scrolling="no" marginwidth="0" marginheight="0"></iframe>
+-->
+        <iframe id="ignite-iframe" src="http://192.168.52.19/index/diy-jewelryeditall-clientUserId-7527e753haDVW6AAQBVA-cid-57" width="100%" height="700px" frameborder="0" scrolling="no" marginwidth="0" marginheight="0"></iframe>
+    </p>
+    <p>
+       <button type="button" onclick="func();">Save Product</button>
+
+    </p>
+</div>
+<script>
+
+function func() {
+    IgniteBridge.getDataFromIgnite(function(message) {
+        console.log('from ignite data =>', message); //message 是您需要的产品参数
+    });
+}
+</script>
+</body>
+</html>

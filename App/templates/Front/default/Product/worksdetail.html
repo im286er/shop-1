@@ -1,0 +1,34 @@
+<{include file=C('AHEAD_START')}>
+<{include file=C('AHEAD_END')}>
+<div class="prd container" style="min-height: 500px;">
+	<div class="author fr" > <a class="avatar"  href="#"><img style="width:64px; height:64px;" src="__UPLOAD__/avatar/<{$Product.u_avatar|replace:'/o/':'/s/96_96_'}>"></a>
+		<div class="author-info">
+			<h4 style="text-align: center; margin-top: 5px;"><a href="#"><{$Product.u_dispname}></a></h4>
+		</div> 
+	</div> 
+	<div class="prd-titile hla">
+		<h2><{$Product.p_name}></h2>
+	</div>
+	<div class="clear"></div>
+	<{if $Product.p_intro}>
+		<div class="dividing">
+			<h2><label class="skew"><i>作品介绍</i></label></h2>
+		</div>
+		<div class="contentex">
+		<{$Product.p_intro}> 
+		</div>
+		<div class="clear"></div>
+	<{/if}>
+	<{if $ProductPhotoList}>
+		<div class="dividing">
+			<h2><label class="skew"><i>作品图集</i></label></h2>
+		</div>
+		<div class="contentex"> 
+			<{foreach $ProductPhotoList as $result}>
+				<img src="<{$result['imgpath']}>" class="galimgs"><br><br>
+			<{/foreach}>
+		</div>
+		<div class="clear"></div>
+	<{/if}>
+</div>
+<{include file=C('AFOOT')}>

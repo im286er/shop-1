@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/yagami_global.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>DVS3D Library</title>
+<!-- InstanceEndEditable -->
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<link href="__PUBLIC__/themes/default/css/init.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/themes/default/css/yagami.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.js"></script>
+<!-- InstanceBeginEditable name="head" -->
+<script type="text/javascript" src="__PUBLIC__/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/history.js"></script>
+
+<script>
+$(document).ready(function(){
+
+	if ($("#searchbox").val().length <= 0){
+		$("#lab_startsearch").show();	
+	}
+
+});
+</script>
+
+<!-- InstanceEndEditable -->
+</head>
+<body>
+
+<div class="container">
+<!-- InstanceBeginEditable name="maincontent" -->
+	<div class="navbar basic">
+		<div class="navsearch-container fr">
+			 <form class="navsearch" action="search.php" method="post" id="navsearch">
+        <input id="searchbox" name="searchbox" type="text" value="" />
+        <label id="lab_startsearch" style="display:none">Search ...</label>
+        <input type="hidden" id="ajax_act" value="{$ajax_act}" />
+        <button type="submit">搜索</button>
+      </form>
+			<script type="text/javascript">
+			$("#searchbox").focus(function(){
+				$("#lab_startsearch").fadeOut();
+			});
+			$("#lab_startsearch").click(function(){
+				$("#searchbox").focus();
+				return false;
+			});
+			
+			$("#searchbox").focusout(function(){
+				//$("#searchbox").val().length > 0 ?  alert($("#searchbox").val()) : $("#lab_startsearch").fadeIn();
+				if ($("#searchbox").val().length <= 0){
+					$("#lab_startsearch").fadeIn();
+				}
+			});
+			
+			</script> 
+		</div>
+		<ul class="nav" id="nav">
+    <li class="icon home"><a href="javascript:void(0)" onclick="ShowModel()"><span>本地资源</span></a></li>
+			<!-- <li class="icon help"><a href="welcome.html"><span>帮助</span></a></li> -->
+		</ul>
+    <div class="pointinfo"><{$uhtml}></div>
+	</div>
+	<div class="content store">
+		<div id="accordion" class="sidebar fl"><{$slideBar}></div>
+		<script type="text/javascript">
+		var h3 = 0;
+		$("#accordion h3").each(function() {
+			h3+=$(this).height()+3;			
+		});
+		$("#accordion div").height($("#accordion").height()-h3);
+		$(function() {
+			$('#accordion div').jScrollPane();
+		});
+		</script>
+		<div class="master-container">
+			<div class="master">
+				<div class="infolayer-container column">
+					<div class="infolayer download">
+           <{if $nocoin eq 0}>
+              <h2>开始下载  <{$model.p_name}></h2>
+							<p>请稍等待 DVS3D 程序为您将模型下载到本地，如果您的下载过程没有开始，请<a href="__APP__/store/down/id/<{$model.p_id}>/cateid/<{$cateid}>/cate/mine">点击这里</a>重试。 <br />
+           <{else}>
+              <h2>无法下载  <{$model.p_name}></h2>
+							<p>您的积分不足，请联系客服充值或转到<a href="__APP__/store/free/cateid/1">免费内容区</a>。<br />
+          <{/if}>
+<br />
+<br /><br />
+</p>
+<!--
+						<div class="controls inline"><a href="store.php" class="button normal"><span>继续购买新内容</span></a>{if $nomoney eq 0}<a href="down.php?id={$modelId}" class="button thin"><span>重新下载</span></a>{/if}</div>
+                        -->
+                        <div class="controls inline">
+                        <a href="__APP__/store/detail/id/<{$model.p_id}>/cate/store/cateid/<{$cateid}>" class="button normal"><span>返回商品信息页</span></a><a href="__APP__/store" class="button normal"><span>继续购买新内容</span></a></div>
+					</div>
+					<div class="itemcode">Product ID: <{$model.p_id}></div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div style="display:none">
+    <{if $nocoin eq 0}>
+    <iframe src="<{$downUrl}>"></iframe>
+    <{/if}></div>
+	<!-- InstanceEndEditable -->
+</div>
+</body>
+<!-- InstanceEnd --></html>

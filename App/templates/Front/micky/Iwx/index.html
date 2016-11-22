@@ -1,0 +1,211 @@
+<{include file=C('IWXHEADER_START')}>
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/swiper/swiper-3.2.7.min.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/fonts.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/top.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/home.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/footer.css">
+    <script src="__MICKYMOBILESTATIC__/new/js/jquery.js"></script>
+    <script src="__MICKYMOBILESTATIC__/new/swiper/swiper-3.2.7.min.js"></script>
+    <script src="__MICKYMOBILESTATIC__/new/js/top.js"></script>
+    <script src="__MICKYMOBILESTATIC__/new/js/footer.js"></script>
+    <!--必须放到首页-->
+    <script language="javascript">
+        $(function(){
+            var mySwiper = new Swiper('.swiper-container',{
+                pagination : '.pagination',
+                paginationClickable :true
+            })
+        })
+
+    </script>
+    <!--必须放到首页-->
+    <style type="text/css">
+        .pagination {
+            position: fixed;
+            z-index: 20;
+            bottom: 3%;
+            width: 100%;
+            text-align: center;
+        }
+        .swiper-pagination-switch {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            background: #555;
+            margin: 0 5px;
+            opacity: 0.8;
+            border: 1px solid #fff;
+            cursor: pointer;
+        }
+        .swiper-pagination-bullet{
+            width:6px;
+            height:6px;
+            background: #fff;
+            opacity:1;
+            margin: 0 5px;
+        }
+        .swiper-pagination-bullet-active{
+            background: #cda480;
+        }
+        .swiper-active-switch {
+            background: #fff;
+        }
+    </style>
+<{include file=C('IWXHEADER_END')}>
+
+
+
+
+<!--图片-->
+<div class="pagination"></div>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <!--点燃心中微光-->
+        <div class="swiper-slide">
+            <div class="app-lunbo-img" id="section1">
+                <img src="__MICKYMOBILESTATIC__/new/images/home/1.jpg" alt="">
+            </div>
+            <div class="app-lunbo-text">
+                <div class="text-c">
+                    <h1>点燃心中的微光</h1>
+                    <h2>THE LIGHT INSIDE OF YOU</h2>
+                    <P>每个人心中都有一道光<br>IGNITE用轻定制,让精神连串</P>
+                </div>
+                <!--我要定制-->
+                <button type="button" class="btn order-btn" onclick="window.location.href='__DOC__/index.php/jewelry-jewelrylist-diy-2'">我要定制</button>
+            </div>
+        </div>
+        <!--智绘首饰-->
+        <div class="swiper-slide" id="section2">
+            <div class="app-lunbo-img">
+                <img src="__MICKYMOBILESTATIC__/new/images/home/2.jpg" alt="">
+            </div>
+            <div class="app-lunbo-text">
+                <div class="text-c">
+                    <h1>智绘首饰</h1>
+                    <h2>SMART JEWELRY</h2>
+                    <P>发挥你天马行空的想象<br>
+                        描绘生命中难忘的时刻</P>
+                </div>
+                <!--我要定制-->
+                <button type="button" class="btn order-btn" onclick="window.location.href='__DOC__/index.php/diy-smartjewelry-cid-1-mmode-1.html'">立即体验</button>
+            </div>
+        </div>
+        <!--会跳舞的首饰-->
+        <div class="swiper-slide" id="section3">
+            <div class="app-lunbo-img">
+                <img src="__MICKYMOBILESTATIC__/images/home/3.jpg" alt="">
+            </div>
+            <div class="app-lunbo-text">
+                <div class="text-c">
+                    <h1>会跳舞的首饰</h1>
+                    <h2>DANCING JEWELRY</h2>
+                    <P>3D技术结合匠人手艺<br>
+                        WEB3D展现打造动人首饰</P>
+                </div>
+                <!--我要订购-->
+                <button type="button" class="btn order-btn" onclick="window.location.href='__DOC__/index/iwx-jewelrydetail-curMenu-1-cid-45.html'">我要订购</button>
+            </div>
+        </div>
+        <!--夏有乔木 雅望天堂-->
+        <div class="swiper-slide" id="section4">
+            <div class="app-lunbo-img">
+                <img src="__MICKYMOBILESTATIC__/new/images/home/4.jpg" alt="">
+            </div>
+            <div class="app-lunbo-text">
+                <div class="text-c">
+                    <h1 style="width: 80%;display: block;margin: 0 auto;"><img src="__MICKYMOBILESTATIC__/new/images/home/title.png" alt="" style="width: 100%;"></h1>
+                    <h2>MOVIE ORIGINAL JEWELRY</h2>
+                    <P>夏木同款“亲亲鱼”定制项链<br>
+                        IGNITE独家限量发售
+                    </P>
+                </div>
+                <!--了解活动-->
+                <button type="button" class="btn order-btn" onclick="window.location.href='__DOC__/index/iwx-wxxyqm.html'">了解活动</button>
+            </div>
+        </div>
+        <!--时尚邂逅科技-->
+        <div class="swiper-slide" id="section5">
+            <div class="app-lunbo-img">
+                <img src="__MICKYMOBILESTATIC__/new/images/home/5.jpg" alt="">
+            </div>
+            <div class="app-lunbo-text">
+                <div class="text-c">
+                    <h1>时尚邂逅科技</h1>
+                    <h2>WHEN FASHION MEETS TECHNOLOGY</h2>
+                    <P>用科技定制出有温度的首饰<br>让梦想成真</P>
+                </div>
+                <!--我要定制-->
+                <button type="button" class="btn order-btn" onclick="window.location.href='__DOC__/index/help-iwxbrandstory.html'">了解品牌</button>
+            </div>
+        </div>
+    </div>
+</div>
+<{include file=C('IWXFOOTER')}>
+
+<!-- 底部 -->
+<!--向上 按钮-->
+<!--<div class="upbtn text-c" id="up">
+    <div class="upbtn-img">
+        <div class="bgimg">
+            <img src="__MICKYMOBILESTATIC__/new/images/footer/upbtn.png" alt="">
+        </div>
+        <div class="up">
+            <img src="__MICKYMOBILESTATIC__/new/images/footer/up.png" alt="">
+        </div>
+    </div>
+</div>-->
+<!-- 上划 出现的内容-->
+<!--<div class="up-text">
+    <div class="container-fluid">
+        <div class="row" id="downbtn">
+            <img src="__MICKYMOBILESTATIC__/new/images/footer/down.png" alt="">
+        </div>
+        <div class="row">
+            &lt;!&ndash;聚焦Ignite&ndash;&gt;
+            <div class="col-xs-3">
+                <a href="">
+                    <div class="icon">
+                        <img src="__MICKYMOBILESTATIC__/new/images/footer/up-logo.png" alt="">
+                    </div>
+                    <div class="icon-text">
+                        聚焦Ignite
+                    </div>
+                </a>
+
+            </div>
+            <div class="col-xs-3">
+                <a href="">
+                    <div class="icon">
+                        <img src="__MICKYMOBILESTATIC__/new/images/footer/up-gwc.png" alt="">
+                    </div>
+                    <div class="icon-text">
+                        购物指南
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a href="">
+                    <div class="icon">
+                        <img src="__MICKYMOBILESTATIC__/new/images/footer/up-kefu.png" alt="">
+                    </div>
+                    <div class="icon-text">
+                        售后服务
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a href="">
+                    <div class="icon">
+                        <img src="__MICKYMOBILESTATIC__/new/images/footer/up-help.png" alt="">
+                    </div>
+                    <div class="icon-text">
+                        帮助支持
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>-->

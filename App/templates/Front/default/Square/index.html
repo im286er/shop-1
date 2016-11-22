@@ -1,0 +1,264 @@
+<{include file=C('AHEAD_START')}>
+<link rel="stylesheet" href="__NEOSTATIC__/css/layerslider.css" type="text/css">
+<script src="__NEOSTATIC__/js/greensock.js"></script>
+<script src="__NEOSTATIC__/js/layerslider.transitions.js"></script>
+<script src="__NEOSTATIC__/js/layerslider.kreaturamedia.jquery.js"></script>
+<script src="__NEOSTATIC__/js/liteaccordion.jquery.js"></script>
+<{include file=C('AHEAD_END')}>
+  
+<div class="slideshow hana-slide-square" style="max-width: 1200px; width: 1200px; height: 500px;">
+	<div class="ls-slide" data-ls="slidedelay: 5000; transition2d: 8;"> 
+		<img src="__NEOSTATIC__/imgs/square/h/01.jpg" class="ls-bg">
+	</div>
+	<div class="ls-slide" data-ls="slidedelay: 5000; transition2d: 8;"> 
+		<img src="__NEOSTATIC__/imgs/square/h/03.jpg" class="ls-bg">
+	</div>
+	<div class="ls-slide" data-ls="slidedelay: 5000; transition2d: 8;"> 
+		<img src="__NEOSTATIC__/imgs/square/h/02.jpg" class="ls-bg">
+	</div>
+</div> 
+
+<div class="hana-square container content-root">
+	<!--<ul class="featured">
+		<li><a href="#"><img src="__NEOSTATIC__/imgs/__tmp__/avatar1.jpg"></a></li>
+		<li><a href="#"><img src="__NEOSTATIC__/imgs/__tmp__/avatar1.jpg"></a></li>
+		<li><a href="#"><img src="__NEOSTATIC__/imgs/__tmp__/avatar1.jpg"></a></li>
+	</ul>
+	<div class="clear"></div>-->
+
+	<div class="dividing">
+		<h2><label class="skew"><i>最新资讯</i></label></h2>
+	</div>
+	<div class="news">
+		<div class="accordion">
+			<ol>
+				<li>
+					<h2><span class="one"></span></h2>
+					<div><a href="__APP__/help-index-id-118" target="_blank"><!--<img src="__NEOSTATIC__/imgs/etc/news/a2.jpg" alt=""/>-->
+					<img src="__NEOSTATIC__/imgs/etc/news/a2.jpg" alt=""/></a></div>
+				</li>
+				<li>
+					<h2><span class="two"></span></h2>
+					<div><a href="__APP__/help-index-id-120" target="_blank"><!--<img src="__NEOSTATIC__/imgs/etc/news/a3.jpg" alt=""/>-->
+					<img src="__NEOSTATIC__/imgs/etc/news/a3.jpg" alt=""/></a></div>
+				</li>
+				<li>
+					<h2><span class="three"></span></h2>
+					<div><a href="__APP__/help-index-id-119" target="_blank"><!--<img src="__NEOSTATIC__/imgs/etc/news/a4.jpg" alt=""/>-->
+					<img src="__NEOSTATIC__/imgs/etc/news/a4.jpg" alt=""/></a></div>
+				</li>
+				<li>
+					<h2><span class="four"></span></h2>
+					<div><a href="__APP__/help-index-id-121" target="_blank"><!--<img src="__NEOSTATIC__/imgs/etc/news/a1.jpg" alt=""/>-->
+					<img src="__NEOSTATIC__/imgs/etc/news/a1.jpg" alt=""/></a></div>
+				</li>
+				<li>
+					<h2><span class="five">Articulation主题展览</span></h2>
+					<div><a href="__APP__/help-index-id-125" target="_blank"><!--<img src="__NEOSTATIC__/imgs/etc/news/a1.jpg" alt=""/>-->
+					<img src="__NEOSTATIC__/imgs/etc/news/a5.jpg" alt=""/></a></div>
+				</li>
+			</ol>
+		</div>
+		<!--<a class="btn-more" href="">&gt;<i>更多热门资讯</i>&lt;</a>-->
+		<div class="sma-accordion">
+			<ol>
+				<li>
+					<h2><span>TCT亚洲峰会</span></h2>
+					<div><a href="__APP__/help-index-id-118" target="_blank"><!--<img src="__NEOSTATIC__/imgs/etc/news/a2.jpg" alt=""/>-->
+					<img src="__NEOSTATIC__/imgs/etc/news/a2.jpg" alt=""/></a></div>
+				</li>
+				<li>
+					<h2><span>中国年轻世代的审美转变</span></h2>
+					<div><a href="__APP__/help-index-id-120" target="_blank"><!--<img src="__NEOSTATIC__/imgs/etc/news/a3.jpg" alt=""/>-->
+					<img src="__NEOSTATIC__/imgs/etc/news/a3.jpg" alt=""/></a></div>
+				</li>
+				<li>
+					<h2><span>人与自然 3D 打印设计创意大赛</span></h2>
+					<div><a href="__APP__/help-index-id-119" target="_blank"><!--<img src="__NEOSTATIC__/imgs/etc/news/a4.jpg" alt=""/>-->
+					<img src="__NEOSTATIC__/imgs/etc/news/a4.jpg" alt=""/></a></div>
+				</li>
+				<li>
+					<h2><span>龙之谷破晓奇兵</span></h2>
+					<div><a href="__APP__/help-index-id-121" target="_blank"><!--<img src="__NEOSTATIC__/imgs/etc/news/a1.jpg" alt=""/>-->
+					<img src="__NEOSTATIC__/imgs/etc/news/a1.jpg" alt=""/></a></div>
+				</li>
+				<li>
+					<h2><span>Articulation主题展览</span></h2>
+					<div><a href="__APP__/help-index-id-125" target="_blank"><!--<img src="__NEOSTATIC__/imgs/etc/news/a1.jpg" alt=""/>-->
+					<img src="__NEOSTATIC__/imgs/etc/news/a5.jpg" alt=""/></a></div>
+				</li>
+			</ol>
+		</div>
+	</div>
+<style>
+.experts { margin-top: 15px;}
+.experts img { width: 220px; height: 220px; }
+.experts li { padding: 0;width: 220px; height: 220px; position: relative; margin: 5px  }
+.experts li .smask { position: absolute; display: block; width: 220px; height:100%;opacity: 0; bottom: 0;}
+.experts li .smask  h2 { text-align: center; color: #FFF; margin: 80px 0 15px;  font-size: 24px; }
+.experts li .smask  p { text-align: center;}
+.experts li .smask  p i { display: inline-block; margin:3px; text-align: center; font-size: 14px; color: #FFF;}
+.experts li .smask:hover { transition: opacity ease-in-out .5s; opacity: .7 }
+
+.experts.case1 li .smask { background: #E6AD2B;  }
+.experts.case2 li .smask { background: #275F92;  }
+.experts.case3 li .smask { background: #77822F;  }
+
+.experts .item1 b, .experts .item2 b { margin-top: 70px; font-size: 58px; font-weight: normal;}
+.experts li.item3 b { margin-top: 75px; font-size: 48px; font-weight: normal;}
+.experts .item1 span, .experts .item2 span, .experts .item3 span { font-size: 32px; }
+
+@media screen and (max-width:1160px){.experts li{margin:5px 5%;}}
+@media screen and (max-width:992px){.experts li{margin:5px 3%;}}
+@media screen and (max-width:870px){.experts li{margin:5px 10%;}}
+@media screen and (max-width:800px){
+	.experts li{margin:5px 5px;float:left;display:block;width:120px;height:120px;}
+	.experts li .smask{width:120px;}
+	.experts li .smask  h2{font-size:18px;}
+	.experts img { width: 120px; height: 120px; }
+	.experts .item1 b, .experts .item2 b { margin-top: 20px; font-size: 28px; font-weight: normal;}
+	.experts li.item3 b { margin-top: 20px; font-size: 24px; font-weight: normal;}
+	.experts .item1 span, .experts .item2 span, .experts .item3 span { font-size: 15px; }}
+</style>
+
+	<div class="dividing">
+		<h2><label class="skew"><i>达人堂</i></label></h2>
+	</div>
+	<ul class="experts case1">
+		<li class="item1"><b>设计师</b><span>Designer</span></li>
+		<{foreach $designlist as $Result}>
+		<li><!--姓名： 显示昵称:<{$Result.u_firstname}> 年龄 <{$Result.u_bir}> 性别<{$Result.u_sex_show}>--> 
+		<img src="__UPLOAD__/avatar/<{$Result.u_avatar}>">
+		<a href="__USERIDX__/profile/u/uid/<{$Result.u_id}>" class="smask">
+			<h2><{$Result.u_firstname}></h2>
+			<p><{foreach $Result.u_newprof_show as $res}>
+					<i><{$res}></i>
+				<{/foreach}></p>
+		</a>
+		
+			
+		</li>
+		<{/foreach}>
+	
+	</ul>
+	<div class="clear"></div>
+	<ul class="experts case2">
+		<li class="item2"><b>极客</b><span>Geek</span></li>
+		<{foreach $jklist as $Result}>
+		<li><!--姓名： 显示昵称:<{$Result.u_firstname}> 年龄 <{$Result.u_bir}> 性别<{$Result.u_sex_show}>--> 
+		<img src="__UPLOAD__/avatar/<{$Result.u_avatar}>">
+		<a href="__USERIDX__/profile/u/uid/<{$Result.u_id}>" class="smask">
+			<h2><{$Result.u_firstname}></h2>
+			<p><{foreach $Result.u_newprof_show as $res}>
+					<i><{$res}></i>
+				<{/foreach}></p>
+		</a>
+		
+			
+		</li>	
+		<{/foreach}>
+		<li>
+			<img src="__NEOSTATIC__/imgs/__tmp__/ave/27972.jpg"/>
+			<a href="__DOC__/index/product-worksdetail-id-27972" class="smask">
+				<h2>Mulisk</h2>
+			</a>
+		</li>
+	<!--	<li>
+			<img src="__NEOSTATIC__/imgs/__tmp__/ave/27967.jpg"/>
+			<a href="__DOC__/index/product-worksdetail-id-27967" class="smask">
+				<h2>Caitlyn</h2>
+			</a>
+		</li>-->
+	</ul>
+	<div class="clear"></div>
+	<ul class="experts case3">
+		<li class="item3"><b>草根达人</b><span>Grasstop</span></li>
+		<li>
+		<img src="__NEOSTATIC__/imgs/__tmp__/ava/212.jpg" alt=""/>
+		<a href="__USERIDX__/profile/u/uid/212" class="smask"><h2>110G</h2></a>
+		</li>
+				<li>
+		<img src="__NEOSTATIC__/imgs/__tmp__/ava/1156.jpg" alt=""/>
+		<a href="__USERIDX__/profile/u/uid/1156" class="smask"><h2>Cyril</h2></a>
+		</li>
+				<li>
+		<img src="__NEOSTATIC__/imgs/__tmp__/ava/1449.jpg" alt=""/>
+		<a href="__USERIDX__/profile/u/uid/1449" class="smask"><h2>rinsaber</h2></a>
+		</li>
+				<li>
+		<img src="__NEOSTATIC__/imgs/__tmp__/ava/189.jpg" alt=""/>
+		<a href="__USERIDX__/profile/u/uid/189" class="smask"><h2>Stacy</h2></a>
+		</li>
+				<li>
+		<img src="__NEOSTATIC__/imgs/__tmp__/ava/186.jpg" alt=""/>
+		<a href="__USERIDX__/profile/u/uid/186" class="smask"><h2>小5</h2></a>
+		</li>
+				<li>
+		<img src="__NEOSTATIC__/imgs/__tmp__/ava/210.jpg" alt=""/>
+		<a href="__USERIDX__/profile/u/uid/210" class="smask"><h2>琦琦</h2></a>
+		</li>
+				<li>
+		<img src="__NEOSTATIC__/imgs/__tmp__/ava/2288.jpg" alt=""/>
+		<a href="__USERIDX__/profile/u/uid/2288" class="smask"><h2>蘑菇</h2></a>
+		</li>
+		<li>
+		<img src="__NEOSTATIC__/imgs/__tmp__/ava/a1.jpg" alt=""/>
+		<a href="__USERIDX__/profile/u/uid/4672" class="smask"><h2>小猪</h2></a>
+		</li>
+		<li>
+		<img src="__NEOSTATIC__/imgs/__tmp__/ava/a2.jpg" alt=""/>
+		<a href="__USERIDX__/profile/u/uid/4832" class="smask"><h2>雨果的假期</h2></a>
+		</li>
+	</ul>
+	
+	
+	<div class="clear"></div>
+
+	<ul class="advantage">
+		<li class="one">
+			<div>
+				<h3>个性化</h3>
+				<p>每个人生来本就不同，我们满足你的个性追求，特立独行从3Dcity开始。</p>
+			</div>
+		</li>
+		<li class="two">
+			<div>
+				<h3>定制化</h3>
+				<p>告别一味的选购，发挥创意，在这里由你创造产品。</p>
+			</div>
+		</li>
+		<li class="three">
+			<div>
+				<h3>设计感</h3>
+				<p>设计改变生活，产品的点滴创意为你的生活加点料。</p>
+			</div>
+		</li>
+	</ul>
+	<div class="clear"></div>
+</div>
+
+<script>
+$(document).ready(function(){
+	$('.hana-slide-square').layerSlider({
+		pauseOnHover: false,
+		navStartStop: false,
+		hoverBottomNav: true,
+		skin: 'fullwidth',
+        skinsPath: '__NEOSTATIC__/js/ls-skins/'
+	});
+	
+	var accordion_width = 1100;
+	if($(window).width()<1100){
+		accordion_width = $(window).width()-100;
+	}
+	var accordion_height = 340;
+	$('.accordion').liteAccordion({ 
+		theme : 'dark', 
+		containerWidth : accordion_width, 
+		containerHeight : accordion_height, 
+		slideSpeed : 600, 
+		firstSlide : 2
+	});
+});
+</script>
+<{include file=C('AFOOT')}>

@@ -1,0 +1,158 @@
+/* 
+	Project Nyan ~ Core CSS. / (C)2012 Erinago / (C)2010-2012 Nagomi Mind
+	For 3D Factory Lite used only!
+*/
+.content .sidebar .nya .inner, .content .sidebar .nya .inner-top, .content .sidebar .nya .inner-chid { padding: 20px 15px; }
+.content .sidebar .nya .inner-chid { background:#FFF; border-top: 1px solid #F5F5F5; }
+.content .sidebar h2 { padding-bottom: 12px; }
+.old-right-container { width: 764px; }
+.sidebar { width: 186px; }
+/* avater */
+.avater { box-shadow: 0 0 5px #C8C8C8; border: 1px solid #FFF; -webkit-box-shadow: 0 0 5px #C8C8C8; -moz-box-shadow: 0 0 5px #C8C8C8; behavior: url(../images/iefix/pie.htc); }
+.avater, .avater img { border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; }
+.avater.min, .avater.min img { width: 45px; height: 45px }
+.avater.alarge, .avater.alarge img  { width: 80px; height: 80px }
+/* nyanyanyanya ... */
+.nya .inner, .nya .inner-top, .nya .inner-chid, .nya .inner-img { padding: 20px; border-top: none; }
+.nya .inner-chid, .nya .inner-img { border-top: none; }
+.nya .inner-img { padding: 8px; }
+.nya .inner-itemlist, .nya .inner-products { border-top: 1px solid #F5F5F5; background: #FFF; }
+.nya .inner-itemlist { padding: 20px 10px; }
+.nya .inner-products { padding: 10px 20px; }
+.nya h1 { color: #333; font-weight: normal; font-size: 20px; font-family: Microsoft YaHei, STHeiti Light, SimSun; _float: left; }
+.nya h1 span { color: #CCC; font-size: 14px; padding-left: 20px }
+.nya h2 { color: #333; font-weight: bold; font-size: 12px; }
+.nya h3 { color: #333; font-weight: normal; font-size: 14px; padding-bottom: 8px; }
+.nya.nal { padding-top: 0px; border-top: 1px solid #CCC; background: none }
+.nya.nal .inner { border-top: none; }
+/* nya position! ----------------------------------------------------------------------------------------------------------------------------------------- nya position! */
+/* search! pdlist! */
+
+.nya.results .inner { min-height: 800px; }
+.nya.searchmore .inner { min-height: 150px; }
+.nya.promotion .inner { min-height: 100px; }
+/* - itemlist & userlist & listgroup */
+.nya .itemlist.list li .subtitle a:hover, .nya .itemlist.list strong a:hover, .nya .userlist.listmin li .subtitle a:hover { color: #0074C0 }
+.nya .listgroup h2 { height: 40px; margin-bottom: 10px; border-bottom: 1px solid #CCC; font-weight: normal; font-size: 18px; text-indent: 5px; line-height: 40px; font-family: Microsoft YaHei, STHeiti Light, SimSun; }
+.nya .listgroup .more { display: block; height: 38px; padding-right: 10px; line-height: 38px }
+/* - itemlist */
+.nya .itemlist li .subtitle strong, .nya .itemlist li .subtitle em { display:block; padding-bottom: .2em; font-weight: normal; font-style: normal; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; font: 1.2em; _width: 100%; }
+.nya .itemlist li .subtitle strong a { color: #000 }
+.nya .itemlist li .subtitle a { color: #999 }
+.nya .itemlist li .subtitle a:hover { color: #C30; }
+.nya .itemlist li img {background: url(../images/_fortestonly_/image-not-found.jpg) center center;}
+.nya .itemlist.grid { width: 100%; }
+.nya .itemlist.grid .itemstatus, .nya .itemlist.grid .filetype { display: none; }
+.nya .itemlist.grid.imgonly .subtitle { display: none }
+.nya .itemlist li:hover { background: #F9F9F9 }
+.nya .itemlist.grid-middle li { height: 190px;  }
+html .nya .itemlist.grid-small li { height: 150px;}
+.nya .itemlist.grid-small li img, .nya .itemlist.list-small li img { width: 80px; height: 80px }
+.nya .itemlist.grid-middle li img, .nya .itemlist.list-middle li img { width: 128px; height: 128px }
+.nya .itemlist.grid-small.mixed { padding: 15px 0 15px; }
+.nya .itemlist.grid-small.mixed li { float: left; margin: 10px 9px 8px 10px; padding: 3px; width: 80px; _display:inline; }
+.nya .itemlist.grid-small.mixed .subtitle { display: block; padding: 5px 0; color: #999; line-height: 165% }
+.nya .itemlist.grid-small.mixed .subtitle em { width: 80px; }
+.nya .itemlist.grid-small.imgonly li { margin: 2px 12px 14px 2px; float: left; }
+.nya .itemlist.grid-small.imgonly li:hover { margin: 0px 10px 12px 0px; border: 2px solid #999 }
+.nya .itemlist.grid-middle { padding: 15px 0 15px 4px; _padding-left:0px; }
+.nya .itemlist.grid-middle li { margin: 5px; padding: 4px; float: left; width: 128px; _display:inline; }
+.nya .itemlist.grid-middle ul.imgonly li:hover { margin: 3px; border: 2px solid #999 }
+.nya .itemlist.grid-middle .subtitle { display: block; padding: 5px 0; color: #999; line-height: 165% }
+.nya .itemlist.grid-middle .subtitle em { width: 116px; }
+.nya .itemlist.grid .subtitle em a { display: inline-block; padding-right: 5px; font-size: 12px; font-family: Verdana, Arial, Helvetica, sans-serif; }
+.nya .itemlist.list { margin: 10px 0; }
+.nya .itemlist.list-thin li .itemstatus, .nya .itemlist.list-thin li .filetype { display: none; }
+.nya .itemlist.list-thin li { display: block; padding: 6px; clear: both }
+.nya .itemlist.list-thin li img { float: left; width: 60px; height: 60px }
+.nya .itemlist.list-thin li .subtitle { display: block; padding: 0 5px 0 75px; color: #999; line-height: 165% }
+.nya .itemlist.list-thin li .subtitle span { display: inline-block; width: 90px }
+.nya .itemlist.list-middle li { display: block; padding: 10px; clear: both; height: 128px; border-bottom: 1px solid #F2F2F2; }
+.nya .itemlist.list-middle li .thumb { float: left; width: 20%; }
+.nya .itemlist.list-middle li .subtitle { float: left; width: 80%; color: #999; line-height: 165%; }
+.nya .itemlist.list-middle li .subtitle strong { font-size: 1.4em; line-height: 180%; _width: 69%; }
+.nya .itemlist.list-middle li .itemstatus { float: right; font-size: 1em; line-height: 180%; width: 30%; text-align: right; }
+.nya .itemlist.list-middle li .itemstatus img { width: 86px; height: 15px; margin: 7px 0; }
+.nya .itemlist.list-middle li .itemstatus span { color: #333; }
+.nya .itemlist.list-middle li .subtitle .filetype { padding-top: 30px; font-size: 1.2em; }
+.nya .itemlist.list-middle li .subtitle em { font-size: 1.2em; _width: 69%; }
+.nya .itemlist.list-small li { display: block; padding: 10px; clear: both; height: 80px; border-bottom: 1px solid #F2F2F2; }
+.nya .itemlist.list-small li .thumb { float: left; width: 13%; }
+.nya .itemlist.list-small li .subtitle { float: left; width: 87%; color: #999; line-height: 150%; }
+.nya .itemlist.list-small li .subtitle strong { font-size: 1.2em; line-height: 150%; _width: 69%; }
+.nya .itemlist.list-small li .itemstatus { float: right; font-size: .8em; line-height: 120%; width: 30%; text-align: right; }
+.nya .itemlist.list-small li .itemstatus img { width: 86px; height: 15px; margin: 7px 0; }
+.nya .itemlist.list-small li .itemstatus span { color: #333; }
+.nya .itemlist.list-small li .subtitle .filetype { padding-top: 10px; font-size: 1em; }
+.nya .itemlist.list-small li .subtitle em { font-size: 1em; _width: 69%; }
+.nya .userlist.listmin li { float: left; padding: 2px 6px 6px 0; }
+.nya .userlist.listmin .subtitle { display: block; padding: 0 5px 0 55px; color: #999; line-height: 165% }
+.nya .userlist.listmin .subtitle a { color: #000 }
+.nya .userlist.listmin .avater { float: left }
+/* nya.search-tools */
+.nya .search-tools li a { display: block; line-height: 185%; _display: inline; }
+.nya .search-tools li a:hover { font-weight: bold; }
+.nya .search-tools li.hra { text-align: center; line-height: 2px; zoom: 1; height:6px; display: block; }
+.nya .search-tools li a.slected { color:#DD4B39; font-weight: bold; }
+.nya .search-tools li a.slected b { float: right; font-weight: normal; }
+.nya .search-tools.cate li a span, .nya.searchfilter li a span, .nya.searchfilter li a span { display: inline-block; padding-left: 5px; font-size: .8em; }
+.nya .search-tools.cate li { padding: 3px 0; }
+.nya .search-tools.cate li a { display: block; font-size: 1em; line-height: 180%; color:#666; border:1px solid #EFEFEF; background: #F9F9F9; border-radius: 2px; border: -webkit-border-radius: 2px;
+-moz-border-radius: 2px; -khtml-border-radius: 2px; padding: 4px 10px; }
+.nya .search-tools.cate li a:hover { color:#FFF; background: #7EB8DD; text-decoration: none; border: 1px solid #7EB8DD; }
+.nya .search-tools.cate li.copyright { line-height: 150%; color: #666; }
+.nya .search-tools.cate li.copyright a { margin: 8px 0}
+/* nya.promotion */
+.nya.promotion .t { color: #FFF; font-size: 22px; font-weight: bold; margin: 10px; }
+/* nya.searchmore */
+.nya.results h1 { white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+.nya.results .results-controler { padding: 0 10px; }
+.results-controler .element { margin-right: 20px; line-height: 25px; height: 25px; position: relative; }
+.results-controler .element a { background: url(../images/_nyanold_/nyan/drop_arr.png) right center no-repeat; padding-right: 15px; }
+.results-controler .element ul { position: absolute; right: -15px; background: #FDFDFD; border: 1px solid #CCC; }
+.results-controler .element ul a { background: none; }
+.results-controler .element li { padding: 4px 7px; line-height: 150%; }
+.results-controler .element li:hover { background: #7EB8DD; }
+.pagecutter .jumper { line-height: 26px; height: 26px; }
+.pagecutter .jumper input { width: 36px; padding: 4px 0; border: 1px solid #CCC; text-align: center; margin-top: 0; }
+/* button */
+.layout-button { display: inline-block; _display: block; }
+.button { float: left; background: #0075C1 url(../images/_nyanold_/nyan/btn_bg.jpg) 0 -1px; border: 1px solid #0075C1; color: #FFF; padding: 6px 10px 7px; cursor: pointer; border-radius: 3px; border: -webkit-border-radius: 3px;
+-moz-border-radius: 3px; -khtml-border-radius: 3px; margin-left: 10px; }
+.button:hover { background: url(../images/_nyanold_/nyan/btn_bg_hover.jpg); text-decoration:none; }
+.layout-button .icon span { display: block; text-indent: 25px; background: left center no-repeat; }
+.layout-button .icon.grida span { background-image: url(../images/_nyanold_/nyan/icon_grid.png); }
+.layout-button .icon.lista span { background-image: url(../images/_nyanold_/nyan/icon_list.png); }
+.layout-button .icon.previous span { background-image: url(../images/_nyanold_/nyan/icon_previous.png); }
+.layout-button .icon.next span { background-image: url(../images/_nyanold_/nyan/icon_next.png); }
+.layout-button .page span { text-indent: -1000px; width: 18px; height: 12px; background-position: center center; }
+
+.nya.sidebar-l .products-user .author { padding: 3px 10px; display: block; font-size: 1.2em; }
+.nya.sidebar-l .products-user .author-info { padding: 2px 10px 10px; color: #999;}
+.nya.products .item-preview { margin-top: 5px; border:1px solid #CCC; width: 650px; height: 400px; padding: 10px; background: #F7F7F7; border-radius: 5px; border: -webkit-border-radius: 5px;
+-moz-border-radius: 5px; -khtml-border-radius: 5px; }
+.nya.products .item-tags-container { width: 69.9%; border-right: 1px solid #EBEBEB; margin-top: 10px; min-height: 150px; }
+.nya.products .item-download-container { width: 30%;}
+
+.nya.products .item-download { padding: 17px; }
+.nya.products .item-download .dd-button a { background: #D1480E; /*background: #EAF4FF url(../images/_nyanold_/nyan/btn_bg.jpg) repeat-x;   */color: #FFF; border-radius: 4px; border: -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; display: block; width: 150px; height: 50px; padding: 5px 15px; }
+.nya.products .item-download .dd-button a:hover { text-decoration: none; background: #EC7600; }
+.nya.products .item-download .dd-button img { float: left; }
+.nya.products .item-download .dd-button span { padding: 7px 5px 0;  display: inline-block; font-size: 16px; font-weight: bold; } 
+.nya.products .item-download .dd-button span.cost { padding-top: 5px; display: inline-block; color: #CCC; font-size: 1em; font-size: 10px; font-weight: normal; }
+.nya.products .item-download .count { color: #999; padding: 5px 0 15px; text-align: center; }
+.nya.products .item-download .rank { color: #999; text-align: center; line-height: 20px;}
+.nya.products .shareto { padding: 10px 0; height: 20px; }
+.nya.products .tags { padding: 10px 0; width: 99%; }
+.nya.products .tags a { display: inline-block; background: #F9F9F9; padding: 5px 7px; margin-right: 8px; margin-top: 6px; color:#666; border:1px solid #EFEFEF; border-radius: 2px; border: -webkit-border-radius: 2px;
+-moz-border-radius: 2px; -khtml-border-radius: 2px; }
+.nya.products .tags a:hover { color: #FFF;  border:1px solid #0074BE; background: #7EB8DD; text-decoration: none; }
+.nya.products .decoration { line-height: 160%; padding: 10px 0; color: #333; }
+
+.nya.sidebar-l .products-filetype li a { display: block; line-height: 150%; _display: inline; color: #000; padding: 2px 0; clear: both; }
+.nya.sidebar-l .products-filetype li a:hover { text-decoration: none; }
+.nya.sidebar-l .products-filetype li a span { color: #999; font-size: .8em; padding-left: 5px; display: block;}
+.nya.sidebar-l .products-filetype li a b { float: right; color: #999; font-weight: normal;  }
+.nya.sidebar-l .products-attributes table { width: 100%; }
+.nya.sidebar-l .products-attributes td { text-align: left; padding: 5px 0; padding-left: 15px; }
+.nya.sidebar-l .products-attributes .t { border-right: 1px solid #EBEBEB; width: 48%; padding-left: 0; }

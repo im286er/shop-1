@@ -1,0 +1,119 @@
+<{include file=C('HEADPAGE_START')}>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.tiptip.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.mousewheel.js"></script>
+
+
+<{include file=C('HEADPAGE_END')}>
+<div class="container page-profile">
+<div class="general-content">
+	<h3>创建新地址</h3>
+	<div class="form">
+		<form id="form_account_address" action="#" method="post">
+			<div class="tr">
+				<label>收件人全名<i>*</i></label><input type="text" id="ac_receiver" class="input" />
+			</div>	
+			<div class="tr">
+				<label>地区<i>*</i></label>
+				<select id="ac_address_prv" class="select">
+					<option>省/直辖市</option>
+				</select>
+				<select id="ac_address_city" class="select">
+					<option>城市</option>
+				</select>
+				<select id="ac_address_region" class="select">
+					<option>行政区</option>
+				</select>
+			</div>
+			<div class="tr">
+				<label>街道<i>*</i></label><textarea id="ac_address" class="input"></textarea>
+			</div>
+			<div class="tr">
+				<label>邮政编码</label><input type="text" id="ac_postcode" class="input" />
+			</div>	
+			<div class="tr">
+				<label>手机</label><input type="text" id="ac_mobile" class="input" />
+				<!--span class="info">手机或者固定电话必须提供一项</span-->
+			</div>	
+			<div class="tr">
+				<label>电话</label>
+				<input type="text" id="ac_telphone_city" class="input" style="width: 30px;" /> - <input id="ac_telphone_no" class="input" style="width: 120px;" /> - <input id="ac_telphone_ext" class="input" style="width: 36px;" />
+			</div>
+			<div class="tr">
+				<label>默认地址</label><input id="ac_default" type="checkbox" class="checkbox" />
+			</div>	
+			<div class="tr-btn">
+				<button type="submit" class="btn btn--warning">确定</button><button type="reset" class="btn btn--warning">重置</button> <a class="abtn" href="../account_info.html">取消...</a>
+			</div>
+		</form>
+	</div>
+	<hr />
+	<h3>已保存的收货地址</h3>
+	
+	<div class="form-table">
+		<table class="address">
+			<tbody>
+				<tr class="h">
+					<th>收件人</th>
+					<th>所在地</th>
+					<th>街道地址</th>
+					<th>邮编</th>
+					<th>联系电话</th>
+					<th>默认地址</th>
+					<th></th>
+				</tr>
+				<tr>
+					<td>黑谷梨梦</td>
+					<td>东京都 千代田区</td>
+					<td>外神田3-1-13</td>
+					<td>197-0804</td>
+					<td>10086</td>
+					<td>√</td>
+					<td><a class="icon edit" href="#">编辑</a><a class="icon delete" href="#">删除</a></td>
+				</tr>
+				<tr>
+					<td>政委</td>
+					<td>北京市 北京市 宣武区</td>
+					<td>拐子大街 71号7楼</td>
+					<td>204315</td>
+					<td>138383859438</td>
+					<td></td>
+					<td><a class="icon edit" href="#">编辑</a><a class="icon delete" href="#">删除</a></td>
+				</tr>
+				<tr>
+					<td>黑谷梨梦</td>
+					<td>东京都 千代田区</td>
+					<td>外神田3-1-13</td>
+					<td>197-0804</td>
+					<td>10086</td>
+					<td></td>
+					<td><a class="icon edit" href="#">编辑</a><a class="icon delete" href="#">删除</a></td>
+				</tr>
+				<tr>
+					<td>政委</td>
+					<td>北京市 北京市 宣武区</td>
+					<td>拐子大街 71号7楼</td>
+					<td>204315</td>
+					<td>138383859438</td>
+					<td></td>
+					<td><a class="icon edit" href="#">编辑</a><a class="icon delete" href="#">删除</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="notes">
+			<p>您可以至多保存20个收货地址。</p>
+		</div>
+	</div>
+</div>
+</div>
+
+
+
+
+
+<!-- Footer Warp - Ding Ver 1.2 //-->
+<div class="clear"></div>
+
+<{include file=C('FOOTPAGE')}>
+<!-- End of Header Warp //-->
+<!-- InstanceEnd -->

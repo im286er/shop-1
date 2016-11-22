@@ -1,0 +1,32 @@
+<{include file="../../pageheader_start.html"}>
+<{include file="../../pageheader_end.html"}>
+<div class="login">
+	<div class="login-content" style="width:600px; ">
+		<h4></h4>
+			<p class="showinfo" style="margin-top: 60px;"><{$error}></p>	
+            <p class="showinfolist" style=" margin-top: 30px; height: 100px;"><input type="button"  value="继续操作" style="padding: 10px 20px; font-size: 14px;" onclick="javascript:window.location.href='__APP__/register'" class="btn btn--warning" id="goback"></p>
+        <p class="showtz" style=" text-align: center; font-size: 14px; padding-bottom: 15px; color: #CCC;">正在跳转，请稍等 <b id="wait"><{$waitSecond}></b> 秒...</p>
+
+	</div>
+</div> 
+
+
+
+<script type="text/javascript">
+$('#goback').click(function(e) {
+	window.location.href="<{$jumpUrl}>";
+});
+</script> 
+<script type="text/javascript">
+(function(){
+var wait = document.getElementById('wait'),href = "<{$jumpUrl}>";
+var interval = setInterval(function(){
+	var time = --wait.innerHTML;
+	if(time == 0) {
+		location.href = href;
+		clearInterval(interval);
+	};
+}, 1000);
+})();
+</script>
+<{include file="../../pagefooter.html"}>

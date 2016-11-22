@@ -1,0 +1,149 @@
+<{include file=C('HEADPAGE_START')}>
+<{include file=C('HEADPAGE_END')}>
+<style type="text/css">
+.container-mid{width:100%;}
+
+
+</style>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/images/rp360/index.css"/>
+<script type="text/javascript" src="__PUBLIC__/images/rp360/index.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/jquery-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+<script type="text/javascript">
+		$(document).ready(function() {
+			$("a[rel=group1]").fancybox({
+				'transitionIn'		: 'none',
+				'transitionOut'		: 'none',
+				'titlePosition' 	: 'over',
+				'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {
+					return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+				}
+			});
+
+		});
+</script> 
+
+<!-- 正文从这里开始写！！！ //-->
+
+<div class="rp-warp wd-max">
+	<div class="main  wd-max mid">
+		<div class="inside main-inside pr"> <img class="pa banner" src="__PUBLIC__/images/rp360/common/commonPic.png"/>
+			<div class="main-function pa pr">
+				<ol>
+					<li style="font-size: 16px">3DCITY隆重推出</li>
+					<li><img src="__PUBLIC__/images/rp360/bannerName.png"/ style=" padding-right: 5px;"></li>
+					<li>立即拥有您的3D云打印机</li>
+				</ol>
+				<div class="download pa"> <a class="abtn-download" href="<{$version->downloadurl}>"><b>立即下载
+
+					<p>RP360 Ver<{$version->current_version}></p>
+					</b></a></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<!--div class="simple-introduction wd-max pr">
+		<div class="inside pr">
+			<ul>
+				<li>
+					<h3 class="left">支持多种3D模型</h3>
+				</li>
+				<li>
+					<h3 class="l2">实时获取打印费</h3>
+				</li>
+				<li>
+					<h3 class="l3">支持主流3D打印机消耗</h3>
+				</li>
+				<li>
+					<h3 class="l4 right">独创安全格式</h3>
+				</li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+	</div-->
+	
+	<div class="prologue chords">
+		<div class="inside">
+			<div class="prologue-capates capate1"><img src="__PUBLIC__/images/rp360/prologue/01.png">
+				<h3>支持多种3D模型格式</h3>
+				<!--a href="product.html">了解更多功能</a--> 
+			</div>
+			<div class="prologue-capates capate2"><img src="__PUBLIC__/images/rp360/prologue/02.png">
+				<h3>预览打印效果，实时报价</h3>
+				<!--a href="product.html">快速入门</a--> 
+			</div>
+			<div class="prologue-capates capate3"><img src="__PUBLIC__/images/rp360/prologue/03.png">
+				<h3>云端制造，无需顾虑</h3>
+				<!--a href="javascript:_scroll('.allegro', 1000);">了解3D云打印</a--> 
+			</div>
+			<div class="prologue-capates capate4"><img src="__PUBLIC__/images/rp360/prologue/04.png">
+				<h3>专用格式，保护知识产权</h3>
+				<!--a href="product.html">了解版权保护</a--> 
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="intro wd-max pr">
+		<div class="inside pr">
+			<div class="int-word pa l">
+				<h3>实时获取价格</h3>
+				<p>实时预览您的3D模型。无需上传，锐打360将为您自动计算出当前最优惠的打印费用。</p>
+				<p>掌握价格，控制成本。</p>
+			</div>
+			<img class="fr" src="__PUBLIC__/images/rp360/picWithoutWord/intro2.png" />
+			<div class="clear"></div>
+		</div>
+		<div class="rp-line"></div>
+	</div>
+	<div class="intro wd-max">
+		<div class="inside pr">
+			<div class="int-word pa r">
+				<h3>私有云存储</h3>
+				<p>只需一键添加，即可轻轻松松将您的3D模型文件保存到您的私有云空间中。</p>
+				<p>随时随地，想打就打。</p>
+			</div>
+			<img class="fl" src="__PUBLIC__/images/rp360/picWithoutWord/intro3.png" />
+			<div class="clear"></div>
+		</div>
+		<div class="rp-line"></div>
+	</div>
+	<div class="intro wd-max">
+		<div class="inside pr">
+			<div class="int-word pa l">
+				<h3>3D修复文件</h3>
+				<p>还不了解3D打印模型要求？没问题！</p>
+				<p>RP360可自动为您检测模型文件错误，并提供云端模型修复服务。</p>
+			</div>
+			<img class="fr" src="__PUBLIC__/images/rp360/picWithoutWord/intro4.png" />
+			<div class="clear"></div>
+		</div>
+		<div class="rp-line"></div>
+	</div >
+	<div class="intro wd-max ">
+		<div class="inside four" >
+			<div class="int-word block ">
+				<h3 class="center">支持多种3D文件格式</h3>
+				<p class="center">直接导入STL、OBJ、FBX、DAE、3DS等常用3D打印格式。</p>
+			</div>
+			<img src="__PUBLIC__/images/rp360/picWithoutWord/intro1.png" />
+			<div class="clear"></div>
+		</div>
+		<div class="rp-line the-fourth-line"></div>
+	</div>
+	<div class="example wd-max pr">
+		<div> <a rel="group1" href="__PUBLIC__/images/rp360/examplePic/pressed_up_1.jpg" title=""><img src="__PUBLIC__/images/rp360/examplePic/up_1.png"/></a> <a rel="group1" href="__PUBLIC__/images/rp360/examplePic/pressed_up_2.jpg" title=""><img src="__PUBLIC__/images/rp360/examplePic/up_2.png" /></a><a rel="group1" href="__PUBLIC__/images/rp360/examplePic/pressed_up_3.jpg" title=""><img src="__PUBLIC__/images/rp360/examplePic/up_3.png" /></a> <a rel="group1" href="__PUBLIC__/images/rp360/examplePic/pressed_up_4.jpg" title=""><img src="__PUBLIC__/images/rp360/examplePic/up_4.png" /></a>
+			<div class="clear"></div>
+		</div>
+		<div> <a rel="group1" href="__PUBLIC__/images/rp360/examplePic/pressed_down_1.jpg" title=""><img src="__PUBLIC__/images/rp360/examplePic/down_1.png" /></a> <a rel="group1" href="__PUBLIC__/images/rp360/examplePic/pressed_down_2.jpg" title=""><img src="__PUBLIC__/images/rp360/examplePic/down_2.png" /></a> <a rel="group1" href="__PUBLIC__/images/rp360/examplePic/pressed_down_3.jpg" title=""><img src="__PUBLIC__/images/rp360/examplePic/down_3.png" /></a> <a rel="group1" href="__PUBLIC__/images/rp360/examplePic/pressed_down_4.jpg" title=""><img src="__PUBLIC__/images/rp360/examplePic/down_4.png" /></a>
+			<div class="clear"></div>
+		</div>
+		<p class="example-word pa" >案例赏析</p>
+	</div>
+	<div class="liucheng wd-max chords">
+		<div class="inside"> <img src="__PUBLIC__/images/rp360/liucheng.png" /> </div>
+		<div class="rp-line"></div>
+	</div>
+</div>
+<{include file=C('FOOTPAGE')}> 

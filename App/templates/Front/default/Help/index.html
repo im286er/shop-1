@@ -1,0 +1,22 @@
+<{include file=C('AHEAD_START')}>
+<{include file=C('AHEAD_END')}>
+<div class="hana-help container content-root">
+	<div class="dividing margin">
+	</div>
+	<!--产品目录开始-->
+	<div class="sidebar" >
+	</div>
+	<!--产品目录结束-->
+	<div class="help-article">
+		<!--h2><{$showdoc[0]['title']}></h2-->
+		<div class="contentex">
+		<{if $id == '125'}>
+		<style>
+		.hana-help{background-color:#d3d9d7;}
+		</style>
+		<{/if}>
+			<{$showdoc[0]['content']}> 
+		</div>
+	</div>
+</div>
+<{include file=C('AFOOT')}>

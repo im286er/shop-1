@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <php>
+            $addCss="";
+            $addJs="";
+            $currentNav ='aa';
+        </php>
+    <include file="Common:intohead" />
+</head>
+<body>
+    <div class="wrap"> <include file="Common:head" />
+        <div class="mainBody"> <include file="Common:left" />
+            <div id="Right">
+                <div class="contentArea">
+                    <div class="Item hr">
+                        <div class="current"></div>
+                    </div>
+                    <div>{$cate_type}
+                        <if condition="$cate_type eq 5">
+                            <iframe src="__DOC__/index/diy-jewelryeditall-pid-{$diyid}-cid-{$cid}-showtype-100.html" allowfullscreen="true" width="1000" height="600" style="z-index:1000;"></iframe>
+                        <else/>
+                            <iframe src="__DOC__/index/diy-snapdetailall-pid-{$pid}-upid-{$upid}-cid-{$cid}-showtype-10.html" allowfullscreen="true" width="1000" height="600" style="z-index:1000;"></iframe>
+						</if>
+					<!--<a href="http://192.168.52.19/index/diy-snapdetailapi-pid-{$pid}-upid-{$upid}-showtype-10.html" target="_blank">转向本地下载</a>-->
+                    	
+                    </div>		
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+<include file="Common:foot" />
+
+</body>
+</html>
+
+

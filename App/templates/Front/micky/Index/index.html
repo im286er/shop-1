@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IGNITE-IGNITE官网:3D打印首饰,DIY方案,商务礼品定制|珠宝首饰|个性化定制购物体验平台</title>
+    <link rel="stylesheet" href="__MICKYSTATIC__/index/css/brandPage.css"/>
+    <link rel="stylesheet" href="__MICKYSTATIC__/index/css/jquery.fullPage.css"/>
+    <link rel="stylesheet" href="__MICKYSTATIC__/index/css/index.css"/>
+    <link rel="stylesheet" href="__MICKYSTATIC__/index/css/fonts.css"/>
+    <link rel="stylesheet" href="__MICKYSTATIC__/index/css/animation.css"/>
+    <script src="__MICKYSTATIC__/index/js/jquery-1.8.3.min.js"></script>
+    <script src="__MICKYSTATIC__/index/js/jquery.fullPage.min.js"></script>
+    <!--<script src="http://api.html5media.info/1.1.4/html5media.min.js"></script>-->
+    <!--<script src="js/html5media.min.js"></script>-->
+    <script src="__MICKYSTATIC__/index/js/login.js"></script>
+    <script type="text/javascript" src="__MICKYSTATIC__/index/js/three.js"></script>
+    <script type="text/javascript" src="__MICKYSTATIC__/index/js/OBJLoader.js"></script>
+    <script type="text/javascript" src="__MICKYSTATIC__/index/js/MTLLoader.js"></script>
+    <script type="text/javascript" src="__MICKYSTATIC__/index/js/Main.js"></script>
+    <script type="text/javascript" src="__MICKYSTATIC__/index/js/control.js"></script>
+    <script type="text/javascript" src="__MICKYSTATIC__/index/js/UnpackDepthRGBAShader.js"></script>
+    <script type="text/javascript" src="__MICKYSTATIC__/index/js/ShadowMapViewer.js"></script>
+    <script type="text/javascript" src="__MICKYSTATIC__/index/js/Detector.js"></script>
+    <script type="text/javascript" src="__MICKYSTATIC__/index/js/collada/Animation.js"></script>
+    <script type="text/javascript" src="__MICKYSTATIC__/index/js/collada/AnimationHandler.js"></script>
+    <script type="text/javascript" src="__MICKYSTATIC__/index/js/collada/KeyFrameAnimation.js"></script>
+    <script type="text/javascript" src="__MICKYSTATIC__/index/js/ColladaLoader.js"></script>
+
+    <!--百度统计-----Start-->
+    <script>
+        var _hmt = _hmt || [];
+
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?2882261a9ea7c30daa303ff64d127130";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <!--百度统计-----End-->
+
+    <script>
+        window.onload = function () {
+            var head = document.getElementsByTagName('head')[0],
+                    style = document.createElement('style');
+
+            style.type = 'text/css';
+//            style.styleSheet.cssText = ':before,:after{content:none !important';
+            head.appendChild(style);
+            setTimeout(function() { head.removeChild(style); }, 0);
+        }
+
+
+           <{if $mobileAgent !=3  }>
+                window.location.href='__APP__/wx';
+            <{/if}>
+    </script>
+    <!--原理 : 重新渲染页面的 :before,after-->
+
+
+    <!--/*  检测浏览器内核  */-->
+    <!--alert(navigator.appName);-->
+    <!--alert(navigator.appVersion .split(";")[1].replace(/[ ]/g,""));-->
+    <script>
+        $(function () {
+            // 菜单的显示与隐藏
+            $(".closeShow").click(function () {
+                $(".logoRightMenuClick").stop(true,true).animate({right:'0'},500);
+            });
+            $(".close").click(function () {
+                $(".logoRightMenuClick").stop(true,true).animate({right:'-600'},500);
+            });
+            // 菜单文字
+            $(".logoRightMenuClick>ul>li").eq(0).css("background","#f6f1ed");
+            $(".logoRightMenuClick>ul>li").eq(0).find("a").css("color","#a9784d");
+            $(".logoRightMenuClick>ul>li").eq(0).find("span").css("display","block");
+            $(".logoRightMenuClick>ul>li").hover(function () {
+                $(this).addClass("menuHot");
+                $(this).find("span").removeClass("dis");
+                $(this).find(".shouye_erji").stop(true,true).animate({right:'160',opacity:1},600);
+            }, function () {
+                $(this).removeClass("menuHot");
+                $(this).find("span").addClass("dis");
+                $(this).find(".shouye_erji").stop(true,true).animate({right:'-400',opacity:0},600);
+            });
+            //    二级菜单
+            // 微信 微博效果
+            $("#weixin").hover(function () {
+                $(this).find("img").attr("src","__PUBLIC__/images/weixin_hover.png");
+            },function(){
+                $(this).find("img").attr("src","__PUBLIC__/images/weixin.png");
+            });
+            $("#weibo").hover(function () {
+                $(this).find("img").attr("src","__PUBLIC__/images/weibo_hover.png");
+            },function(){
+                $(this).find("img").attr("src","__PUBLIC__/images/weibo.png");
+            });
+            $("#screen").fullpage({
+
+                'css3': true,
+//                'verticalCentered': false,
+                anchors: ['page1','page2','page3','page4','page5','footer'],
+                'menu': "#menu",
+                'afterLoad': function(index, direction){
+                    $(".fp-tooltip").each(function (i,obj) {
+                        if($(obj).parent().hasClass("active")){
+                            $(obj).parent().parent().css({"margin-bottom":"30px"});
+                            $(obj).removeClass("hide").addClass("show");
+                            $(obj).prev().removeClass("navigation");
+                            $(obj).prev().attr("data-role","lingxing");
+                        }else{
+                            $(obj).parent().parent().css({"margin-bottom":"10px"});
+                            $(obj).removeClass("show").addClass("hide");
+                            $(obj).prev().addClass("navigation").removeAttr("data-role","lingxing");
+                        }
+                    });
+                    if(direction == 2){
+                        if($("#video")[0].paused){
+                            $("#video")[0].play();
+                        }
+                    }
+
+                }
+            })
+
+            /*$("#denglubtn").click(function () {
+             $(".loginBtnClick").removeClass("dis");
+             })*/
+
+
+            // 购物车
+
+            $(".gouwudai").hover(function(){
+                $(this).find($(".gouwuche-erji")).stop(true,true).slideDown();
+            },function(){
+                $(this).find($(".gouwuche-erji")).slideUp();
+            });
+            // 登录
+
+            $("#denglubtn").hover(function(){
+                $(this).find($(".gouwuche-erji")).stop(true,true).slideDown();
+            },function(){
+                $(this).find($(".gouwuche-erji")).slideUp();
+            });
+        })
+    </script>
+</head>
+<body> <!-- onload="Main_init();"-->
+<!--  登 录  -->
+<div class="loginBtnClick dis">
+    <div class="section_login_inner">
+        <div class="logo">
+            <!--<img src="images/logo.png" alt=""/>-->
+        </div>
+        <div class="login_center">
+            <div class="logo_title text-c">登录</div>
+            <form class="verification" name="myform" method="post">
+                <!-- 错误信息提示-->
+                <div class="error dis">
+                    <img style="float: left;height: 16px;margin: 6px 8px;
+                        " src="__MICKYSTATIC__/index/images/erro.png" alt=""/>
+                    <span class="fl" id="erro_mass"></span>
+                </div>
+                <!-- 账号-->
+                <div class="logo_mass phone">
+                    <span>手机号 </span>
+                    <input id="phone" type="text" placeholder="输入手机号" autocomplete="off"; />
+                </div>
+
+                <!-- 密码-->
+                <div class="logo_mass imgCode">
+                    <span>密&nbsp;&nbsp;&nbsp;码 </span>
+                    <input type="password" id="password" placeholder="密码" maxlength="15" minlength="6"/>
+                    <span class="fr"><a href="javascript:;" id="show"><img src="__MICKYSTATIC__/index/images/show.png" style="height: 19px;" alt=""/></a></span>
+                </div>
+
+                <div class="logo_mass login">
+                    <input type="checkbox" id="denglu"/>
+                    <span>两周内自动登录</span>
+                    <span class="fr"><a href="">忘记密码</a></span>
+                </div>
+                <div class="text-c register">
+                    <input type="button" id="zhuce" value="立&nbsp;即&nbsp;登&nbsp;录" />
+                </div>
+                <div class="massage">
+                    <a href="">还没有帐号？马上免费注册></a>
+                </div>
+            </form>
+            <div class="text-c" style="font-size: 12px;color: #999;">接受并遵守Ignite的用户协议和版权声明</div>
+        </div>
+    </div>
+</div>
+
+<!--顶 部-->
+<div class="contentTop">
+    <!-- logo-->
+    <div class="logo fl">
+        <a href="__DOC__/index.php"><img src="__MICKYSTATIC__/index/images/logo.png" alt=""/></a>
+    </div>
+    <!-- 右边图标-->
+    <div class="logoRight fr">
+        <!-- 未登录-->
+        <{if !$isLogin }>
+        <div class="logoRightLogin" style="width: 28px;">
+            <a href="__DOC__/user.php/login"><div data-role="denglu"></div></a>
+        </div>
+        <!-- 已经登录 -->
+        <{else}>
+        <div class="logoRightLogin" style="width: 28px;">
+            <div id="denglubtn">
+                <a class="touxiang">
+                    <{if $userBasic.u_avatar neq ''}>
+                    <img src="__UPLOAD__/avatar/<{$userBasic.u_avatar|replace:'/o/':'/s/96_96_'}>" alt="" style="width: 100%;vertical-align: top;border-radius: 50%;"/>
+                    <{else}>
+                    <img src="__KITTYPUBLIC__/images/avatar/default.png" alt="" style="width: 100%;vertical-align: top;border-radius: 50%;"/>
+                    <{/if}>
+                </a>
+                <!-- 登录 下拉 -->
+                <div class="gouwuche-erji">
+                    <!-- 用户名 -->
+                    <div class="denglu-xiala">
+                        <!-- 跳到个人中心 -->
+                        <a href="__USERIDX__/userconf"><{$userBasic.showusername}></a>
+                    </div>
+                    <ul style="padding-top: 0px;" class="denglu-xinxi">
+                        <li>
+                            <a href="__USERIDX__/sales/ordermanage">
+                                <span>我的订单</span>
+                            </a>
+                        </li>
+                        <!--<li>-->
+                            <!--<a href="">-->
+                                <!--<span>我的代金券</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <li>
+                            <a href="__USERIDX__/coupon/mycoupon">
+                                <span>我的优惠券</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="__USERIDX__/userconf">
+                                <span>账户管理</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="__USERIDX__/mydiy/jewelrylist">
+                                <span>我的作品</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="__USERIDX__/logout">
+                                <span>注销</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <{/if}>
+        <!-- 地球-->
+        <{if !$isLogin}>
+        <div class="logoRightLogin">
+            <a href="__DOC__/user.php/login" data-role="gouwudai"></a>
+        </div>
+        <!-- 购物袋-->
+        <{else}>
+        <div class="logoRightLogin gouwudai">
+            <a href="__DOC__/user.php/cart" data-role="gouwudai">
+                <{if $cartnum eq 0}>
+                <{else}>
+                <div class="gouwudai-num">
+                    <{$cartnum}>
+                </div>
+                <{/if}>
+            </a>
+            <!-- 购物车下拉 -->
+            <{if $cartnum eq 0}>
+            <{else}>
+            <div class="gouwuche-erji">
+                <ul>
+                    <{foreach $cartlist as $Product}>
+                    <li>
+                        <{if $Product['p_producttype'] ==4}><!-- DIY产品-用户生成 -->
+                        <a href="__DOC__/index/diy-jewelry-pid-<{$Product['p_diy_id']}>-cid-<{$Product['p_cate_4']}>-showtype-10.html">
+                        <{elseif $Product['p_producttype'] ==5}><!-- 非DIY产品 -->
+                        <a href="__DOC__/index/<{$Product['modellink']}>-detail-id-<{$Product[$DBF_P->BelongPid]}>.html" >
+                        <{else}>
+                        <a href="__DOC__/index/<{$Product['modellink']}>-detail-id-<{$Product[$DBF_P->ID]}>.html">
+                        <{/if}>
+                            <div class="gwd-img">
+                                <img src="__DOC__<{$Product['p_cover']|replace:'/o/':'/s/64_64_'}>" style="width:27px;height:27px;">
+                                <!--测试图片-->
+                                <!--<img src="__PUBLIC__/images/aaa.png" alt=""/>-->
+                            </div>
+                            <span><{$Product[$DBF_P->Name]|substr:0:16}></span>
+                        </a>
+                    </li>
+                    <{/foreach}>
+                </ul>
+                <div class="look-cart"><a href="__USERIDX__/cart">查看我的购物袋 ></a></div>
+            </div>
+            <{/if}>
+        </div>
+        <{/if}>
+        <!-- 搜索-->
+        <div class="logoRightLogin sousuo">
+            <form action="__DOC__/index.php/product-index" method="post">
+                <div class="search fl">
+                    <button type="submit" style="border: 0;background:none;cursor:pointer;margin-top: 5px;">
+                        <img src="__PUBLIC__/index/images/sousuo.png" alt="" style="vertical-align: 0;width:20px;"/>
+                    </button>
+                </div>
+                <div class="fr" style="height: 100%;">
+                    <input type="text" name="tags" value="项链" maxlength="10" autocomplete="off" style="color: #ddd;" onchange="valuechange(this);"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function valuechange(value){
+        value.style.color = '#fff';
+    }
+</script>
+<!--菜单-->
+<div class="logoRightMenu fr text-c">
+    <span data-role="caidan" class="closeShow"></span>
+</div>
+<!--菜单的列表效果-->
+<div class="logoRightMenuClick fr text-c">
+    <span data-role="close" class="close"></span>
+    <ul>
+        <li class="menuHot">
+            <span class="fl" data-role="lingxing"></span>
+            <a href="__DOC__/index/index.html">首页</a>
+            <span data-role="lingxing" class="fr"></span>
+        </li>
+        <!--<li>-->
+            <!--<span class="fl" data-role="lingxing"></span>-->
+            <!--<a href="__DOC__/index/jewelry-jewelrylist-cate-1272.html">智绘首饰</a>-->
+            <!--<span class="fr" data-role="lingxing"></span>-->
+        <!--</li>-->
+        <li>
+            <span class="fl dis" data-role="lingxing"></span>
+            <!--<a href="__DOC__/index.php/jewelry-jewelrylist-cate-1263.html">所有产品</a>-->
+            <a style="cursor:pointer;">所有分类</a>
+            <span class="fr dis" data-role="lingxing"></span>
+            <!--二级菜单 -->
+            <div class="shouye_erji">
+                <ul style="margin-top:155px;">
+                    <li>
+                        <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1263.html">
+                            全部商品
+                        </a>
+                    </li>
+                    <li>
+                        <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1266.html">
+                            项链/吊坠
+                        </a>
+                    </li>
+                    <li>
+                        <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1264.html">
+                            戒指
+                        </a>
+                    </li>
+                    <li>
+                        <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1265.html">
+                            耳饰
+                        </a>
+                    </li>
+                    <li>
+                        <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1267.html">
+                            手链/手镯
+                        </a>
+                    </li>
+                    <li>
+                        <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1269.html">
+                            胸针
+                        </a>
+                    </li>
+                    <li>
+                        <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1268.html">
+                            袖扣
+                        </a>
+                    </li>
+                </ul>
+                <!--<ul>
+                    <li>按用途</li>
+                    <li>
+                        <a href="__DOC__/index.php/product-index-tags-日常">
+                            日常
+                        </a>
+                    </li>
+                    <li>
+                        <a href="__DOC__/index.php/product-index-tags-聚会">
+                            聚会
+                        </a>
+                    </li>
+                    <li>
+                        <a href="__DOC__/index.php/product-index-tags-情侣">
+                            情侣
+                        </a>
+                    </li>
+                    <li>
+                        <a href="__DOC__/index.php/product-index-tags-送礼">
+                            送礼
+                        </a>
+                    </li>
+                    <li>
+                        <a href="__DOC__/index.php/product-index-tags-职场">
+                            职场
+                        </a>
+                    </li>
+                    <li>
+                        <a href="__DOC__/index.php/product-index-tags-婚庆">
+                            婚庆
+                        </a>
+                    </li>
+                </ul>-->
+            </div>
+        </li>
+        <li>
+            <span class="fl dis" data-role="lingxing"></span>
+            <a href="__DOC__/index.php/diy-smartjewelry-cid-1.html">智绘首饰</a>
+            <span class="fr dis" data-role="lingxing"></span>
+        </li>
+        <li>
+            <span class="fl dis" data-role="lingxing"></span>
+            <a style="cursor:pointer;">畅销榜单</a>
+            <span class="fr dis" data-role="lingxing"></span>
+            <!--二级菜单 -->
+            <div class="shouye_erji">
+                <div id="queban">
+                    <a href="__DOC__/index.php/product-index-tags-青春的小雀斑"></a>
+                </div>
+                <div id="quanzhan">
+                    <a href="__DOC__/index.php/product-index-tags-女皇的权杖"></a>
+                </div>
+                <div id="yidian">
+                    <a href="__DOC__/index.php/product-index-tags-凌晨一点"></a>
+                </div>
+                <div id="jiaowa">
+                    <a href="__DOC__/index.php/product-index-tags-多面娇娃"></a>
+                </div>
+                <div id="skykong">
+                    <a href="__DOC__/index.php/product-index-tags-天空之城"></a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <span class="fl dis" data-role="lingxing"></span>
+            <a href="__DOC__/index.php/jewelry-jewelrylist-diy-1">轻定制</a>
+            <span class="fr dis" data-role="lingxing"></span>
+        </li>
+        <li>
+            <span class="fl dis" data-role="lingxing"></span>
+            <a href="__DOC__/index.php/help-brandstory">了解IGNITE</a>
+            <span class="fr dis" data-role="lingxing"></span>
+        </li>
+        <!--<li>
+            <span class="fl" data-role="lingxing"></span>
+            <a href="__DOC__/index/jewelry-jewelrylist-cate-1268.html">袖扣</a>
+            <span class="fr" data-role="lingxing"></span>
+        </li>-->
+        <!--<li>-->
+            <!--<span class="fl" data-role="lingxing"></span>-->
+            <!--<a href="__DOC__/index/jewelry-jewelrylist-cate-1274.html">商业礼品</a>-->
+            <!--<span class="fr" data-role="lingxing"></span>-->
+        <!--</li>-->
+    </ul>
+</div>
+<div id="screen">
+    <!-- 第五屏-->
+    <!--<div class="section" id="section5">
+        <div class="sectionContent">
+            &lt;!&ndash;<h1>时尚邂逅科技</h1>
+            <h2>WHEN FASHION MEETS TECHNOLOGY</h2>&ndash;&gt;
+            <div id="background_div"></div>
+            <img src="__MICKYSTATIC__/index/images/zhongqiu.png" alt="">
+            <span style="background: #e4c2a2;"></span>
+            <p style="color: #e4c2a2;">每个人心中都有一道月光<br/>
+                是脑海闪耀的灵光<br/>
+                是心底常泛的微光<br/>
+                用科技定制出有温度的首饰<br/>
+                让梦想成真</p>
+            <button type="button" class="btn btn-default order-btn" onclick="window.location.href='__DOC__/index/jewelry-jewelrylist-cate-1266.html'" style="border: 1px solid #e4c2a2;"><a href="__DOC__/index/jewelry-jewelrylist-cate-1266.html" style="color: #e4c2a2;">我要定制</a></button>
+        </div>
+    </div>-->
+    <!-- 第一屏-->
+    <div class="section" id="section1">
+        <div class="sectionContent">
+            <h1>点燃心中的微光</h1>
+            <h2> THE LIGHT INSIDE OF YOU</h2>
+            <span></span>
+            <p>这是每个人的故事，它似曾相识，却独一无二<br/>
+                这是关于记忆的光，它转瞬即逝，却深刻耀眼<br/>
+                每个人心中都有一道光<br/>
+                IGNITE 用轻定制，让精神连串
+            </p>
+            <button type="button" class="btn btn-default order-btn" onclick="window.location.href='__DOC__/index/jewelry-jewelrylist-cate-1266.html'"><a href="__DOC__/index/jewelry-jewelrylist-cate-1266.html">我要定制</a></button>
+
+            <!--国庆节活动页按钮-->
+            <!--<button type="button" style="margin: 0 auto;width: 263px;height: 55px;" onclick="window.location.href='__DOC__/index.php/product-index-tags-国庆活动'"><a href="__DOC__/index.php/product-index-tags-国庆活动" style="color: #ffde01;font-size: 30px;">点击了解更多</a></button>-->
+        </div>
+    </div>
+
+    <!-- 第二屏-->
+    <div class="section" id="section2">
+        <div class="sectionContent" style="z-index:222;">
+            <h1>智绘首饰</h1>
+            <h2> SMART JEWELRY</h2>
+            <span></span>
+            <p>“这是我们在一起的第100天”<br/>
+                “这是我们共同去过的地点”<br/>
+                “这是对我意义非凡的人”<br/>
+                <br/>
+                发挥你天马行空的想象<br/>
+                描绘生命中难忘的时刻
+            </p>
+            <button type="button" class="btn btn-default order-btn" onclick="window.location.href='__DOC__/index.php/diy-smartjewelry-cid-1.html'"><a href="__DOC__/index.php/diy-smartjewelry-cid-1.html">智绘首饰</a></button>
+        </div>
+        <div style="width: 100%;min-width:53.33%;height:100%;overflow: hidden;">
+            <video id="video" ng-if="::caniuse.isDesktop" autoplay="" loop="" class="ng-scope" height="100%">
+                <source ng-src="__MICKYSTATIC__/index/images/bg_5.mp4" type="video/mp4" src="__MICKYSTATIC__/index/images/bg_5.mp4">
+            </video>
+        </div>
+
+    </div>
+    <!-- 第三屏-->
+    <div class="section" id="section3">
+        <div class="sectionContent">
+            <h1>会跳舞的首饰</h1>
+            <h2>DANCING JEWELRY</h2>
+            <span></span>
+            <p>IGNITE 的 3D 技术结合匠人手艺<br/>
+                利用 WEB3D 展现，打造动人的首饰<br/>
+                带来灵动的崭新体验
+            </p>
+            <button type="button" class="btn btn-default order-btn" onclick="window.location.href='__DOC__/index.php/jewelry-jewelrylist-cate-1263.html'"><a href="__DOC__/index.php/jewelry-jewelrylist-cate-1263.html">所有产品</a></button>
+        </div>
+        <div class="" style="position: absolute;left: 36%;top: 15%;z-index:2222;width:771px;height: 85%;overflow: hidden;">
+            <img src="__MICKYSTATIC__/index/images/PAD.gif" alt="" style="width: 100%;">
+        </div>
+    </div>
+    <!-- 第四屏-->
+    <div class="section" id="section4">
+        <!--<div class="yu">
+            <img src="images/yu.png" alt=""/>
+        </div>-->
+        <div class="sectionContent" style="margin-top: 10%">
+            <div class="img" style="margin-left: 5%;">
+                <img src="__MICKYSTATIC__/index/images/yuyu.png" alt=""/>
+            </div>
+            <div class="img" style="height: 136px;">
+                <img src="__MICKYSTATIC__/index/images/qiao.png" alt=""/>
+            </div>
+            <h2>MOVIE ORIGINAL JEWELRY</h2>
+            <span></span>
+            <p>夏木同款“亲亲鱼”定制项链,&nbsp;IGNITE独家限量发售<br/>
+                <br/>
+                "你可知道<br/>
+                我最轻的念想<br/>
+                不过是和你一起仰望天堂"
+            </p>
+            <button type="button" class="btn btn-default order-btn" onclick="window.location.href='__DOC__/index.php/event-xyqm2016'"><a href="__DOC__/index.php/event-xyqm2016">了解活动</a></button>
+        </div>
+    </div>
+     <!--第五屏-->
+    <div class="section" id="section5">
+        <div class="sectionContent">
+            <h1>时尚邂逅科技</h1>
+            <h2>WHEN FASHION MEETS TECHNOLOGY</h2>
+            <span></span>
+            <p>每个人心中都有一道光<br/>
+                是脑海闪耀的灵光<br/>
+                是心底常泛的微光<br/>
+                用科技定制出有温度的首饰<br/>
+                让梦想成真</p>
+            <button type="button" class="btn btn-default order-btn" onclick="window.location.href='__DOC__/index.php/help-brandstory'"><a href="__DOC__/index/help-brandstory">了解品牌</a></button>
+        </div>
+    </div>
+    <!-- 页 底 -->
+    <div class="section fp-auto-height">
+        <div class="footer">
+            <div class="footerCenter">
+                <!-- 左 -->
+                <div class="footerTopLeft fl">
+                    <img src="__PUBLIC__/images/footerLogo.png" alt=""/>
+                </div>
+                <!-- 右 -->
+                <div class="footerTopRight fr">
+                    <div class="footerTopRight_L fl">
+                        <dl>
+                            <dt>聚焦IGNITE</dt>
+                            <dd><a href="__APP__/help-brandstory">品牌介绍</a></dd>
+                            <dd><a href="__APP__/help-jewelrymade">定制首饰</a></dd>
+                            <dd><a href="__APP__/help-craft">制作工艺</a></dd>
+                        </dl>
+                        <dl>
+                            <dt>购物指南</dt>
+                            <dd><a href="__APP__/help-shopflow">购物流程</a></dd>
+                            <dd><a href="__APP__/help-payonline">在线支付</a></dd>
+                            <dd><a href="__APP__/help-express">配送说明</a></dd>
+                        </dl>
+                        <dl>
+                            <dt>售后服务</dt>
+                            <dd><a href="__APP__/help-tuihuo">15天退换货</a></dd>
+                            <dd><a href="__APP__/help-weixiu">首饰维修</a></dd>
+                        </dl>
+                        <dl>
+                            <dt>帮助支持</dt>
+                            <dd><a href="__APP__/help-celiangzw">简易测量指圈</a></dd>
+                            <dd><a href="__APP__/help-celiangsw">简易测量手围</a></dd>
+                            <dd><a href="__APP__/help-celiangll">简易测量链长</a></dd>
+                            <dd><a href="__APP__/help-shipinbaoyang">首饰保养</a></dd>
+                            <dd><a href="__APP__/help-contactus">联系客服</a></dd>
+                        </dl>
+                    </div>
+                    <div class="footerTopRight_r fl">
+                        <div style="height: 87px;">
+                            <img src="__PUBLIC__/images/erweima.jpg" alt=""/>
+                        </div>
+
+                        <!-- 微信 -->
+                        <div style="width: 100%;margin-top: 8px">
+                            <div id="weibo" style="margin-left: 20px">
+                                <img src="__PUBLIC__/images/weibo.png" alt=""/>
+                            </div>
+                            <div id="weixin" style="margin-left: 8px">
+                                <img src="__PUBLIC__/images/weixin.png" alt=""/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 下 -->
+        <div class="footerBottom">
+            <div class="footerCenter">
+                <div class="footerBottomLeft fl">
+                    Copyright 2016 ignjewelry.com· 隐私政策·服务条款·版权申明
+                </div>
+                <div class="footerBottomRight fr">
+                    <img src="__MICKYSTATIC__/index/images/footer.png" alt=""/>
+                    <span>沪ICP备16027050号-1</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--全屏滚动 导航-->
+<div id="menu" class="right">
+    <!--<ul>
+        <li data-menuanchor="page1">
+            <a href="#page1" class="navigation"></a>
+            <div class="fp-tooltip show">贺中秋</div>
+        </li>
+    </ul>-->
+    <ul>
+        <li data-menuanchor="page1" class="active">
+            <a href="#page1" data-role="lingxing">
+                <div class="pagebox"></div>
+            </a>
+            <div class="fp-tooltip hide">轻定制</div>
+        </li>
+
+    </ul>
+    <ul>
+        <li data-menuanchor="page2">
+            <a href="#page2" class="navigation">
+                <div class="pagebox"></div>
+            </a>
+            <div class="fp-tooltip hide">做原创</div>
+        </li>
+    </ul>
+    <ul>
+        <li data-menuanchor="page3">
+            <a href="#page3" class="navigation">
+                <div class="pagebox"></div>
+            </a>
+            <div class="fp-tooltip hide">购时尚</div>
+        </li>
+    </ul>
+    <ul>
+        <li data-menuanchor="page4">
+            <a href="#page4" class="navigation">
+                <div class="pagebox"></div>
+            </a>
+            <div class="fp-tooltip hide">新活动</div>
+        </li>
+    </ul>
+    <ul>
+        <li data-menuanchor="page5">
+            <a href="#page5" class="navigation">
+                <div class="pagebox"></div>
+            </a>
+            <div class="fp-tooltip hide">强品牌</div>
+        </li>
+    </ul>
+</div>
+<div style="display:none;">
+    <!--cnzz站长统计-->
+    <script src="https://s11.cnzz.com/z_stat.php?id=1259998621&web_id=1259998621" language="JavaScript"></script>
+</div>
+
+</body>
+</html>

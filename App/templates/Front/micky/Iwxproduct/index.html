@@ -1,0 +1,79 @@
+<{include file=C('IWXHEADER_START')}>
+<meta charset="UTF-8">
+<!--一定放 herd中-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>产品搜索</title>
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/swiper/swiper-3.2.7.min.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/fonts.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/top.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/app_list.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/footer.css">
+    <script src="__MICKYMOBILESTATIC__/new/js/jquery.js"></script>
+    <script src="__MICKYMOBILESTATIC__/new/js/top.js"></script>
+    <script src="__MICKYMOBILESTATIC__/new/js/footer.js"></script>
+    <script src="__MICKYMOBILESTATIC__/new/swiper/swiper-3.2.7.min.js"></script>
+<script>
+    $(function () {
+        $(".shopmass").find("a").click(function () {
+            $(this).css("background","#c4a591");
+        })
+    })
+</script>
+<{include file=C('IWXHEADER_END')}>
+<{include file=C('IWXMENU')}>
+<!--商品列表-->
+<div class="app_list">
+    <div class="container-fluid">
+        <div class="row">
+            <!--菜单-->
+            <div class="app_caidan">
+                搜索结果:<span><{$search_key_fmt}></span>
+            </div>
+            <!--列表-->
+            <{if $SearchResult neq 1}>
+            <div class="app_shopList">
+                <ul>
+                    <{foreach $SearchResult as $Result name="foo"}>
+                    <li class="col-xs-6">
+                        <!--产品图片-->
+                        <div class="shopList_img">
+                            <{if $Result['p_producttype'] eq 7}>
+                            <a href="__DOC__/index/iwx-jewelrydetail-curMenu-1-cid-<{$Result[$DBF_P->DiyCateCid]}>.html" class="item-img" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+                            <{else}>
+                            <a href="__DOC__/index/iwx-productdetail-curMenu-1-id-<{$Result[$DBF_P->ID]}>.html" class="item-img" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+                            <{/if}>
+                            <img src="__IMG__<{$Result[$DBF_P->Cover]}>" alt=""/>
+                            <!--图片测试-->
+                            <!--<img src="__MICKYMOBILESTATIC__/new/images/list/1.jpg" alt="">-->
+                            </a>
+                        </div>
+                        <!-- 产品信息 -->
+                        <div class="shopmass">
+                            <h1>
+                                <a href=""><{$Result[$DBF_P->Name]|substr:0:40}></a>
+                            </h1>
+                            <h2>￥<{$Result.p_price}></h2>
+                            <{if $Result['p_producttype'] == 7}>
+                            <a href="__DOC__/index/iwx-jewelrydetail-curMenu-1-cid-<{$Result[$DBF_P->DiyCateCid]}>.html">
+                            <{else}>
+                            <a href="__DOC__/index/iwx-productdetail-curMenu-1-id-<{$Result[$DBF_P->ID]}>.html">
+                            <{/if}>
+                                立即购买
+                            </a>
+                        </div>
+                    </li>
+                    <{/foreach}>
+                </ul>
+            </div>
+            <{else}>
+                <div style="text-align:center;font-size:2.5em;"><span >查无记录</span></div>
+            <{/if}>
+        </div>
+    </div>
+</div>
+
+<{include file=C('IWXFOOTER')}>
+
+
+

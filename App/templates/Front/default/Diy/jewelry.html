@@ -1,0 +1,336 @@
+<{if $cid eq 27}>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>SU DEMO</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="keywords" content="<{$keywords}>"> 
+<meta name="description" content="<{$description}>">
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/init.css?v121804" media="all">
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/doge.css?v121804" media="all">
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/jquery-ui.css" media="all">
+<script src="__NEOSTATIC__/js/jquery-1.11.2.min.js"></script>
+<script src="__NEOSTATIC__/js/jquery-ui.min.js"></script>
+<script>
+<{if $mobileAgent !=3  }>
+window.location.href='__APP__/wx';
+<{/if}>
+$(document).ready(function(){
+	$("#doge-close").click(function(){
+		$(".dogeattention").fadeOut();
+	});
+	$(".notification").click(function(){
+		$(".dogeattention").fadeIn();
+	});
+	$(".dogeattention").click(function(){
+		$(".dogeattention").fadeOut();
+	});
+	
+});
+</script>
+<style>
+
+.page-jewelry a { color: #C4AB8D } /* 链接颜色 */
+.page-jewelry a.skew { color: #4EBF9A !important } /* 链接颜色 */
+.page-jewelry a:hover { color: #338C70 } /* 悬停链接颜色 */
+.page-jewelry a.skew:hover { color: #338C70 !important } /* 悬停链接颜色 */
+.page-jewelry a.skew span { background-color: #4EBF9A; } /* 链接前的方块 */
+.page-jewelry a.skew:hover span { background-color: #338C70; } /* 悬停链接前的方块 */
+.page-jewelry .navbar ul a:hover,
+.page-jewelry .userinfo li .withdrop:hover { border-bottom-color: #B7EBE6 }
+.page-jewelry .dropmenu .baseline { background-color: #C4EADD }
+.page-jewelry span.skew { background-color: #C4AB8D; } /* 小标签，比如DIY */
+.page-jewelry .prdlist .item-img:hover span.skew { background-color: #C4AB8D; } /* 悬停小标签，比如DIY */
+.page-jewelry label.skew { background-color: #C4AB8D; } /* 横幅 */
+.page-jewelry .input { border-color: #C4AB8D !important; }
+.page-jewelry .navbar ul .now-jewelry a { border-bottom-color: #7FD1BA } /* 选中当前频道 */
+.page-jewelry .btn-action { background-color: #7FD1BA; }
+.page-jewelry .btn-action:hover { background-color: #5FC5A4; }
+.page-jewelry .header-full .logo img { background-image: url(../imgs/jewelry/logo.png); width: 434px; height: 110px; }
+.page-jewelry .header-thin .logo img, .page-jewelry .footer .logo img { background-image: url(../imgs/jewelry/mlogo.png); width: 246px; height: 53px; }
+.page-jewelry .hla { background-color: #C4AB8D; background-color: #C4AB8D !important }
+
+
+.page-jewelry .advantage .one{ background: #E9F7F4 url(../imgs/jewelry/advantage/1.png) center 55px no-repeat; margin-top:12px;}
+.page-jewelry .advantage .two{ background: #81D1B8 url(../imgs/jewelry/advantage/2.png) center 70px no-repeat;}
+.page-jewelry .advantage .three{ background: #E9F7F4 url(../imgs/jewelry/advantage/3.png) center 55px no-repeat; margin-top:12px;}
+.page-jewelry .list-bottom .page-num ul li .active{background-color:#81D1B8;border:1px solid #81D1B8;}
+.page-jewelry .pro-catalogue li .click{ color:#81D1B8; }
+</style>
+</head>
+<body class="page-jewelry">
+<div class="header header-thin">
+<div class="container topbar">
+
+	<div class="container navbar">
+		<ul class="nav-global">
+			<li class="now-index"><a href="#">SU素原</a>/</li>
+		</ul>
+		<div class="clear"></div>
+	</div>
+
+</div>
+</div>
+<div class="prd container">
+	<div class="breadcrumb"><a class="home" href="__APP__/jewelry-jewelrylist">珠宝首饰</a>\<a href="#"><{$cinfo['cate_name']}></a></div>
+	<div class="su-header" style=" background:url(__NEOSTATIC__/imgs/__tmp__/su_header.jpg) no-repeat center top; height: 400px; margin-bottom: 20px;"></div>
+	<div class="prd-introframe">
+		<div class="prd-titile hla">
+			<h2><{$cinfo['cate_name']}><i>(可定制款)</i></h2>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="dividing" id="gohere">
+		<h2><label class="skew"><i>定制只属于您的首饰</i></label></h2>
+	</div> 
+	<div class="prd-diyframe"> 
+		
+	</div>
+	<div class="su-header" style=" background:url(__NEOSTATIC__/imgs/__tmp__/su_footer.jpg) no-repeat center top; height: 400px;"></div>
+</div>
+<script src="__NEOSTATIC__/js/doge.webglchk.js"></script>
+<script>
+$(document).ready(function(e) {
+	$("#go-ordergen").click(function(e) {
+		$("html, body").animate({
+            scrollTop: $("#gohere").offset().top + "px"
+        }, {
+            duration: 500,
+            easing: "swing"
+        });
+        return false;
+	});
+		var iswgl = isSupportWebGL();
+		//console.log(iswgl);
+//		iswgl = 0;
+		//$(".prd-introframe").hide(); 
+		if (iswgl) {
+            $(".prd-diyframe").show().html("<iframe class=\"webeditor\" src=\"__APP__/diy-jewelryeditall-pid-<{$pid}>-cid-<{$cid}>-showtype-<{$showtype}>\" frameborder=\"0\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" seamless ></iframe>");
+		} else {
+			$(".prd-diyframe").fadeIn(500).html("<div class=\"info\">更多精彩正在等着您，但是您需要升级一下酷炫的浏览体验。<!--<br>很抱歉，您的浏览器不支持或尚未开启WEBGL。--><a href='__DOC__/index/help-index-id-122' target='_blank'>了解如何获得WEBGL支持 &gt;</a></div>").addClass("nowgl");		}
+//	});
+	$(".author").delay(1000).fadeTo(500, 1);
+});
+
+
+var showtype ='<{$showtype}>';
+
+if(showtype == 10) {
+	//$('.left-func').hide();
+	$('.prd-introframe').hide();
+	//$('#web3dSaveBuy').hide();
+	$('.prd-diyframe').hide();
+	$('.dividing').hide();
+	$('.contentex').hide();
+	$('.box1').hide();
+	
+	$('#web3dSave').hide();
+}
+</script> 
+
+</body>
+</html>
+
+
+<{else}>
+<{include file=C('AHEAD_START')}>
+<link rel="stylesheet" href="__NEOSTATIC__/css/layerslider.css" type="text/css"> 
+<script src="__NEOSTATIC__/js/greensock.js"></script> 
+<script src="__NEOSTATIC__/js/layerslider.transitions.js"></script> 
+<script src="__NEOSTATIC__/js/layerslider.kreaturamedia.jquery.js"></script> 
+<{include file=C('AHEAD_END')}>
+<div class="prd container">
+	<div class="breadcrumb"><a class="home" href="__APP__/jewelry-jewelrylist">珠宝首饰</a>\<a href="#"><{$cinfo['cate_name']}></a></div>
+	<{if $cinfo['isdiamond'] neq 1}>
+    <div class="prd-introframe">
+		<div class="prd-titile hla">
+			<h2><{$cinfo['cate_name']}><i>(可定制款)</i></h2>
+		</div>
+		<div class="clear"></div>
+		<div class="prd-gal-holder">
+			<div class="prd-gal" style="width: 560px; height: 420px; max-width: 560px;">
+				<{foreach $cinfo.icon as $res}>
+				<div class="ls-slide">
+					<img src="<{$res}>" class="ls-bg" alt="Slide background">
+				</div>
+				<{/foreach}>
+
+
+			</div>
+		</div>
+		<div class="tablayer layer-info">
+			<div class="prd-info-holder">	
+				<div class="prd-info">
+					<p><{$cinfo['intro1']}></p>
+					<div class="buildit">
+						<button class="btn btn-action" id="go-ordergen"><i>立即开始DIY<span>￥<b><{$cinfo['startprice']}></b>.00 起</span></i></button>
+					</div>
+					<div class="author">
+						<span class="powered">Design By</span>
+						<!-- 
+						<a class="avatar" href="__DOC__/user.php/profile/u/uid/<{$userBasic_au.u_id}>">
+						 -->
+							<img src="__UPLOAD__/avatar/<{$userBasic_au.u_avatar|replace:'/o/':'/s/96_96_'}>" class="avatar">
+						<!-- 	
+						</a>
+						 -->
+						<div class="author-info">
+							<!-- <h4><a href="__DOC__/user.php/profile/u/uid/<{$userBasic_au.u_id}>"><{$userProf.u_firstname}></a></h4>-->
+							<h4><{$userProf.u_firstname}></h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+
+		<div class="clear"></div>
+	</div>
+    <div class="dividing" id="gohere">
+        <h2><label class="skew"><i>定制只属于您的首饰</i></label></h2>
+    </div>
+    <{/if}>
+
+	
+	<div class="prd-diyframe"> 
+		
+	</div>	
+	
+	<{if $cinfo['intro2']}>
+	<div class="dividing">
+		<h2><label class="skew"><i>商品介绍</i></label></h2>
+	</div>
+	
+	<div class="contentex">
+		<{$cinfo['intro2']}>
+	</div>
+	<{/if}>
+	
+	<div class="dividing">
+		<h2><label class="skew"><i>精美的包装</i></label></h2>
+	</div> 	
+	
+	<div class="box1">
+		<img src="__NEOSTATIC__/imgs/jewelry/f/box1.jpg" alt=""/>
+		<h3></h3>
+	</div>
+	
+	<div class="dividing">
+		<h2><label class="skew"><i>更多推荐</i></label></h2>
+	</div>
+	<div class="prdlist size-lg" >
+		<ul class="prdlist-gird">
+			<{foreach $Prodlist as $Result name="foo"}>
+				<li>
+					<{if $Result['p_producttype'] == 7}>
+					<a href="__DOC__/index/diy-jewelry-cid-<{$Result[$DBF_P->DiyCateCid]}>.html" class="item-img" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+					<{else}>
+					<a href="__DOC__/index/product-detail-id-<{$Result[$DBF_P->ID]}>.html" class="item-img" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+					<{/if}>
+					<img src="__IMG__<{$Result[$DBF_P->Cover]|replace:'/o/':'/s/240_180_'}>" alt=""/>
+					<{if $Result['p_producttype'] == 7}><span class="skew"><i>DIY</i></span><{/if}>
+					</a>
+					<div class="item-info">
+						<h4>
+							<{if $Result['p_producttype'] == 7}>
+							<a href="__DOC__/index/diy-jewelry-cid-<{$Result[$DBF_P->DiyCateCid]}>.html" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+							<{else}>
+							<a href="__DOC__/index/product-detail-id-<{$Result[$DBF_P->ID]}>.html" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+							<{/if}>
+							<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>
+							</a>
+						</h4>
+						<span class="item-price">￥<b><{$Result['p_price']|number_format}></b>.00</span>
+					</div>
+				</li>
+				<{/foreach}>
+		
+		</ul>
+		<div class="clear"></div>
+		<a href="__APP__/jewelry-jewelrylist" class="btn-more">&gt;<i>浏览更多款式</i>&lt;</a>
+	</div>
+	<ul class="advantage">
+		<li class="one">
+			<div>
+				<h3>精湛工艺</h3>
+				<p>可能是您买的到的最高品质3D打印产品，快来亲身体验吧。</p>
+			</div>
+		</li>
+		<li class="two">
+			<div>
+				<h3>高效物流</h3>
+				<p>十天内，我们会完成制作并免费将您订制的专属物件送达。</p>
+			</div>
+		</li>
+		<li class="three">
+			<div>
+				<h3>完美保证</h3>
+				<p>我们承诺将您的商品完好送达，如有运输中的损坏，我们将负责调换。  </p>
+			</div>
+		</li>
+	</ul>
+	<div class="clear"></div>
+</div>
+<script src="__NEOSTATIC__/js/doge.webglchk.js"></script>
+<script>
+$(document).ready(function(e) {
+	$(".prd-gal").layerSlider({
+		pauseOnHover: false,
+		navStartStop: false,
+		showCircleTimer: false,
+		skin: 'fullwidth',
+        skinsPath: '__NEOSTATIC__/js/ls-skins/'
+	}); 
+	$("#go-ordergen").click(function(e) {
+		$("html, body").animate({
+            scrollTop: $("#gohere").offset().top + "px"
+        }, {
+            duration: 500,
+            easing: "swing"
+        });
+        return false;
+	});
+		var iswgl = isSupportWebGL();
+		// miaomin added@2015.7.13
+    var isdiamond_new="<{$cinfo.isdiamond}>";
+
+    //var isdiamond="<{$cinfo.cate_type}>";
+
+    /**
+		* 对浏览器是否支持WEBGL做出判断如果不支持页面跳转至非DIY物品
+		*/
+		// console.log(iswgl);
+//		iswgl = 0;
+		//$(".prd-introframe").hide(); 
+		if(isdiamond_new){
+            $(".prd-diyframe").show().html("<iframe class=\"webeditor\" src=\"__APP__/diy-jewelryeditall-pid-<{$pid}>-cid-<{$cid}>-showtype-<{$showtype}>\" frameborder=\"0\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" seamless ></iframe>");
+        }else{
+            if (iswgl) {
+                    $(".prd-diyframe").show().html("<iframe class=\"webeditor\" src=\"__APP__/diy-jewelryeditall-pid-<{$pid}>-cid-<{$cid}>-showtype-<{$showtype}>\"  frameborder=\"0\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" seamless ></iframe>");
+            } else {
+                    // $(".prd-diyframe").fadeIn(500).html("<div class=\"info\">更多精彩正在等着您，但是您需要升级一下酷炫的浏览体验。<!--<br>很抱歉，您的浏览器不支持或尚未开启WEBGL。--><a href='__DOC__/index/help-index-id-122' target='_blank'>了解如何获得WEBGL支持 &gt;</a></div>").addClass("nowgl");
+                    // 跳转至非DIY物品
+                    window.location.href="__APP__/product-detail-id-<{$cpid}>.html";
+            }
+        }
+//	});
+	$(".author").delay(1000).fadeTo(500, 1);
+});
+
+
+var showtype =<{$showtype}>
+if(showtype == 10) {
+	//$('.left-func').hide();
+	$('.prd-introframe').hide();
+	//$('#web3dSaveBuy').hide();
+	$('.prd-diyframe').hide();
+	$('.dividing').hide();
+	$('.contentex').hide();
+	$('.box1').hide();
+	
+	$('#web3dSave').hide();
+}
+</script> 
+<{include file=C('AFOOT')}>
+<{/if}>

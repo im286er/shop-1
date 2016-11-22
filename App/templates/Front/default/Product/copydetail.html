@@ -1,0 +1,391 @@
+<{include file=C('AHEAD_START')}>
+<link rel="stylesheet" href="__NEOSTATIC__/css/layerslider.css" type="text/css"> 
+<script src="__NEOSTATIC__/js/greensock.js"></script> 
+<script src="__NEOSTATIC__/js/layerslider.transitions.js"></script> 
+<script src="__NEOSTATIC__/js/layerslider.kreaturamedia.jquery.js"></script> 
+<{include file=C('AHEAD_END')}> 
+<div class="prd container">
+	<div class="breadcrumb"><a class="home" href="#">珠宝首饰</a>\<a href="#">戒指</a></div>
+	<div class="prd-titile hla">
+		<h2><{$Product.p_name}></h2>
+	</div>
+	<div class="clear"></div>
+	<div class="tablayer layer-info">
+		<div class="prd-info-holder">	
+			<div class="prd-info">
+				<p>「。」</p>
+				<p>不管是幸福的结婚戒，幸运的小指戒还是装饰的首饰戒。佩戴不同指环代表着不同的宣言。</p>
+				<div class="buildit">
+					<button class="btn btn-action" id="go-ordergen"><i>现在开始定制<span>￥<b><{$Product.p_price|number_format}>.00</b> 起</span></i></button>
+				</div>
+				<div class="author">
+					<span class="powered">By</span><a class="avatar" href="#"><img src="__UPLOAD__/avatar/<{$Product.u_avatar|replace:'/o/':'/s/96_96_'}>"></a>
+					<div class="author-info">
+						<h4><a href="#"><{$Product.u_dispname}></a></h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tablayer layer-ordergen hide">
+		<div class="prd-info-holder">
+			<div class="prd-ordergen">
+				<h4>现在订购</h4>
+				
+				<div class="tr bucks">
+					<h5 class="first"></h5>
+				</div>
+				<div class="tr num">
+					<div class="selectmenu">
+						<select name="radius" id="radius" class="selectgroup fkk">
+						</select>
+					</div>
+					<a href="#" class="infolink">xxx教您如何测量尺寸 &gt;</a>
+				</div>
+				<div class="tr">
+					<h5 class="jstitle"></h5>
+					<div class="radiogroup" id="rdgrp-2"></div>
+				</div>
+				<div class="tr">
+					<h5 class="jstitle2"></h5>
+					<div class="radiogroup" id="rdgrp-3">
+					</div>
+				</div>
+				<div class="buildit">
+					<div class="review"><span class="costs">每件最低 ￥<b><{$Product.p_price|number_format}></b>.00起，</span><span class="counts">份数<input value="1" class="input" id="buycount">个</span></div>
+					<{if $isLogin}>
+						<button class="btn btn-action" id="buy_href"><i>加入购物车</i></button>
+					<{else}>
+						<button class="btn btn-action" id="go-ordergen" onClick="goLogin()"><i>加入购物车</i></button>
+					<{/if}>
+					<input type="hidden" class="pid" id="pid" name="pid" value="">
+				</div>
+			</div>
+		</div>
+	</div>	
+	<div class="prd-gal-holder">
+		<div class="prd-gal" style="width: 560px; height: 420px; max-width: 560px;">
+			<{foreach $ProductPhotoList as $ProductPhoto name="foo"}> 
+			<div class="ls-slide"> 
+				<img src="__DOC__<{$ProductPhoto.pp_path}>o/<{$ProductPhoto.pp_filename}>" class="ls-bg" alt="Slide background">
+			</div>
+			<{/foreach}>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="prd-diyframe"> 
+		<!--iframe class="webeditor" scrolling="no" allowfullscreen="true" src="/city/index.php/diy-jewelryeditall-pid-0-cid-14-showtype-0.html"></iframe--> 
+	</div>
+	<div class="dividing">
+		<h2><label class="skew"><i>商品介绍</i></label></h2>
+	</div>
+	<div class="contentex">
+<br>
+<br>
+<br>
+<br>
+<{$Product.p_intro}>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+	</div>
+	<div class="dividing">
+		<h2><label class="skew"><i>更多推荐</i></label></h2>
+	</div>
+	<div class="prdlist size-lg" >
+		<ul class="prdlist-gird">
+			<{foreach $SearchResult as $Result name="foo"}>
+			<li> <a href="__DOC__/index/product-detail-id-<{$Result['p_id']}>.html" class="item-img"><img src="__IMG__<{$Result['p_cover']|replace:'/o/':'/s/240_180_'}>" alt=""/>
+			<!-- 
+				<span class="skew"><i>DIY</i></span>
+			-->
+				</a>
+				<div class="item-info">
+					<h4><a href="__DOC__/index/product-detail-id-<{$Result['p_id']}>.html" title="<{$Result['p_name']}>"><{$Result['p_name']}></a></h4>
+					<span class="item-price">￥<b><{$Result['p_price']|number_format}></b>.00</span> </div>
+			</li>
+			<{/foreach}>
+		</ul>
+		<div class="clear"></div>
+		<a href="__APP__/jewelry-jewelrylist" class="btn-more">&gt;<i>浏览更多款式</i>&lt;</a>
+	</div>
+	<ul class="advantage">
+		<li class="one">
+			<div>
+				<h3>精湛工艺</h3>
+				<p>可能是您买的到的最高品质3D打印产品，快来亲身体验吧。</p>
+			</div>
+		</li>
+		<li class="two">
+			<div>
+				<h3>高效物流</h3>
+				<p>十天内，我们会完成制作并免费将您订制的专属物件送达。</p>
+			</div>
+		</li>
+		<li class="three">
+			<div>
+				<h3>完美保证</h3>
+				<p>我们承诺将您的商品完好送达，如有运输中的损坏，我们将负责调换。</p>
+			</div>
+		</li>
+	</ul>
+	<div class="clear"></div>
+</div>
+
+<script>
+$(document).ready(function(e) {
+	$(".prd-gal").layerSlider({
+		pauseOnHover: false,
+		navStartStop: false,
+		showCircleTimer: false,
+		skin: 'fullwidth',
+        skinsPath: '__NEOSTATIC__/js/ls-skins/'
+	});
+	$("#go-ordergen").click(function(e) {
+		$(".layer-info").fadeOut(500);
+		$(".layer-ordergen").delay(600).fadeIn(300);
+	});
+	$(".author").delay(1000).fadeTo(500, 1);
+
+// === Starting Order Generator ===
+
+	var mark = 0;
+	var json = new Array();
+	
+	// 属性选择器
+	json[0] = <{$Selector}>;
+	json[1] = 0;
+	json[2] = 0;
+	json[3] = 0;
+	
+	// 属性值映射列表
+	var provallist = <{$PropValList}>;
+	
+	// 属性列表带排序
+	var proplist = <{$PropList}>;
+	
+	$('.first').html("<i>" + proplist[0]["ipp_name"] + "</i>").addClass("gen");
+	
+	if( proplist[0]["ipp_name"] != '号码' ){
+		
+		// 全RADIO
+		
+		// $('.num').css('display','none');
+		
+		var j = 0;
+		var p = 1;
+		
+		
+		
+		for(var key in json[0] ){
+			
+			var cup = $("#rdgrp-2").html();
+			$("#rdgrp-2").html(cup+'<input type="radio" class="rdgrp-22" id="rdgrp-2-'+p+'" name="rdgrp-2" value="'+key+'"><label for="rdgrp-2-'+p+'" class="rdgrp-222">'+provallist[key]+'</label><input type="hidden" value="'+j+'">');
+			p++;
+			
+		}
+		
+		$( ".radiogroup" ).buttonset();
+
+		$("#rdgrp-2").delegate(".rdgrp-22",'click',function(){
+			
+			// 每次点击后pid的数据必须清空
+			$('.pid').val('');
+			
+			var cup=$("#rdgrp-3").html(''); 
+			var j =1; 
+			var json_val = $(this).val();
+			json[j] = json[j-1][ json_val];
+			j++;
+			var cup2='rdgrp-3'+j
+			var selector ='.'+cup2 ;
+			var selector2 =  '"'+selector+'"';
+			$('.jstitle2').html("<i>" + proplist[j-1]["ipp_name"] + "</i>").addClass("gen");
+			
+			for(var key in  json[j-1] ){
+				// 如果第三层只有一个元素直接选中
+				if (Object.keys(json[j-1]).length == 1){
+					var p=1;
+					if(key!='p_id' && key!='p_price'){
+		    			var cup=$("#rdgrp-3").html();
+		    			$("#rdgrp-3").html(cup+'<input type="radio" class="rdgrp-33" id="rdgrp-3-'+p+'" name="rdgrp-3" value="'+key+'"><label for="rdgrp-3-'+p+'" class="rdgrp-33">'+provallist[key]+'</label><input type="hidden" value="'+j+'"><input type="hidden" value="'+key+'"></li>');	
+					} else {
+					}
+					
+					$( ".radiogroup" ).buttonset();
+					
+					$('.rdgrp-33').trigger("click");
+					
+					p++;
+				}else{
+					var p=1;
+					if(key!='p_id' && key!='p_price'){
+		    			var cup=$("#rdgrp-3").html();
+		    			$("#rdgrp-3").html(cup+'<input type="radio" class="rdgrp-33" id="rdgrp-3-'+p+'" name="rdgrp-3" value="'+key+'"><label for="rdgrp-3-'+p+'" class="rdgrp-33">'+provallist[key]+'</label><input type="hidden" value="'+j+'"><input type="hidden" value="'+key+'"></li>');	
+					} else {
+					}
+					p++;	
+				}
+			}
+		     
+			//出问题的初始化该问题我在后面改写中会改正 - by guyiwei 2014-12-25
+			$( ".radiogroup" ).buttonset();
+		});
+
+		$("#rdgrp-3").delegate(".rdgrp-33",'click',function(){
+		   var j=2;
+		   var json_val = $(this).val();
+		   json[j]  =  json[j-1][ json_val];
+		   
+		   console.info(json[j]['p_id']);
+	       console.info(json[j]['p_price']);
+	       
+	       $('.pid').val(json[j]['p_id']);
+	       $('.costs').html('每件 ￥<b>' + json[j]['p_price'] + '</b>.00，');
+		});	
+		
+	} else {
+		for(var key in json[0] ){
+			var cup = $("#radius").html();
+			$("#radius").html(cup+'<option  value="'+key+'">'+provallist[key]+'</option><option style="display:none" value="1"></option>');
+		}
+
+		$('#radius').change(function(){
+			// 每次点击后pid的数据必须清空
+			$('.pid').val('');
+			
+			var cup=$("#rdgrp-2").html('');
+			var j =1; 
+			var json_val = $(this).val();
+			json[j] = json[j-1][ json_val];
+			j++;
+			var cup2='rdgrp-2'+j
+			var selector ='.'+cup2 ;
+			var selector2 =  '"'+selector+'"';
+			$('.jstitle').html("<i>" + proplist[j-1]["ipp_name"] + "</i>").addClass("gen");
+			var p=1;
+			for(var key in  json[j-1] ){
+				if(key!='p_id' && key!='p_price'){
+    				var cup=$("#rdgrp-2").html();
+					$("#rdgrp-2").html(cup+'<input type="radio" class="rdgrp-22" id="rdgrp-2-'+p+'" name="rdgrp-2" value="'+key+'"><label for="rdgrp-2-'+p+'" class="rdgrp-222">'+provallist[key]+'</label><input type="hidden" value="'+j+'">');
+				} else {
+				}
+				p++;
+			}
+			$( ".radiogroup" ).buttonset();
+		});
+	
+		$("#rdgrp-2").delegate(".rdgrp-22",'click',function(){
+			// 每次点击后pid的数据必须清空
+			$('.pid').val('');
+			
+			var cup=$("#rdgrp-3").html(''); 
+			var j =2; 
+			var json_val = $(this).val();
+			json[j] = json[j-1][ json_val];
+
+			j++;
+			var cup2='rdgrp-3'+j
+			var selector ='.'+cup2 ;
+			var selector2 =  '"'+selector+'"';
+			$('.jstitle2').html("<i>" + proplist[j-1]["ipp_name"] + "</i>").addClass("gen");
+			
+			for(var key in json[j-1] ){
+				// 如果第三层只有一个元素直接选中
+				if (Object.keys(json[j-1]).length == 1){
+					var p=1;
+					if(key!='p_id' && key!='p_price'){
+		    			var cup=$("#rdgrp-3").html();
+		    			$("#rdgrp-3").html(cup+'<input type="radio" class="rdgrp-33" id="rdgrp-3-'+p+'" name="rdgrp-3" value="'+key+'"><label for="rdgrp-3-'+p+'" class="rdgrp-33">'+provallist[key]+'</label><input type="hidden" value="'+j+'"><input type="hidden" value="'+key+'"></li>');	
+					} else {
+						
+					}
+					
+					$('.rdgrp-33').trigger("click");
+					
+					p++;
+				}else{
+					var p=1;
+					if(key!='p_id' && key!='p_price'){
+	    				var cup=$("#rdgrp-3").html();
+	    				$("#rdgrp-3").html(cup+'<input type="radio" class="rdgrp-33" id="rdgrp-3-'+p+'" name="rdgrp-3" value="'+key+'"><label for="rdgrp-3-'+p+'" class="rdgrp-33">'+provallist[key]+'</label><input type="hidden" value="'+j+'"><input type="hidden" value="'+key+'"></li>');	
+					} else {
+
+					}
+					p++;	
+				}
+				
+				$( ".radiogroup" ).buttonset();
+			}
+		});
+		
+		$("#rdgrp-3").delegate(".rdgrp-33",'click',function(){
+			j=3;
+			
+			var json_val = $(this).val();
+			json[j] = json[j-1][ json_val];
+			
+			// alert(json[j]['p_id']);
+			if (typeof(json[j]) == 'object'){
+				$('.pid').val(json[j]['p_id']);
+				$('.costs').html('每件 ￥<b>' + json[j]['p_price'] + '</b>.00，');	
+			}
+		});
+	}
+});  
+</script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+	
+  // $(".ajaxinfo").hide();
+	
+  var buy_href_ajax_url = '__APP__/cart-additem';
+	
+//购买的AJAX调用
+  $("#buy_href").click(function(event){
+	  var pid = $(".pid").val();
+	  
+	  if (pid == ''){
+		  alert('请正确选择饰品的尺寸或材质信息后再次提交');
+		  return;
+	  }
+	  
+	 $.ajax({
+	   url: buy_href_ajax_url,
+	   type:'get',
+       cache:false,
+       dataType:'json',
+       data:{
+		    pid : $(".pid").val(),
+			isreal : 1,
+			count : $("#buycount").val(),
+			// count : 2,
+	   },
+	   success: function(data,textStatus){
+	   		if(data.isSuccess == true){
+	           //加入购物车成功
+			   location.href= "__DOC__/user.php/cart";
+	           return;
+	         }else{
+			   //加入购物车失败
+			   location.href= "__DOC__/user.php/cart";
+			   return;
+	         }
+	       },
+	       error: function(Request,Status,Error) {alert(Request + '|' + Status + '|' +Error);}
+	});
+  });	 
+});
+
+function goLogin(){
+	location.href= "__DOC__/user.php/login?from_url=__SELF__";
+}
+</script>
+<{include file=C('AFOOT')}>

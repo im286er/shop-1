@@ -1,0 +1,513 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>3DCity WebGL编辑器</title>
+<script src="/static/web3d/jq/external/jquery/jquery.js"></script>
+<script src="/static/web3d/jq/jquery-ui.min.js"></script>
+<script src="/static/web3d/jq/plugin/farbtastic/farbtastic.js"></script>
+<script src="/static/web3d/jq/plugin/layout/jquery.layout-latest.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/static/web3d/init.css">
+<link rel="stylesheet" type="text/css" href="/static/web3d/jq/jquery-ui.structure.css">
+<link rel="stylesheet" type="text/css" href="/static/web3d/jq/jquery-ui.theme.css">
+<link rel="stylesheet" type="text/css" href="/static/web3d/jq/plugin/farbtastic/farbtastic.css">
+<link rel="stylesheet" type="text/css" href="/static/web3d/jq/plugin/layout/layout-default-latest.css">
+<!-- 老戴的文件 //-->
+<link rel="stylesheet" type="text/css" href="/static/web3d/core.css">
+<script type="text/javascript">
+var loadjs = <{$pwebgl}>;
+</script>
+<!-- 大师的文件 //-->
+<script src="/static/web3d/editor/js/libs/MD5.js"></script>
+<script src="/static/web3d/editor/js/libs/Base64.js"></script>
+<script src="/static/web3d/editor/js/libs/three.js"></script>
+<script src="/static/web3d/editor/js/render/MeshBmwglMaterial.js"></script>
+<script src="/static/web3d/editor/js/render/WebGLRenderer_2.js"></script>
+<script src="/static/web3d/editor/js/render/WebGLShaders_2.js"></script>
+<script src="/static/web3d/editor/js/libs/Stats.js"></script>
+<script src="/static/web3d/editor/js/libs/EditorControls.js"></script>
+<script src="/static/web3d/editor/js/BMWGL.js"></script>
+<script src="/static/web3d/editor/js/ImageLoader.js"></script>
+<script src="/static/web3d/editor/js/GUI.js"></script>
+<script src="/static/web3d/editor/js/Editor.js"></script>
+<script src="/static/web3d/editor/js/Viewport.js"></script>
+<script src="/static/web3d/editor/js/Edit.js"></script>
+<script src="/static/web3d/editor/js/Geometry.js"></script>
+<script src="/static/web3d/editor/js/CameraManager.js"></script>
+<script src="/static/web3d/editor/js/BackgroundManager.js"></script>
+<script src="/static/web3d/editor/js/EnvironmentManager.js"></script>
+<script src="/static/web3d/editor/js/TextureManager.js"></script>
+<script src="/static/web3d/editor/js/LightManager.js"></script>
+<script src="/static/web3d/editor/js/MaterialManager.js"></script>
+<script src="/static/web3d/editor/js/ObjectManager.js"></script>
+
+</head>
+
+<body>
+<div class="header ui-layout-north action">
+<span class="mlogo"><img src="/static/web3d/imgs/mlogo.png" alt="3DCity"/></span>
+<button type="submit" id="save_settings" class="btn btn--info action-save">保存设置</button>
+<button type="button" id="reset_settings" class="btn btn--primary action-reset">重置</button>
+<span class="pagetitile"></span>
+</div>
+<div class="canvasholder ui-layout-center pr">
+	<canvas id="viewport"></canvas>
+	<div class="toolbar pa"> 
+		<div class="tool">
+			<a href="#" class="abtn help" title="帮助"></a>
+		</div>
+	</div>
+	<div class="snapshot pa"><button type="button" id="screen_shot" title="截图" class="btn--primary">快照</button></div>
+</div>
+<div class="sidebar ui-layout-east">
+	<div class="tabholder">
+		<ul>
+			<li><a href="#tabs-scene">场景</a></li>
+			<li><a href="#tabs-materials">材质</a></li>
+		</ul>
+		<div id="tabs-scene">
+		<!-- 场景控制开始 //-->
+			<div class="optionholder accordion">
+				<h3>背景控制</h3>
+				<ul>
+					<li>
+						<span class="controls">
+							<input type="text" id="background-imgs-var" class="slider-input" value="1" data-min="0" data-max="1" data-step="0.05">
+							<canvas id="background-imgs" class="picker-preview"></canvas>
+						</span>
+						<label>背景</label>
+						<div class="clear"></div>
+					</li>
+					<li class="environment_controls">
+						<span class="controls">
+							<input type="text" id="background-texture-var" class="slider-input" value="1" data-min="0" data-max="1" data-step="0.05">
+							<canvas id="background-texture" class="picker-preview"></canvas>
+						</span>
+						<label>环境贴图</label>
+						<div class="clear"></div>
+					</li>
+					<li class="truner">
+						<a href="#" id="background-texture-truner" class="controls-truner check_on"><label>启用环境贴图</label><span></span></a>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="optionholder accordion">
+				<h3>摄像机</h3>
+				<ul>
+					<li>
+						<span class="controls onlyslider">
+							<input type="text" id="camera-view" class="slider-input" value="45" data-min="0" data-max="180" data-step="1">
+						</span>
+						<label>视角</label>
+						<div class="clear"></div>
+					</li>
+					<li class="hr camerNearFar_controls"></li>
+					<li class="camerNearFar_controls">
+						<span class="controls onlyslider">
+							<input type="text" id="camera-near-cutting" class="slider-input" value="0.01" data-min="0.01" data-max="1" data-step="0.01">
+						</span>
+						<label>近裁切面</label>
+						<div class="clear"></div>
+					</li>
+					<li class="camerNearFar_controls">
+						<span class="controls onlyslider">
+							<input type="text" id="camera-far-cutting" class="slider-input" value="1000" data-min="1" data-max="10000" data-step="5">
+						</span>
+						<label>远裁切面</label>
+						<div class="clear"></div>
+					</li>
+					<li class="truner">
+						<a href="#" id="camera-cutting-truner" class="controls-truner check_on"><label>自动计算远近裁切面</label><span></span></a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="optionholder accordion">
+				<h3>模型</h3>
+				<ul>
+					<li>
+						<span class="controls">
+							<select id="model-direction" class="selectmenu">
+								<option value="+x">+X</option>
+								<option value="-x">-X</option>
+								<option value="+y" selected="selected">+Y</option>
+								<option value="-y">-Y</option>
+								<option value="+z">+Z</option>
+								<option value="-z">-Z</option>
+							</select>
+						</span>
+						<label>坐标方向</label>
+						<div class="clear"></div>
+					</li>
+					<li>
+						<span class="controls">
+							<select id="model-displaymode" class="selectmenu">
+								<option value="1" selected="selected">光照模式</option>
+								<option value="0">颜色模式</option>
+							</select>
+						</span>
+						<label>显示模式</label>
+						<div class="clear"></div>
+					</li>
+					<li class="wireframe_controls">
+						<span class="controls">
+							<input type="text" id="model-border" class="slider-input" value="1" data-min="0" data-max="1" data-step="0.05">
+							<canvas id="model-border-color" class="picker-preview"></canvas>
+						</span>
+						<label>线框</label>
+						<div class="clear"></div>
+					</li>
+					<li class="truner">
+						<a href="#" id="model-border-truner" class="controls-truner check_on"><label>显示线框</label><span></span></a>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="optionholder accordion">
+				<h3>灯光</h3>
+				<ul>
+					<li>
+						<span class="controls">
+							<input type="text" id="light-main" class="slider-input" value="1" data-min="0" data-max="2" data-step="0.05">
+							<canvas id="light-main-color" class="picker-preview"></canvas>
+						</span>
+						<label>主光颜色</label>
+						<div class="clear"></div>
+					</li>
+					<li>
+						<span class="controls">
+							<input type="text" id="light-sub" class="slider-input" value="0.3" data-min="0" data-max="2" data-step="0.05">
+							<canvas id="light-sub-color" class="picker-preview"></canvas>
+						</span>
+						<label>辅光颜色</label>
+						<div class="clear"></div>
+					</li>
+				</ul>
+			</div>
+		<!-- 场景控制结束 //-->
+		</div>
+		<div id="tabs-materials">
+		<!-- 材质控制开始 //-->
+			<div class="optionholder accordion">
+				<h3>选择材质</h3>
+				<ul>
+					<li>
+						<span class="controls largeselect">
+							<select id="materials-materialselecter" class="materialselectmenu">
+							</select>
+						</span>
+						<div class="clear"></div>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="optionholder accordion">
+				<h3>材质设定</h3>
+				<ul>
+					<li>
+						<span class="controls">
+							<input type="text" id="materials-diffuse" class="slider-input" value="1" data-min="0" data-max="1" data-step="0.05">
+							<canvas id="materials-diffuse-color" class="picker-preview"></canvas>
+						</span>
+						<label>漫反射</label>
+						<div class="clear"></div>
+					</li>
+					<li>
+						<span class="controls">
+							<input type="text" id="materials-scenelight" class="slider-input" value="0" data-min="0" data-max="1" data-step="0.05">
+							<canvas id="materials-scenelight-color" class="picker-preview"></canvas>
+						</span>
+						<label>环境光</label>
+						<div class="clear"></div>
+					</li>
+					<li>
+						<span class="controls">
+							<input type="text" id="materials-selfluminous" class="slider-input" value="0" data-min="0" data-max="1" data-step="0.05">
+							<canvas id="materials-selfluminous-color" class="picker-preview"></canvas>
+						</span>
+						<label>自发光</label>
+						<div class="clear"></div>
+					</li>
+					<li class="hr"></li>
+					<li>
+						<span class="controls">
+							<input type="text" id="materials-highlight" class="slider-input" value="0.7" data-min="0" data-max="1" data-step="0.05">
+							<canvas id="materials-highlight-color" class="picker-preview"></canvas>
+						</span>
+						<label>高光</label>
+						<div class="clear"></div>
+					</li>
+					<li>
+						<span class="controls onlyslider">
+							<input type="text" id="materials-glossiness" class="slider-input" value="30" data-min="0" data-max="100" data-step="1">
+						</span>
+						<label>光泽度</label>
+						<div class="clear"></div>
+					</li>
+					<li class="hr"></li>
+					<li>
+						<span class="controls">
+							<input type="text" id="materials-normal" class="slider-input" value="1" data-min="0" data-max="100" data-step="0.1">
+							<canvas id="materials-normal-color" class="picker-preview"></canvas>
+						</span>
+						<label>法线</label>
+						<div class="clear"></div>
+					</li>
+					<li class="hr"></li>
+					<li>
+						<span class="controls">
+							<input type="text" id="materials-lightmap" class="slider-input" value="1" data-min="0" data-max="1" data-step="0.05">
+							<canvas id="materials-lightmap-color" class="picker-preview"></canvas>
+						</span>
+						<label>Light Map</label>
+						<div class="clear"></div>
+					</li>
+					<li class="hr"></li>
+					<li>
+						<span class="controls onlyslider">
+							<input type="text" id="materials-reflex" class="slider-input" value="0" data-min="0" data-max="1" data-step="0.05">
+						</span>
+						<label>反射强度</label>
+						<div class="clear"></div>
+					</li>
+					<li>
+						<span class="controls">
+							<select id="materials-reflexmode" class="selectmenu">
+									<option value="0">乘</option>
+									<option value="1" selected="selected">融合</option>
+									<option value="2">加</option>
+							</select>
+						</span>
+						<label>反射模式</label>
+						<div class="clear"></div>
+					</li>
+					<li class="hr"></li>
+					<li>
+						<span class="controls onlyslider">
+							<input type="text" id="materials-transparency" class="slider-input" value="0.8" data-min="0" data-max="1" data-step="0.05">
+						</span>
+						<label>透明度</label>
+						<div class="clear"></div>
+					</li>
+					<li class="hr"></li>
+					<li>
+						<span class="controls">
+							<select id="materials-surfacerendering" class="selectmenu">
+									<option value="0" selected="selected">前面</option>
+									<option value="1">背面</option>
+									<option value="2">双面</option>
+							</select>
+						</span>
+						<label>面渲染</label>
+						<div class="clear"></div>
+					</li>
+				</ul>
+			</div>
+		<!-- 材质控制结束 //-->
+		</div>	
+	</div>
+</div>
+
+<div id="colorPickerGroup" class="subwindow optionholder">
+	<ul>
+		<li>
+			<div id="picker" class="picker_farbtastic"></div>
+		</li>
+		<li>
+			<span class="controls">
+				<input type="text" id="colorcode-standard" class="colorinput" value="#3a3a3c">
+			</span>
+			<label>颜色值</label>
+		</li>
+	</ul>
+</div>
+
+<div id="texturePickerGroup" class="subwindow optionholder">
+	<ul>
+		<li>
+			<span class="controls largeselect pr">
+				<canvas id="material_texture_preview" class="texture-preview"></canvas>
+				<select id="materials-textureselecter" class="iconselectmenu">
+					<!-- <option value="0" data-class="avatar" data-style="background-image: url(http://tb.himg.baidu.com/sys/portrait/item/f941c7efd3f0bacd7b30);">无</option> -->
+<!-- 					<option value="1" data-class="avatar" data-style="background-image: url(http://tb.himg.baidu.com/sys/portrait/item/f941c7efd3f0bacd7b30);">nova.jpg</option>
+					<option value="2" data-class="avatar" data-style="background-image: url(http://tb.himg.baidu.com/sys/portrait/item/f941c7efd3f0bacd7b30);">tada.jpg</option>
+					<option value="3" data-class="avatar" data-style="background-image: url(http://tb.himg.baidu.com/sys/portrait/item/f941c7efd3f0bacd7b30);">ohmygod.jpg</option> -->
+				</select>
+			</span>
+			<div class="clear"></div>
+		</li>
+		<li>
+			<button id="materials-importimage" class="btn btn--info largebtn" type="button">导入贴图 ...</button>
+		</li>
+		<!--li>
+			<span class="controls">
+				<select id="materials-set-texture" class="selectmenu">
+					<option selected="selected">前面</option>
+					<option>背面</option>
+					<option>双面</option>
+				</select>
+			</span>
+			<label>选择贴图</label>
+			<div class="clear"></div>
+		</li-->
+		<div class="texture_parameters">
+			<!-- <li>
+				<span class="controls">
+					<select id="materials-set-fftype" class="selectmenu">
+						<option selected="selected">Nearest(就近采样)</option>
+						<option>Bilinear(双重采样)</option>
+						<option>Trilinear(三次线性采样)</option>
+					</select>
+				</span>
+				<label>过滤方式</label>
+				<div class="clear"></div>
+			</li> -->
+			<li>
+				<span class="controls">
+					<select id="materials-set-mode" class="selectmenu">
+						<option selected="selected" value="1020">RGB</option>
+						<option value="1021">RGBA</option>
+						<option value="1022">Luminance</option>
+					</select>
+				</span>
+				<label>模式</label>
+				<div class="clear"></div>
+			</li>
+			<li>
+				<span class="controls">
+					<select id="materials-set-anisotropi" class="selectmenu">
+						<option selected="selected" value="1">1</option>
+						<option value="2">2</option>
+						<option value="4">4</option>
+						<option value="8">8</option>
+						<option value="16">16</option>
+					</select>
+				</span>
+				<label>各向异性</label>
+				<div class="clear"></div>
+			</li>
+			<li>
+				<span class="controls">
+					<input type="text" id="materials-set-shifts" class="slider-input" value="0" data-min="0" data-max="1" data-step="0.05">
+				</span>
+				<label>偏移S</label>
+				<div class="clear"></div>
+			</li>
+			<li>
+				<span class="controls">
+					<input type="text" id="materials-set-shiftt" class="slider-input" value="0" data-min="0" data-max="1" data-step="0.05">
+				</span>
+				<label>偏移T</label>
+				<div class="clear"></div>
+			</li>
+			<li>
+				<span class="controls">
+					<select id="materials-set-packings" class="selectmenu">
+						<option selected="selected" value="1000">重复</option>
+						<option value="1001">裁切</option>
+						<option value="1002">镜像</option>
+					</select>
+				</span>
+				<label>包裹方式S</label>
+				<div class="clear"></div>
+			</li>
+			<li>
+				<span class="controls">
+					<select id="materials-set-packingt" class="selectmenu">
+						<option selected="selected"  value="1000">重复</option>
+						<option value="1001">裁切</option>
+						<option value="1002">镜像</option>
+					</select>
+				</span>
+				<label>包裹方式T</label>
+				<div class="clear"></div>
+			</li>
+			<div class="texture_repeat_parameters">
+				<li>
+					<span class="controls">
+						<input type="text" id="materials-set-repeats" class="slider-input" value="1" data-min="1" data-max="10" data-step="1">
+					</span>
+					<label>重复次数S</label>
+					<div class="clear"></div>
+				</li>
+				<li>
+					<span class="controls">
+						<input type="text" id="materials-set-repeatt" class="slider-input" value="1" data-min="1" data-max="10" data-step="1">
+					</span>
+					<label>重复次数T</label>
+					<div class="clear"></div>
+				</li>
+			</div>
+		</div>
+	</ul>
+</div>
+
+
+<div class="abfrm texturepicker">
+	<h3>设置材质贴图<a>X</a></h3>
+</div>
+
+<div class="abfrm colorpicker">
+	<h3>设置颜色<a>X</a></h3>
+</div>
+
+<div class="abfrm backturepicker">
+	<h3>设置环境贴图<a>X</a></h3>
+	<div class="tabholder">
+		<ul>
+			<li><a href="#tabs-set-backture">贴图</a></li>
+			<li><a href="#tabs-set-backturecolor">颜色</a></li>
+		</ul>
+		<div id="tabs-set-backture" class="optionholder">
+			<ol id="picgrid_env" class="picgrid">
+			</ol>
+			<div class="clear"></div>
+		</div>
+		<div id="tabs-set-backturecolor" class="colorpickerholder">	
+		</div>
+	</div>
+</div>
+
+<div class="abfrm backgroundpicker">
+	<h3>设置背景<a>X</a></h3>
+	<div class="tabholder">
+		<ul>
+			<li><a href="#tabs-set-background">贴图</a></li>
+			<li><a href="#tabs-set-backcolor">颜色</a></li>
+		</ul>
+		<div id="tabs-set-background" class="optionholder">
+			<ul>
+				<li>
+					<button id="background-importimage" class="btn btn--info largebtn" type="button">导入自定义背景 ...</button>
+				</li>
+			</ul>
+			<ol id="picgrid_bg" class="picgrid">
+			</ol>
+			<div class="clear"></div>
+		</div>
+		<div id="tabs-set-backcolor" class="colorpickerholder">	
+		</div>
+	</div>
+	
+</div>
+
+<div class="abfrm materialseter">
+	<h3>设置材质<a>X</a></h3>
+	<div class="tabholder">
+		<ul>
+			<li><a href="#tabs-set-texture">贴图</a></li>
+			<li><a href="#tabs-set-color">颜色</a></li>
+		</ul>
+		<div id="tabs-set-texture">
+		</div>
+		<div id="tabs-set-color" class="colorpickerholder">	
+		</div>
+	</div>
+</div>
+
+<script src="/static/web3d/editor/server.js"></script>
+<script src="/static/web3d/serverui.js"></script>
+</body>
+</html>

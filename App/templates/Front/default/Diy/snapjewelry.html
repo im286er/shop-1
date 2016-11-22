@@ -1,0 +1,90 @@
+<{include file=C('AHEAD_START')}>
+<link rel="stylesheet" href="__NEOSTATIC__/css/layerslider.css" type="text/css"> 
+<script src="__NEOSTATIC__/js/greensock.js"></script> 
+<script src="__NEOSTATIC__/js/layerslider.transitions.js"></script> 
+<script src="__NEOSTATIC__/js/layerslider.kreaturamedia.jquery.js"></script> 
+<{include file=C('AHEAD_END')}>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title><{$dataAll.diy_cate.cate_name}></title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="__NEOSTATIC__/js/html5shim.js"></script>
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/doge.css">
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/doge.diyediter.css">
+<script src="__NEOSTATIC__/js/jquery-1.11.2.min.js?v121804"></script>
+<script src="__NEOSTATIC__/js/bootstrap.min.js?v121804"></script>
+<script src="__NEOSTATIC__/js/nstslider.jquery.js?v121804"></script>
+<script src="__PUBLIC__/js/diy/plugins/common/js/build/common.min.js?<{$dataAll.diy_cate['version']}>"></script>
+<{foreach $dataAll.fontsArr as $item}>
+<script src="__PUBLIC__/js/diy/plugins/common/js/build/fonts/<{$item}>.js"></script>
+<{/foreach}>
+<script src="__PUBLIC__/js/diy/plugins<{$dataAll.diy_cate['jspath']}>?<{$dataAll.diy_cate['version']}>"></script>
+</head>
+
+<body class="page-jewelry">
+<div class="container diy">
+<div class="left_inf fr"> 
+
+<iframe src="__APP__/diy-snapdetailall-pid-<{$pid}>-upid-<{$upid}>-showtype-0.html" allowfullscreen="false" width="800" height="500" style="z-index:1000;" scrolling="no"></iframe>
+
+</div>
+<div class="clear"></div>
+</div>
+<script> 
+
+var webpath="__PUBLIC__"; 
+var neowebpath="__NEOSTATIC__"; 
+var pid = document.getElementById("pid").value;
+var canvas = document.getElementById("web3dViewport");
+
+<{foreach $mcate as $res}> 
+var pma_diy_formula_s_<{$res.pma_id}>="<{$res.pma_diy_formula_s}>";
+var pma_diy_formula_b_<{$res.pma_id}>="<{$res.pma_diy_formula_b}>";
+var pma_necklace_price_<{$res.pma_id}>="<{$res.pma_necklace_price}>";
+<{/foreach}>
+
+var pmg_global_background = neowebpath+"/imgs/etc/diybg/" + Utils.getRandomInt(1, 15) + ".jpg";
+var islogin=parseInt(<{$islogin}>);
+
+// 材质管理器
+var materialManage = new MaterialManage(webpath+"/js/diy/plugins/common/textures/", ".jpg");
+
+var zExecute = execute(false);
+
+// 生成模型
+var saveModel = document.getElementById("savemodel");
+if(saveModel !== null) {
+    saveModel.onclick = function() {
+        ZPost.createModel(zExecute.saveToSTL(false), pid);
+    };
+}
+
+</script>
+<script src="__NEOSTATIC__/js/doge.webglchk.js"></script>
+<script>
+$(document).ready(function(e) {
+	$(".prd-gal").layerSlider({
+		pauseOnHover: false,
+		navStartStop: false,
+		showCircleTimer: false,
+		skin: 'fullwidth',
+        skinsPath: '__NEOSTATIC__/js/ls-skins/'
+	});
+	$("#go-ordergen").click(function(e) {
+		var iswgl = isSupportWebGL();
+//		iswgl = 0;
+		$(".prd-introframe").hide();
+		if (iswgl) {
+			$(".prd-diyframe").show().html("<iframe class=\"webeditor\" src=\"__APP__/diy-jewelryeditall-pid-<{$pid}>-cid-<{$cid}>-showtype-<{$showtype}>\" scrolling=\"no\"></iframe>");
+		} else {
+			$(".prd-diyframe").fadeIn(500).html("<div class=\"info\">更多精彩正在等着您，但是您需要升级一下酷炫的浏览体验。<br>很抱歉，您的浏览器不支持或尚未开启WEBGL。<a href=\"#\">了解如何获得WEBGL支持 &gt;</a></div>").addClass("nowgl");
+		}
+	});
+	$(".author").delay(1000).fadeTo(500, 1);
+
+}); 
+</script> 
+<{include file=C('AFOOT')}>

@@ -1,0 +1,618 @@
+<{if $mmode}>
+<!-----------------第三版手机版智慧首饰Start------------>
+<{include file=C('IWXHEADER_START')}>
+<meta name="viewport" content="user-scalable=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<link rel="stylesheet" href="__MICKYMOBILESTATIC__/mob_jbh/css/bootstrap.min.css">
+<link rel="stylesheet" href="__MICKYMOBILESTATIC__/mob_jbh/css/app_jbh.css">
+<link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/footer.css">
+<link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/top.new.css">
+<script type="text/javascript" src="__MICKYMOBILESTATIC__/mob_jbh/js/jquery.js"></script>
+<script src="__MICKYMOBILESTATIC__/js/top.js"></script>
+<!--简笔画必须的js-->
+<script src="__NEOSTATIC__/js/greensock.js"></script>
+<script src="__NEOSTATIC__/js/layerslider.transitions.js"></script>
+<script src="__NEOSTATIC__/js/layerslider.kreaturamedia.jquery.js"></script>
+<script src="__PUBLIC__/smartjewelry/js/mouseWheel.js"></script>
+<script src="__PUBLIC__/smartjewelry/js/jscarousel.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/smartjewelry/css/lrtk.css">
+<script src="__PUBLIC__/smartjewelry/js/main.js"></script>
+<script src="__PUBLIC__/smartjewelry/js/jianbi.js"></script>
+<script src="__NEOSTATIC__/js/doge.webglchk.js"></script>
+<script>
+    $(document).ready(function(e) {
+        $(".prd-gal").layerSlider({
+            pauseOnHover: false,
+            navStartStop: false,
+            showCircleTimer: false,
+            skin: 'fullwidth',
+            skinsPath: '__NEOSTATIC__/js/ls-skins/'
+        });
+        $("#go-ordergen").click(function(e) {
+            $("html, body").animate({
+                scrollTop: $("#gohere").offset().top + "px"
+            }, {
+                duration: 500,
+                easing: "swing"
+            });
+            return false;
+        });
+        var iswgl = isSupportWebGL();
+        // miaomin added@2015.7.13
+        var isdiamond_new="<{$cinfo.isdiamond}>";
+        //var isdiamond="<{$cinfo.cate_type}>";
+
+        /**
+         * 对浏览器是否支持WEBGL做出判断如果不支持页面跳转至非DIY物品
+         */
+// console.log(iswgl);
+//		iswgl = 0;
+//$(".prd-introframe").hide();
+        if(isdiamond_new==1){
+            $(".prd-diyframe").show().html("<iframe style='width:100%;height:800px;' class=\"webeditor\" src=\"__APP__/diy-jewelryeditall-pid-<{$pid}>-cid-<{$cid}>-showtype-<{$showtype}>\" frameborder=\"0\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" seamless ></iframe>");
+        }else{
+            if (iswgl) {
+                $(".prd-diyframe").show().html("<iframe style='width:100%;height:800px;' class=\"webeditor\" src=\"__APP__/diy-jewelryeditall-pid-<{$pid}>-cid-<{$cid}>-showtype-<{$showtype}>\"  frameborder=\"0\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" seamless ></iframe>");
+            } else {
+                // $(".prd-diyframe").fadeIn(500).html("<div class=\"info\">更多精彩正在等着您，但是您需要升级一下酷炫的浏览体验。<!--<br>很抱歉，您的浏览器不支持或尚未开启WEBGL。--><a href='__DOC__/index/help-index-id-122' target='_blank'>了解如何获得WEBGL支持 &gt;</a></div>").addClass("nowgl");
+                // 跳转至非DIY物品
+                top.location.href="__APP__/product-detail-id-<{$cpid}>.html";
+            }
+        }
+//	});
+        $(".author").delay(1000).fadeTo(500, 1);
+    });
+
+
+    var showtype =<{$showtype}>
+    if(showtype == 10) {
+        //$('.left-func').hide();
+        $('.prd-introframe').hide();
+        //$('#web3dSaveBuy').hide();
+        $('.prd-diyframe').hide();
+        $('.dividing').hide();
+        $('.contentex').hide();
+        $('.box1').hide();
+        $('#web3dSave').hide();
+    }
+</script>
+<{include file=C('IWXHEADER_END')}>
+
+<!------------简笔画Start---------------->
+<div class="prd container" style="max-width: 100%;padding: 0;">
+    <!--<div class="breadcrumb"><a class="home" href="__APP__/jewelry-jewelrylist">珠宝首饰</a>\<a href="#"><{$cinfo['cate_name']}></a></div>-->
+    <div class="prd-diyframe">
+    </div>
+</div>
+<!------------简笔画END---------------->
+
+<div class="section_1">
+    <img src="__MICKYMOBILESTATIC__/mob_jbh/images/app_jbh/1.jpg" alt="">
+</div>
+<div class="section_1">
+    <img src="__MICKYMOBILESTATIC__/mob_jbh/images/app_jbh/2.jpg" alt="">
+</div>
+<div class="section_3">
+    <img src="__MICKYMOBILESTATIC__/mob_jbh/images/app_jbh/3-1.jpg" alt="">
+    <!--有产品之后替换-->
+    <!--<img src="__MICKYMOBILESTATIC__/mob_jbh/images/app_jbh/3-1.jpg" alt="">-->
+    <div class="section_3_center">
+        <!--video-->
+        <div class="section_3_video">
+            <div class="container-fluid">
+                <div class="row">
+                    <video id="video" width="100%" controls="" poster="__MICKYMOBILESTATIC__/mob_jbh/images/app_jbh/hua.jpg">
+                        <source ng-src="__MICKYMOBILESTATIC__/mob_jbh/video/bg_5.mp4" type="video/mp4" src="__MICKYMOBILESTATIC__/mob_jbh/video/bg_5.mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+        <div class="section_3_zi">
+            <img src="__MICKYMOBILESTATIC__/mob_jbh/images/app_jbh/1.png" alt="">
+        </div>
+        <!-- 暂时没有产品 -->
+        <!--<div class="section_3_list">
+            <div class="container-fluid">
+                <div class="row">
+                    <ul class="section_3_ul">
+                        <li class="col-xs-3">
+                            <div class="section_3_listimg">
+                                <img src="__MICKYMOBILESTATIC__/mob_jbh/images/app_jbh/yu.png" alt="">
+                            </div>
+                            <div class="section_imgtext">
+                                <p class="img_title">[ Kiss Fash ]</p>
+                                <p class="img_text">Design By Daisy</p>
+                            </div>
+                        </li>
+                        <li class="col-xs-3">
+                            <div class="section_3_listimg">
+                                <img src="__MICKYMOBILESTATIC__/mob_jbh/images/app_jbh/yu.png" alt="">
+                            </div>
+                            <div class="section_imgtext">
+                                <p class="img_title">[ Kiss Fash ]</p>
+                                <p class="img_text">Design By Daisy</p>
+                            </div>
+                        </li>
+                        <li class="col-xs-3">
+                            <div class="section_3_listimg">
+                                <img src="__MICKYMOBILESTATIC__/mob_jbh/images/app_jbh/yu.png" alt="">
+                            </div>
+                            <div class="section_imgtext">
+                                <p class="img_title">[ Kiss Fash ]</p>
+                                <p class="img_text">Design By Daisy</p>
+                            </div>
+                        </li>
+                        <li class="col-xs-3">
+                            <div class="section_3_listimg">
+                                <img src="__MICKYMOBILESTATIC__/mob_jbh/images/app_jbh/yu.png" alt="">
+                            </div>
+                            <div class="section_imgtext">
+                                <p class="img_title">[ Kiss Fash ]</p>
+                                <p class="img_text">Design By Daisy</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</div>
+<div class="section_1">
+    <img src="__MICKYMOBILESTATIC__/mob_jbh/images/app_jbh/iphone.jpg" alt="">
+</div>
+<div class="section_1">
+    <img src="__MICKYMOBILESTATIC__/mob_jbh/images/app_jbh/4.jpg" alt="">
+</div>
+<div class="section_1">
+    <img src="__MICKYMOBILESTATIC__/mob_jbh/images/app_jbh/5.jpg" alt="">
+</div>
+<!-----------------第三版手机版智慧首饰End------------>
+
+<{else}>
+<!----------------PC版智慧首饰Start------------------>
+<{include file=C('KITTYHEAD_START')}>
+<!--<link rel="stylesheet" href="__NEOSTATIC__/css/layerslider.css" type="text/css">-->
+<script src="__NEOSTATIC__/js/greensock.js"></script>
+<script src="__NEOSTATIC__/js/layerslider.transitions.js"></script>
+<script src="__NEOSTATIC__/js/layerslider.kreaturamedia.jquery.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/css/details.css">
+<link rel="stylesheet" href="__PUBLIC__/css/fonts.css">
+<link rel="stylesheet" href="__PUBLIC__/css/erding.css">
+<link rel="stylesheet" href="__PUBLIC__/css/zimujie.css">
+<link rel="stylesheet" href="__PUBLIC__/css/yuvideo.css">
+
+<!--简笔画-->
+<link rel="stylesheet" href="__PUBLIC__/smartjewelry/css/jianbi.css">
+<!--<script src="__PUBLIC__/smartjewelry/js/jquery.js"></script>-->
+<script src="__PUBLIC__/smartjewelry/js/mouseWheel.js"></script>
+<script src="__PUBLIC__/smartjewelry/js/jscarousel.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/smartjewelry/css/lrtk.css">
+<script src="__PUBLIC__/smartjewelry/js/main.js"></script>
+<script src="__PUBLIC__/smartjewelry/js/jianbi.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#jsCarousel').jsCarousel({
+            onthumbnailclick: function(src) {
+                // 可在这里加入点击图片之后触发的效果
+                $("#overlay_pic").attr('src', src);
+                $(".overlay").show();
+            }, autoscroll: true });
+
+        $(".overlay").click(function(){
+            $(this).hide();
+        });
+    });
+</script>
+<!--简笔画-->
+<{include file=C('MICKYDETAILHEAD_END')}>
+<div class="prd container" style="max-width: 100%;padding: 0;">
+    <div class="breadcrumb"><a class="home" href="__APP__/jewelry-jewelrylist">珠宝首饰</a>\<a href="#"><{$cinfo['cate_name']}></a></div>
+
+    <div class="prd-diyframe">
+
+    </div>
+</div>
+    <!--<div class="zimu">-->
+        <!--简笔画详情页-->
+        <!--1 -->
+    <div class="jianbihua">
+
+        <div class="section_1">
+            <!-- 图 片 -->
+            <div class="section_tupian">
+                <img src="__PUBLIC__/smartjewelry/images/bg_1.jpg" alt="">
+            </div>
+            <!-- 动画图片 -->
+            <!-- 伞 -->
+            <div class="san">
+                <img src="__PUBLIC__/smartjewelry/images/san.png" alt="">
+            </div>
+            <!-- 狗 -->
+            <div class="dog">
+                <img src="__PUBLIC__/smartjewelry/images/dog.png" alt="">
+            </div>
+            <!-- 汽车 -->
+            <div class="car">
+                <img src="__PUBLIC__/smartjewelry/images/car.png" alt="">
+            </div>
+            <!-- 气球 -->
+            <div class="qiqiu">
+                <img src="__PUBLIC__/smartjewelry/images/qiqiu.png" alt="">
+            </div>
+            <!-- 文字 -->
+            <div class="wenzi">
+                <h6>BE</h6>
+                <h6>YOUR OWN</h6>
+                <h5>DESIGNER</h5>
+                <h1>每个人都是 <span class="zhubao">珠宝</span><span class="shejishi">设计师</span></h1>
+                <p class="wenzi_p">
+                    店里买的首饰千篇一律，无聊乏味？<br>
+                    戴大牌首饰出门还要遭遇街头同款的尴尬？<br>
+                    从今天起，做一枚手艺人，用手，探索无限创意，<br>
+                    绘出讲究的个性首饰 。
+                </p>
+            </div>
+        </div>
+        <!-- 2 -->
+        <div class="section_2">
+            <div class="section_2_center">
+                <ul>
+                    <li class="beauty beautyl fl">
+                        <img src="__PUBLIC__/smartjewelry/images/beauty.png" alt="">
+                    </li>
+                    <li class="beauty_center fl">
+                        <img src="__PUBLIC__/smartjewelry/images/beauty_center.png" alt="">
+                    </li>
+                    <li class="beauty beautyr fr">
+                        <img src="__PUBLIC__/smartjewelry/images/say.png" alt="">
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 3 -->
+        <div class="section_3">
+            <div class="section_3_center">
+                <!--  视频 -->
+                <div class="section3_shipin">
+                    <video id="video" width="100%" controls="" poster="__PUBLIC__/smartjewelry/images/hua.jpg">
+                        <source ng-src="__PUBLIC__/smartjewelry/video/bg_5.mp4" type="video/mp4" src="__PUBLIC__/smartjewelry/video/bg_5.mp4">
+                    </video>
+                </div>
+                <div class="jianhua">
+                    <img src="__PUBLIC__/smartjewelry/images/jianhua.png" alt="">
+                </div>
+                <!-- lun bo -->
+                <!--<div id="wrapper">
+                    <div id="jsCarousel">
+                        <div>
+                            <a href="">
+                                <img src="__PUBLIC__/smartjewelry/images/yu.png" /><br />
+                        <span class="thumbnail-text">
+                            [KISS FASH]
+                        </span>
+                        <span class="thumbnail-text">
+                            Design By Daisy
+                        </span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="">
+                                <img src="__PUBLIC__/smartjewelry/images/yu.png" /><br />
+                        <span class="thumbnail-text">
+                            [KISS FASH]
+                        </span>
+                        <span class="thumbnail-text">
+                            Design By Daisy
+                        </span>
+                            </a>
+
+                        </div>
+                        <div>
+                            <a href="">
+                                <img src="__PUBLIC__/smartjewelry/images/yu.png" /><br />
+                        <span class="thumbnail-text">
+                            [KISS FASH]
+                        </span>
+                        <span class="thumbnail-text">
+                            Design By Daisy
+                        </span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="">
+                                <img src="__PUBLIC__/smartjewelry/images/yu.png" /><br />
+                        <span class="thumbnail-text">
+                            [KISS FASH]
+                        </span>
+                        <span class="thumbnail-text">
+                            Design By Daisy
+                        </span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="">
+                                <img src="__PUBLIC__/smartjewelry/images/yu.png" /><br />
+                        <span class="thumbnail-text">
+                            [KISS FASH]
+                        </span>
+                        <span class="thumbnail-text">
+                            Design By Daisy
+                        </span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="">
+                                <img src="__PUBLIC__/smartjewelry/images/yu.png" /><br />
+                        <span class="thumbnail-text">
+                            [KISS FASH]
+                        </span>
+                        <span class="thumbnail-text">
+                            Design By Daisy
+                        </span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="">
+                                <img src="__PUBLIC__/smartjewelry/images/yu.png" /><br />
+                        <span class="thumbnail-text">
+                            [KISS FASH]
+                        </span>
+                        <span class="thumbnail-text">
+                            Design By Daisy
+                        </span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="">
+                                <img src="__PUBLIC__/smartjewelry/images/yu.png" /><br />
+                        <span class="thumbnail-text">
+                            [KISS FASH]
+                        </span>
+                        <span class="thumbnail-text">
+                            Design By Daisy
+                        </span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="">
+                                <img src="__PUBLIC__/smartjewelry/images/yu.png" /><br />
+                        <span class="thumbnail-text">
+                            [KISS FASH]
+                        </span>
+                        <span class="thumbnail-text">
+                            Design By Daisy
+                        </span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="">
+                                <img src="__PUBLIC__/smartjewelry/images/yu.png" /><br />
+                        <span class="thumbnail-text">
+                            [KISS FASH]
+                        </span>
+                        <span class="thumbnail-text">
+                            Design By Daisy
+                        </span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="">
+                                <img src="__PUBLIC__/smartjewelry/images/yu.png" /><br />
+                        <span class="thumbnail-text">
+                            [KISS FASH]
+                        </span>
+                        <span class="thumbnail-text">
+                            Design By Daisy
+                        </span>
+                            </a>
+                        </div>
+                        &lt;!&ndash;<div>
+                            <a href="">
+                                <img src="__PUBLIC__/smartjewelry/images/yu.png" /><br />
+                                <span class="thumbnail-text">
+                                    [KISS FASH]
+                                </span>
+                                <span class="thumbnail-text">
+                                    Design By Daisy
+                                </span>
+                            </a>
+                        </div>&ndash;&gt;
+                    </div>
+                    &lt;!&ndash;<div id="demo-side-bar"></div>&ndash;&gt;
+                </div>-->
+            </div>
+        </div>
+        <!-- 4 ipad -->
+        <div class="section_4">
+            <!--ipad 1 -->
+            <div class="ipad_img1">
+                <div class="ipad_img1_center">
+                    <div class="ipad_ipad1">
+                        <img src="__PUBLIC__/smartjewelry/images/ipad_1.png" alt="">
+                    </div>
+                    <div class="ipad_shaw1">
+                        <img src="__PUBLIC__/smartjewelry/images/pro_bg.png" alt="">
+                    </div>
+                    <div class="ipad_wenzi1">
+                        <img src="__PUBLIC__/smartjewelry/images/ipad_wenzi1.png" alt="">
+                    </div>
+                </div>
+
+            </div>
+            <!--ipad 2-->
+            <div class="ipad_img1">
+                <div class="ipad_img1_center">
+                    <div class="ipad_wenzi2">
+                        <img src="__PUBLIC__/smartjewelry/images/ipad_wenzi2.png" alt="">
+                    </div>
+                    <div class="ipad_tupian fr">
+                        <div class="ipad_tupian_top">
+                            <ul>
+                                <li class="t1 tupian1">
+                                    <img src="__PUBLIC__/smartjewelry/images/lian1.png" alt="">
+                                </li>
+                                <li class="t2 tupian2">
+                                    <img src="__PUBLIC__/smartjewelry/images/lian2.png" alt="">
+                                </li>
+                                <li class="t3 tupian3">
+                                    <img src="__PUBLIC__/smartjewelry/images/shoulian.png" alt="">
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="ipad_tupian_bottom">
+                            <div class="ipad_tupian_img">
+                                <img src="__PUBLIC__/smartjewelry/images/aaa.png" alt="">
+                            </div>
+                            <div class="ipad_ipad2">
+                                <img src="__PUBLIC__/smartjewelry/images/ipad_2.png" alt="">
+                            </div>
+                            <div class="ipad_shaw2">
+                                <img src="__PUBLIC__/smartjewelry/images/pro_bg1.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--ipad 2-->
+            <div class="ipad_img1">
+                <div class="ipad_img1_center">
+                    <div class="ipad_img_left fl">
+                        <div class="ipad_ipad3">
+                            <img src="__PUBLIC__/smartjewelry/images/ipad_3.png" alt="">
+                        </div>
+                        <div class="ipad_shaw3">
+                            <img src="__PUBLIC__/smartjewelry/images/pro_bg.png" alt="">
+                        </div>
+                    </div>
+                    <div class="ipad_img_right fl">
+                        <img src="__PUBLIC__/smartjewelry/images/ipad_wenzi3.png" alt="">
+                    </div>
+                    <div class="ipad_img_fix">
+                        <div class="ipad_ipad4">
+                            <img src="__PUBLIC__/smartjewelry/images/ipad_4.png" alt="">
+                        </div>
+                        <div class="ipad_shaw4">
+                            <img src="__PUBLIC__/smartjewelry/images/pro_bg3.png" alt="">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- 5 -->
+        <div class="section_5">
+            <div class="white_img">
+                <div class="section_5_text">
+                    <ul>
+                        <li class="section5_hot">
+                            <img src="__PUBLIC__/smartjewelry/images/jiezhi.png" alt="">
+                        </li>
+                        <li>
+                            <img src="__PUBLIC__/smartjewelry/images/erweima.png" alt="">
+                        </li>
+                        <li>
+                            <img src="__PUBLIC__/smartjewelry/images/weibo.png" alt="">
+                        </li>
+                        <li>
+                            <img src="__PUBLIC__/smartjewelry/images/weixin.png" alt="">
+                        </li>
+                    </ul>
+                </div>
+                <div class="content_section5">
+                    <ul>
+                        <li class="content_hot">
+                            创作作品 <span>/</span>
+                        </li>
+                        <li>
+                            生成二维码<span>/</span>
+                        </li>
+                        <li>
+                            分享至微博<span>/</span>
+                        </li>
+                        <li>
+                            分享至微信<span>/</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--6-->
+        <div class="section_6">
+            <h1>
+                <span class="day">15天</span>
+                将美带回家
+            </h1>
+            <p>
+                超越行业传统的定制服务，用3D打印的科技力量节省制作时间，<br>
+                并通过打磨、抛光、镀金的千锤百炼， 一件高能原创首饰便跃然眼前，整个流程只需要15天的生产周期。
+            </p>
+            <div class="section_6_img">
+                <img src="__PUBLIC__/smartjewelry/images/baozhuang.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!--</div>-->
+    <script src="__NEOSTATIC__/js/doge.webglchk.js"></script>
+    <script>
+        $(document).ready(function(e) {
+            $(".prd-gal").layerSlider({
+                pauseOnHover: false,
+                navStartStop: false,
+                showCircleTimer: false,
+                skin: 'fullwidth',
+                skinsPath: '__NEOSTATIC__/js/ls-skins/'
+            });
+            $("#go-ordergen").click(function(e) {
+                $("html, body").animate({
+                    scrollTop: $("#gohere").offset().top + "px"
+                }, {
+                    duration: 500,
+                    easing: "swing"
+                });
+                return false;
+            });
+            var iswgl = isSupportWebGL();
+            // miaomin added@2015.7.13
+            var isdiamond_new="<{$cinfo.isdiamond}>";
+            //var isdiamond="<{$cinfo.cate_type}>";
+
+            /**
+             * 对浏览器是否支持WEBGL做出判断如果不支持页面跳转至非DIY物品
+             */
+// console.log(iswgl);
+//		iswgl = 0;
+//$(".prd-introframe").hide();
+            if(isdiamond_new==1){
+                $(".prd-diyframe").show().html("<iframe class=\"webeditor\" src=\"__APP__/diy-jewelryeditall-pid-<{$pid}>-cid-<{$cid}>-showtype-<{$showtype}>\" frameborder=\"0\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" seamless ></iframe>");
+            }else{
+                if (iswgl) {
+                    $(".prd-diyframe").show().html("<iframe class=\"webeditor\" src=\"__APP__/diy-jewelryeditall-pid-<{$pid}>-cid-<{$cid}>-showtype-<{$showtype}>\"  frameborder=\"0\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" seamless ></iframe>");
+                } else {
+                    // $(".prd-diyframe").fadeIn(500).html("<div class=\"info\">更多精彩正在等着您，但是您需要升级一下酷炫的浏览体验。<!--<br>很抱歉，您的浏览器不支持或尚未开启WEBGL。--><a href='__DOC__/index/help-index-id-122' target='_blank'>了解如何获得WEBGL支持 &gt;</a></div>").addClass("nowgl");
+                    // 跳转至非DIY物品
+                    top.location.href="__APP__/product-detail-id-<{$cpid}>.html";
+                }
+            }
+//	});
+            $(".author").delay(1000).fadeTo(500, 1);
+        });
+
+
+        var showtype =<{$showtype}>
+        if(showtype == 10) {
+            //$('.left-func').hide();
+            $('.prd-introframe').hide();
+            //$('#web3dSaveBuy').hide();
+            $('.prd-diyframe').hide();
+            $('.dividing').hide();
+            $('.contentex').hide();
+            $('.box1').hide();
+            $('#web3dSave').hide();
+        }
+    </script>
+    <{include file=C('MICKYFOOT')}>
+
+<!----------------PC版智慧首饰End------------------>
+<{/if}>

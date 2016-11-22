@@ -1,0 +1,26 @@
+<include file="Common:pageheader_start" />
+<include file="Common:pageheader_end" />
+<div id="Right">
+	<div class="contentArea">
+		<h3>专属定制</h3>
+		<if condition="$ErrInfo">
+		<div class="errorinfo">{$ErrInfo}</div>
+		</if>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0"
+			class="tab">
+			<tr bgcolor=#E0E0E0>
+				<td width="250">用户名</td>
+				<td width="600">定制商品ID</td>
+				<td>操作</td>
+			</tr>
+			<volist name="cList" id="item">
+			<tr>
+				<td>{$item.u_email}</td>
+				<td>{$item.pids}</td>
+				<td><a href="__APP__/Endproduct/editcustomize/id/{$key}">编辑</a> | <a href="__APP__/Endproduct/removecustomize/id/{$key}">删除</a></td>
+			</tr>
+			</volist>
+		</table>
+	</div>
+</div>
+<include file="Common:pagefooter" />

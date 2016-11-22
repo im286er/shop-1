@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>购物车模块-{$site.SITE_INFO.name}</title>
+<php>
+$addCss="";
+            $addJs="";
+            $currentNav ='购物车模块 > 我的购物车';
+            </php>
+            <include file="Common:intohead" />
+            </head>
+            <body>
+<!-- AP Element::AjaxInfo //-->
+<div class="ajaxinfo">
+	<h3></h3>
+</div>
+<!-- End of AP Element::AjaxInfo //-->
+<div class="wrap"> <include file="Common:head" />
+              <div class="mainBody"> <include file="Common:left" />
+    <div id="Right">
+                  <div class="Item hr">
+        <div class="current">我的购物车</div>
+      </div>
+                  <!-- 查询结果 -->
+                  <gt name="totalcount" value="0">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                      <tr style="background:#999999">
+            <td>云ID</td>
+            <td>材质名</td>
+            <td>数量</td>
+            <td>操作</td>
+          </tr>
+                      <foreach name="filelist" item="file">
+            <tr>
+                          <td>{$file.yf_id}</td>
+                          <td>{$file.pma_name}</td>
+                          <td>{$file.uc_count}</td>
+                          <td><a href="__APP__/Cart/delete/yf_id/{$file.yf_id}/pma_id/{$file.pma_id}">从购物车删除</a></td>
+                        </tr>
+          </foreach>
+                    </table>
+      </gt>
+                </div>
+  </div>
+            </div>
+<div class="clear"></div>
+<include file="Common:foot" />
+</body>
+</html>

@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* 
+	Project Nyan ~ IE6 Fix CSS. / (C)2012 Erinago / (C)2010-2012 Nagomi Mind
+	For 3D Factory Lite used only!
+*/
+html .shadowed-dark { behavior: none; }
+
+.topbar ul.topnav li a:hover { border-bottom: none; }
+.topbar .userbar { height: 30px; border: none; }
+.topbar .userbar .usernav li { margin: 5px 0 0 }

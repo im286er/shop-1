@@ -1,0 +1,30 @@
+<include file="Common:pageheader_start" />
+<include file="Common:pageheader_end" />
+<div id="Right">
+	<div class="contentArea">
+		<h3>商品主分类列表</h3>
+		<if condition="$ErrInfo">
+		<div class="errorinfo">{$ErrInfo}</div>
+		</if>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0"
+			class="tab">
+			<tr bgcolor=#E0E0E0>
+				<td width="50">ID</td>
+				<td width="200">商品主分类</td>
+				<td width="400">属性</td>
+				<td width="400">说明</td>
+				<td>操作</td>
+			</tr>
+			<volist name="listTable" id="item">
+			<tr>
+				<td>{$item.ipt_id}</td>
+				<td>{$item.ipt_name}</td>
+				<td>{$item.ipt_props}</td>
+				<td>{$item.ipt_intro}</td>
+				<td><a href="__APP__/Endproduct/defineprop/id/{$item.ipt_id}">定义属性</a></td>
+			</tr>
+			</volist>
+		</table>
+	</div>
+</div>
+<include file="Common:pagefooter" />

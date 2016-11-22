@@ -1,0 +1,233 @@
+.comm-person-info {width:960px; margin:0 auto; margin-top:2px; overflow:hidden;}
+.comm-person-info-list {width:200px; float:left;}
+.comme-person-content {width:700px; padding:15px; float:right; border:1px solid #ddd; }
+.comm-person-info-list li {padding:15px 15px; border-bottom:1px solid #ddd; background:#fff;}
+.comm-person-info-list li.title {background:#ddd; font-size:14px; padding: 10px 15px;}
+.comm-person-info-list li.content:hover {background:#eee;}
+.welcome-msg {padding:15px; background:#666; color:#ccc; margin-bottom:30px; font-weight:600;}
+.white {color:#fff; padding:0 10px;}
+.c999 {color:#999;}
+.person-info { padding: 25px; min-height: 350px;}
+.person-info h2 { padding-bottom: 30px; }
+.person-info h2 b { color: #069; font-weight: normal; }
+.person-info .left {float:left;}
+.person-info .center {float:left; padding-left:15px; width:300px;}
+.person-info .center p {padding-bottom:14px;}
+.person-info .right {float:left; padding-left:15px;}
+.person-info .right p {padding-bottom:14px;}
+.person-info .userdate { width: 200px; }
+.person-info .userdate span { font-size: 12px; color: #CCC; }
+.person-info .userdate p { margin-bottom: 20px; font-size: 14px; color: #666; font-family: Tahoma, Geneva, sans-serif; line-height: 150%; } 
+.publish-new-content {margin-top:15px; position:relative;}
+.publish-new-info .title-msg {padding-top:10px; padding-bottom:10px;}
+.publish-new-info .title-msg .t {font-size:20px;}
+.comme-person-content .sub-title {color:#333; font-size:16px; font-weight:600; margin-bottom:10px; margin-top:10px; font-weight:600;}
+.pal-general .left {float:left;}
+.pal-general .right {float:left; margin-left:15px;}
+.pal-general {overflow:hidden;}
+.d_blue {color:#0074B9;}
+.pal-general .right p {padding-bottom:10px;}
+
+/* nagi ~ form tables */
+.nagi table.listtable {  }
+.nagi table.listtable a { line-height: 20px; }
+.nagi table.listtable tr.h { background: #F0F0F0; }
+.nagi table.listtable tr.h td { border-right: none; color: #333; padding: 8px 5px; }
+.nagi table.listtable tr:hover { background: #F8F8F8; }
+.nagi table.listtable td { padding: 5px; border-right: 1px solid #EAEAEA; border-bottom: 1px solid #CCC }
+.nagi table.listtable .action { border-right: none }
+.nagi table.listtable .action a { display: block }
+.nagi table.listtable .order input { width: 30px; text-align: center; cursor: pointer; border: none; box-shadow: none; border: 1px solid #FFF; padding: 0; }
+.nagi table.listtable .order input:hover { border: 1px solid #CCC; }
+.nagi table.listtable .order input:focus { border: 1px solid #CCC; cursor: text }
+.nagi table.catelist .catename a { background:url(../images/admin/frame/cate_levels.png) no-repeat; line-height: 30px; display: block; margin-left: 10px; }
+.nagi table.catelist .catename .lv0 { background-image: none; } 
+.nagi table.catelist .catename .lv1 { background-position: -60px 0; padding-left: 35px; } 
+.nagi table.catelist .catename .lv2 { background-position: -30px 0; padding-left: 65px } 
+.nagi table.catelist .catename .lv3 { background-position: 0 0; padding-left: 95px }
+.nagi table.prdlist .date { color: #CCC }
+.nagi table.prdlist .thumbs { width: 64px; height: 64px; background: #FEE; -moz-box-shadow: 0px 0px 3px #888; -webkit-box-shadow: 0px 0px 3px #888; box-shadow: 0px 0px 3px #888; }
+.nagi table.prdlist .thumbs img { width: 64px; height: 64px }
+.nagi table.prdlist .stats { display: inline-block; padding-left: 5px; border-left: 3px solid #096; line-height: 64px }
+.nagi table.prdlist .price { text-align: right }
+.nagi table.prdlist .cate { color: #CCC }
+.nagi table.listtable .atter a { display: block; float: left; height: 18px; margin: 2px 5px 2px 0; padding: 0 5px; line-height: 18px; overflow: hidden; white-space: nowrap; }
+.nagi table.listtable .atter a:hover { color: #CCC }
+.nagi table.listtable .atter a.yes { color: #FFF; background: #019967 }
+.nagi table.listtable .atter a.no { color: #FFF; background: #999 }
+.nagi table.prdlist .pdname span { display: block }
+.nagi table.prdlist .pdname span a { margin-right: 7px; color: #666 }
+
+/*******************************************************************************/
+.nagi table { width: 100%; margin-bottom: 15px; border: none }
+.nagi table td.checkboxbar { width: auto }
+.nagi table td { padding-left: 10px; font-size: 12px; text-align: left }
+.nagi table th { width: 120px; color: #666; font-size: 12px; text-align: left }
+.nagi table tr { height: 34px }
+.nagi table tr:hover th { background: #F9F9F9 }
+.nagi table th, .nagi table td { vertical-align: middle }
+.nagi table td i { display: inline-block; padding-left: 15px; color: #999; font-size: 12px; font-style: italic }
+/* nagi ~ form tables ~ horizontal tabel */
+.nagi .horizontal { width: auto;  font-size: 14px; padding-bottom: 10px; } 
+html .nagi .horizontal input, html .nagi .horizontal label { height: 26px; line-height: 26px }
+.nagi .horizontal .controler {float: left; margin-right: 10px; height: 35px; }
+.nagi .horizontal label { padding: 0 5px 0 0; color: #666; }
+.nagi .horizontal button { height: 28px; }
+/* nagi ~ form tables ~ moreoption layout */
+.nagi .d_moreoption {padding:10px; background:#eee; margin-bottom:30px; position:absolute; right:0; top:20px;}
+.nagi .d_moreoption dt {padding:15px 5px; clear: both;}
+.nagi .d_moreoption dd { padding: 5px; clear: both; color: #999; }
+.nagi .moreoption tr { height: 55px; }
+.nagi .moreoption th { width: 350px; color: #222; padding-right: 15px; padding-bottom: 10px; }
+.nagi .moreoption th i { display: block; color: #AAA; font-size: 12px; font-style: normal; -webkit-text-size-adjust: none; padding: 2px 0; }
+/* nagi ~ controls */
+/* nagi ~ controls ~ textbox */
+.nagi input[type="text"], .nagi input[type="password"], .nagi textarea { height: 24px; width: 180px; padding: 0px 10px; color: #333; font-size: 12px; -moz-box-shadow: 0px 0px 3px #CCC inset; -webkit-box-shadow: 0px 0px 3px #CCC inset; border: 1px solid #C0C0C0; box-shadow: 0px 0px 3px #CCC inset; line-height: 24px; }
+html .nagi textarea { width: 260px; height: 95px; margin-bottom: 5px;}
+.nagi input[type="text"]:focus, .nagi input[type="password"]:focus, .nagi textarea:focus  { background: #FFFBFB; border: 1px solid #FF8080; }
+.nagi input[type="text"]:hover, .nagi input[type="password"]:hover, .nagi textarea:hover  { border: 1px solid #999 }
+/* nagi ~ controls ~ checkbox */
+.nagi .grub label { height: 24px; padding: 0px 10px; background:#F4F4F4; font-size: 12px; color: #222;border: 1px solid #C0C0C0; border-right-width: 0px;   min-width: 50px;  }
+.nagi .grub .checkbox { margin: 0; border: 1px solid #CCC; padding: 3px; }
+.nagi .grub .checkbox.checked { background-position: 3px 3px;}
+.nagi .grub .checkbox:hover { border-color: #999;}
+.nagi .checkbox { display: inline-block; float: left; width: 20px; height: 20px; margin-left: 3px; box-shadow: 0px 0px 3px #CCC inset; -webkit-box-shadow: 0px 0px 3px #CCC inset; -moz-box-shadow: 0px 0px 3px #CCC inset; border: 1px solid #C0C0C0; cursor: pointer }
+.nagi .checkbox:hover { border: 1px solid #999 }
+.nagi .checkbox.checked { background: #EEE url(../images/admin/frame/nyan.png) 0px 0px no-repeat; }
+/* nagi ~ controls ~ dropdown menu */
+.nagi .dropdown { position: relative; display: inline-block; min-width: 60px; height: 24px; padding: 1px 20px 1px 10px; color: #333; font-size: 12px; line-height: 24px; cursor: pointer; box-shadow: 0px 0px 8px #EEE inset; border: 1px solid #C0C0C0; background: #FFF url(../images/admin/frame/nyan.png) right -20px no-repeat; -webkit-box-shadow: 0px 0px 8px #EEE inset; -moz-box-shadow: 0px 0px 8px #EEE inset; }
+.nagi .dropdown.form { width: 170px; }
+.nagi .grubleft .dropdown { float: left; border-right: none; background-color:#F4F4F4; }
+.nagi select.dropdown { height: 28px; padding-right: 0; }
+.nagi .dropdown:hover { border: 1px solid #999; background-color: #F3F3F3; color: #000; }
+.nagi .grubleft .dropdown:hover { border-right: none;}
+.nagi .dropdown ul { width: 100%; background: #616161; position: absolute; top: 25px; left: -1px; padding: 1px; display: none; z-index: 1600 }
+.nagi .dropdown ul li { color: #FFF; padding: 10px; line-height: 125%; display: block; }
+.nagi .dropdown ul li:hover { background: #888 }
+.nagi .dropdown ul li.disable { color: #999; background: #727272; cursor: default }
+.nagi h2 span.dropdown { min-width: inherit; min-width: auto\9; padding: 0 24px 0 0; box-shadow: none; border: 1px solid #FFF; background-position: right -20px; -webkit-box-shadow: none; -moz-box-shadow: none; }
+.nagi h2 span.dropdown span { padding-left: 0px }
+/* nagi ~ controls ~ passschecker */
+.nagi .passstrength { width: 200px; height: 22px; text-align: center; border: 1px solid #F4F4F4; background: #F9F9F9; line-height: 22px; /*default*/ }
+.nagi .passstrength.red { color: #F25237; border: 1px solid #F25237; background: #FFE8E8; }
+.nagi .passstrength.yellow { color: #FFB997; border: 1px solid #FFB997; background: #FFEBE1; }
+.nagi .passstrength.green { color: #096; border: 1px solid #C4FFD2; background: #DDFFE6; }
+/* nagi ~ controls ~ labels */
+.nagi label { display: inline-block; float: left; height: 22px; padding: 0 20px 0 10px; line-height: 22px }
+/* nagi ~ notice */
+.nagi span.must { font-size: 12px; color: #900; margin-left: 10px; font-weight: bold; }
+/* nagi ~ attention */
+.nagi .attention { width: 500px; padding-bottom: 20px; color: #F25237; line-height: 150% }
+.nagi .attention h3 { color: #F25237; border-bottom: 2px solid #F25237; font-weight: bold }
+.nagi .attention ol { padding-left: 20px; list-style: decimal }
+
+/* buttons */
+.nagi .buttonbar { padding: 5px 0 25px }
+.nagi .buttonbar button { margin-right: 10px }
+.nagi .buttonbar.fr button { margin-left: 10px; margin-right: 0px; }
+
+.nagi button { height: 35px; margin: 0; padding: 0 15px; color: #FFF; font-size: 14px; cursor: pointer; font-family: \5fae\8f6f\96c5\9ed1 , Arial, sans-serif; overflow: visible; -moz-box-shadow: 0px 0px 3px #CCC; -webkit-box-shadow: 0px 0px 3px #666; box-shadow: 0px 0px 3px #CCC; text-shadow: 0px 0px 1px #333; }
+.nagi .light-box-btn { height: 35px; line-height:35px; width:auto; float:left; padding: 0 15px; color: #FFF; font-size: 14px; cursor: pointer; font-family: \5fae\8f6f\96c5\9ed1 , Arial, sans-serif; overflow: hidden; -moz-box-shadow: 0px 0px 3px #CCC; -webkit-box-shadow: 0px 0px 3px #666; box-shadow: 0px 0px 3px #CCC; text-shadow: 0px 0px 1px #333; }
+.nagi .pay-light-box-btn { height: 35px; line-height:35px; width:auto; float:left; padding: 0 15px; color: #FFF; font-size: 14px; cursor: pointer; font-family: \5fae\8f6f\96c5\9ed1 , Arial, sans-serif; overflow: hidden; -moz-box-shadow: 0px 0px 3px #CCC; -webkit-box-shadow: 0px 0px 3px #666; box-shadow: 0px 0px 3px #CCC; text-shadow: 0px 0px 1px #333; }
+.nagi .d_close { height: 35px; line-height:35px; width:auto; float:left; padding: 0 15px; color: #FFF; font-size: 14px; cursor: pointer; font-family: \5fae\8f6f\96c5\9ed1 , Arial, sans-serif; overflow: hidden; -moz-box-shadow: 0px 0px 3px #CCC; -webkit-box-shadow: 0px 0px 3px #666; box-shadow: 0px 0px 3px #CCC; text-shadow: 0px 0px 1px #333; }
+.nagi .d_close.green { border: 1px solid #999; background: #0074C0; }
+.nagi .d_close.green:active { border: 1px solid #00538A }
+.nagi .d_close.green:hover { border: 1px solid #ddd; background: #0091F0; }
+/* buttons ~ styles */
+.nagi button.full { height: 35px }
+.nagi button.thin { height: 32px }
+.nagi button.blue { border: 1px solid #0085E8; background: #0072C6; }
+.nagi button.blue:active { border: 1px solid #0072C6 }
+.nagi button.blue:hover { border: 1px solid #0D98FF; background: #0082E1; }
+.nagi button.lightgray { border: 1px solid #AAA; background: #999; }
+.nagi button.lightgray:active { border: 1px solid #999 }
+.nagi button.lightgray:hover { border: 1px solid #999; background: #888; }
+.nagi button.gray { border: 1px solid #888; background: #777; }
+.nagi button.gray:active { border: 1px solid #777 }
+.nagi button.gray:hover { border: 1px solid #999; background: #888; }
+.nagi button.darkgray { border: 1px solid #6E6E6E; background: #555; }
+.nagi button.darkgray:active { border: 1px solid #555 }
+.nagi button.darkgray:hover { border: 1px solid #8B8B8B; background: #676767; }
+.nagi button.red { border: 1px solid #F4735B; background: #F25237; }
+.nagi button.red:active { border: 1px solid #F25237 }
+.nagi button.red:hover { border: 1px solid #F79280; background: #F3664E; }
+.nagi button.green { border: 1px solid #999; background: #0074C0; }
+.nagi button.green:active { border: 1px solid #00538A }
+.nagi button.green:hover { border: 1px solid #ddd; background: #0091F0; }
+.nagi .light-box-btn.green { border: 1px solid #999; background: #0074C0; }
+.nagi .light-box-btn.green:active { border: 1px solid #00538A }
+.nagi .light-box-btn.green:hover { border: 1px solid #ddd; background: #0091F0; }
+.nagi .pay-light-box-btn.green { border: 1px solid #999; background: #0074C0; }
+.nagi .pay-light-box-btn.green:active { border: 1px solid #00538A }
+.nagi .pay-light-box-btn.green:hover { border: 1px solid #ddd; background: #0091F0; }
+.nagi .pagebutton li { float: left; margin-left: 7px }
+.nagi .pagebutton li a { display: block; padding: 0 10px; border: 1px solid #888; background: #777; -moz-box-shadow: 0px 0px 3px #CCC; -webkit-box-shadow: 0px 0px 3px #CCC; box-shadow: 0px 0px 3px #CCC; line-height: 26px; height: 26px; color: #FFF; text-shadow: 0px 0px 1px #333;  }
+.nagi .pagebutton li a:hover { border: 1px solid #999; background: #888; }
+.nagi .pagebutton li a.here { background:#CCC; border:1px solid #BBB; }
+
+.nagi .horizontal .dropdown.searchmethod { width: 60px }
+.nagi .horizontal .dropdown.cate { width: 95px }
+.nagi .horizontal .dropdown.cate ul { width: 170px; }
+.nagi .horizontal .dropdown.format ul { width: 160px }
+
+
+/* oo */
+.nya.results .results-controler { padding: 0 10px; }
+.results-controler .element { margin-right: 20px; line-height: 25px; height: 25px; position: relative; }
+.results-controler .element a { background: url(../images/_nyanold_/nyan/drop_arr.png) right center no-repeat; padding-right: 15px; }
+.results-controler .element ul { position: absolute; right: -15px; background: #FDFDFD; border: 1px solid #CCC; }
+.results-controler .element ul a { background: none; }
+.results-controler .element li { padding: 4px 7px; line-height: 150%; }
+.results-controler .element li:hover { background: #7EB8DD; }
+
+.layout-button { display: inline-block; _display: block; }
+.button { float: left; background: #0075C1 url(../images/_nyanold_/nyan/btn_bg.jpg) 0 -1px; border: 1px solid #0075C1; color: #FFF; padding: 6px 10px 7px; cursor: pointer; border-radius: 3px; border: -webkit-border-radius: 3px;
+-moz-border-radius: 3px; -khtml-border-radius: 3px; margin-left: 10px; }
+.button:hover { background: url(../images/_nyanold_/nyan/btn_bg_hover.jpg); text-decoration:none; }
+.layout-button .icon span { display: block; text-indent: 25px; background: left center no-repeat; }
+.layout-button .icon.grida span { background-image: url(../images/_nyanold_/nyan/icon_grid.png); }
+.layout-button .icon.lista span { background-image: url(../images/_nyanold_/nyan/icon_list.png); }
+.layout-button .icon.previous span { background-image: url(../images/_nyanold_/nyan/icon_previous.png); }
+.layout-button .icon.next span { background-image: url(../images/_nyanold_/nyan/icon_next.png); }
+.layout-button .page span { text-indent: -1000px; width: 18px; height: 12px; background-position: center center; }
+.pagecutter .jumper input { width: 36px; padding: 4px 0; border: 1px solid #CCC; text-align: center; margin-top: 0; }
+.pagecutter {margin-top:10px;}
+.nya .itemlist.list-thin li .itemstatus, .nya .itemlist.list-thin li .filetype { display: none; }
+.nya .itemlist.list-thin li { display: block; padding: 6px; clear: both }
+.nya .itemlist.list-thin li img { float: left; width: 60px; height: 60px }
+.nya .itemlist.list-thin li .subtitle { display: block; padding: 0 5px 0 75px; color: #999; line-height: 165% }
+.nya .itemlist.list-thin li .subtitle span { display: inline-block; width: 90px }
+.nya .itemlist.list-middle li { display: block; padding: 10px; clear: both; height: 128px; border-bottom: 1px solid #F2F2F2; }
+.nya .itemlist.list-middle li .thumb { float: left; width: 20%; }
+.nya .itemlist.list-middle li .subtitle { float: left; width: 80%; color: #999; line-height: 165%; }
+.nya .itemlist.list-middle li .subtitle strong { font-size: 1.4em; line-height: 180%; _width: 69%; }
+.nya .itemlist.list-middle li .itemstatus { float: right; font-size: 1em; line-height: 180%; width: 30%; text-align: right; }
+.nya .itemlist.list-middle li .itemstatus img { width: 86px; height: 15px; margin: 7px 0; }
+.nya .itemlist.list-middle li .itemstatus span { color: #333; }
+.nya .itemlist.list-middle li .subtitle .filetype { padding-top: 30px; font-size: 1.2em; }
+.nya .itemlist.list-middle li .subtitle em { font-size: 1.2em; _width: 69%; }
+.nya .itemlist.list-small li { display: block; padding: 10px; clear: both; height: 80px; border-bottom: 1px solid #F2F2F2; }
+.nya .itemlist.list-small li .thumb { float: left; width: 13%; }
+.nya .itemlist.list-small li .subtitle { float: left; width: 87%; color: #999; line-height: 150%; }
+.nya .itemlist.list-small li .subtitle strong { font-size: 1.2em; line-height: 150%; _width: 69%; }
+.nya .itemlist.list-small li .itemstatus { float: right; font-size: .8em; line-height: 120%; width: 30%; text-align: right; }
+.nya .itemlist.list-small li .itemstatus img { width: 86px; height: 15px; margin: 7px 0; }
+.nya .itemlist.list-small li .itemstatus span { color: #333; }
+.comm-person-info .list-middle .thumb img  { width: 80px; height: 80px; margin: 7px 0; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>网站注册会员管理-后台管理首页-{$site.SITE_INFO.name}</title>
+        <php>
+            $addCss="";
+            $addJs="";
+            $currentNav ='模块首页';
+        </php>
+        <include file="Common:intohead" />
+    </head>
+    <body>
+        <div class="wrap">
+            <include file="Common:head" />
+            <div class="mainBody">
+                <include file="Common:left" />
+                <div id="Right">
+                    <div class="Item hr">
+                        <div class="current">设置头像</div>
+                    </div>
+					<span class="avatar-m">
+					Email: {$userBasic.u_email}
+					<br><br>
+					姓名: {$up.u_name}
+					<br><br>
+					公开昵称: {$up.u_firstname}
+					<br>
+					<br>
+					<if condition="$userBasic.u_avatar neq '' ">
+					 	<img src="__PUBLICUPLOAD__/avatar/{$userBasic.u_avatar_96}" alt="" id="avatar_img">
+					<else/> 
+						<img src="__PUBLICSTATIC__/images/avatar/default.png" alt="" id="avatar_img" width="96px"> 
+					</if>
+					
+                    </span>
+                    <div class="img-change">
+							<form id="upload" enctype="multipart/form-data" action="__APP__/empty/uploadAvatar/uid/{$userBasic.u_id}" method="post">
+							<input type="file" name="upl" size="30" style=" width: 70px; margin-top: 10px; box-shadow: none; height: 30px;" />
+							</form>
+						<br><input type="button" name="Submit" value="返回" onclick="javascript:history.back()" />
+						</div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <include file="Common:foot" />
+
+
+<script src="__PUBLICSTATIC__/js/assets/jquery.knob.js"></script> 
+<script src="__PUBLICSTATIC__/js/assets/jquery.ui.widget.js"></script> 
+<script src="__PUBLICSTATIC__/js/assets/jquery.iframe-transport.js"></script> 
+<script src="__PUBLICSTATIC__/js/assets/jquery.fileupload.js"></script> 
+<script src="__PUBLICSTATIC__/js/assets/jquery.imgareaselect.pack.js"></script> 
+<script src="__PUBLICSTATIC__/js/assets/script.js"></script> 
+
+    </body>
+</html>

@@ -1,0 +1,19 @@
+<include file="Common:pageheader_start" />
+<include file="Common:pageheader_end" />
+<div class="contents">
+	<h3>删除材质</h3>
+	<if condition="$ErrInfo"><div class="errorinfo">{$ErrInfo}</div></if>
+	确认删除材质 {$PM.pma_name} 么?
+	<form method="post" action="__APP__/printer_material/delete/id/{$PM.pma_id}">
+		<input type="submit" name="submit" value="确认删除" /> <a href="__APP__/printer_material">取消...</a>
+	</form>
+</div>
+<script type="text/javascript">
+	(function ($) {
+		
+		$(document).ready(function () {
+
+		});
+	})(jQuery);
+</script>
+<include file="Common:pagefooter" />

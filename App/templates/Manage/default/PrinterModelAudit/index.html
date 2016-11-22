@@ -1,0 +1,67 @@
+<include file="Common:pageheader_start" />
+<include file="Common:pageheader_end" />
+<div class="contents">
+	<div>
+		<a href="__APP__/printer_model_audit/index/status/0/" {$buttonclass.status} >未审核</a>
+		<a href="__APP__/printer_model_audit/index/nvreify/1/" {$buttonclass.nvreify1}>需审核(用户)</a>
+		<a href="__APP__/printer_model_audit/index/nvreify/2/" {$buttonclass.nvreify2}>需审核(订单)</a>
+		<a href="__APP__/printer_model_audit/index/nfix/1/" {$buttonclass.nfix}>需修复</a>
+	</div>
+	<br>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+		<tr>
+			<td>ID</td>
+			<td>封面</td>
+			<td>文件名</td>
+			<td>文件码</td>
+			<td>长</td>
+			<td>宽</td>
+			<td>高</td>
+			<td>体积</td>
+			<td>状态</td>
+			<td>附属状态</td>
+			<td>操作</td>
+		</tr>
+		<volist name="PMList" id="PM">
+		<tr>
+			<td>{$PM.yf_id}</td>
+			<td><img src="__DOC__{:str_replace('/o/','/s/64_64_',$PM['pm_cover'])}" /></td>
+			<td>{$PM.pm_filename}</td>
+			<td>{$PM.pm_filemd5}<br/>{$PM.pm_filesha1}</td>
+			<td>{$PM.pm_length}</td>
+			<td>{$PM.pm_width}</td>
+			<td>{$PM.pm_height}</td>
+			<td>{$PM.pm_volume}</td>
+			<td>{$Status_disp[$PM['pm_status']]}</td>
+			<td>
+				<if condition="$PM['pm_needfix'] eq 1">需要修复</if><br/>
+				<if condition="$PM['pm_needverify'] eq 1">检查模型(用户)</if>
+				<if condition="$PM['pm_needverify'] eq 2">检查模型(订单)</if>
+				<if condition="$PM['pm_needverify'] eq 3">检查模型(联盟)</if>
+				<br/>
+				<if condition="$PM['pm_needmaterial']">检查材质</if>
+			</td>
+			<td><a href="__APP__/printer_model_audit/audit/id/{$PM.yf_id}">审核</a></td>
+		</tr>
+		</volist>
+	</table>
+	<div class="paging">
+    {$PagingInfo}
+	</div>
+</div>
+<script type="text/javascript">
+	var UploadUrl = "{$U_UploadFile}";
+	var PublicUrl = "__DOC__/static/";
+	
+	(function ($) {
+		var verified = '<b>√</b>';
+		var notverified = '<b>X</b>';
+		var fadeTime = 100;
+		
+		$(document).ready(function () {
+			$(':submit[name=auditpass]').click(function() { $(':hidden[name=status]').val(1); });
+			$(':submit[name=auditfail]').click(function() { $(':hidden[name=status]').val(3); });
+		});
+	})(jQuery);
+</script>
+<include file="Common:pagefooter" />

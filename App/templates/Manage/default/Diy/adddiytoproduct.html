@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <php>
+            $addCss="";
+            $addJs="";
+            $currentNav ='aa';
+        </php>
+    <include file="Common:intohead" />
+</head>
+<body>
+    <div class="wrap"> <include file="Common:head" />
+        <div class="mainBody"> <include file="Common:left" />
+            <div id="Right">
+                <div class="contentArea">
+                    <div class="Item hr">
+                        <div class="current">DIY发布到产品</div>
+                    </div>
+                    <div>
+						<form method="post" id="process">
+							<input type="hidden" value={$id} name='id'>
+							<table class="tab">
+								<tr><td><br>请选择分类:<br></td><td><br>{$cate_list_checkbox}<br></td></tr>
+							
+							<tr>
+							<td colspan="2">
+								<input type="submit" value="确定" class="btn">
+								<input type="button" class="btn" onclick="javascript:history.go(-1)" value="返回"> 
+							</td>
+							</tr>
+							</table>
+						</form>					                    	
+                    </div>		
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+<include file="Common:foot" />
+
+</body>
+</html>
+
+

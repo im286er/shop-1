@@ -1,0 +1,69 @@
+<{include file=C('HEADPAGE_START')}>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/st-danny.css" media="all" />
+<script type="text/javascript" src="__PUBLIC__/js/ajaxload.js"></script>
+<script>
+
+</script>
+<{include file=C('HEADPAGE_END')}>
+<div id="confirm-payment" class="shadow radius light-box">
+	<form action="pay" method="post" target="_blank">
+		<div style="overflow: hidden;">
+			<p class="confirm fl"></p>
+			<p class="fr">
+				<a href="#" class="close" onclick="">X 关闭</a>
+			</p>
+		</div>
+		<div class="both" style="height: 1px; border-bottom: 1px solid #ddd;"></div>
+		<p class="confirm-info">
+			请在新打开的窗口完成支付，谢谢！
+		</p>
+		<span class="go-to-pay"><a class="red-btn finish-pay" href="__DOC__/user.php/sales/payresult/otype/1/out_trade_no/<{$temp_oid}>">完成付款</a></span><span class="problem" style="padding-left: 20px;">遇到问题？</span>
+	</form>
+</div>
+<div id="shopping-cart">
+	<div class="flow-shopping">
+		<ul>
+			<li>
+				<span class="over">购物车</span>
+				<span class="line line-over"></span>
+			</li>
+			<li>
+				<span class="over">确认订单</span>
+				<span class="line line-now"></span>
+			</li>
+			<li>
+				<span class="now">付款</span>
+				<span class="line line-over"></span>
+			</li>
+			<li>
+				<span>完成支付</span>
+			</li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+	<form action="__APP__/cart-pay_goalipay" method="post" target="_blank">
+	<input type="hidden" name="up_orderid" value="<{$temp_oid}>">
+	<input type="hidden" name="up_amount" value="<{$totalprice}>">
+	<div class="pay-confirm">
+		<p class="sku">订 单 号：<{$showoid}> &nbsp;&nbsp;&nbsp;&nbsp;</p>
+        
+		<div class="payment"> 
+			<div class="text">支付方式：</div>
+			<div class="payment_way">
+				<ul>
+				<{foreach $pt_arr as $result}>
+					<{if $result.pt_id eq 1}>
+						<li><label><input type="radio" name="paytype" checked="checked" value='<{$result.pt_id}>'/><img src="__PUBLIC__/images/bank/<{$result.icon}>" alt="" width=100 height=30/></label></li>
+					<{else}>
+					 	<li><label><input type="radio" name="paytype" value='<{$result.pt_id}>'/><img src="__PUBLIC__/images/bank/<{$result.icon}>" alt="" width=100 height=30/></label></li>
+					<{/if}>			
+				<{/foreach}>
+				</ul>		
+			</div>
+		</div>
+		
+		<p class="other">金额：<span class="red b f16 price">￥<{$totalprice}></span><input type="submit" value="付款" class="red-btn pay_money"></p>
+	</div>
+	</form>
+</div>
+<{include file=C('FOOTPAGE')}>

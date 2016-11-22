@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>uploadPreview演示</title>
+    <script src="uploadPreview.js"></script>
+    <script>
+       window.onload = function () { 
+            new uploadPreview({ UpBtn: "up_img", DivShow: "imgdiv", ImgShow: "imgShow" });
+        }
+    </script>
+</head>
+<body>
+    <div id="imgdiv"><img id="imgShow" width="100" height="100" /></div>
+    <input type="file" id="up_img" />
+</body>
+</html>

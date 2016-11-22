@@ -1,0 +1,126 @@
+</head>
+<body>
+<!--头部-->
+<div class="wy-app-top">
+    <div class="container-fluid">
+        <div class="row">
+            <!--logo-->
+            <div class="col-xs-6">
+                <div class="wy-logo">
+                    <a href="__DOC__/index.php/Iwx"><img src="__MICKYMOBILESTATIC__/new/images/top/logo1.png" alt=""></a>
+                </div>
+
+            </div>
+            <!--右边-->
+            <div class="col-xs-6">
+                <div class="app-top-right">
+                    <!--搜索-->
+                    <div class="search">
+                        <i class="iconfont icon-sousuo"></i>
+                    </div>
+                    <!--登录-->
+                    <div class="login">
+                        <{if $isLogin}>
+                        <!--<a href="__DOC__/user.php/userconf/?mmode=1&type=iwx"><i class="iconfont icon-iconfontdenglu"></i></a>-->
+                        <a href="__DOC__/user.php/iwxuserconf"><i class="iconfont icon-iconfontdenglu"></i></a>
+                        <{else}>
+                        <a href="__DOC__/user.php/login/?mmode=1&type=iwx"><i class="iconfont icon-iconfontdenglu"></i></a>
+                        <{/if}>
+                    </div>
+                    <!--购物袋-->
+                    <div class="gowudai">
+                        <a href="__DOC__/user.php/cart/index/mmode/1/type/iwx"><i class="iconfont icon-gouwudai"></i></a>
+                    </div>
+                    <!--菜单-->
+                    <div class="menuBtn" id="menu">
+                        <i class="iconfont icon-caidan"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="top-di"></div>
+<!--搜索框-->
+<div class="wy-search-box">
+    <div class="container-fluid">
+        <div class="row">
+            <div id="search">
+                <form action="__DOC__/index.php/iwxproduct-index" method="post">
+                <input type="text" name="tags" autocomplete="off"/>
+                <button type="submit">搜索</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<!--菜单-->
+<div class="wy-menu-box">
+    <div class="container-fluid">
+        <div class="row">
+            <!--关闭-->
+            <div class="closebtn">
+                <i class="iconfont icon-close01"></i>
+            </div>
+            <ul class="menu-list">
+                <li class="index">
+                    <a href="__DOC__/index.php/iwx">
+                        <span><i class="iconfont icon-jiajuyongpin"></i></span>
+                        <span class="menu-text">首页</span>
+                        <span><i class="iconfont icon-jiajuyongpin"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="__DOC__/index.php/iwx-jewelrylist.html">
+                        <span><i class="iconfont icon-jiajuyongpin dis"></i></span>
+                        <span class="menu-text">全部商品</span>
+                        <span><i class="iconfont icon-jiajuyongpin dis"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="__DOC__/index.php/diy-smartjewelry-cid-1-mmode-1.html">
+                        <span><i class="iconfont icon-jiajuyongpin dis"></i></span>
+                        <span class="menu-text">智绘首饰</span>
+                        <span><i class="iconfont icon-jiajuyongpin dis"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="__DOC__/index.php/iwx-popularlist.html">
+                        <span><i class="iconfont icon-jiajuyongpin dis"></i></span>
+                        <span class="menu-text">畅销榜单</span>
+                        <span><i class="iconfont icon-jiajuyongpin dis"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="__DOC__/index.php/jewelry-jewelrylist-diy-2">
+                        <span><i class="iconfont icon-jiajuyongpin dis"></i></span>
+                        <span class="menu-text">轻定制</span>
+                        <span><i class="iconfont icon-jiajuyongpin dis"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="__DOC__/index.php/help-iwxbrandstory">
+                        <span><i class="iconfont icon-jiajuyongpin dis"></i></span>
+                        <span class="menu-text">了解IGNITE</span>
+                        <span><i class="iconfont icon-jiajuyongpin dis"></i></span>
+                    </a>
+                </li>
+            </ul>
+            <!--微博 微信-->
+            <div class="tubiao">
+                <div class="container-fluid">
+                    <div class="row">
+                        <span>
+                            <a href="http://www.weibo.com/u/5993713311"><img src="__MICKYMOBILESTATIC__/images/top/weibo.png" alt=""></a>
+                        </span>
+                        <span>
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzAwODk5ODcwMw==&mid=2247483690&idx=1&sn=33f801256741746c82a3d286b8a83303&scene=0#wechat_redirect"><img src="__MICKYMOBILESTATIC__/images/top/weixin.png" alt=""></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

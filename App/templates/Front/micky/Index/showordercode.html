@@ -1,0 +1,264 @@
+<!--
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>IGNITE-IGNITE官网:3D打印首饰,DIY方案,商务礼品定制|珠宝首饰|个性化定制购物体验平台</title>
+    <script type="text/javascript" src="__KITTYPUBLIC__/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="__KITTYPUBLIC__/js/qrcode.js"></script>
+    <link rel="stylesheet" href="__MICKYSTATIC__/css/result.css">
+    <link rel="stylesheet" href="__MICKYSTATIC__/css/font.css">
+    <script>
+        $(function () {
+            $(".back_img").click(function () {
+                $(".share_erweima").show();
+                $(".share_fix").show().click(function () {
+                    $(".share_fix").hide();
+                    $(".share_erweima").hide();
+                });
+
+            })
+        })
+    </script>
+</head>
+<body>
+<{assign var='mImage' value=<{$productCover_no}>}>
+<div class="result">
+    <div class="result_box">
+        <div class="result_box_center">
+            <img src="__MICKYSTATIC__/images/logo2.png" alt="">
+        </div>
+        <div class="back">
+            <div class="back_box">
+                <div class="back_center">
+                    &lt;!&ndash;<a href="__DOC__/index/diy-jewelryeditall-pid-<{$pid}>-cid-1-agentid-<{$agentId}>.html" class="back_img">
+                        <svg viewBox="0 0 64 64">
+                                <path d="M4.043,31.499L32.351,5.562l1.347,1.47L8.08,30.504h51.94v1.994H8.066l25.838,23.844l-1.352,1.466L4.043,31.499z">
+                                </path>
+                        </svg>
+                    </a>&ndash;&gt;
+                </div>
+            </div>
+        </div>
+
+        <div style="width: 60%; height: 50%; position: fixed; top: 0; left: 0; right: 0; bottom: 0; margin: auto;">
+            <div class="center_left" style="border-right:1px solid #ccc;">
+                <div class="center_left_img">
+                    <img src="__DOC__/<{$mImage}>?<{md5_file filename=<{$mImage}>}>">
+                </div>
+            </div>
+            <div class="center_right">
+                <h1>请扫描二维码支付</h1>
+                <div class="center_right_img" style="position:relative;">
+				    <div style="position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;width:50px;height:50px;background:#f7f7f7;">
+					     <img src="__MICKYSTATIC__/images/logo2.png" alt="">
+					</div>
+                    <div id="qrcode"></div>
+                </div>
+            </div>
+        </div>
+        &lt;!&ndash;分享&ndash;&gt;
+        <div class="back_share">
+            <div class="back_box">
+                <div class="back_center">
+                    <a class="back_img" href="javascript:;">
+                        <div class="app_share">
+                            <i class="iconfont icon-fenxiang"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        &lt;!&ndash;重新设计按钮&ndash;&gt;
+        <div class="result_box_btn">
+            <a class="btn" type="button" href="__DOC__/index/diy-jewelryeditall-cid-1-agentid-<{$agentId}>.html">再次绘制</a>
+        </div>
+    </div>
+</div>
+<div class="share_fix"></div>
+<div class="share_erweima">
+    <h1>扫码分享</h1>
+    &lt;!&ndash;二维码图片&ndash;&gt;
+    <div id="qrcode_share"></div>
+</div>
+
+<script>
+    /*var url = "<{$url}>";
+    //参数1表示图像大小，取值范围1-10；参数2表示质量，取值范围'L','M','Q','H'
+    var qr = qrcode(10, 'H');
+    qr.addData(url);
+    qr.make();
+    var code=document.createElement('DIV');
+    code.innerHTML = qr.createImgTag();
+    var element=document.getElementById("qrcode");
+    element.appendChild(code);*/
+    window.onload=function(){
+        createQr('<{$url}>','qrcode');
+        createQr('<{$url_share}>','qrcode_share');
+    }
+
+    function createQr(url,qrId) {
+        //var url = "<{$url}>";
+        //参数1表示图像大小，取值范围1-10；参数2表示质量，取值范围'L','M','Q','H'
+        var qr = qrcode(10, 'H');
+        qr.addData(url);
+        qr.make();
+        var code=document.createElement('DIV');
+        code.innerHTML = qr.createImgTag();
+        var element=document.getElementById(qrId);
+        element.appendChild(code);
+    }
+    
+    
+</script>
+</body>
+</html>
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>扫码支付</title>
+    <style>
+        .share_fix{
+            position:fixed;
+            top:0;
+            left:0;
+            z_index:9999;
+            width:100%;
+            height:100%;
+            background:rgba(0,0,0,0.8);
+        }
+        .share_erweima{
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            z-index: 100000;
+            width: 355px;
+            height: 355px;
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript" src="__KITTYPUBLIC__/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="__KITTYPUBLIC__/js/qrcode.js"></script>
+    <link rel="stylesheet" href="__MICKYSTATIC__/touchscreen/css/baiban_pay.css">
+    <!--<link rel="stylesheet" href="__MICKYSTATIC__/css/result.css">-->
+    <script style="text/javascript" src="__MICKYSTATIC__/touchscreen/js/jquery.js"></script>
+    <!--<script>
+        var count = '';
+
+        function jump(count){
+            window.setTimeout(function(){
+                count&#45;&#45;;
+                if(count > 0) {
+                    $("#time").html(count+'秒');
+                    jump(count);
+                } else {
+                    location.href="http://192.168.52.19";
+                }
+            }, 1000);
+        }
+        $(document).ready(function() {
+            jump(60);
+        });
+
+        function appshare(){
+            $(".share_erweima").show();
+            $(".share_fix").show().click(function () {
+                $(".share_fix").hide();
+                $(".share_erweima").hide();
+            });
+        }
+    </script>-->
+
+
+    <script  type="text/javascript">
+        $(document).ready(function() {
+            function jump(count) {
+                window.setTimeout(function(){
+                    count--;
+                    if(count > 0) {
+                        $("#time").html(count+'秒');
+                        jump(count);
+                    } else {
+                        location.href="http://www.ignjewelry.com/index.php/index-androidindex-agentid-67W1G6324";
+                    }
+                }, 1000);
+            }
+            jump(60);
+        });
+
+        function appshare(){
+            $(".share_erweima").show();
+            $(".share_fix").show().click(function () {
+                $(".share_fix").hide();
+                $(".share_erweima").hide();
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="bg_img">
+    <div class="bg_img_zindex">
+        <!-- logo -->
+        <div class="logo">
+            <div class="logoimg">
+                <a href=""><img src="__MICKYSTATIC__/touchscreen/images/baiban/pay/logo.png" alt=""></a>
+            </div>
+        </div>
+        <h1>扫码支付</h1>
+        <div class="code" id="qrcode">
+            <!--<img src="__MICKYSTATIC__/touchscreen/images/baiban/pay/erweima.jpg" alt="">-->
+        </div>
+        <p id="time"></p>
+        <h5>
+            提示：请在60秒内，扫描二维码完成支付
+        </h5>
+        <div class="btn">
+            <button class="btn1" type="button">
+                <span class="icon">
+                    <img src="__MICKYSTATIC__/touchscreen/images/baiban/pay/pay.png" alt="">
+                </span>
+                <span class="shu" style="margin:0 20px "></span>
+                <span class="icon_text">线下支付</span>
+            </button>
+            <button class="btn2" type="button" style="margin-left: 20px;" onclick="appshare();">
+                <span class="icon">
+                    <img src="__MICKYSTATIC__/touchscreen/images/baiban/pay/fenxiang.png" alt="">
+                </span>
+                <span class="shu"></span>
+                <span class="icon_text">分享</span>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="share_fix" style="display:none;"></div>
+<div class="share_erweima" style="display:none;">
+    <h1>扫码分享</h1>
+    <!--&lt;!&ndash;二维码图片&ndash;&gt;-->
+    <div id="qrcode_share"></div>
+</div>
+</body>
+</html>
+<script>
+    window.onload=function(){
+        createQr('<{$url}>','qrcode');
+        createQr('<{$url_share}>','qrcode_share');
+    }
+
+    function createQr(url,qrId) {
+        //var url = "<{$url}>";
+        //参数1表示图像大小，取值范围1-10；参数2表示质量，取值范围'L','M','Q','H'
+        var qr = qrcode(10, 'H');
+        qr.addData(url);
+        qr.make();
+        var code=document.createElement('DIV');
+        code.innerHTML = qr.createImgTag();
+        var element=document.getElementById(qrId);
+        element.appendChild(code);
+    }
+</script>

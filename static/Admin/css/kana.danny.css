@@ -1,0 +1,161 @@
+@charset "utf-8";
+/* 
+	Project Kana ~ Denny Style. / (C)2013 Denny Dai
+	For 3D City Prototype used only!
+*/
+html {  }
+.user-center-nav {width:100%; height:50px; background:#fff;}
+.user-center-nav .index ul li {float:left; height:50px; padding:0 15px; line-height:50px; font-size:14px; font-weight:bold; margin-top:1px;}
+.user-center-nav .index ul li a {color:#999;}
+.user-center-nav .index ul li.select-ing a {color:#416B80;}
+.user-center-nav .index ul li a:hover {color:#6F9EB5;}
+.user-center-nav .index ul li.select-ing {background:url(../images/comm/s-arrow-bottom.png) bottom center no-repeat;}
+/* nav finish */
+
+.comm-user-center-content {padding:30px 0; width:960px; margin:0 auto;}
+.printer_bg {background:url(../images/comm/3d_printer_bg.jpg); width:960px; margin:0 auto; border-bottom:none;}
+.store_bg {background:url(../images/comm/3d_store_bg.jpg); width:960px; margin:0 auto; border-bottom:none;}
+
+
+
+
+
+
+.action-button.large { font-size: 16px; padding: 0 24px; height: 40px; line-height: 40px;  }
+.action-button.red { display: inline-block; -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-moz-box-shadow:inset 0px 1px 0px 0px #ff52a0;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ff52a0;
+	box-shadow:inset 0px 1px 0px 0px #ff52a0;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #db0037), color-stop(1, #700029) );
+	background:-moz-linear-gradient( center top, #db0037 5%, #700029 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#db0037', endColorstr='#700029');
+	background-color:#db0037;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid #5e5e5e;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-weight:bold;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #333;}
+.red-btn:active { position: relative; top: 1px }
+.action-button.red:hover, .action-button.red:focus { background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #700029), color-stop(1, #db0037) );
+	background:-moz-linear-gradient( center top, #700029 5%, #db0037 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#700029', endColorstr='#db0037');
+	background-color:#700029;
+}
+button {cursor:pointer;}
+
+
+.individual-character-step1 {width:960px; margin:30px auto; overflow:hidden;}
+.individual-character-step1 .ics1-bottom ul li {float:left; margin-left:13px; margin-top:30px;}
+.individual-character-step2 {width:960px; margin:30px auto; overflow:hidden;}
+.individual-character-step3 {width:960px; margin:30px auto; overflow:hidden;}
+.individual-character-step4 {width:960px; margin:30px auto; overflow:hidden;}
+.individual-character-step5 {width:960px; margin:30px auto; overflow:hidden;}
+.individual-character-step6 {width:960px; margin:30px auto; overflow:hidden;}
+
+.individual-character-step2 .ics2-bottom {margin-top:30px;}
+.individual-character-step3 .ics3-bottom {margin-top:30px;}
+.individual-character-step4 .ics4-bottom {margin-top:30px;}
+.individual-character-step5 .ics5-bottom {margin-top:30px;}
+.individual-character-step6 .ics6-bottom {margin-top:30px;}
+
+.material-production {width:960px; margin:30px auto; font-family:"Lucida Grande","Lucida Sans Unicode","微软雅黑",Helvetica,Arial,Verdana,sans-serif;}
+.understand-3dprinter {width:960px; margin:30px auto;}
+.ardi .creative .productlist {width:960px;}
+
+/* 3d printer product detail page */
+#printer-pro-del {width:960px; margin:30px auto; }
+#printer-pro-del .author-info {width:918px; padding:20px; overflow:hidden; background:#fff; border:1px solid #ddd; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;}
+#printer-pro-del .main-container .left-bar {width:674px; float:left;}
+#printer-pro-del .main-container .right-bar {width:220px; float:right;}
+#printer-pro-del .author-info .author-img {float:left;}
+#printer-pro-del .author-info .del-info {float:left; margin-left:20px; height:60px; overflow:hidden;}
+#printer-pro-del .author-info .del-info .del-bt {height:25px; line-height:40px; width:820px;}
+#printer-pro-del .author-info .del-info .del-bt span {padding-right:25px;}
+#printer-pro-del .main-container {margin-left:auto; margin-right:auto; margin-top:15px; margin-bottom:30px;}
+#printer-pro-del .main-container .left-bar .slideshow-img {width:674px; height:501px; margin-bottom:20px; margin-left:0 auto; margin-right:0 auto;}
+#printer-pro-del .main-container .pro {width:674px; padding:20px; overflow:hidden; background:#fff; border:1px solid #ddd; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;}
+#printer-pro-del .main-container .left-bar .slideshow-img img {width:674px; height:501px;}
+#printer-pro-del .main-container .left-bar .left-arrow {width:25px; height:37px; margin-top:25px; cursor:pointer; float:left; background:url(../images/3d-printer-cloumn/arrow.png) 0 0 no-repeat;}
+#printer-pro-del .main-container .left-bar .right-arrow {width:25px; height:37px; margin-top:25px; cursor:pointer; float:right; background:url(../images/3d-printer-cloumn/arrow.png) -25px -37px no-repeat;}
+#printer-pro-del .main-container .left-bar .slideshow-s-img .content {position:relative; margin-left:5px; width:610px; height:100px; float:left; overflow:hidden;}
+#printer-pro-del .main-container .left-bar .slideshow-s-img img {border:2px solid #ddd; width:130px; height:96px; cursor:pointer;}
+#printer-pro-del .main-container .left-bar .slideshow-s-img .content ul li {float:left; padding:0 10px;}
+#printer-pro-del .main-container .left-bar .slideshow-s-img .content ul {width:600px; height:94px; display:block; position:absolute; left:0; top:0;}
+#printer-pro-del .main-container .left-bar .slideshow-s-img .content ul li.select img {border:2px solid #416B80; width:130px; height:96px;}
+#printer-pro-del .main-container .left-bar .share {width:654px; height:35px; padding:10px; background:#eee; margin-top:30px;}
+#printer-pro-del .main-container .left-bar .share input {width:250px; border:1px solid #ddd; background:#fff; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; padding:6px;}
+#printer-pro-del .main-container .left-bar .share p {height:34px; line-height:34px;}
+#printer-pro-del .main-container .left-bar .share p.fr span {padding-left:5px;}
+#printer-pro-del .main-container .left-bar .description {width:674px; margin-top:30px; line-height:22px;}
+#printer-pro-del .main-container .left-bar .description p {text-indent:2em; color:#333;}
+#printer-pro-del .main-container .left-bar .description p.img {text-indent:0em; padding:20px 0;}
+#printer-pro-del .main-container .left-bar .size .fl {width:300px; height:20px; line-height:20px; padding:10px; background:#999; color:#fff; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;}
+#printer-pro-del .main-container .left-bar .size .fr {width:300px; height:20px; line-height:20px; padding:10px; background:#999; color:#fff; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;}
+#printer-pro-del .main-container .left-bar .warning {height:30px; line-height:30px; padding-left:25px; margin-top:30px; background:url(../images/comm/warning.png) left center no-repeat;}
+#printer-pro-del .main-container .left-bar .relevance {width:716px; margin:30px 0; overflow:hidden;}
+#printer-pro-del .main-container .left-bar .relevance .items-grid .listitem {margin-right:8px; margin-left:8px;}
+#printer-pro-del .double-bottom-line {border-bottom:1px solid #fff; -moz-box-shadow:0px -1px 0px #C0AD92 inset;	-webkit-box-shadow:0px -1px 0px #C0AD92 inset; box-shadow:0px -1px 0px #C0AD92 inset;}
+#printer-pro-del .main-container .right-bar .material {padding:20px; overflow:hidden; background:#fff; border:1px solid #ddd; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;}
+#printer-pro-del .main-container .right-bar .material .change-material {width:158px; height:23px; padding-top:5px; padding-bottom:5px; padding-left:15px; padding-right:5px; line-height:23px; background:url(../images/comm/select-hover.jpg); cursor:pointer;}
+#printer-pro-del .main-container .right-bar .material .change-material:active {background:url(../images/comm/select.jpg);}
+#printer-pro-del .main-container .right-bar .material .display-material {margin-top:20px;}
+#printer-pro-del .main-container .right-bar .material .material-img img {width:55px; height:33px; border:1px solid #ddd;}
+#printer-pro-del .main-container .right-bar .material .material-price {font-weight:blod; font-size:18px; text-align:center; width:120px; height:35px; line-height:35px; background:#ccc; color:#fff;}
+#printer-pro-del .main-container .right-bar .material .display-material span {float:left; display:block;}
+#printer-pro-del .main-container .right-bar .material .add-car-btn {margin-top:20px;}
+#printer-pro-del .main-container .right-bar .design-other-pro {margin:30px 0; padding-bottom:20px;}
+#printer-pro-del .main-container .right-bar .design-other-pro .content ul li {float:left; padding:15px 8px;}
+#printer-pro-del .main-container .right-bar .design-other-pro .content ul li img{ border:1px solid #ddd;}
+#printer-pro-del .main-container .right-bar .key-words ul li {padding:0 10px; height:28px; background:#fff; border:1px solid #ddd; line-height:28px; float:left; margin-right:5px; margin-bottom:10px; text-align:center;}
+#printer-pro-del .main-container .right-bar .key-words ul li:hover {background:#ddd;}
+
+.comm-discuz {width:716px; margin:30px 0; overflow:hidden;}
+.comm-discuz .my-discuz {width:676px; overflow:hidden; height:120px; padding:20px;     background: -webkit-gradient(linear, left top, left 25, from(#ddd), color-stop(25%, #eee), to(#ddd));      background: -moz-linear-gradient(top, #ddd, #eee 1px, #ddd 25px); }
+.comm-discuz .people-discuz {width:716px; overflow:hidden;}
+.comm-discuz .my-discuz textarea {color:#999; height:36px; border:2px solid #ddd; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; width:560px; padding:10px;}
+.comm-discuz .my-discuz textarea:focus,.comm-discuz .my-discuz textarea:hover {border-color:#ccc;}
+.comm-discuz .my-discuz .fr {padding-left:10px; background:url(../images/comm/discuz-arrow.png) left center no-repeat;}
+.comm-discuz .my-discuz .operate {float:right; margin-top:20px;}
+.comm-discuz .my-discuz .operate span {margin-left:15px;}
+
+.comm-discuz .people-discuz .fr {padding-left:10px; width:590px;}
+.comm-discuz .people-discuz .operate {float:right; margin-top:20px;}
+.comm-discuz .people-discuz .operate span {margin-left:15px;}
+.comm-discuz .people-discuz ul li {width:676px; overflow:hidden; padding:20px; border-bottom:1px solid #ddd;}
+.comm-discuz .people-discuz .people-discuz-content {clear:both; margin-top:20px; line-height:22px; text-indent:2em;}
+
+
+input, textarea {  
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
+} 
+input, textarea {  
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #eee), to(#FFFFFF));  
+    background: -moz-linear-gradient(top, #FFFFFF, #eee 1px, #FFFFFF 25px);  
+} 
+
+#material-light-box {border:1px solid #ddd; background:#fff; position:fixed; left:0; top:0; width:500px; z-index:99; display:none;}
+#material-light-box .title {padding:10px 20px; color:#fff; background:#333; width:460px; height:25px; line-height:25px;}
+#material-light-box .title .fr {cursor:pointer; border:1px solid #fff; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;}
+#material-light-box .title .fr:hover {background:#999;}
+#material-light-box .content {padding:20px; background:#fff; height:320px; overflow:auto;}
+#material-light-box .content ul li {height:35px; line-height:35px; padding:10px 0; border-bottom:1px dashed #ddd; cursor:pointer;}
+#material-light-box .content ul li:hover {background:#eee; border:1px solid #ddd;}
+#material-light-box .content .material-img {float:left; margin-left:5px;}
+#material-light-box .content .material-img img {border:1px solid #ddd; width:55px; height:33px;}
+#material-light-box .content .material-name {float:left; margin-left:20px; font-size:12px;}
+#material-light-box .content .material-price {float:right; margin-right:5px; font-size:12px; color:#990033; font-weight:blod;}
+
+.area-creative .d_bg {width:960px; margin:0 auto; background:url(../images/comm/3d_printer_bg.jpg); }
+.area-shop .d_bg {width:960px; margin:0 auto; background:url(../images/comm/3d_store_bg.jpg); }
+
+
+
+
+

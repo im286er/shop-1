@@ -1,0 +1,31 @@
+<include file="Common:pageheader_start" />
+<include file="Common:pageheader_end" />
+<div id="Right">
+	<div class="contentArea">
+		<div class="Item hr">
+			<!-- 
+			<div class="current">{$currentNav}</div>
+			 -->
+			 <div class="current">添加商品主类型</div>
+		</div>
+		
+		<form action="" method="post">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0"
+				class="table1">
+				<tr>
+					<th width="120">商品主类型名称：</th>
+					<td><input name="maintype_name" type="text" class="input" size="40"
+						value="" /></td>
+				</tr>
+				<tr>
+					<th valign="top">说明：</th>
+					<td><textarea name="maintype_desc" cols="100" rows="3"></textarea></td>
+				</tr>
+			</table>
+		</form>
+		<div class="commonBtnArea">
+			<button class="btn submit">提交</button>
+		</div>
+	</div>
+</div>
+<include file="Common:pagefooter" />

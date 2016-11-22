@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/yagami_global.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>检索结果 - DVS3D Library</title>
+<!-- InstanceEndEditable -->
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<link href="__PUBLIC__/themes/default/css/init.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/themes/default/css/yagami.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.js"></script>
+<!-- InstanceBeginEditable name="head" -->
+<script type="text/javascript" src="__PUBLIC__/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/history.js"></script>
+<script type="text/javascript">
+
+var myHistory = new HistoryStack();
+myHistory.load();
+
+function do_add(href)
+{
+    //var num = Math.round(Math.random() * 1000);
+	if ((href != 'javascript:void(0);') && (href != myHistory.getCurrent())){
+		var subhref = href.substr(0,8);
+		if (subhref != 'down.php'){
+			myHistory.addResource(href);
+			display();	
+		}
+	}
+	return false;
+}
+
+function do_back()
+{
+    myHistory.go(-1);
+    display();
+}
+
+function do_forward()
+{
+    myHistory.go(1);
+    display();
+}
+
+function do_reload()
+{
+    myHistory.go(0);
+}
+
+
+function display()
+{
+    // Display history buttons
+    var str = '<li class="icon home"><a href="__APP__/store"><span>主页</span></a></li>';
+
+    if (myHistory.hasPrev()) {
+		str += '<li class="icon notext back"><a href="javascript:void(0);" onclick="do_back(); return false;"><span>后退</span></a></li>';
+    } else {
+		str += '<li class="icon notext back"><a href="javascript:void(0);"><span>后退</span></a></li>';
+    }
+    if (myHistory.hasNext()) {
+		str += '<li class="icon notext forward"><a href="javascript:void(0);" onclick="do_forward(); return false;"><span>前进</span></a></li>';
+    } else {
+		str += '<li class="icon notext forward"><a href="javascript:void(0);"><span>前进</span></a></li>';
+    }
+    document.getElementById("nav").innerHTML = str;
+
+    // Display the current history stack, highlighting the current
+    // position.
+	/*
+    var str = '<div>History:</div>';
+    for (i=0; i < myHistory.stack.length; i++) {
+        if (i == myHistory.current) {
+            str += '<div><b>' + myHistory.stack[i] + '</b></div>';
+        } else {
+            str += '<div>' + myHistory.stack[i] + '</div>';
+        }
+    }
+    document.getElementById("output").innerHTML = str;
+	*/
+}
+</script>
+<script type="text/javascript">
+function showLoader(){
+	//$('.loading').fadeIn(200);
+	$('.ajaxtips').attr("class", "ajaxtips load");
+	$('.ajaxtips').fadeIn(200);
+}
+	
+function hideLoader(){
+	$('.ajaxtips').fadeOut(200);
+	//$('.loading').fadeOut(200);
+	
+	var cur_page = parseInt($("#currentPage").val());
+	var total_page = parseInt($("#totalPage").text());
+	
+	if (cur_page >= total_page){
+		$('#loadPageNext').addClass('disabled');
+	}else{
+		$('#loadPageNext').removeClass('disabled');
+	}
+	
+	if (cur_page == 1){
+		$('#loadPagePre').addClass('disabled');
+	}else{
+		$('#loadPagePre').removeClass('disabled');
+	}
+};
+
+function clickIt(act){
+	$("#ajax_act").val(act);
+	$("#currentPage").val(1);
+	$("#totalPage").load("ajax.php?" + act + "&show=num", function(res){
+		showLoader();
+		if (res == 0){
+			//alert('f');
+			$(".controls.fr.topline").hide();
+		}else{
+			$(".controls.fr.topline").show();
+		}
+		$("#items").load("ajax.php?" + act + "&page=1", hideLoader);	
+	});
+}
+$(document).ready(function(){
+	
+	//history
+	display();
+	
+	$("a:not(#filter_info,#filter_format,#filter_price)").live('click', function(event){
+		//alert($(this).attr('href'));
+		var href = $(this).attr('href');
+		do_add(href);
+	});
+	
+	if ($("#searchbox").val().length <= 0){
+		$("#lab_startsearch").show();	
+	}
+	
+	$("#navsearch").submit(function(){
+		var key_word = $("#searchbox").val();
+		key_word = key_word.replace(/^\s+|\s+$/g,"");
+		key_word = key_word.replace("%", "[%]");
+		if (key_word.length <= 0){
+			return false;	
+		}else{
+			//var href = 'search.php?searchbox=' + UrlEncode(key_word);
+			var url_keyword = encodeURIComponent(key_word);
+			var href = 'search.php?searchbox=' + url_keyword;
+			do_add(href);
+		}
+	});
+	
+	/*
+	$("#navsearch").submit(function(){
+		$("#searchbox").val('');
+	});
+	*/
+	
+	$("#menu_list ul.menu_body").css('display','none');
+	
+	$("#menu_list ul.menu_body li a").click(function(){
+		$(this).parent("li").addClass("t").siblings("li").removeClass("t");
+	 }
+	);
+	
+	
+	$("#filter_price").click(function(){
+		//$("#filter_price ul").slideToggle();
+		var info_act = $("#info_act").val();
+		var format_act = $("#format_act").val();
+		var price_act = $("#price_act").val();
+		//alert(format_act);
+		if (price_act == 1){
+			$("#price_act").val(0);
+			$("#filter_price ul").fadeOut(200);
+		}else{
+			$("#price_act").val(1);
+			$("#filter_price ul").fadeIn(200);	
+			if (info_act == 1){
+				$("#info_act").val(0);
+				$("#filter_info ul").fadeOut(200);	
+			}
+			if (format_act == 1){
+				$("#format_act").val(0);
+				$("#filter_format ul").fadeOut(200);	
+			}
+		}
+	});
+	
+	$("#filter_price").focusout(function(){
+		//$("#filter_price ul").slideToggle();
+	});
+	
+	$("#all_price li").click(function(){
+		$("#show_price").text($(this).text());
+		var filter = $(this).attr('filter');
+		var ajax_act = $("#ajax_act").val();
+		var pattern = /(&|\?)price=[^&]+/;
+		ajax_act = ajax_act.replace(pattern,"");
+		ajax_act += '&price=' + filter;
+		clickIt(ajax_act);
+		$("#filter_price ul").fadeOut(200);
+	});
+	
+	$("#filter_info").click(function(){
+		//$("#filter_info ul").slideToggle();
+		var info_act = $("#info_act").val();
+		var format_act = $("#format_act").val();
+		var price_act = $("#price_act").val();
+		
+		if (info_act == 1){
+			$("#info_act").val(0);
+			$("#filter_info ul").fadeOut(200);
+		}else{
+			$("#info_act").val(1);
+			$("#filter_info ul").fadeIn(200);
+			if (format_act == 1){
+				$("#format_act").val(0);
+				$("#filter_format ul").fadeOut(200);
+			}
+			if (price_act == 1){
+				$("#price_act").val(0);
+				$("#filter_price ul").fadeOut(200);
+			}
+		}
+	});
+	
+	$("#all_info li").click(function(){
+		$("#show_info").text($(this).text());
+		var filter = $(this).attr('filter');
+		var ajax_act = $("#ajax_act").val();
+		var pattern = /(&|\?)filter=[^&]+/;
+		ajax_act = ajax_act.replace(pattern,"");
+		ajax_act += '&filter=' + filter;
+		clickIt(ajax_act);
+		$("#filter_info ul").fadeOut(200);
+	});
+	
+	$("#filter_format").click(function(){
+		//$("#filter_format ul").slideToggle();
+		var info_act = $("#info_act").val();
+		var format_act = $("#format_act").val();
+		var price_act = $("#price_act").val();
+		//alert(format_act);
+		if (format_act == 1){
+			$("#format_act").val(0);
+			$("#filter_format ul").fadeOut(200);
+		}else{
+			$("#format_act").val(1);
+			$("#filter_format ul").fadeIn(200);	
+			if (info_act == 1){
+				$("#info_act").val(0);
+				$("#filter_info ul").fadeOut(200);	
+			}
+			if (price_act == 1){
+				$("#price_act").val(0);
+				$("#filter_price ul").fadeOut(200);
+			}
+		}	
+	});
+	
+	$("#all_format li").click(function(){
+		$("#show_format").text($(this).text());
+		var ajax_act = $("#ajax_act").val();
+		var pattern = /(&|\?)tools=[^&]+/;
+		ajax_act = ajax_act.replace(pattern,"");
+		ajax_act += '&tools=' + $(this).val();
+		clickIt(ajax_act);
+		$("#filter_format ul").fadeOut(200);
+	});
+	
+	var showBar = {$showBar};
+	if (showBar == 0){
+		$("#menu_list ul.menu_body").css('display','none');	
+		
+		$("#menu_list li.menu_handle").click(function(){
+			var menu_hand = $("#menu_hand").val();
+			if ($(this).index() == menu_hand){
+				$(this).next("ul.menu_body").siblings("ul.menu_body").slideUp("slow");	
+			}else{
+				$("#menu_hand").val($(this).index());
+				$(this).next("ul.menu_body").slideToggle(300).siblings("ul.menu_body").slideUp("slow");	
+			}
+			$("#menu_list").find("li.t").removeClass("t");
+			$(this).attr("class","t").siblings("li").removeClass("t");
+			//$(this).find("li a").removeClass("t");
+	 	});
+	}
+	
+	$("#menu_list ul.menu_body li a").click(function(){
+		$("#menu_list").find("li.t").removeClass("t");
+		$(this).parent("li").addClass("t").siblings("li").removeClass("t");
+	 }
+	);
+	
+	$("#isAssembly").click(function(){
+		var info_act = $("#info_act").val();
+		var format_act = $("#format_act").val();
+		var price_act = $("#price_act").val();
+		if (format_act == 1){
+			$("#format_act").val(0);
+			$("#filter_format ul").fadeOut(200);
+		}
+		if (info_act == 1){
+			$("#info_act").val(0);
+			$("#filter_info ul").fadeOut(200);
+		}
+		if (price_act == 1){
+				$("#price_act").val(0);
+				$("#filter_price ul").fadeOut(200);
+		}
+		var ajax_act = $("#ajax_act").val();
+		ajax_act = ajax_act.replace(/(&|\?)isAssembly=[^&]+/,"");
+		if ($(this).attr("class") == 'checkbox checked'){
+			ajax_act += '&isAssembly=0';
+			clickIt(ajax_act);
+			$(this).removeClass("checked");
+		}else{
+			ajax_act += '&isAssembly=1';
+			clickIt(ajax_act);
+			$(this).addClass("checked");
+		}
+	 }
+	);
+	
+	$("#isAnimation").click(function(){
+		var info_act = $("#info_act").val();
+		var format_act = $("#format_act").val();
+		var price_act = $("#price_act").val();
+		if (format_act == 1){
+			$("#format_act").val(0);
+			$("#filter_format ul").fadeOut(200);
+		}
+		if (info_act == 1){
+			$("#info_act").val(0);
+			$("#filter_info ul").fadeOut(200);
+		}
+		if (price_act == 1){
+				$("#price_act").val(0);
+				$("#filter_price ul").fadeOut(200);
+		}
+		var ajax_act = $("#ajax_act").val();
+		ajax_act = ajax_act.replace(/(&|\?)isAnimation=[^&]+/,"");
+		if ($(this).attr("class") == 'checkbox checked'){
+			ajax_act += '&isAnimation=0';
+			clickIt(ajax_act);
+			$(this).removeClass("checked");
+		}else{
+			ajax_act += '&isAnimation=1';
+			clickIt(ajax_act);
+			$(this).addClass("checked");
+		}
+	 }
+	);
+	
+	/*
+	$("#menu_list li.menu_handle").click(function(){
+		$(this).next("ul.menu_body").slideToggle(300).siblings("ul.menu_body").slideUp("slow");
+		$(this).attr("class","t").siblings("li").removeClass("t");
+	 }
+	);
+	*/
+
+	$("#currentPage").change(function(){
+		var cur_page = parseInt($("#currentPage").val());
+		var next_page = cur_page;
+		var total_page = parseInt($("#totalPage").text());
+		var ajax_act = $("#ajax_act").val();
+		if ((next_page <= total_page) && (next_page >= 1)){
+			showLoader();
+			$("#currentPage").attr('value', next_page);
+			$("#items").load("ajax.php?" + ajax_act + "&page=" + next_page, hideLoader);
+		
+		}
+		return false;
+	});
+	
+	$("#loadPageNext").click(function(){
+		var cur_page = parseInt($("#currentPage").val());
+		var next_page = cur_page + 1;
+		var total_page = parseInt($("#totalPage").text());
+		var ajax_act = $("#ajax_act").val();
+		if ((next_page <= total_page) && (next_page >= 1)){
+			showLoader();
+			$("#currentPage").attr('value', next_page);
+			
+			$("#items").load("ajax.php?" + ajax_act + "&page=" + next_page, hideLoader);
+		
+		}
+		return false;
+	});
+	
+	$("#loadPagePre").click(function(){
+		var cur_page = parseInt($("#currentPage").val());
+		var pre_page = cur_page - 1;
+		var total_page = parseInt($("#totalPage").text());
+		var ajax_act = $("#ajax_act").val();
+		if ((pre_page >= 1) && (pre_page <= total_page)){
+			showLoader();
+			$("#currentPage").attr('value', pre_page);
+			$("#items").load("ajax.php?" + ajax_act + "&page=" + pre_page, hideLoader);
+		}
+		return false;
+	});
+	
+	showLoader();
+	$("#items").load("ajax.php?{$ajax_act}&page=1", hideLoader);
+});
+</script>
+<!-- InstanceEndEditable -->
+</head>
+<body>
+<div class="header">
+    <div class="logo fl"><a href="__APP__"><img src="__PUBLIC__/themes/default/images/common/logo.png" alt="" /><span>DVS3D Library</span></a></div>
+    <div class="wslogo fr"><img src="__PUBLIC__/themes/default/images/common/ws_logo.png" alt="" /></div>
+</div>
+<div class="container">
+<!-- InstanceBeginEditable name="maincontent" -->
+  <div class="navbar basic">
+    <div class="navsearch-container fr">
+      <form class="navsearch" action="search.php" method="post" id="navsearch">
+        <input id="searchbox" name="tags" type="text" value="" />
+        <label id="lab_startsearch" style="display:none">Search ...</label>
+        <input type="hidden" id="format_act" value="" />
+        <input type="hidden" id="info_act" value="" />
+        <input type="hidden" id="price_act" value="" />
+        <input type="hidden" id="ajax_act" value="{$ajax_act}" />
+        <button type="submit">搜索</button>
+      </form>
+      <script type="text/javascript">
+			$("#searchbox").focus(function(){
+				$("#lab_startsearch").fadeOut();
+			});
+			$("#lab_startsearch").click(function(){
+				$("#searchbox").focus();
+				return false;
+			});
+			$("#searchbox").focusout(function(){
+				//$("#searchbox").val().length > 0 ?  alert($("#searchbox").val()) : $("#lab_startsearch").fadeIn();
+				if ($("#searchbox").val().length <= 0){
+					$("#lab_startsearch").fadeIn();
+				}
+			});
+	  </script> 
+    </div>
+    <ul class="nav" id="nav">
+    <!--
+      <li class="icon home"><a href="index.php"><span>主页</span></a></li>
+		<li class="icon help"><a href="welcome.html"><span>帮助</span></a></li> -->
+    </ul>
+    <!--
+    <div class="loading hide"> <img src="images/yagami/common/ajax-loader.gif" alt="" /> </div>
+    -->
+    <div class="pointinfo">可用点数： <i>{$userPoints}<i><a href="myorder.php">消费记录</a></div>
+  </div>
+  <div class="content store">
+    <div id="accordion" class="sidebar fl"><{$slideBar}></div>
+    <script type="text/javascript">
+		var h3 = 0;
+		$("#accordion h3").each(function() {
+			h3+=$(this).height()+3;			
+		});
+		$("#accordion div").height($("#accordion").height()-h3);
+		$(function() {
+			$('#accordion div').jScrollPane();
+		});
+		</script>
+    <div class="master-container">
+      <div class="master">
+      <{if $total_page > 0}>
+        <div class="controls fr topline"> <a id="loadPageNext" class="button page next fr"><span></span></a> <a id="loadPagePre" class="button page previous fr"><span></span></a>
+          <div class="pagecut fl">
+            <input type="text" value="1" name="currentPage" id="currentPage"/>
+            <span>/ <i id="totalPage"><{$total_page}></i></span></div>
+        </div>
+      <{/if}>
+        <h2>搜索  "<{$key_word}>"</h2>
+        <div class="items" id="items">
+         </div>
+        <div class="controls bottomline"><a id="filter_info" class="select thin"><span id="show_info">最近更新</span>
+          <ul id="all_info">
+            {foreach from=$sortarea item=list}
+            <li filter="{$list.value}">{$list.title}</li>
+          	{/foreach}
+          </ul>
+          </a><a id="filter_format" class="select thin"><span id="show_format">所有格式</span>
+          <ul id="all_format">
+          {foreach from=$toolinfo item=list}
+            <li value="{$list.value}">{$list.title}</li>
+          {/foreach}
+          </ul>
+          </a><a id="filter_price" class="select thin"><span id="show_price">所有价格</span>
+          <ul id="all_price">
+          {foreach from=$price_section item=list}
+            <li filter='{$list.value}'>{$list.title}</li>
+          {/foreach}
+          </ul>
+          </a><span id="isAssembly" class="checkbox"><span></span>可装配</span> <span id="isAnimation" class="checkbox"><span></span>包含动画</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="ajaxtips hide">正在加载，请稍后...</div>
+  <!-- InstanceEndEditable -->
+<div class="footer">©2012 3D Factory | <a href="javascript:void(0);">使用条款</a> | <a href="javascript:void(0);">购买点数</a> | <a href="javascript:void(0);">帮助</a></div> 
+</div>
+</body>
+<!-- InstanceEnd -->
+<div id="output" style="margin-top:40px;"></div>
+</html>

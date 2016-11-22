@@ -1,0 +1,140 @@
+<{include file=C('MICKYHEAD_START')}>
+<link rel="stylesheet" href="__PUBLIC__/css/user.css">
+<link rel="stylesheet" href="__PUBLIC__/css/fonts.css">
+
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/init.css?v121804" media="all">
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/doge.css?v121804" media="all">
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/jquery-ui.css" media="all">
+<script src="__NEOSTATIC__/js/jquery-1.11.2.min.js"></script>
+<script src="__NEOSTATIC__/js/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="__NEOSTATIC__/css/layerslider.css" type="text/css"> 
+<script src="__NEOSTATIC__/js/greensock.js"></script> 
+<script src="__NEOSTATIC__/js/layerslider.transitions.js"></script>
+
+<link href="__NEOSTATIC__/css/bootstrap.min.css">
+<link href="__NEOSTATIC__/css/doge.css">
+<!--<link href="__NEOSTATIC__/css/doge.diyediter.css">-->
+<script src="__NEOSTATIC__/js/jquery-1.11.2.min.js"></script>
+<script src="__NEOSTATIC__/js/bootstrap.min.js"></script>
+<script src="__NEOSTATIC__/js/nstslider.jquery.js"></script>
+<{include file=C('MICKYHEADBRANDSTORY_END')}>
+
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title><{$dataAll.diy_cate.cate_name}></title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="__NEOSTATIC__/js/html5shim.js"></script>
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/doge.css">
+<!--<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/doge.diyediter.css">-->
+<script src="__NEOSTATIC__/js/jquery-1.11.2.min.js?v121804"></script>
+<script src="__NEOSTATIC__/js/bootstrap.min.js?v121804"></script>
+<script src="__NEOSTATIC__/js/nstslider.jquery.js?v121804"></script>
+<script src="__PUBLIC__/js/diy/plugins/common/js/build/common.min.js?<{$dataAll.diy_cate['version']}>"></script>
+<{foreach $dataAll.fontsArr as $item}>
+<script src="__PUBLIC__/js/diy/plugins/common/js/build/fonts/<{$item}>.js"></script>
+<{/foreach}>
+<script src="__PUBLIC__/js/diy/plugins<{$dataAll.diy_cate['jspath']}>?<{$dataAll.diy_cate['version']}>"></script>
+</head>
+
+<body class="page-jewelry">
+<div class="container diy">
+<div class="left_inf fr"> 
+
+<iframe src="__APP__/diy-snapdetailall-pid-<{$pid}>-upid-<{$upid}>-showtype-0.html" allowfullscreen="false" width="800" height="500" style="z-index:1000;" scrolling="no"></iframe>
+
+
+<script> 
+
+var webpath="__PUBLIC__"; 
+var neowebpath="__NEOSTATIC__"; 
+var pid = document.getElementById("pid").value;
+var canvas = document.getElementById("web3dViewport");
+
+<{foreach $mcate as $res}> 
+var pma_diy_formula_s_<{$res.pma_id}>="<{$res.pma_diy_formula_s}>";
+var pma_diy_formula_b_<{$res.pma_id}>="<{$res.pma_diy_formula_b}>";
+var pma_necklace_price_<{$res.pma_id}>="<{$res.pma_necklace_price}>";
+<{/foreach}>
+
+var pmg_global_background = neowebpath+"/imgs/etc/diybg/" + Utils.getRandomInt(1, 15) + ".jpg";
+var islogin=parseInt(<{$islogin}>);
+
+// 材质管理器
+var materialManage = new MaterialManage(webpath+"/js/diy/plugins/common/textures/", ".jpg");
+
+var zExecute = execute(false);
+
+// 生成模型
+var saveModel = document.getElementById("savemodel");
+if(saveModel !== null) {
+    saveModel.onclick = function() {
+        ZPost.createModel(zExecute.saveToSTL(false), pid);
+    };
+}
+
+</script>
+<script src="__NEOSTATIC__/js/doge.webglchk.js"></script>
+<script>
+$(document).ready(function(e) {
+	$(".prd-gal").layerSlider({
+		pauseOnHover: false,
+		navStartStop: false,
+		showCircleTimer: false,
+		skin: 'fullwidth',
+        skinsPath: '__NEOSTATIC__/js/ls-skins/'
+	});
+    $("#go-ordergen").click(function(e) {
+        $("html, body").animate({
+            scrollTop: $("#gohere").offset().top + "px"
+        }, {
+            duration: 500,
+            easing: "swing"
+        });
+        return false;
+    });
+
+    var iswgl = isSupportWebGL();
+    // miaomin added@2015.7.13
+    var isdiamond_new="<{$cinfo.isdiamond}>";
+    //var isdiamond="<{$cinfo.cate_type}>";
+
+
+
+    /**
+     * 对浏览器是否支持WEBGL做出判断如果不支持页面跳转至非DIY物品
+     */
+// console.log(iswgl);
+//		iswgl = 0;
+//$(".prd-introframe").hide();
+    if(isdiamond_new==1){
+        $(".prd-diyframe").show().html("<iframe class=\"webeditor\" src=\"__APP__/diy-jewelryeditall-pid-<{$pid}>-cid-<{$cid}>-showtype-<{$showtype}>\" frameborder=\"0\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" seamless ></iframe>");
+    }else{
+        if (iswgl) {
+            $(".prd-diyframe").show().html("<iframe class=\"webeditor\" src=\"__APP__/diy-jewelryeditall-pid-<{$pid}>-cid-<{$cid}>-showtype-<{$showtype}>\"  frameborder=\"0\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" seamless ></iframe>");
+        } else {
+            // $(".prd-diyframe").fadeIn(500).html("<div class=\"info\">更多精彩正在等着您，但是您需要升级一下酷炫的浏览体验。<!--<br>很抱歉，您的浏览器不支持或尚未开启WEBGL。--><a href='__DOC__/index/help-index-id-122' target='_blank'>了解如何获得WEBGL支持 &gt;</a></div>").addClass("nowgl");
+            // 跳转至非DIY物品
+            top.location.href="__APP__/product-detail-id-<{$cpid}>.html";
+        }
+    }
+//	});
+    $(".author").delay(1000).fadeTo(500, 1);
+});
+var showtype =<{$showtype}>
+if(showtype == 10) {
+
+    //$('.left-func').hide();
+    $('.prd-introframe').hide();
+    //$('#web3dSaveBuy').hide();
+    $('.prd-diyframe').hide();
+    $('.dividing').hide();
+    $('.contentex').hide();
+    $('.box1').hide();
+    $('#web3dSave').hide();
+}
+</script> 
+<{include file=C('MICKYFOOT')}>

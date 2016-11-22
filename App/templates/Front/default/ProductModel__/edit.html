@@ -1,0 +1,353 @@
+<{include file=C('HEADPAGE_START')}>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.tagsinput.min.js"></script>
+<{include file=C('HEADPAGE_END')}>
+	<script type="text/javascript" src="__PUBLIC__/js/swfupload/swfupload.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/swf_product/photo.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery-ui-1.10.3.interactions.min.js"></script>
+	<div class="ajaxinfo">
+		<h3>请求处理中...</h3>
+	</div>
+	<div class="blackmask"></div>
+	<div class="frm-upload">
+		<div class="inner">
+			<h2>添加效果图<a id="bfrm-2" class="bfrm fr" href="javascript:void(0);">X</a></h2>
+			<div class="drager">
+				<div style="margin: 50px 170px">
+			</div>
+		</div>
+		<div class="drager-info">
+			<ol>
+				<li>效果图支持不超过10MB的png或jpg文件。</li>
+				<li>您上传图片后系统会自动生成 600*600、800*800、1200*1200 三种规格的缩略图。</li>
+				<li>不要挑战管理员的权威，珍惜自己的节操。</li>
+			</ol>
+		</div>
+		<a href="javascript:void(0);" class="white-btn button small" id="bfrm-1">取消</a>
+	</div>
+</div>
+<div class="container upanel">
+	<form action="" method="post">
+		<h2 class="titlebar">编辑模型 <{$Product[$DBF_P->Name]}> 
+        	<div class="fr action" style="margin-top: -7px;">
+			<input type="submit" id="submit" value="&nbsp;保&nbsp;&nbsp;存&nbsp;" class="btn btn--warning submit" />
+            <!--<input type="submit" id="draft" value="存为草稿" class="btn btn--info" />-->
+            <a id="cancelupload" href="<{$U_Home}>" id="cancelst" style=" font-size: 14px; padding-left: 20px;">取消</a></div>
+			</h2>
+			
+            <div class="cart-breadcrumbs">
+                <ol>
+                    <li class=""><a href="<{$U_Upload}>/pid/<{$PID}>">1. 上传3D模型</a></li>
+                    <li class="arrow pass"></li>
+                    <li class="pass"><a href="javascript:void(0);">2. 添加模型详情</a></li>
+                    <li class="arrow"></li>
+                    <li class=""><{if $PID}><a href="__DOC__/user.php/webgl/index/pid/<{$PID}>"><{/if}>3. 设置在线3D预览 <font color="#999999">(可选)</font><{if $PID}></a><{/if}></li>
+                </ol>
+            </div>
+		<div class="content uploads">
+			<div class="rightbar">
+				
+                <div class="modellic">
+					<h3>模型类型<b>*</b></h3>
+					<div class="lichoose">
+						<input type="radio" name="lictype" value="1" <{if $Product[$DBF_P->LicType] == 1}>checked="checked"<{/if}> />
+						<label>出售模型</label>
+						<input type="radio" name="lictype" value="0" <{if $Product[$DBF_P->LicType] == 0}>checked="checked"<{/if}> />
+						<label>模型分享</label>
+					</div>
+					<ul class="lictypedis">
+						<li class="lictype1"> <input type="checkbox" checked="checked" />已阅读3D城 <a href="__APP__/help-index-id-91" target="_blank" style="color: #F00">出售协议</a>，了解 <a href="__APP__/help-index-id-88" target="_blank" style="color: #F00">出售模型规范</a></li>
+						<li class="lictype2"> <input type="checkbox" checked="checked" />已阅读3D城 <a href="__APP__/help-index-id-97" target="_blank" style="color: #F00">版权声明</a>，了解 <a href="__APP__/help-index-id-87" target="_blank" style="color: #F00">共享模型规范</a></li>
+						<li class="lictype0">请选择该模型的授权类型。<a href="#" title="了解更多" class="fr"><span class="tips-icon help"></span></a></li>
+					</ul>
+				</div>
+              
+				<div class="etcfileds">
+					<h3>发布设定</h3>
+					<table>
+                   
+                    <input name="shareby" type="hidden" id="shareby">
+						<!--<tr>
+							<th>分享方式<b>*</b></th>
+							<td>
+								
+                                
+                                <select id="licenseselect" name="shareby">
+									<{html_options options=$HtmlCtrl['shareby'] selected=$Product[$DBF_P->DownloadLimit]}>
+								</select></td>
+						</tr>-->
+						<tr class="islicense">
+							<th>价格(￥)<b>*</b></th>
+							<td>
+								<input type="text" name="price" value="<{$Product[$DBF_P->Price]}>" /></td>
+						</tr>
+						<tr class="islicense_free">
+							<td colspan="2">
+							模型分享可以获得一定的积分
+							</td>
+						</tr><input type="hidden" name="vprice" value=2 />
+                        <!--
+						<tr class="catlicense">
+							<th>所需积分 2</th>
+							<td>
+								</td>
+						</tr>-->
+						<!--<tr class="catlicense">
+							<td colspan="2">
+								<div class="tips nobg"><input type="checkbox" checked="checked" />已阅读蔚图网 <a href="__APP__/help-index-id-97" target="_blank"><font color="#FF0000">版权声明</font> </a>.  <a href="__APP__/help-index-id-87" target="_blank"><font color="#999">【上传共享标准】</font></a></div>
+							</td>
+						</tr>-->
+					</table> 
+				
+				<!--  <div class="islicense">
+						<h3>授权方式</h3>
+						<table>
+							
+							<tr>
+								<th>许可证<b>*</b></th>
+								<td>
+									<select name="shareby1">
+										<option value="6">常规免版权税许可</option>
+									</select>
+								</td>
+							</tr>
+                                                             
+
+							<tr>
+								<th></th>
+								<td><a href="#">了解许可证细则</a></td>
+							</tr>
+						</table>
+					</div> --> 
+                    <input type="hidden" value=1 name="shareby1">
+					<input type="hidden" value=1 name="sharebyother">
+                   <!-- <div class="freelicense">
+						<h3>授权方式</h3>
+						<table>
+							<tr>
+								<th>许可证<b>*</b></th>
+								<td>
+									<select name="sharebyother">
+										<option value="0">- 请选择 -</option>
+										<{html_options options=$HtmlCtrl['permitother'] selected=$Product[$DBF_P->License]}>
+									</select></td>
+							</tr>
+							<tr>
+								<th></th>
+								<td><a href="#">什么是免费许可?</a> | <a href="http://creativecommons.org/licenses/?lang=zh">了解创作公用</a></td>
+							</tr>
+						</table>
+					</div>
+                     --> 
+					<h3>模型基本参数</h3>
+					<table>
+						<tr>
+							<th>几何体类型<b class="ore">*</b></th>
+							<td>
+								<select name="geometry">
+									<{html_options options=$HtmlCtrl['geometry'] selected=$Product[$DBF_PM->Geometry]}>
+								</select></td>
+						</tr>
+						<tr>
+							<th>多边形面数<b class="ore">*</b></th>
+							<td>
+								<input type="text" name="mesh" value="<{$Product[$DBF_PM->Mesh]}>" /></td>
+						</tr>
+						<tr>
+							<th>顶点数<b class="ore">*</b></th>
+							<td>
+								<input type="text" name="vertices" value="<{$Product[$DBF_PM->Vertices]}>" /></td>
+						</tr>
+						<tr>
+							<th>包含贴图<b>*</b></th>
+							<td>
+								<input type="radio" name="istexture" value="1" <{if $Product[$DBF_PM->IsTexture] == 1}>checked="checked"<{/if}> />
+								<label>是</label>
+								<input type="radio" name="istexture" value="0" <{if $Product[$DBF_PM->IsTexture] == 0}>checked="checked"<{/if}> />
+								<label>否</label>
+							</td>
+						</tr>
+						<tr>
+							<th>包含材质<b>*</b></th>
+							<td>
+								<input type="radio" name="ismaterials" value="1" <{if $Product[$DBF_PM->IsMaterials] == 1}>checked="checked"<{/if}> />
+								<label>是</label>
+								<input type="radio" name="ismaterials" value="0" <{if $Product[$DBF_PM->IsMaterials] == 0}>checked="checked"<{/if}> />
+								<label>否</label></td>
+						</tr>
+						<tr>
+							<th>包含动画<b class="ore">*</b></th>
+							<td>
+								<input type="radio" name="isanimation" value="1" <{if $Product[$DBF_PM->IsAnimation] == 1}>checked="checked"<{/if}> />
+								<label>是</label>
+								<input type="radio" name="isanimation" value="0" <{if $Product[$DBF_PM->IsAnimation] == 0}>checked="checked"<{/if}> />
+								<label>否</label></td>
+						</tr>
+						<tr>
+							<th>包含绑定<b class="ore">*</b></th>
+							<td>
+								<input type="radio" name="isrigged" value="1" <{if $Product[$DBF_PM->IsRigged] == 1}>checked="checked"<{/if}> />
+								<label>是</label>
+								<input type="radio" name="isrigged" value="0" <{if $Product[$DBF_PM->IsRigged] == 0}>checked="checked"<{/if}> />
+								<label>否</label></td>
+						</tr>
+						<tr>
+							<th>UV展开<b class="ore">*</b></th>
+							<td>
+								<input type="radio" name="isuvlayout" value="1" <{if $Product[$DBF_PM->IsUVLayout] == 1}>checked="checked"<{/if}> />
+								<label>是</label>
+								<input type="radio" name="isuvlayout" value="0" <{if $Product[$DBF_PM->IsUVLayout] == 0}>checked="checked"<{/if}> />
+								<label>否</label></td>
+						</tr>
+						<tr>
+							<th>3D打印<b class="ore">*</b></th>
+							<td>
+								<input type="radio" name="isprint" value="1" <{if $Product[$DBF_PM->IsPrint] == 1}>checked="checked"<{/if}> />
+								<label>是</label>
+								<input type="radio" name="isprint" value="0" <{if $Product[$DBF_PM->IsPrint] == 0}>checked="checked"<{/if}> />
+								<label>否</label></td>
+						</tr>
+						<input type="hidden" name="unwrappeduvs" value="1">                    
+                        <!--<tr>
+                        
+							<th>UV展开方式<b class="ore">*</b></th>
+							<td>
+								<select name="unwrappeduvs">
+									<{html_options options=$HtmlCtrl['unwrappeduvs'] selected=$Product[$DBF_PM->UnWrappedUVs]}>
+								</select></td>
+						</tr>
+                       -->
+                       
+					</table>
+				</div>
+			</div>
+			<input type="text" name="name" value="<{$Product[$DBF_P->Name]}>" class="prdname" />
+			<div class="slidelist">
+				<ul id="photolist">
+				</ul>
+				<ul id="photolist_template" style="display: none;">
+					<li>
+						<img src="static/images/comm/blank.gif" alt="" />
+						<div class="imgconfig">
+							<div class="uploadinfo">
+								<h4></h4>
+								<span class="uploading"></span>
+							</div>
+							<div class="photoinfo">
+								<input type="text" name="title" />
+								<input type="radio" name="cover" /><i>设为封面</i>
+								<input type="hidden" name="photoid" />
+							</div>
+							<button type="button" name="delete">X</button>
+						</div>
+					</li>
+				</ul>
+				<div class="slidecon">
+					<!--button id="addpicture" type="button" class="grey-btn button small">添加效果图</button-->
+					<div style="float: left;">
+						<span id="swf_buttonplaceholder"></span>
+					</div>
+					<!--<div class="tips"><span class="tips-icon info"></span><i>效果图需要满足<a href="#" target="_blank">3D模型渲染标准</a></i></div>-->
+				</div>
+				<div class="clear-l"></div>
+				<script type="text/javascript">
+					$(document).ready(function (e) {
+					
+						$(".slidelist img").attr("title", "点住鼠标左键拖动，调整排序顺序");
+						$(".slidelist .imgconfig input[type='text']").attr("title", "输入图片备注");
+						$(".slidelist .imgconfig input[type='radio']").attr("title", "将这张图片设置为封面");
+						$(".slidelist .imgconfig button").attr("title", "删除");
+						$("#addpicture").click(function (e) {
+							$(".blackmask").fadeTo(500, 0.4);
+							$(".frm-upload").show();
+						});
+						$(".blackmask").click(function (e) { closefrm() });
+						$("a[id^='bfrm']").click(function (e) { closefrm() });
+						function closefrm() {
+							$("div[class^='frm']").hide();
+							$(".blackmask").fadeOut(50);
+						}
+					});
+				</script>
+			</div>
+			<div class="tr categories">
+				<h3>选择分类 (至少选择一项)<b>*</b></h3>
+				<select name="cate1">
+					<option value="0">CG模型分类</option>
+					<{html_options options=$HtmlCtrl['cate1'] selected=$Product[$DBF_P->Cate_1]}>
+				</select>
+				<select name="cate2">
+					<option value="0">3D打印模型分类</option>
+					<{html_options options=$HtmlCtrl['cate2'] selected=$Product[$DBF_P->Cate_2]}>
+				</select>
+			</div>
+			<div class="tr description">
+				<h3>描述<b class="ore">*</b></h3>
+				<textarea name="intro"><{$Product[$DBF_P->Intro]}></textarea>
+			</div>
+			<div class="tr tags">
+				<h3>标签<b class="ore">*</b></h3>
+				<div>
+					<input name="tags" id="tags" value="<{$Product[$DBF_P->Tags]}>" />
+				</div>
+				<div class="tips nobg"><span class="tips-icon info"></span><i>多个标签之间请以英文逗号 , 隔开。</i></div>
+			</div>
+			<!--<div class="tr modelfiles">
+				<h3>模型文件信息</h3>
+				<table cellpadding="0" cellspacing="0">
+					<tbody>
+						<tr>
+							<td>文件</td>
+							<td>文件大小</td>
+							<td>格式</td>
+							<td>版本</td>
+							<td>上传时间</td>
+							<td>状态</td>
+						</tr>
+						<{foreach $Product['filelist'] as $File}>
+						<tr>
+							<td>
+								<img alt="" src="__PUBLIC__/images/comm/files/zip_file.png" width="24" height="24" />
+								<{if $File[$DBF_PF->OriginalName]}><{$File[$DBF_PF->OriginalName]}><{else}><{$File[$DBF_PF->FileName]}><{/if}>
+								</td>
+							<td><{$File[$DBF_PF->FileSize_disp]}></td>
+							<td><{$File['pct_name']}> (<{$File['pct_ext']}>)</td>
+							<td><{$File[$DBF_PF->CTVersion]}></td>
+							<td><{$File[$DBF_PF->CreateDate]}></td>
+							<td><span class="tips-icon good"></span></td>
+						</tr>
+						<{/foreach}>
+					</tbody>
+				</table>
+			
+            	<a class="fr btn btn--info updatefile" href="<{$U_Upload}>/pid/<{$PID}>">编辑模型文件</a>
+				<div class="tips nobg"><span class="tips-icon info"></span><i>如果模型文件信息有误，请点击右边的“编辑模型文件”按钮。</i></div>
+			</div>-->
+		</div>
+		<div style="display: none;">
+			<input type="hidden" name="photoinfo" />
+			<input type="hidden" name="status" value="1"/>
+		</div>
+	
+	</form>
+</div>
+<script type="text/javascript">
+	var SessionID = '<{$SessionID}>';
+	var UploadUrl = '<{$U_UploadPhoto}>/pid/<{$PID}>';
+	var DeleteUrl = '<{$U_DeletePhoto}>';
+	var SubmitUrl = '<{$U_Upload}>/pid/<{$PID}>';
+	var ProductID = <{$PID}>;
+	var PublicUrl = '__PUBLIC__';
+	var WebRoot = '__DOC__';
+	var CoverID = '<{$Product[$DBF_P->Cover_ID]}>';
+
+	var ProductPhoto = '<{$JsonPhoto}>';
+	ProductPhoto = eval("(" + ProductPhoto + ")");
+	
+	
+	$('#tags').tagsInput({
+		'height':'120px',
+   		'width':'591px',
+		'defaultText':'点击添加模型标签'
+	});
+</script>
+<{include file=C('FOOTPAGE')}>

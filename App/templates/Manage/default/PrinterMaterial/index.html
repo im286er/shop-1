@@ -1,0 +1,50 @@
+<include file="Common:pageheader_start" />
+<include file="Common:pageheader_end" />
+<div class="contents">
+	<h3>材料列表</h3>
+	<if condition="$ErrInfo"><div class="errorinfo">{$ErrInfo}</div></if>
+	<div>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+			<tr>
+				<td width="120">材料名称</td>
+				<td width="100">起步价</td>
+				<td width="100">材料单价</td>
+				<td width="100">参考比重</td>
+				<td width="100">价格因子</td>
+				<td width="200">最大体积</td>
+				<td>操作</td>
+			</tr>
+			<volist name="PMList" id="item">
+			<tr>
+				<td>{$item.pma_name}</td>
+				<td>-</td>
+				<td>-</td>
+				<td>-</td>
+				<td>-</td>
+				<td>-</td>
+				<td>
+					<a href="__APP__/printer_material/edit/id/{$item.pma_id}">编辑</a>
+					<a href="__APP__/printer_material/delete/id/{$item.pma_id}">删除</a>
+				</td>
+			</tr>
+			<if condition="item.Child">
+			<volist name="item.Child" id="Childitem">
+			<tr>
+				<td>--{$Childitem.pma_name}</td>
+				<td>{$Childitem.pma_startprice|number_format=2}</td>
+				<td>{$Childitem.pma_unitprice|number_format=2}</td>
+				<td>{$Childitem.pma_density|number_format=2}</td>
+				<td>{$Childitem.pma_factor|number_format=2}</td>
+				<td>{$Childitem.pma_maxlength|number_format=2} * {$Childitem.pma_maxwidth|number_format=2} * {$Childitem.pma_maxheight|number_format=2}</td>
+				<td>
+					<a href="__APP__/printer_material/edit/id/{$Childitem.pma_id}">编辑</a>
+					<a href="__APP__/printer_material/delete/id/{$Childitem.pma_id}">删除</a>
+				</td>
+			</tr>
+			</volist>
+			</if>
+			</volist>
+		</table>
+	</div>
+</div>
+<include file="Common:pagefooter" />

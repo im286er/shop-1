@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/yagami_global.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>消费记录 - DVS3D Library</title>
+<!-- InstanceEndEditable -->
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<link href="__PUBLIC__/themes/default/css/init.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/themes/default/css/yagami.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.js"></script>
+<!-- InstanceBeginEditable name="head" -->
+<script type="text/javascript" src="__PUBLIC__/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/history.js"></script>
+
+<script type="text/javascript">
+function showLoader(){
+	//$('.loading').fadeIn(200);
+	$('.ajaxtips').attr("class", "ajaxtips load");
+	$('.ajaxtips').fadeIn(200);
+}
+	
+function hideLoader(){
+	//$('.loading').fadeOut(200);
+	$('.ajaxtips').fadeOut(200);
+	
+	var cur_page = parseInt($("#currentPage").val());
+	var total_page = parseInt($("#totalPage").text());
+	
+	if (cur_page == total_page){
+		$('#loadPageNext').addClass('disabled');
+	}else{
+		$('#loadPageNext').removeClass('disabled');
+	}
+	
+	if (cur_page == 1){
+		$('#loadPagePre').addClass('disabled');
+	}else{
+		$('#loadPagePre').removeClass('disabled');
+	}
+};
+
+function clickIt(act){
+	showLoader();
+	$("#items").load("ajax.php?" + act + "&page=1", hideLoader);
+	$("#totalPage").load("ajax.php?" + act + "&show=num");
+	$("#currentPage").val(1);
+	$("#ajax_act").val(act);
+}
+
+$(document).ready(function(){
+	
+	//history
+
+	
+	if ($("#searchbox").val().length <= 0){
+		$("#lab_startsearch").show();	
+	}
+	
+	$("a").live('click', function(event){
+		//alert($(this).attr('href'));
+		var href = $(this).attr('href');
+		do_add(href);
+	});
+	
+	$("#navsearch").submit(function(){
+		var key_word = $("#searchbox").val();
+		key_word = key_word.replace(/^\s+|\s+$/g,""); 
+		if (key_word.length <= 0){
+			return false;	
+		}else{
+			//var href = 'search.php?searchbox=' + UrlEncode(key_word);
+			var url_keyword = encodeURIComponent(key_word);
+			var href = 'search.php?searchbox=' + url_keyword;
+			do_add(href);
+		}
+	});
+	/*
+	$("#navsearch").submit(function(){
+		$("#searchbox").val('');
+	});
+	*/
+	
+	$("#menu_list ul.menu_body").css('display','none');
+	
+	$("#currentPage").change(function(){
+		var cur_page = parseInt($("#currentPage").val());
+		var next_page = cur_page;
+		var total_page = parseInt($("#totalPage").text());
+		var ajax_act = $("#ajax_act").val();
+		if ((next_page <= total_page) && (next_page >= 1)){
+			showLoader();
+			$("#currentPage").attr('value', next_page);
+			$("#orderlist").load("__DOC__/dvs.php/ajax/index/" + act + "/page/" + next_page, hideLoader);
+		
+		}
+		return false;
+	});
+	
+	$("#loadPageNext").click(function(){
+		var cur_page = parseInt($("#currentPage").val());
+		var next_page = cur_page + 1;
+		var total_page = parseInt($("#totalPage").text());
+		var ajax_act = $("#ajax_act").val();
+		if ((next_page <= total_page) && (next_page >= 1)){
+			showLoader();
+			$("#currentPage").attr('value', next_page);
+			
+			$("#orderlist").load("__DOC__/dvs.php/ajax/index/" + act + "/page/"  + next_page +"/myordertype/"+ myordertype, hideLoader);
+		
+		}
+		return false;
+	});
+	
+	$("#loadPagePre").click(function(){
+		var cur_page = parseInt($("#currentPage").val());
+		var pre_page = cur_page - 1;
+		var total_page = parseInt($("#totalPage").text());
+		var ajax_act = $("#ajax_act").val();
+		if ((pre_page >= 1) && (pre_page <= total_page)){
+			showLoader();
+			$("#currentPage").attr('value', pre_page);
+			$("#orderlist").load("__DOC__/dvs.php/ajax/index/" + act + "/page/" + pre_page+"/myordertype/"+ myordertype, hideLoader);
+		}
+		return false;
+	});
+	
+	$("#menu_list li.menu_handle").click(function(){
+		$(this).next("ul.menu_body").slideToggle(300).siblings("ul.menu_body").slideUp("slow");
+	 }
+	);
+	var act='<{$ajax_act}>';
+	var myordertype='<{$myordertype}>';
+	showLoader();
+	$("#orderlist").load("__DOC__/dvs.php/ajax/index/" + act + "/page/1/myordertype/" + myordertype, hideLoader);
+});
+</script>
+<!-- InstanceEndEditable -->
+</head>
+<body>
+
+<div class="container">
+<!-- InstanceBeginEditable name="maincontent" -->
+	<div class="navbar basic">
+		<div class="navsearch-container fr">
+		<form class="navsearch" action="search.php" method="post" id="navsearch">
+        <input id="searchbox" name="searchbox" type="text" value="" />
+        <label id="lab_startsearch" style="display:none">Search ...</label>
+        <input type="hidden" id="ajax_act" value="<{$ajax_act}>" />
+        <button type="submit">搜索</button>
+      </form>
+			<script type="text/javascript">
+			$("#searchbox").focus(function(){
+				$("#lab_startsearch").fadeOut();
+			});
+			$("#lab_startsearch").click(function(){
+				$("#searchbox").focus();
+				return false;
+			});
+			
+			$("#searchbox").focusout(function(){
+				//$("#searchbox").val().length > 0 ?  alert($("#searchbox").val()) : $("#lab_startsearch").fadeIn();
+				if ($("#searchbox").val().length <= 0){
+					$("#lab_startsearch").fadeIn();
+				}
+			});
+			
+			</script> 
+		</div>
+		<ul class="nav" id="nav">
+       
+    <li class="icon home"><a href="javascript:void(0)" onclick="ShowModel()"><span id="homename">本地资源</span></a></li>
+			 <!--<li class="icon help"><a href="welcome.html"><span>帮助</span></a></li> -->
+		</ul>
+        <div class="loading hide"> <img src="__PUBLIC__/themes/default/images/yagami/common/ajax-loader.gif" alt="" /> </div>
+    <div class="pointinfo"><{$uhtml}></div>
+	</div>
+	<div class="content store">
+		<div id="accordion" class="sidebar fl">
+			<{$slideBar}>
+		</div>
+		<script type="text/javascript">
+		var h3 = 0;
+		$("#accordion h3").each(function() {
+			h3+=$(this).height()+3;			
+		});
+		$("#accordion div").height($("#accordion").height()-h3);
+		$(function() {
+			$('#accordion div').jScrollPane();
+		});
+		</script>
+		<div class="master-container">
+			<div class="master">
+				<div class="controls fr topline"> <a id="loadPageNext" class="button page next fr"><span></span></a> <a id="loadPagePre" class="button page previous fr disabled"><span></span></a>
+          <div class="pagecut fl">
+            <input type="text" value="1" name="currentPage" id="currentPage"/>
+            <span>/ <i id="totalPage"><{$total_page}></i></span></div>
+        	</div>
+				<h2><{$showlink}></h2>
+				<div class="orderlist" id="orderlist">
+				</div>
+				<div class="controls bottomline"><a href="__APP__/store/mymodel/cateid/1" class="button normal"><span>前往我的模型库
+</span></a>
+				<div class="mrtext fr">您累计消费  <{$orderamount}> </div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="ajaxtips hide">正在加载，请稍后...</div>
+	<!-- InstanceEndEditable -->
+</div>
+</body>
+<!-- InstanceEnd -->
+<div id="output" style="margin-top:40px;"></div>
+</html>

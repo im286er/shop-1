@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>-{$site.SITE_INFO.name}</title>
+<php>
+$addCss="";
+$addJs="";
+$currentNav =' > ';
+</php>
+<include file="Common:intohead" />
+    <script>
+        KindEditor.ready(function(K) {var editor = K.editor({	allowFileManager : true});K('#pc_icon_img').click(function() {editor.loadPlugin('image', function() {editor.plugin.imageDialog({imageUrl : K('#pc_icon').val(),clickFn : function(url, title, width, height, border, align) {K('#pc_icon').val(url);editor.hideDialog();}});});});});
+    </script>
+</head>
+<body>
+<!-- AP Element::AjaxInfo //-->
+<div class="ajaxinfo">
+	<h3></h3>
+</div>
+<!-- End of AP Element::AjaxInfo //-->
+<div class="wrap"> <include file="Common:head" />
+	<div class="mainBody">
+        <include file="Common:left" />
+        <div id="Right">
+
+        <div class="masterpanel">
+                    <div class="nagiscroll" >
+                        <div class="nagi">
+                    <h2>全局分类设置</h2>
+                    <form action="" method="post">
+                        <table class="tab">
+                            <tr>
+                                <td>分类名称</td>
+                                <td><input type="text" name="cat_name" value="{$cat_info.pc_name}"/>
+                                    <span class="must">*</span></td>
+                            </tr>
+                            <tr>
+                                <td>排序</td>
+                                <td><input type="text" name="sort_order" value="{$cat_info.pc_dispweight}"/></td>
+                            </tr>
+                            <tr>
+                                <td>分类图标</td>
+                                <td><input type="text" id="pc_icon" name="pc_icon" value="{$cat_info.pc_icon}"/><input type="button" id="pc_icon_img" value="选择图片"></td>
+                            </tr>
+
+                            <tr>
+                                <td>父级分类</td>
+                                <td>
+                                    <select class="dropdown form" name="parent_id">
+                                        {$form_combo}
+                                    </select>
+                                    <span class="must">*</span></td>
+                            </tr>
+                            <tr>
+                                <th>TDK_title</th>
+                                <td>
+                                    <input type="text" name="tdk_title" value="{$cat_info.tdk_title}" style="width: 800px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>TDK_keywords</th>
+                                <td>
+                                    <input type="text" name="tdk_keywords" value="{$cat_info.tdk_keywords}" style="width: 800px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>TDK_description</th>
+                                <td>
+                                    <input type="text" name="tdk_description" value="{$cat_info.tdk_description}" style="width: 800px;">
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="buttonbar" style="margin-left: 260px;">
+                            <input type="hidden" name="cat_id" value="{$cat_info.pc_id}"/>
+                            <input type="hidden" name="old_parent_id" value="{$cat_info.pc_parentid}"/>
+                            <button class="btn" type="submit">确认修改</button>
+                            <button class="btn" type="button" id="goback">返回</button>
+                        </div>
+                    </form>
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $('#goback').click(function (e) { window.location.href = "__APP__/cates/index"; });
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div class="clear"></div>
+<include file="Common:foot" />
+</body>
+</html>

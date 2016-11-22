@@ -1,0 +1,61 @@
+/* 
+	Project Nyan ~ Core CSS. / (C)2012 Erinago / (C)2010-2012 Nagomi Mind
+	Rev. 1.0.2 / Last Update: June 15, 2012
+	
+	For Program 3D Factory Lite used only!
+*/ 
+/*
+body { font-size: 12px; background: #171B19 url(http://localhost/3DF//static/images/admin/background/lgoin_08.jpg) center center; font-family: Microsoft YaHei, arial, sans-serif; }
+a { color: #09F; text-decoration: none }
+a:hover { text-decoration: none }
+*/
+body { font-size: 12px; background: #171B19 url(../images/login_bg.jpg) center center; font-family: "微软雅黑" ,Microsoft YaHei, arial, sans-serif; }
+a { color: #09F; text-decoration: none }
+a:hover { text-decoration: none }
+
+/* page layouts */
+.bg { z-index: 50; background: #010101; }
+
+/* loginshell layouts */
+.loginshell { position: absolute; top: 90px; left: 0px; width: 430px; height: 480px; color: #FFF }
+.loginshell.face { z-index: 90 }
+.loginshell .ctr { height: 320px; padding: 40px 60px }
+.loginshell .ctr_footer { height: 40px; padding: 20px 60px; font-size: 15px }
+.loginshell h1 { padding: 0 0 23px; margin: 0px; line-height: 36px; font: 28px "微软雅黑" ,Microsoft YaHei, arial, sans-serif; }
+.loginshell h2 { padding: 0; margin: 0px; line-height: 24px; font: 20px "微软雅黑" ,Microsoft YaHei, arial, sans-serif; }
+.loginshell .ll_lable { padding-top: 5px; font-size: 12px; line-height: 14px }
+.loginshell .ll_input, .loginshell .ll_input input { width: 280px; height: 32px; }
+.loginshell .ll_input { position: relative; margin: 8px 0; }
+.loginshell .ll_input input { padding: 0px 10px; font-size: 14px; box-shadow: 0px 0px 3px #999 inset; -webkit-box-shadow: 0px 0px 3px #999 inset; -moz-box-shadow: 0px 0px 3px #999 inset; border: 1px solid #333; line-height: 30px !important; _line-height: 30px; }
+.loginshell .ll_input input:focus { background: #E6F2FF }
+.loginshell .ll_input h4 { position: absolute; top: 0px; left: 10px; color: #444; font-size: 14px; line-height: 32px; font-weight: normal; }
+.loginshell .ll_info { display: none; padding: 5px 0 3px; color: #F00 }
+
+.loginshell .llbuttom { padding-top: 15px }
+.loginshell .llbuttom button, .infoshell .llbuttom button { width: 90px }
+
+.infoshell { position: absolute; top: 90px; left: 50%; width: 400px; height: 340px; color: #FFF; margin-left: -200px; }
+.infoshell.face { z-index: 100 }
+.infoshell .ctr { height: 260px; padding: 45px 60px }
+.infoshell h1 { padding: 0; line-height: 64px; font-size: 64px; font-family: Arial; }
+.infoshell h2 { padding: 10px 0 25px 0;line-height: 36px; font-size: 30px; }
+.infoshell h3 { padding-top: 20px;line-height: 20px; font-size: 16px;  font-family: "微软雅黑" ,Microsoft YaHei, arial, sans-serif;}
+.infoshell .llbuttom { padding-top: 25px}
+/* buttons */
+button { height: 35px; padding: 0 15px; margin: 0; cursor: pointer; color: #FFF; font-size: 14px }
+button.blue { border: 1px solid #0085E8; background: #0072C6; }
+button.blue:active { border: 1px solid #0072C6 }
+button.blue:hover { border: 1px solid #0D98FF; background: #0082E1; }
+
+/* footbar */
+.footbar { position: fixed; bottom: 0px; width: 100%; height: 42px; color: #FFF; font-size: 14px; _position: absolute; _margin-top: expression(this.style.pixelHeight+document.documentElement.scrollTop); _bottom: 0px;  }
+.footbar.face { z-index: 100 }
+html .footbar.bg { z-index: 95 }
+.footbar ul li { float: left }
+.footbar a { display: block; padding: 0 26px; color: #FFF; line-height: 42px }
+.footbar a:hover { background: #666 }
+
+.runtime { position: fixed; right: 10px; bottom: 50px; width: 470px; height: 40px; _position: absolute; _margin-top: expression(this.style.pixelHeight+document.documentElement.scrollTop-20); _bottom: 20px; line-height: 20px; padding: 5px 10px; }
+.runtime.face { color: #FFF; font-size: 12px; text-align: right; z-index: 99; font-family: Tahoma, Geneva, sans-serif }
+html .runtime.bg { background: #333; }
+#think_page_trace_open { z-index: 9999 }

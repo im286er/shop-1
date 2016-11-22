@@ -1,0 +1,60 @@
+<{include file=C('HEADPAGE_START')}>
+<{include file=C('HEADPAGE_END')}>
+
+
+<style type="text/css">
+
+/*第一层级*/
+.container_center{ background: #fff; margin: 30px;}
+.container_center .daohang { margin-bottom: 30px; font-size: 15px;}
+.container_center .daohang h2 { margin-bottom: 5px; }
+.container_center .daohang a.importance { color: #c64545; }
+/*第二层级*/
+.container_center .daohang .inside { padding: 15px 0px 5px; padding-top: 15px; border-bottom: 1px solid #EFEFEF; }
+.container_center .daohang .inside h5 { display: inline-block; width: 19%; border-left: 2px solid #CCC; text-indent: 10px; font-size: 16px; }
+/*第三层级*/
+.container_center .daohang .inside ul { width: 80%; float: right; }
+.container_center .daohang .inside ul li { width: 20%; float: left; padding-bottom: 10px; }
+
+.container_center h1 { margin-bottom: 20px; }
+.container_center h1 a { font-size: 14px; margin-left: 30px; }
+</style>
+<div class="page-sitemap container"> 
+	<!-- 正文从这里开始写！！！ //-->
+	<div class="container_center">
+		<h1>网站地图 <a href="__DOC__/index.html">← 返回首页</a></h1>
+	
+		<div class="daohang">
+			<h2>CG模型</h2>
+        <{foreach $main_cateinfo as $Result}>
+            <div class="inside">
+				<h5 class="fl"><a href="__DOC__/index/models-index-thumb-2-count-30-order-sd-cate-<{$Result.pc_id}>.html" target="_blank"><{$Result.pc_name}></a></h5>
+				<ul class="fl">
+				 <{foreach $Result.child as $sub_result}>
+                    <li><a href="__DOC__/index/models-index-thumb-2-count-30-order-sd-cate-<{$sub_result.pc_id}>.html" target="_blank"><{$sub_result.pc_name}></a></li>
+                 <{/foreach}>
+				</ul>
+			<div class="clear"></div>
+			</div>
+       <{/foreach}>
+		</div>
+
+		<div class="daohang">
+			<h2>3D打印模型</h2>
+			<div class="inside">
+				<h5 class="fl"><a href="__DOC__/index/models-index-thumb-2-count-30-filter/pr">3D打印模型</a></h5>
+				<ul>
+                <{foreach $print_cate as $Result}>
+                <li><a href="__DOC__/index/models-index-thumb-2-count-30-order-sd-filter-pr-cate-<{$Result.pc_id}>"><{$Result.pc_name}></a></li>	
+                <{/foreach}>		
+				</ul>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+	<!-- 正文结束！！！ //-->
+	<div class="clear"></div>
+</div>
+
+
+<{include file=C('FOOTPAGE')}>

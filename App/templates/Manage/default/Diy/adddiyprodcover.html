@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <php>
+            $addCss="";
+            $addJs="";
+            $currentNav ='aa';
+        </php>
+    <include file="Common:intohead" />
+</head>
+<body>  
+    <div class="wrap"> <include file="Common:head" />
+        <div class="mainBody"> <include file="Common:left" />
+            <div id="Right">
+                <div class="contentArea">
+                    <div class="Item hr">
+                        <div class="current">DIY发布到产品</div>
+                    </div>
+                    <div>
+		<if condition="$pid eq 0">
+			产品未发布，请返回点击发布！ ID为：{$p_diy_cate_cid}
+			<input type="button" class="btn" onclick="javascript:history.go(-1)" value="返回发布"> 
+		<else/>
+			<iframe src="__DOC__/admin.php/product_photo/edit/pid/{$pid}" allowfullscreen="false" width="1000" height="600" style="z-index:1000;"></iframe>
+			<input type="button" class="btn" onclick="javascript:history.go(-1)" value="返 回"> 
+		</if>		                    	
+                    </div>		
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+<include file="Common:foot" />
+
+</body>
+</html>
+
+

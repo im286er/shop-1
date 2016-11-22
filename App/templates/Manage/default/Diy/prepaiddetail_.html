@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>-{$site.SITE_INFO.name}</title>
+        <php>
+            $addCss="";
+            $addJs="";
+            $currentNav ='aa';
+        </php>
+    <include file="Common:intohead" />
+</head>
+<style type="text/css">
+	<!--
+ .link{
+    position: relative;
+}
+#box{
+    display: none;
+    width: 315px;
+    height: 180px;
+    border: 1px solid #333;
+    padding: 12px;
+    text-align: left;
+    line-height: 175%;
+    text-indent: 2em;
+    position: absolute;
+	position:absolute;top:50%;left:50%;width:600px;height:400px;background:#fff;border:4px solid #417EB7;margin:-202px 0 0 -302px;display:none;z-index:101;
+}
+ -->
+
+
+</style>
+ <script type="text/javascript" language="javascript" >
+ <!--
+  function display(){
+document.getElementById("box").style.display="block"; 
+  }
+  function disappear(){
+document.getElementById("box").style.display="none"; 
+  }
+ -->
+ </script>
+<style>
+html,body{height:100%;overflow:hidden;}
+body,div,h2{margin:0;padding:0;}
+body{font:12px/1.5 Tahoma;}
+center{padding-top:10px;}
+button{cursor:pointer;}
+#overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:#000;opacity:0.5;filter:alpha(opacity=100);display:none; z-index:100;}
+#win{position:absolute;top:50%;left:50%;width:600px;height:400px;background:#fff;border:4px solid #417EB7;margin:-202px 0 0 -302px;display:none;z-index:101;}
+.title{color:#FFF; font-size:12px;text-align:right;background:#417EB7;border-bottom:3px solid #417EB7;padding:5px;height:20px}
+.title_left {float:left;}
+.title_right {float:right;}
+.title_right span{color:#00C;cursor:pointer;background:#fff;border:1px solid #00C;padding:0 2px;}
+.content{padding:5px;}
+
+
+
+/* 加入符号字体库 [zhengweifu 2015-01-13 end] -->*/
+</style>
+<script>
+window.onload = function ()
+{
+	var oWin = document.getElementById("win");
+	var oLay = document.getElementById("overlay");	
+	var oClose = document.getElementById("close");
+	oClose.onclick = function ()
+	{
+		oLay.style.display = "none";
+		oWin.style.display = "none"	
+	}
+};
+
+
+//;
+
+function opendiv(value){
+	var process=new Array();
+	<foreach name='process_status' item='res'>
+		 process[{$key}]="{$res}";
+	</foreach>
+	
+	var done_remark=new Array();//备注信息
+	<foreach name='process' item='pres'>
+		done_remark[{$pres.done_process}]="{$pres.done_remark}";
+	</foreach>
+
+	var oWin = document.getElementById("win");
+	var oLay = document.getElementById("overlay");
+	
+	oLay.style.display = "block";
+	oWin.style.display = "block";
+	var vaule_next=parseInt(value+1);
+	if(vaule_next==6){
+		document.getElementById("express").style.display="block";
+		document.getElementById('sms').style.display="inline";
+		document.getElementById('sms_tips').style.display="inline";
+	}
+	else if(vaule_next==2){
+		document.getElementById('sms').style.display="inline";
+		document.getElementById('sms_tips').style.display="inline";
+	}
+	else{
+		document.getElementById("express").style.display="none";
+		document.getElementById('sms').style.display="none";
+		document.getElementById('sms_tips').style.display="none";
+	}
+	document.getElementById("showproText").innerHTML="<li>"+process[vaule_next]+"</li>";
+	document.getElementById("done_process").value=vaule_next;
+	
+	
+	if(done_remark[vaule_next]){ //是否有值
+		document.getElementById("done_remark").value=done_remark[vaule_next];
+	}
+	
+}
+
+function funProcessDel(pid){
+	if(window.confirm('确定要撤销吗？')){
+
+       document.getElementById('processID').value=pid;
+	   document.getElementById('processdel').submit();
+     }else{
+    	return false;
+    }
+}
+
+</script>
+<body>
+<div id="overlay"></div>
+<div id="win">
+	<div class="title">
+		<div class="title_left">处理操作</div>
+		<div class="title_right"><span id="close">×</span></div>
+	</div>
+	<div class="contenta">
+	<form method="post" id="process">
+	<ul>
+		<li><span id='showproText'></span><input type="hidden" value="{$prepaidInfo.up_id}" name="up_id"><input type="hidden" id="done_process" name="done_process"></li>
+		<li id="express" style="display:none">快递公司: 
+		<select name="express_com">
+		<foreach name="express_com" item="exres" key="exkey">
+			<if condition="$express.express_com eq $exkey">
+				<option value="{$exkey}" selected>{$exres}</option>
+			<else/>
+				<option value="{$exkey}">{$exres}</option>
+			</if>
+		</foreach>
+		</select>
+		快递单号:<input type="text" name="express_number" value="{$express.express_number}"></li>
+		<li>备 注: <textarea name="done_remark" style="width:400px; height:60px;" id="done_remark"></textarea></li>
+		<li>操作者: {$my_info.nickname}<input type="hidden" name="done_usermail" value="{$my_info.email}"></li>
+		<li><input type="checkbox" name="sms" id='sms' style="display:none" value="sent" checked="checked" /><span id="sms_tips" style="display:none">短信通知</span><input type="submit" value="确定" class="btn"></li>
+	</ul>
+	</form>
+	
+	<form action="__APP__/diy/processdel" method="post" id="processdel" name="processdel">
+		<input type="hidden" name="processID" id="processID">
+		<input type="hidden" value="{$prepaidInfo.up_id}" name="up_id">	
+	</form>
+	</div>
+</div>
+
+    <div class="wrap"> <include file="Common:head" />
+        <div class="mainBody"> <include file="Common:left" />
+            <div id="Right">
+                <div class="contentArea">
+                    <div class="Item hr">
+                        <div class="current">用户订单号:<font color="#999999">{$prepaidInfo.up_orderid}</font> &nbsp;&nbsp;处理单号<font color="#FF0000">{$prepaidInfo.up_id}</font>&nbsp;&nbsp;&nbsp;&nbsp;支付状态:<font color=red> {$prepaidInfo.up_status|replace_int_vars}</font></div>
+                    </div>
+                    <div>
+                    	<table class='tab'>
+                        <tr>
+                        	<td>创建人</td><td >{$prepaidInfo.u_email}</td>
+                        	<td>创建时间</td><td colspan="3">{$prepaidInfo.up_dealdate}</td>                        	
+                        </tr>
+                        <tr>
+                        	<td>收件人</td><td>{$prepaidInfo.up_addressee}</td>
+                        	<td>手机</td><td>{$prepaidInfo.up_mobile}</td>
+                            <td>收件地址</td><td colspan="3">{$prepaidInfo.up_address}</td>
+                        </tr>
+						<tr>
+                        	<td>订单总价</td>
+							<td>
+								<if condition="$prepaidInfo.up_amount_account neq 0 or $prepaidInfo.up_amount_coupon neq 0">
+									{$prepaidInfo.up_amount_total}
+								<else/>
+									{$prepaidInfo.up_amount}
+								</if>
+							</td>
+							<td>运费</td><td>{$prepaidInfo.up_efee}</td>
+                        	<td>付款情况</td>
+							<td>
+							<if condition="$prepaidInfo.up_amount_account neq 0 ">
+								余额支付:{$prepaidInfo.up_amount_account}					
+							</if>
+							<if condition="$prepaidInfo.up_amount_coupon neq 0 ">
+								优惠券抵扣:{$prepaidInfo.up_amount_coupon} (优惠券:{$log_coupon.log_eccode})					
+							</if>							
+							  <br> <font color="#FF0000"> 应付:{$prepaidInfo.up_amount}</font>
+							</td>
+                        </tr>
+                        <tr><td>发票操作</td><td>{$pbstatus}</td></tr>
+                    	</table>
+               		</div>
+                    <div>
+                    	<table class='tab'>
+                        <tr><td>图片</td><td>类型</td><td>名称</td><td>单价(元)</td><td>数量</td><td>价格(元)</td><td>操作</td></tr>
+						<foreach name="productList" item="product">
+                        	<tr>
+                            	<td><img src="__DOC__{$product.cover_64}" height="200" width="200"></td>
+                                <td>{$product.uc_producttype_name}</td>
+                            	<td>{$product.p_name} {$product.p_propid_spec_desc}</td>
+                                <td>{$product.p_price}</td>
+                                <td>{$product.p_count}</td>
+                                <td>{$product.totle_price}</td>
+                       
+					            <td>
+					<if condition="$product.uc_producttype eq 4">
+						<if condition="$product.cid eq 1">
+							<a href="__DOC__/index/diy-jewelryeditall-pid-{$product.p_diy_id}-cid-{$product.cid}-showtype-10" target="_blank">查看</a>
+ 						<else/>
+							<a href="__APP__/diy/product/pid/{$product.p_id}/producttype/{$product.uc_producttype}/upid/{$prepaidInfo.up_id}/cid/{$product.cid}" target="_blank">查看</a>
+						</if>
+
+
+						<if condition="$product.file neq null">
+							<a href="__DOC__{$product.file}">下载模型</a>
+						<else/>
+							<if condition="$product.cid eq 1">
+								<a href="__DOC__/index/diy-jewelryeditall-pid-{$product.p_diy_id}-cid-{$product.cid}-showtype-10" target="_blank">生成</a>
+							<else/>
+								<a href="__DOC__/index/diy-snapdetailall-pid-{$product.p_id}-upid-{$prepaidInfo.up_id}-cid-{$product.cid}-showtype-10" target="_blank">生成</a>
+							</if>
+						</if>
+					<elseif condition="$product.uc_producttype eq 2"/>
+						<a href="__DOC__/index/shop-detail-id-{$product.p_id}" target="_blank">查看</a>
+					<elseif condition="$product.uc_producttype eq 1"/>
+						<a href="__DOC__/index/models-detail-id-{$product.p_id}" target="_blank">查看</a>
+					</if>			
+								</td>
+                        	</tr>
+                    	</foreach>
+                        </table>
+                    </div>
+					
+					<div> 
+						
+						<a href="__APP__/diy/downPrepaid/upid/{$prepaidInfo.up_id}">订单下载</a>
+						<if condition="$prepaidInfo.isdown eq 0">
+						(<font color="#FF0000">有模型文件未生成，下载的订单压缩包中模型不完整。</font>)
+						</if>
+						<br>
+{$order_process}
+
+<a href="__APP__/diy/downPrepaid/actiontype/1/upid/{$prepaidInfo.up_id}" target="_blank">打印配送清单</a>
+<br><br>
+<if condition="$isexpress">
+	<a href="#" onmouseover="display()" onmouseout="disappear()">物流跟踪（鼠标移到上方）</a>
+	<div id="box">
+		{$expressIframe}
+	</div>
+</div>
+</if>
+
+					</div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+<include file="Common:foot" />
+
+</body>
+</html>
+
+

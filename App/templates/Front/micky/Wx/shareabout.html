@@ -1,0 +1,187 @@
+<{include file=C('KITTYMHEAD_START') wxtitle="智绘首饰棒棒哒！快来围观我亲自设计的珠宝首饰～"}>
+<link rel="stylesheet" type="text/css" href="__MSTATIC__/css/layerslider.css">
+<script src="__MSTATIC__/js/greensock.js"></script>
+<script src="__MSTATIC__/js/layerslider.transitions.js"></script>
+<script src="__MSTATIC__/js/layerslider.kreaturamedia.jquery.js"></script>
+<{include file=C('KITTYMHEAD_END') wxtitle="IGNITE-IGNITE官网" ch="dft"}>
+<div class="prd" style="width:100%;">
+	<div style="display:none">
+		<img src="<{$info.cover}>"/>
+	</div>
+	<div class="tablayer layer-info" style="height:30%;">
+		<div class="author" style="opacity:1;"> <span class="powered">Design By</span>
+			<a class="avatar" href="javascript:void(0);">
+				<img src="<{$Headimgurl}>"/>
+			</a>
+			<div class="author-info">
+				<h4><{$info.nickname}></h4>
+			</div>
+		</div>
+	</div>
+	<div class="dividing" style="height:10%;">
+		<h2>
+			<label class="skew"><i>我自己设计的作品</i></label>
+		</h2>
+	</div>
+	<div class="box1" style="width:90%;margin:auto; ">
+		<iframe frameborder=0 marginheight=0 marginwidth=0 scrolling=no src="__APP__/diy-jewelryeditall-pid-<{$info.p_diy_id}>-showtype-10" width="100%" height="300px;" ></iframe>
+		<!--<img src="__DOC__/static/img/2.jpg" alt="" style="width:100%;"/>-->
+		<!-- customers messages start-->
+		<input type="hidden" name="s_uid" id="s_uid" value="<{$info.s_uid}>"/>
+		<input type="hidden" name="s_nickname" id="s_nickname" value="<{$info.nickname}>"/>
+		<input type="hidden" name="s_headimgurl" id="s_headimgurl" value="<{$Headimgurl}>"/>
+		<input type="hidden" name="s_pid" id="s_pid" value="<{$info.pid}>"/>
+		<!-- customers messages end-->
+		<{if $ismyself}>
+		<button class="desgin"><a href="<{$orderurl}>" style="display: block;">我要购买</a></button>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<{/if}>
+		<button class="desgin"><a href="http://www.ignjewelry.com" style="display: block;">我要设计</a></button>
+
+	</div>
+</div>
+<div style="position:relative;bottom:0px;left:0px;">
+	<div class="dividing">
+		<h2><label class="skew"><i class="join">诚&nbsp;邀&nbsp;您&nbsp;一&nbsp;起&nbsp;参&nbsp;加</i></label></h2>
+	</div>
+	<div style="test-align:center;">
+		<img src="__DOC__/static/img/weixingongxiang.jpg" style="width:100%;"/>
+	</div>
+</div>
+<script src="__NEOSTATIC__/js/doge.webglchk.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+	wx.config({
+		debug: false,
+		appId: "<{$signPackage['appId']}>",
+		timestamp: "<{$signPackage['timestamp']}>",
+		nonceStr: "<{$signPackage['nonceStr']}>",
+		signature: "<{$signPackage['signature']}>",
+		jsApiList: [
+			'onMenuShareTimeline',
+			'onMenuShareAppMessage'
+		] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+	});
+	wx.ready(function () {
+		var tle = '智绘首饰棒棒哒！快来围观我亲自设计的珠宝首饰～';
+		var lnk = "http://www.ignjewelry.com/index.php/wx-shareabout?pid=<{$info.pid}>";
+		var png = "http://www.ignjewelry.com<{$info.cover|replace:'/o/':'/s/64_64_'}>";
+		var dsc = 'IGNITE--个性定制独属于自己的臻品';
+		wx.onMenuShareAppMessage({
+			title: tle,
+			desc: dsc,
+			link:lnk,
+			imgUrl:png,
+			trigger: function (res) {
+				// 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+				//alert('用户点击发送给朋友');
+			},
+			success: function (res) {
+				var suid = $('#s_uid').val();
+				var spid = $('#s_pid').val();
+				var snickname = $('#s_nickname').val();
+				var sheadimgurl = $('#s_headimgurl').val();
+				$.ajax({
+					type: 'post',
+					data: 'suid=' + suid + '&snickname=' + snickname + '&sheadimgurl=' + sheadimgurl + '&spid=' + spid + '&slnk=' + lnk,
+					dateType: 'json',
+					url: "__APP__/wx-shareafter",
+					success: function (msg) {
+						if (msg.code == 1) {
+							alert('已分享');
+						} else {
+							alert("请重新分享");
+						}
+					}
+				})
+			},
+			cancel: function (res) {
+				alert('已取消');
+			},
+			fail: function (res) {
+				alert(JSON.stringify(res));
+			}
+		});
+		// 在这里调用 API
+		wx.onMenuShareTimeline({
+			title: tle,
+			link: lnk,
+			imgUrl: png,
+			trigger: function (res) {
+				// 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+				//alert('用户点击分享到朋友圈');
+			},
+			success: function (res) {
+				var suid = $('#s_uid').val();
+				var spid = $('#s_pid').val();
+				var snickname = $('#s_nickname').val();
+				var sheadimgurl = $('#s_headimgurl').val();
+				$.ajax({
+					type: 'post',
+					data: 'suid=' + suid + '&snickname=' + snickname + '&sheadimgurl=' + sheadimgurl + '&spid=' + spid + '&slnk=' + lnk,
+					dateType: 'json',
+					url: "__APP__/wx-shareafter",
+					success: function (msg) {
+						if (msg.code == 1) {
+							alert('已分享');
+						} else {
+							alert("请重新分享");
+						}
+					}
+				})
+			},
+			cancel: function (res) {
+				alert('已取消');
+			},
+			fail: function (res) {
+				alert(JSON.stringify(res));
+			}
+		});
+		//alert('已注册获取“分享到朋友圈”状态事件');
+		/*wx.onMenuShareQQ({
+		 title: tle,
+		 desc: dsc,
+		 link: 'http://www.3dcity.com/user.php/womenday/sharetof',
+		 imgUrl: png,
+		 trigger: function (res) {
+		 //alert('用户点击分享到QQ');
+		 },
+		 complete: function (res) {
+		 alert(JSON.stringify(res));
+		 },
+		 success: function (res) {
+		 //window.location.href = "__URL__/sharetowx";
+		 alert('已分享');
+		 },
+		 cancel: function (res) {
+		 alert('已取消');
+		 },
+		 fail: function (res) {
+		 alert(JSON.stringify(res));
+		 }
+		 });*/
+		//alert('已注册获取“分享到 QQ”状态事件');
+		/*	wx.onMenuShareWeibo({
+		 title: tle,
+		 desc: dsc,
+		 link: 'http://www.3dcity.com/user.php/womenday/sharetof',
+		 imgUrl: png,
+		 trigger: function (res) {
+		 //alert('用户点击分享到微博');
+		 },
+		 complete: function (res) {
+		 alert(JSON.stringify(res));
+		 },
+		 success: function (res) {
+		 // window.location.href = "__URL__/sharetowx";
+		 alert('已分享');
+		 },
+		 cancel: function (res) {
+		 alert('已取消');
+		 },
+		 fail: function (res) {
+		 alert(JSON.stringify(res));
+		 }
+		 });*/
+	});
+</script>

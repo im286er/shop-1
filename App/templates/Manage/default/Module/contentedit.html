@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>添加管理员-权限管理-{$site.SITE_INFO.name}</title>
+
+        <php>
+            $addCss="";
+            $addJs="";
+            $currentNav ='权限管理 > 添加管理员';
+        </php>
+    <include file="Common:intohead" />
+</head>
+{$HtmlName}
+<script>
+var htmlbl='{$HtmlName}';
+	if(htmlbl!==0){
+		KindEditor.ready(function(K) {
+		var editor1 = K.create('textarea[name='+ htmlbl +']', {
+				cssPath : '__PUBLIC__/Admin/kindeditor/plugins/code/prettify.css',
+				uploadJson : '__PUBLIC__/Admin/kindeditor/php/upload_json.php',
+				fileManagerJson : '__PUBLIC__/Admin/kindeditor/php/file_manager_json.php',
+				allowFileManager : true,
+				afterCreate : function() {
+					var self = this;
+					K.ctrl(document, 13, function() {
+						self.sync();
+						K('form[name=example]')[0].submit();
+					});
+					K.ctrl(self.edit.doc, 13, function() {
+						self.sync();
+						K('form[name=example]')[0].submit();
+					});
+				}
+			});
+			prettyPrint();
+		});
+	}
+</script>
+<body>
+    <div class="wrap"> <include file="Common:head" />
+        <div class="mainBody"> <include file="Common:left" />
+            <div id="Right">
+                <div class="contentArea">
+                    <div class="Item hr">
+                        <div class="current">添加管理员</div>
+                    </div>
+               				{$showfrom}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+<include file="Common:foot" />
+<script type="text/javascript">
+    $(".submit").click(function(){
+            <if condition="ACTION_NAME neq 'editAdmin'">
+            if(!isEmail($("input[name='email']").val())){
+            popup.alert("账号邮件地址格式错误");
+            return false;
+        }
+        if($.trim($("input[name='pwd']").val())==''){
+            popup.alert("密码不能为空");
+            return false;
+        }
+            </if>
+            commonAjaxSubmit();
+    });
+</script>
+</body>
+</html>
+
+

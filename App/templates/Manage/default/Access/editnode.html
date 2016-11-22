@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>添加编辑节点-权限管理-{$site.SITE_INFO.name}</title>
+    <php>
+        $addCss="";
+        $addJs="";
+        $currentNav ='权限管理 > 添加编辑节点';
+    </php>
+    <include file="Common:intohead" />
+</head>
+<body>
+    <div class="wrap"> <include file="Common:head" />
+        <div class="mainBody"> <include file="Common:left" />
+            <div id="Right">
+                <div class="contentArea">
+                    <div class="Item hr">
+                        <div class="current">添加编辑节点</div>
+                    </div>
+                    <form action="" method="post">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                            <tr>
+                                <th width="120">名称：</th>
+                                <td><input name="name" type="text" class="input" size="40" value="{$info.name}" /> 英文，为MODEL_NAME的时候首字母大写</td>
+                            </tr>
+                            <tr>
+                                <th>显示名：</th>
+                                <td><input class="input" name="title" type="text" size="40" value="{$info.title}" /> 中英文均可</td>
+                            </tr>
+                            <tr>
+                                <th>状态：</th>
+                                <td><select name="status" style="width: 80px;"><if condition="$info.status eq 1"><option value="1" selected>启用</option><option value="0">禁用</option><else/><option value="1">启用</option><option value="0" selected>禁用</option></if></select> 如果禁用那么只有超级管理员才可以访问，其他用户都无权访问</td>
+                            </tr>
+                            <tr>
+                                <th>类型：</th>
+                                <td><select name="level" style="min-width: 80px;">{$info.levelOption}</select> 项目（GROUP_NAME;  模块(MODEL_NAME); 操作（ACTION_NAME）</td>
+                            </tr>
+                            <tr>
+                                <th>菜单中显示：</th>
+                                <td><select name="ismenu" style="width: 80px;"><if condition="$info.ismenu eq 1"><option value="1" selected>Yes</option><option value="0">No</option><else/><option value="1">Yes</option><option value="0" selected>No</option></if></select> Yes会作为菜单显示出来</td>
+                            </tr>
+                            <tr>
+                                <th>父级节点：</th>
+                                <td><select name="pid" style="min-width: 80px;">{$info.pidOption}</select></td>
+                            </tr>
+                            <tr>
+                                <th>显示排序：</th>
+                                <td><input class="input" name="sort" type="text" size="40" value="{$info.sort}" /> </td>
+                            </tr>
+                            <tr>
+                                <th>URL：</th>
+                                <td><input class="input" name="url" type="text" size="40" value="{$info.url}" />(一般为空,转向模块下的操作)</td>
+                            </tr>
+                            <tr>
+                                <th>描 述：</th>
+                                <td><textarea name="remark" style="width: 400px;">{$info.remark}</textarea></td>
+                            </tr>
+                           <tr><td><br></td><td>如果不是是通用模块显示,以下信息可以为空。<hr color=#cccccc></td></tr>
+													<tr>
+														<th>主表名称</th>
+														<td><input class="input" name="MainTable" type="text"
+															size="40" value="{$info.MainTable}" /></td>
+													</tr>
+													<tr>
+														<th>主表别名</th>
+														<td><input class="input" name="AsField" type="text"
+															size="40" value="{$info.AsField}" /></td>
+													</tr>
+													<tr>
+														<th>主键</th>
+														<td><input class="input" name="MainRelationFieldName" type="text"
+															size="40" value="{$info.MainRelationFieldName}" /></td>
+													</tr>
+													<tr>
+														<th>主键别名</th>
+														<td><input class="input" name="MainRelationFieldNameAsField" type="text"
+															size="40" value="{$info.MainRelationFieldNameAsField}" /></td>
+													</tr>
+													<tr>
+														<th>关联SQL语句</th>
+														<td><textarea name="InnerJoinSql" style="width: 600px; height:100px;">{$info.InnerJoinSql}</textarea>
+														</td>
+													</tr>
+													<tr>
+														<th>查询SQL条件</th>
+														<td><input class="input" name="QueryFiterSql" type="text"
+															size="40" value="{$info.QueryFiterSql}" /></td>
+													</tr>
+													<tr>
+														<th>排序(Order By)</th>
+														<td><input class="input" name="OrderBySql" type="text"
+															size="40" value="{$info.OrderBySql}" /></td>
+													</tr>
+													<tr>
+														<th>SQL分组(Group By)</th>
+														<td><input class="input" name="GroupBySql" type="text"
+															size="40" value="{$info.GroupBySql}" /></td>
+													</tr>
+                                                    <tr><td></td><td><hr style="color:#CCC;"></td></tr>
+                                                    <tr>
+														<th>编辑</th>
+														<td><select name="ListHaveEdit" style="width: 80px;"><if condition="$info.ListHaveEdit eq 1"><option value="1" selected>Yes</option><option value="0">No</option><else/><option value="1">Yes</option><option value="0" selected>No</option></if></select> Yes 列表页中显示编辑按钮 </td>
+													</tr>
+                                                     <tr>
+														<th>删除</th>
+														<td><select name="ListHaveDel" style="width: 80px;"><if condition="$info.ListHaveDel eq 1"><option value="1" selected>Yes</option><option value="0">No</option><else/><option value="1">Yes</option><option value="0" selected>No</option></if></select> Yes 列表页中显示删除 </td>
+													</tr>
+                                                    <tr>
+														<th>复制</th>
+														<td><select name="ListHaveCopy" style="width: 80px;"><if condition="$info.ListHaveCopy eq 1"><option value="1" selected>Yes</option><option value="0">No</option><else/><option value="1">Yes</option><option value="0" selected>No</option></if></select> Yes 列表页中显示删除 </td>
+													</tr>
+							<tr>
+								<th>复制到Content</th>
+								<td><select name="ListHaveCopyToContent" style="width: 80px;"><if condition="$info.ListHaveCopyToContent eq 1"><option value="1" selected>Yes</option><option value="0">No</option><else/><option value="1">Yes</option><option value="0" selected>No</option></if></select> Yes 列表页中显示删除 </td>
+							</tr>
+							<tr>
+								<th>回收站</th>
+								<td><select name="ListHaveDelSign" style="width: 80px;"><if condition="$info.ListHaveDelSign eq 1"><option value="1" selected>Yes</option><option value="0">No</option><else/><option value="1">Yes</option><option value="0" selected>No</option></if></select> Yes 列表页中显示放入回收站 </td>
+							</tr>
+							<tr>
+								<th>移出回收站</th>
+								<td><select name="ListHaveDelSignRecover" style="width: 80px;"><if condition="$info.ListHaveDelSignRecover eq 1"><option value="1" selected>Yes</option><option value="0">No</option><else/><option value="1">Yes</option><option value="0" selected>No</option></if></select> Yes 列表页中显示移出回收站 </td>
+							</tr>
+
+
+
+
+						</table>
+                        <input type="hidden" name="id" value="{$info.id}"/>
+                    </form>
+                    <div class="commonBtnArea" >
+                        <button class="btn submit">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+<include file="Common:foot" />
+<script type="text/javascript">
+	$(function() {
+		$("select[name='level']")
+				.change(
+						function() {
+							var level = $(this).val();
+							$("select[name='pid']>option").attr("disabled",
+									"disabled");
+							if (level == 1) {
+								$("select[name='pid']>option[value='0']")
+										.removeAttr("disabled").attr(
+												"selected", "selected");
+							} else if (level == 2) {
+								$("select[name='pid']>option[level='1']")
+										.removeAttr("disabled");
+							} else {
+								$("select[name='pid']>option[level='2']")
+										.removeAttr("disabled");
+							}
+						});
+
+		$(".submit").click(function() {
+			//commonAjaxSubmit();
+		});
+	});
+</script>
+</body>
+</html>

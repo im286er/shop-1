@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>代金券模板-{$site.SITE_INFO.name}</title>
+	<include file="Common:intohead" />
+	</head>
+	<body>
+		<div class="wrap">
+		<include file="Common:head" />
+			<div class="mainBody">
+              	<include file="Common:left" />
+    				<div id="Right">
+                 		<div class="Item hr">
+        					<div class="current">代金券查询</div><br/>
+        					<form action="__URL__/cadetails" method="post">
+        					<select name="xx">
+        					<option value='ca_code'>优惠券码</option>
+        					<option value='ca_email'>用户邮箱</option>
+        					</select>
+        					<input type="text" name="code"/>
+        					<input type="submit" />
+        					</form>
+        					
+        					<table class='tab'>
+        					<tr><td>代金券码</td><td>金额</td><td>状态</td><td>生成时间</td><td>过期时间</td><td>充值时间</td><td>用户邮箱</td><td>激活方式</td><td>管理员ID</td></tr>
+        					
+        					<volist name="list" id="vo">
+        					<tr>
+        					<td>{$vo['ca_code']}</td>
+        					<td>{$vo['ca_amount']}</td>
+        					<td>
+        					<if condition="$vo['ca_status'] eq 1">未激活
+        					<elseif condition="$vo['ca_status'] eq 2"/>已激活
+        					<elseif condition="$vo['ca_status'] eq 3"/>已充值
+        					<else />error
+        					</if>
+        					</td>
+        					<td>{$vo['ca_createdate']}</td>
+        					<td>
+        					<if condition="$vo['ca_expiredate'] eq 0">永不过期
+        					<else />{$vo['ca_expiredate']}
+        					</if>
+        					
+        					</td>
+        					<td>{$vo['ca_usedate']}</td>
+        					<td>{$vo['ca_email']}</td>
+        					<td>
+        					<if condition="$vo['ca_sentwho'] eq 1">邮箱发放激活
+        					<elseif condition="$vo['ca_sentwho'] eq 0"/>未激活
+        					<elseif condition="$vo['ca_sentwho'] eq 2"/>手动激活
+        					<elseif condition="$vo['ca_sentwho'] eq 3"/>站内激活
+        					<else />error
+        					</if>
+        					</td>
+        					<td>{$vo['ca_operator']}</td>
+        					</tr>
+        					</volist>
+        					
+        					</table>
+        					
+      					</div>
+      				</div>
+      		</div>
+      	</div>
+<div class="clear"></div>
+<include file="Common:foot" />
+</body>
+</html>
+

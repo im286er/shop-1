@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>添加编辑节点-权限管理-{$site.SITE_INFO.name}</title>
+    <php>
+        $addCss="";
+        $addJs="";
+        $currentNav ='通用配置 > 添加编辑Contentlist';
+    </php>
+    <include file="Common:intohead" />
+</head>
+<body>
+    <div class="wrap"> <include file="Common:head" />
+        <div class="mainBody"> <include file="Common:left" />
+            <div id="Right">
+                <div class="contentArea">
+                    <div class="Item hr">
+                        <div class="current">添加编辑节点</div>
+                    </div>
+                    <form action="" method="post">
+                    <input name="searchtype" type="hidden" value="{$searchtype}">
+                    <input name="keywords" type="hidden" value="{$keywords}">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                            <tr>
+                                <th width="120">所属节点：</th>
+                                <td><select name="NodeId" style="min-width: 80px;">{$info.NodeIdOption}</select></td>
+                            </tr>
+                            <tr>
+                                <th width="120">字段名称：</th>
+                                <td>
+                                <textarea name="OutputFieldName" style="width: 400px; height:150px;">{$info.OutputFieldName}</textarea>
+                               </td>
+                            </tr>
+                            <tr>
+                                <th>字段别名：</th>
+                                <td><input class="input" name="AsField" type="text" size="40" value="{$info.AsField}" /> </td>
+                            </tr>
+                            <tr>
+                                <th>字段显示名：</th>
+                                <td><input class="input" name="EchoName" type="text" size="40" value="{$info.EchoName}" /> </td>
+                            </tr>
+                             <tr>
+                                <th>字段显示类型：</th>
+                                <td>
+                                <input type="text" class="input" style="width:80px" name="FieldType" id="FieldType" value="{$info.FieldType}">
+                                
+      <select onkeypress="if(event.keyCode==13){return false;}" onChange="document.getElementById('FieldType').value=value;" onclick="this.selectedIndex=-1">
+							 {$info.FTypeOption}
+									</select>
+                            </tr>
+                               <tr>
+                                <th>LINK时的链接地址：</th>
+                                <td><input class="input" name="GetValue" type="text" size="80" value="{$info.GetValue}" />格式:Module/ContentEdit/id/ (模块名/方法名/参数名) 链接地址最后一个字段为id</td>
+                            </tr>
+                             <tr>
+                            <tr>
+                                <th>显示排序：</th>
+                                <td><input class="input" name="EchoOrder" type="text" size="10" value="{$info.EchoOrder}" /> 数值越小越靠前，可输入小数</td>
+                            </tr>
+                            <tr>
+                                <th>是否为查询列：</th>
+                                <td><select name="QueryColumn" style="width: 80px;"><if condition="$info.QueryColumn eq 1"><option value="1" selected>Yes</option><option value="0">No</option><else/><option value="1">Yes</option><option value="0" selected>No</option></if></select> Yes会作为菜单显示出来</td>
+                            </tr>
+												</table>
+                        <input type="hidden" name="id" value="{$info.id}"/>
+                    </form>
+                    <div class="commonBtnArea" >
+                        <button class="btn submit">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+<include file="Common:foot" />
+<script type="text/javascript">
+	$(function() {
+		$(".submit").click(function() {
+			commonAjaxSubmit();
+		});
+	});
+</script>
+</body>
+</html>

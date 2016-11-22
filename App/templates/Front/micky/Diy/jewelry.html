@@ -1,0 +1,335 @@
+<{include file=C('KITTYHEAD_START')}>
+<!--<link rel="stylesheet" href="__NEOSTATIC__/css/layerslider.css" type="text/css">-->
+<script src="__NEOSTATIC__/js/greensock.js"></script>
+<script src="__NEOSTATIC__/js/layerslider.transitions.js"></script>
+<script src="__NEOSTATIC__/js/layerslider.kreaturamedia.jquery.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/css/details.css">
+<link rel="stylesheet" href="__PUBLIC__/css/fonts.css">
+<link rel="stylesheet" href="__PUBLIC__/css/erding.css">
+<link rel="stylesheet" href="__PUBLIC__/css/zimujie.css">
+<link rel="stylesheet" href="__PUBLIC__/css/zimujie.css">
+<link rel="stylesheet" href="__PUBLIC__/css/yuvideo.css">
+<{include file=C('MICKYDETAILHEAD_END')}>
+<div class="prd container">
+	<div class="breadcrumb"><a class="home" href="__APP__/jewelry-jewelrylist">珠宝首饰</a>\<a href="#"><{$cinfo['cate_name']}></a></div>
+	<{if $cinfo['isdiamond'] neq 1}>
+	<!--<div class="prd-introframe">
+		<div class="prd-titile hla">
+			<h2><{$cinfo['cate_name']}><i>(可定制款)</i></h2>
+		</div>
+		<div class="clear"></div>
+		<div class="prd-gal-holder">
+			<div class="prd-gal" style="width: 560px; height: 420px; max-width: 560px;">
+				<{foreach $cinfo.icon as $res}>
+				<div class="ls-slide">
+					<img src="<{$res}>" class="ls-bg" alt="Slide background">
+				</div>
+				<{/foreach}>
+			</div>
+		</div>
+		<div class="tablayer layer-info">
+			<div class="prd-info-holder">
+				<div class="prd-info">
+					<p><{$cinfo['intro1']}></p>
+					<div class="buildit">
+						<button class="btn btn-action" id="go-ordergen"><i>立即开始DIY<span>￥<b><{$cinfo['startprice']}></b>.00 起</span></i></button>
+					</div>
+					<div class="author">
+						<span class="powered">Design By</span>
+						&lt;!&ndash;
+						<a class="avatar" href="__DOC__/user.php/profile/u/uid/<{$userBasic_au.u_id}>">
+						 &ndash;&gt;
+						<img src="__UPLOAD__/avatar/<{$userBasic_au.u_avatar|replace:'/o/':'/s/96_96_'}>" class="avatar">
+						&lt;!&ndash;
+						</a>
+						 &ndash;&gt;
+						<div class="author-info">
+							&lt;!&ndash; <h4><a href="__DOC__/user.php/profile/u/uid/<{$userBasic_au.u_id}>"><{$userProf.u_firstname}></a></h4>&ndash;&gt;
+							<h4><{$userProf.u_firstname}></h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="clear"></div>
+	</div>-->
+	<div class="dividing" id="gohere">
+		<h2><label class="skew"><i>定制只属于您的首饰</i></label></h2>
+	</div>
+	<{/if}>
+
+
+	<div class="prd-diyframe">
+
+	</div>
+	<div class="zimu">
+		<div class="zimu-center">
+			<{$cinfo['intro2']}>
+		<!-- 公共部分 -->
+		<!-- 标题 -->
+		<div style="width: 1200px;margin:0 auto;">
+			<div class="publicT text-c">
+				<h1 style="text-align: center">匠心工艺</h1>
+				<div class="icon"></div>
+			</div>
+			<!-- 图片 -->
+			<div class="publicImg">
+				<ul>
+					<li>
+						<img src="__PUBLIC__/images/details1.jpg" alt="">
+					</li>
+					<li><img src="__PUBLIC__/images/details2.jpg" alt=""></li>
+					<li>
+						<div class="">
+							<img src="__PUBLIC__/images/details3.jpg" alt="">
+						</div>
+						<div class="publicTxt">
+							IGNITE所有的产品都采用优质的材料精心加工而成，虽然不全是顶级珠宝那么璀璨无比，但在这里能见识到不同的风格，融合不同文化的珠宝设计，在IGNITE我们可以尽情的享受美轮美奂的珠宝给我们带来的视觉冲击。
+						</div>
+					</li>
+				</ul>
+			</div>
+		<!-- 标题 -->
+		<!--<div class="publicT text-c">-->
+			<!--<h1>测量方法</h1>-->
+			<!--<div class="icon"></div>-->
+		<!--</div>-->
+		<!-- 测量方法 -->
+		<!--<div class="clff">-->
+			<!--<img src="__PUBLIC__/images/celiang.jpg" alt="">-->
+		<!--</div>-->
+		<!-- 七天退货 -->
+		<!--<div class="publicT tuihuo text-c">-->
+			<!--<div class="rili">-->
+				<!--<img src="__PUBLIC__/images/rili.png" alt="">-->
+			<!--</div>-->
+			<!--<h1>七天退换货</h1>-->
+			<!--<h2>仅限非定制产品</h2>-->
+			<!--<div class="icon"></div>-->
+		<!--</div>-->
+		<!--<div class="tuohuoText">-->
+			<!--<ul>-->
+				<!--<li>-->
+					<!--<h1 class="chengnuo">退换货承诺</h1>-->
+					<!--<div class="chengnuoLis">-->
+						<!--<p>IGNITE伊格纳为了营造能让顾客放心购物的消费环境，诚意对已售出的有质量问题产品做出以下退换货承诺</p>-->
+						<!--<pre>-->
+<!--A.  质量问题（您需提供技术质量监督部门的质量问题鉴定说明）-->
+<!--B.  收到产品后7天内, 联系客服进行退换货预约( 时间以快递货品签收单的日期为准)-->
+<!--C.  退换货时，应退还全部随货单据、检测证书、发票及销售时的所有促销赠品。-->
+<!--D.  收到您的退货并经检验符合退换货条件,我们将会在7个工作日内给您办理退换。-->
+						<!--</pre>-->
+					<!--</div>-->
+				<!--</li>-->
+				<!--<li>-->
+					<!--<h1 class="tiaojian">退换货条件</h1>-->
+					<!--<div class="chengnuoLis">-->
+						<!--<pre>-->
+<!--A.  仅限有质量问题的非定制产品。-->
+<!--B.  凭发票、产品及包装方可办理。-->
+<!--C.  个人原因所致的K金系列刮花、银饰品镀层损坏引起的氧化现象等均不属于质量问题。-->
+<!--D.  彩宝内部的天然包裹体、内部显现的天然纹理属于天然宝石物理特征，不属于质量问题。-->
+<!--E.  由于人为外力造成产品变形、宝石脱落、遗失，不属于质保范围。-->
+						<!--</pre>-->
+					<!--</div>-->
+				<!--</li>-->
+				<!--<li>-->
+					<!--<h1 class="jisong">寄送方式</h1>-->
+					<!--<div class="chengnuoLis">-->
+						<!--<pre>-->
+<!--A.  您可选择顺丰速递的方式退换货，并索要一份货到回执单。-->
+<!--B.  在寄送货品时，外包装或运单上任何地方不要标识“珠宝”、“首饰”等字样。-->
+<!--C.  寄送前请务必先联系客服，确认您的寄送地址 。 -->
+<!--E.  完成检验后退款时效为7个工作日。-->
+<!--F.  因质量问题产生的快递费用，由我司承担。-->
+						<!--</pre>-->
+					<!--</div>-->
+				<!--</li>-->
+				<!--<li class="border">-->
+					<!--<h1 class="tiaokuan">免责条款</h1>-->
+					<!--<div class="chengnuoLis">-->
+						<!--<pre>-->
+<!--A.  因退换货过程中发生的丢失和损坏，IGNITE伊格纳概不负责。 -->
+<!--B.  IGNITE伊格纳承诺于工作日寄送，遇国家法定节假日相应顺延，敬请谅解。-->
+						<!--</pre>-->
+					<!--</div>-->
+				<!--</li>-->
+			<!--</ul>-->
+		<!--</div>-->
+		<!-- 标题 首饰维修-->
+		<!--<div class="publicT text-c">-->
+			<!--<h1>首饰维修</h1>-->
+			<!--<div class="icon"></div>-->
+		<!--</div>-->
+		<!-- 图片 -->
+			<!--<div class="weixiuImg">-->
+				<!--<div class="weixiuIL fl">-->
+					<!--<img src="__PUBLIC__/images/weixiu.jpg" alt="">-->
+				<!--</div>-->
+				<!--<div class="weixiuIText fl">-->
+					<!--<pre>-->
+<!--在IGNITE伊格纳所购的产品包括配件（配件如彩宝、耳背和搭扣等）如果因为非质量-->
+<!--原因导致的损坏缺失，如配件遗失，外力所致破损断裂等，IGNITE伊格纳可提供有偿-->
+<!--维修，费用请咨询客服。-->
+<!--A.维修周期为20-30个工作日，遇节假日顺延。-->
+<!--B.不受理促销活动期间赠送饰品、礼品的维修业务。-->
+					<!--</pre>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!-- 标题 品牌包装-->
+			<div class="publicT text-c">
+				<h1 style="text-align: center">品牌包装</h1>
+				<div class="icon"></div>
+			</div>
+			<!-- 包装袋 -->
+			<div class="baozhuang">
+				<img src="__PUBLIC__/images/baozhuang.jpg" alt="">
+			</div>
+			<!-- 标题 品牌包装-->
+			<div class="publicT text-c">
+				<h1 style="text-align: center">饰品保养</h1>
+				<div class="icon"></div>
+			</div>
+			<!-- 饰品保养 图文 -->
+			<div class="shipin">
+				<div class="shipinL fl">
+					<img src="__PUBLIC__/images/baoyang.jpg" alt="">
+				</div>
+				<div class="shipinR fl">
+					<ul>
+						<li style="border-bottom: 1px solid #f2e4d8;">
+							<h1>金</h1>
+							<p>化学成分非常稳定，金饰的保养要注意以下几点：</p>
+						<pre>
+A.  洗洁精的化学物质会改变金的色泽，所以做清洁工作之前应该脱掉金饰。
+B.  避免直接与香水、发胶等高挥发性物质接触，否则容易导致金饰褪色。
+C.  游泳时要取下金饰，以免碰到海水或池水后，表层产生化学变化。
+D.  保管的时候用绒布包好再放进首饰箱，避免互相摩擦损坏。
+E.  黄金比较软，容易变形，所以不要拉扯，以免变形。
+F.  纯金饰在遇水银时会产生化学反应，出现白色斑点，清洗时只要在酒精灯下烧烤一
+    会儿，就能恢复原色。
+G.  配戴后的金饰常因污渍及灰尘的沾染而失去光泽，此时，只要将金饰置于中性洗洁
+    剂以温水浸泡并清洗，再取出拭擦干即可。
+F.  对于镶嵌宝石的金饰，需要每六个月清洁一次。
+						</pre>
+						</li>
+						<li class="border">
+							<h1>银</h1>
+							<p>化学性质较活泼，当银饰表面氧化变黑时，可通过以下方式恢复光泽： </p>
+						<pre>
+A.  可在清水中加入苏打粉，然后清洗擦拭。
+B.  使用擦银布、擦银膏擦拭（擦银布中含有特别的药水，不能水洗）。
+C.  用软布沾些牙膏搓洗饰品、再用清水洗干净，以棉布擦拭干净。
+D.  浸泡洗银水，再用清水洗干净，以棉布擦拭干净，使其保持干燥即可。
+E.  银饰最好避免接触海水、温泉，若未佩戴时，可装入隔绝空气的容器中，如绒布袋或珠宝盒，
+    可使您的银饰常保如新
+						</pre>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 标题 品牌印记-->
+			<div class="publicT text-c">
+				<h1 style="text-align: center">品牌印记</h1>
+				<div class="icon"></div>
+			</div>
+			<!-- 品牌印记 图片 -->
+			<div class="yinji">
+				<img src="__PUBLIC__/images/yinji.jpg" alt="">
+			</div>
+			<div class="di">
+				<div class="diText text-c">
+					<pre style="font-weight: normal;">
+你，是人海中的一粒
+做着，平凡的自己
+但，总有一瞬间
+“这是我的第一件文艺小试炼”
+“这是我自信的呈现”
+“这是和你在一起的第100天”
+“这是我们共同去过的地点”
+“这是面对未知世界的信念”
+“这是脑海中的灵光乍现”
+
+每个人心中都有一道光
+我们用“科技+定制+珠宝首饰”的方式
+呈现你心中闪耀的灵光
+这里有脑洞大开的潮流尖货
+拒绝千篇一律，拒绝无聊复刻
+没有做不到，只有想不到
+我们是剁手党追捧的时代弄潮儿
+帮你找到适合自己的独特风格
+					</pre>
+				</div>
+				<img src="__PUBLIC__/images/di.jpg" alt="">
+			</div>
+		</div>
+
+	<!--------------------->
+	<!--<div class="clear"></div>-->
+        </div>
+	</div>
+<script src="__NEOSTATIC__/js/doge.webglchk.js"></script>
+<script>
+	$(document).ready(function(e) {
+		$(".prd-gal").layerSlider({
+			pauseOnHover: false,
+			navStartStop: false,
+			showCircleTimer: false,
+			skin: 'fullwidth',
+			skinsPath: '__NEOSTATIC__/js/ls-skins/'
+		});
+		$("#go-ordergen").click(function(e) {
+			$("html, body").animate({
+				scrollTop: $("#gohere").offset().top + "px"
+			}, {
+				duration: 500,
+				easing: "swing"
+			});
+			return false;
+		});
+		var iswgl = isSupportWebGL();
+		// miaomin added@2015.7.13
+		var isdiamond_new="<{$cinfo.isdiamond}>";
+		//var isdiamond="<{$cinfo.cate_type}>";
+
+		/**
+		 * 对浏览器是否支持WEBGL做出判断如果不支持页面跳转至非DIY物品
+		 */
+// console.log(iswgl);
+//		iswgl = 0;
+//$(".prd-introframe").hide();
+		if(isdiamond_new==1){
+			$(".prd-diyframe").show().html("<iframe class=\"webeditor\" src=\"__APP__/diy-jewelryeditall-pid-<{$pid}>-cid-<{$cid}>-showtype-<{$showtype}>\" frameborder=\"0\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" seamless ></iframe>");
+		}else{
+			if (iswgl) {
+				$(".prd-diyframe").show().html("<iframe class=\"webeditor\" src=\"__APP__/diy-jewelryeditall-pid-<{$pid}>-cid-<{$cid}>-showtype-<{$showtype}>\"  frameborder=\"0\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" seamless ></iframe>");
+			} else {
+				// $(".prd-diyframe").fadeIn(500).html("<div class=\"info\">更多精彩正在等着您，但是您需要升级一下酷炫的浏览体验。<!--<br>很抱歉，您的浏览器不支持或尚未开启WEBGL。--><a href='__DOC__/index/help-index-id-122' target='_blank'>了解如何获得WEBGL支持 &gt;</a></div>").addClass("nowgl");
+				// 跳转至非DIY物品
+				top.location.href="__APP__/product-detail-id-<{$cpid}>.html";
+			}
+		}
+//	});
+		$(".author").delay(1000).fadeTo(500, 1);
+	});
+
+
+	var showtype =<{$showtype}>
+	if(showtype == 10) {
+		//$('.left-func').hide();
+		$('.prd-introframe').hide();
+		//$('#web3dSaveBuy').hide();
+		$('.prd-diyframe').hide();
+		$('.dividing').hide();
+		$('.contentex').hide();
+		$('.box1').hide();
+		$('#web3dSave').hide();
+	}
+</script>
+
+
+
+
+
+<{include file=C('MICKYFOOT')}>

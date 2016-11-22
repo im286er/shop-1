@@ -1,0 +1,132 @@
+<{include file=C('AHEAD_START')}>
+
+<body class="<{$header}>">
+<div class="header header-full">
+	<div class="container topbar">
+	<!--ADD BY guyiwei 2014-12-22 START-->
+	 <{if $item_header == 1}>
+	<div class="small-logo fl"><img src="__NEOSTATIC__/imgs/square/logo_designer.png" alt=""/></div>
+	<{/if}>
+	<!--ADD BY guyiwei 2014-12-22 END-->
+		<div class="search">
+			<form action="__DOC__/index.php/product-index" method="post">
+				<button class="btn-action" type="submit">搜索</button>
+				<input type="text" name="tags" value="" placeholder="搜索达人或创意商品...">
+			</form>
+		</div>
+		<{if $item_header == 1}>
+		<div class="clear"></div>
+		<{/if}>
+		<!--ADD BY guyiwei 2014-12-22 START-->
+		 <{if $item_header == 0}>
+		 <div class="userinfo">
+			<ul>
+				<{if $isLogin}>
+					<li><a class="avatar" href="#"><img src="__UPLOAD__/avatar/<{$userBasic.u_avatar|replace:'/o/':'/s/96_96_'}>"></a></li>
+					<li><a class="userid withdrop" href="#"><{$userBasic.u_dispname}></a></li>
+					<!-- 
+						<li><a class="notification" href="#">0</a></li>
+				 	-->
+				<{else}>
+					<li><a class="signin" href="#">登录</a></li>
+					<li><a class="signup skew" href="__DOC__/user.php/register"><span>&nbsp;</span>新注册用户</a></li>
+				<{/if}>
+			</ul>
+			<div class="dropmenu drop-usermenu">
+				<div class="drop-content">
+					<ol class="usermenu-list">
+						<li><a href="__USERIDX__/sales/ordermanage">我的订单</a></li>
+						<li class="hr"></li>
+						<li><a href="#">申请入住3DCity</a></li>
+						<li class="hr"></li>
+						<li><a href="#">我的主页</a></li>
+						<li><a href="#">设置</a></li>
+						<li><a href="#">我的定制</a></li>
+						<li class="hr"></li>
+						<li><a href="__USERIDX__/logout">退出</a></li>
+					</ol>
+				</div>
+				<div class="baseline"></div>
+			</div>
+			</div>
+			<{/if}>
+			<!--ADD BY guyiwei 2014-12-22 END-->
+		
+	</div>
+	 <!--ADD BY guyiwei 2014-12-22 START-->
+	 <{if $item_header == 0}>
+	<div class="container logo"><a href="#"><img src="__NEOSTATIC__/imgs/comm/blank.gif"></a></div>
+	 <{/if}>
+	 <!--ADD BY guyiwei 2014-12-22 END-->
+	<div class="container navbar">
+		<ul class="nav-global">
+			<li class="now-index"><a href="__DOC__/index/index">主页</a>/</li>
+			<li class="now-square"><a href="__DOC__/index/square">达人广场</a>/</li>
+			<li class="now-jewelry"><a href="__DOC__/index/jewelry" class="now">创意首饰</a></li>
+		</ul>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<div class="clear"></div>
+<style type="text/css">
+
+
+</style>
+<div class="container" style=" background:  url(__DOC__/static/img/404-2.png) center center no-repeat; margin: 100px auto; height: 450px;">
+	<h3 style=" padding-top: 480px; text-align: center; font-size: 28px;">找不到网页~
+<a href="http://www.3dcity.com" style=" font-size:16px; display: block; text-align: center; margin-top:20px;">回首页看看去！</a></h3>
+	
+<div class="clear"></div>
+</div>
+<br><br><br>
+<div class="footer">
+	<div class="footer-title container">
+		<a class="logo" href="__DOC__/index/<{$header}>"><img src="__NEOSTATIC__/imgs/comm/blank.gif"></a>
+		<div class="clear"></div>
+	</div>
+	<div class="footer-links container">
+		<dl>
+			<dt>聚焦3DCity</dt>
+			<dd><a href="__APP__/help-index-id-77">发现设计师</a></dd>
+			<dd><a href="__APP__/help-index-id-80">定制首饰</a></dd>
+			<dd><a href="__APP__/help-index-id-81">了解3D打印</a></dd>
+			<dd class="go-prdlist"><a class="skew" href="__APP__/jewelry-jewelrylist">浏览商品目录 &gt;</a></dd>
+		</dl>
+		<dl>
+			<dt>成为设计师</dt>
+			<dd><a href="__APP__/help-index-id-85">申请入住3DCity</a></dd>
+			<dd><a href="__APP__/help-index-id-86">3D打印建模指导</a></dd>
+			<dd><a href="__APP__/help-index-id-87">材质和工艺</a></dd>
+			<dd><a href="__APP__/help-index-id-88">设计师指导手册</a></dd>
+		</dl>
+		<dl>
+			<dt>帮助和支持</dt>
+			<dd><a href="__APP__/help-index-id-91">首饰保养</a></dd>
+			<dd><a href="__APP__/help-index-id-96">关于我们</a></dd>
+			<dd><a href="__APP__/help-index-id-93">联系客服</a></dd>
+		</dl>
+		<dl>
+			<dt>关注我们</dt>
+			<dd><a href="http://weibo.com/go3dcity" target="_blank">新浪微博</a></dd>
+			<dd><a href="#">微信公共号</a></dd>
+		</dl>
+		<div class="clear"></div>
+	</div>
+	<div class="footer-etc">
+		<div class="container">
+			<a class="icp" href="http://www.miibeian.gov.cn" target="_blank">沪ICP备14023771号</a>
+			<ul class="rights">
+				<li><a class="copyright" href="__DOC__" target="_blank">©2014 3DCity.com</a>·</li>
+				<li><a href="#">隐私政策</a>·</li>
+				<li><a href="#">服务条款</a>·</li>
+				<li><a href="#">版权申明</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<script src="__NEOSTATIC__/js/doge.controls.js?v121804"></script>
+</body>
+</html>
+
+

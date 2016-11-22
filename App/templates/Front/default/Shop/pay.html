@@ -1,0 +1,208 @@
+<{include file=C('HEADPAGE_START')}>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/st-danny.css" media="all" />
+<script type="text/javascript" src="__PUBLIC__/js/ajaxload.js"></script>
+<script>
+$(document).ready(function(e) {
+	
+	var height = $(window).height();
+	var top = height / 2 -215;
+	$('.abfrm').css('top',top);
+	var width = $(window).width();
+	var left = width / 2 -215;
+	$('.abfrm').css('left',left);
+	
+	stop = $(document).scrollTop(); 
+});
+
+
+$(window).resize(function() {
+	
+	var height = $(window).height();
+	var top = height / 2 -215;
+	$('.abfrm').css('top',top);
+	var width = $(window).width();
+	var left = width / 2 -215;
+	$('.abfrm').css('left',left);
+});
+</script>
+<{include file=C('HEADPAGE_END')}>
+<div id="shopping-cart">
+	<div class="flow-shopping">
+		<ul>
+			<li>
+				<span class="over">购物车</span>
+				<span class="line line-over"></span>
+			</li>
+			<li>
+				<span class="over">确认订单</span>
+				<span class="line line-now"></span>
+			</li>
+			<li>
+				<span class="now">付款</span>
+				<span class="line line-over"></span>
+			</li>
+			<li>
+				<span>完成支付</span>
+			</li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="abfrm frm-newaddress">
+	<div class="small-container">
+		<a class="frm-close" onclick="closefrm('newaddress')" title="关闭">X</a>
+		<h2>新地址</h2>
+			<div class="form">
+				<form id="form_account_address" action="#" method="post">
+					<div class="tr">
+						<label>收件人全名<i>*</i></label><input type="text" id="ac_receiver" class="input" />
+					</div>	
+					<div class="tr">
+						<label>地区<i>*</i></label>
+						<select id="ac_address_prv" class="select">
+							<option>省/直辖市</option>
+						</select>
+						<select id="ac_address_city" class="select">
+							<option>城市</option>
+						</select>
+						<select id="ac_address_region" class="select">
+							<option>行政区</option>
+						</select>
+					</div>
+					<div class="tr">
+						<label>街道<i>*</i></label><textarea id="ac_address" class="input"></textarea>
+					</div>
+					<div class="tr">
+						<label>邮政编码</label><input type="text" id="ac_postcode" class="input" />
+					</div>	
+					<div class="tr">
+						<label>手机</label><input type="text" id="ac_mobile" class="input" />
+						<!--span class="info">手机或者固定电话必须提供一项</span-->
+					</div>	
+					<div class="tr">
+						<label>电话</label>
+						<input type="text" id="ac_telphone_city" class="input" style="width: 30px;" /> - <input id="ac_telphone_no" class="input" style="width: 120px;" /> - <input id="ac_telphone_ext" class="input" style="width: 36px;" />
+					</div>
+				</form>
+		</div>
+		<button type="button" class="btn btn--warning new-address-btn" onclick="closefrm('newaddress')">确定</button>
+		<a class="abtn" onclick="closefrm('newaddress')" href="javascript:void(0);">取消...</a>
+	</div>
+</div>
+
+
+
+<div id="confirm-payment" class="shadow radius light-box">
+	<form action="pay" method="post" target="_blank">
+		<div style="overflow: hidden;">
+			<p class="confirm fl"></p>
+			<p class="fr">
+				<a href="#" class="close"
+					onclick="">X 关闭</a>
+			</p>
+		</div>
+		<div class="both" style="height: 1px; border-bottom: 1px solid #ddd;"></div>
+		<p class="confirm-info">
+			请在新打开的窗口完成支付，谢谢！
+		</p>
+		<span class="go-to-pay"><a class="red-btn finish-pay" href="__DOC__/user.php/sales/payresult/otype/1/out_trade_no/<{$temp_oid}>">完成付款</a></span><span class="problem" style="padding-left: 20px;">遇到问题？</span>
+	</form>
+</div>
+<div id="shopping-cart">
+	
+	<div class="clear"></div>
+	<form action="__APP__/cart/pay_goalipay" method="post" target="_blank">
+	<input type="hidden" name="up_orderid" value="<{$temp_oid}>">
+	<input type="hidden" name="up_amount" value="<{$totalprice}>">
+	<div class="pay-confirm">
+		<p class="sku">订单号：<{$showoid}></p>
+        
+		
+		
+	<div class="cart-content pay-address">
+	<h4>选择收件地址</h4>
+	{if $haveAddress eq '1'}
+	<div class="form-table">
+		<table class="selectaddress">
+			<tbody>
+				<tr class="h">
+					<th></th>
+					<th>收件人</th>
+					<th>所在地</th>
+					<th>街道地址</th>
+					<th>邮编</th>
+					<th>联系电话</th>
+					<th>默认地址</th>
+				</tr>
+				<tr>
+					<td><input type="radio" name="selectaddress" /></td>
+					<td>黑谷梨梦</td>
+					<td>东京都 千代田区</td>
+					<td>外神田3-1-13</td>
+					<td>197-0804</td>
+					<td>10086</td>
+					<td>√</td>
+				</tr>
+				<tr>
+					<td><input type="radio" name="selectaddress" /></td>
+					<td>政委</td>
+					<td>北京市 北京市 宣武区</td>
+					<td>拐子大街 71号7楼</td>
+					<td>204315</td>
+					<td>138383859438</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><input type="radio" name="selectaddress" /></td>
+					<td>黑谷梨梦</td>
+					<td>东京都 千代田区</td>
+					<td>外神田3-1-13</td>
+					<td>197-0804</td>
+					<td>10086</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><input type="radio" name="selectaddress" /></td>
+					<td>政委</td>
+					<td>北京市 北京市 宣武区</td>
+					<td>拐子大街 71号7楼</td>
+					<td>204315</td>
+					<td>138383859438</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="6"><a href="#" onclick="initfrm('newaddress')">使用新地址</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	{elseif  $haveAddress eq '0'}
+	<a class="new-address" href="#" onclick="initfrm('newaddress')">您还没有储存地址哦，请猛戳这里输入新地址~</a>
+	{/if}
+</div>
+		
+		
+		
+		
+		
+		<div class="payment"> 
+			<div class="text">支付方式：</div>
+			<div class="payment_way">
+				<ul>
+				<{foreach $pt_arr as $result}>
+					<{if $result.pt_id eq 1}>
+						<li><label><input type="radio" name="paytype" checked="checked" value='<{$result.pt_id}>'/><img src="__PUBLIC__/images/bank/<{$result.icon}>" alt="" width=100 height=30/></label></li>
+					<{else}>
+					 	<li><label><input type="radio" name="paytype" value='<{$result.pt_id}>'/><img src="__PUBLIC__/images/bank/<{$result.icon}>" alt="" width=100 height=30/></label></li>
+					<{/if}>					
+				<{/foreach}>
+				</ul>		
+			</div>
+		</div>
+		
+		<p class="other">金额：<span class="red b f16 price">￥<{$totalprice}></span><input type="submit" value="付款" class="red-btn pay_money"></p>
+	</div>
+	</form>
+</div>
+<{include file=C('FOOTPAGE')}>

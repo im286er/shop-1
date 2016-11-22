@@ -1,0 +1,416 @@
+﻿<{include file=C('HEADPAGE_START')}>
+<{include file=C('HEADPAGE_END')}>
+<div id="back-to-top">
+	<a class="up" href="#top"><span></span></a>
+</div>
+<style type="text/css">
+select { box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px; height: 26px; height: 26px;border: 1px solid #DFDDD9; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 4px; padding-left: 3px; -webkit-appearance: menulist }
+</style>
+<!--
+	//// Page Warp From Here!!! //// ---------------------------------------
+		Page Code: 3DCity/3DModels/Prdlist (Rev.3)
+		Based: prdlist
+		Last Update: 20130711
+-->
+<form id="product_filter_form" method="post" >
+
+<!-- APElement::AjaxInfo //-->
+<div class="ajaxinfo"><h3>请求处理中...</h3></div>
+<!-- End of APElement::AjaxInfo //-->
+
+<div class="container prdlist">
+	<!-- ChannelTitle //-->	
+	<div class="channel-title"> 
+		<div class="settings">
+			<!--
+			<{if $SearchInfo.isfree eq 1}>
+			星级 <select id="star" name="star" class="dropdown">
+				<{$where_star}>
+			</select>
+			<{/if}>-->
+			
+			排序 <select id="order" name="order" class="dropdown">
+				<{$order_opt}>
+			</select>
+            <!--缩略图: <select id="thumb" name="thumb" class="dropdown">
+				<{$thumb_opt}>
+			</select>-->
+			每页显示 <select id="count" name="count" class="dropdown">
+				<{$count_opt}>
+			</select>
+		</div>
+		<h1><{if $SearchInfo.tags!=''}>搜索结果 "<{$search_key_fmt}>"<{else if $SearchCate != ''}>搜索分类 "<{$SearchCate}>"<{else if $SearchInfo.creater!=''}><{foreach $SearchResult as $Result name="bar"}>
+        <{if $smarty.foreach.bar.index eq 1}>
+                	<{break}>
+        <{/if}>
+        <{$Result['u_dispname']}>的作品
+        <{/foreach}><{else}>3D模型库<{/if}></h1>
+		<!--// Maybe u need it soon.
+		<h1>3D模型库<a href="#">&raquo; 人形手办</a><a href="#">&raquo; 粘土</a></h1> 
+		//-->
+	</div>
+	<!-- End of ChannelTitle //-->	
+
+	<div class="prdgird fl">
+	<!--  ProductListGrid-NormalDisplay //-->
+        <{if $SearchInfo.thumb eq 1}>	
+		<ul class="items-grid-nd flat-s  setting-gird">
+        <{else}>
+        <ul class="items-grid-nd flat-s  setting-gird">
+        <{/if}>
+			<!-- 模型数据主循环开始 //-->
+			<{foreach $SearchResult as $Result}>
+			<li><span class="thumb"><a href="__APP__/models-detail-id-<{$Result[$DBF_P->ID]}>.html"><img src="__DOC__<{$Result[$DBF_P->Cover]|replace:'/o/':'/s/220_220_'}>" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d\w]+[|]!*[-]*/":""}> <{$show_alt_text}>" alt="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d\w]+[|]!*[-]*/":""}> <{$show_alt_text}>"/></a> </span>
+				<h3><a href="__APP__/models-detail-id-<{$Result[$DBF_P->ID]}>.html"><{$Result[$DBF_P->Name]|regex_replace:"/^[\d\w]*+[|]!*[-]*/":""}></a></h3>
+                <i>作者: <a href="__APP__/models-index-creater-<{$Result['u_id']}>.html"><{$Result['u_dispname']}></a></i>
+				<div class="itemstatus"> <span class="icon good"><{$Result[$DBF_P->Zans]}></span> <span class="icon view"><{$Result[$DBF_P->Views_disp]}></span> </div>                <!-- miaomin disabled @2013.7.18
+				<div class="etc"><span><{$Result[$DBF_P->Views_disp]}></span>
+
+                <div class="etc"><{if $Result['filelist']}>
+					<{foreach $Result['filelist'] as $File name="bar"}>
+                  <{if $smarty.foreach.bar.index eq 1}>
+                		<{break}>
+                	<{/if}>
+                  <{/foreach}>
+					<{/if}>
+					<div class="costs">
+						<{if $Result[$DBF_P->Price] eq 0}><img src="__PUBLIC__/images/star<{$Result[$DBF_P->Score]}>.gif"><{else}>&yen;<{$Result[$DBF_P->Price]}>.00<{/if}>
+						
+					</div>
+				</div>
+				<div class="etc2">
+					<{if $Result['filelist']}>
+					<{foreach $Result['filelist'] as $File}><span><{$File[$DBF_PCT->Ext]}></span><{/foreach}>
+					<{/if}>
+				</div-->
+				
+				</li>
+			<{/foreach}>
+			<!-- 模型数据主循环结束 //-->
+	    </ul>
+		<!-- End of ProductListGrid-NormalDisplay //-->	
+		
+    	<div class="clear"></div>
+		
+		<!-- PageCutter //-->
+		<div class="pagerwarp">
+			<i><!--<{$PI.totalcount|number_format}>个结果--></i>
+			<ul class="pagecuter">
+				<{$Paging}>
+			</ul>
+		</div>
+		<!-- End of PageCutter //-->
+		
+	</div>
+	
+<!-- Sidebar //-->
+	<div class="sidebar sidebar-prdlist">
+<!-- Sidebar::Catetree //-->
+		<div class="child">
+        <!--
+         <-- 改来改去没完没了 
+        <ul class="filters models">
+				<-- 改来改去没完没了  还是没完没了！！！
+				
+				<li>
+                <{if $SearchInfo.isfree eq 1}>
+					<input type="checkbox"name="isfree" value="1" checked="checked" />
+					<{else}>
+					<input type="checkbox" name="isfree" value="1" />
+					<{/if}><label>免费3D模型</label></li>
+				<li>
+                <{if $SearchInfo.isorignal eq 1}>
+					<input type="checkbox"name="isorignal" value="1" checked="checked" />
+					<{else}>
+					<input type="checkbox" name="isorignal" value="1" />
+					<{/if}><label>原创内容</label></li>
+			</ul> -->
+			<div class="hr"></div>
+        <!-- 改来改去没完没了 -->
+			<ul class="catetree">
+				<li <{if $SearchInfo.tags eq '' && $SearchInfo.category eq '' && $SearchInfo.format eq '' && $SearchInfo.creater eq '' && $SearchInfo.order neq 'view_desc'  && $SearchInfo.isanimation eq '' && $SearchInfo.isrigged eq '' && $SearchInfo.isfree eq '' && $SearchInfo.isprint eq '' && $SearchInfo.isorignal eq ''}>class="selected"<{/if}>><a href="__APP__/models-index-count-<{$SearchInfo.count}>-thumb-<{$SearchInfo.thumb}>-order-sd-filter-<{$sprint}>">全部内容</a></li>
+				<!--li <{if $SearchInfo.order eq 'view_desc'}>class="selected"<{/if}>><a href="__APP__/models-index-order-vid-thumb-<{$SearchInfo.thumb}>-count-<{$SearchInfo.count}>">热门3D模型</a></li-->
+				<li <{if $SearchInfo.isfree eq 1}>class="selected"<{/if}>><a href="__APP__/models-index-thumb-<{$SearchInfo.thumb}>-count-<{$SearchInfo.count}>-filter-<{$sprint}>fr">免费模型</a></li>
+				<li <{if $SearchInfo.isorignal eq 1}>class="selected"<{/if}>><a href="__APP__/models-index-thumb-<{$SearchInfo.thumb}>-count-<{$SearchInfo.count}>-filter-<{$sprint}>or-order-high">收费模型</a></li>
+				
+               <!-- <li <{if $SearchInfo.isprint eq 1}>class="selected"<{/if}>><a href="__APP__/models-index-thumb-<{$SearchInfo.thumb}>-count-<{$SearchInfo.count}>-filter-pr">3D打印模型</a></li>-->
+				<!-- miaomin disabled @2013.7.30
+				<li <{if $SearchInfo.isorignal eq 1}>class="selected"<{/if}>><a href="__APP__/models-index-filter-or-count-30-order-crd">原创内容</a></li>
+				<li <{if $SearchInfo.isfree eq 1}>class="selected"<{/if}>><a href="__APP__/models-index-filter-fr-count-30-order-crd">免费分享内容</a></li>
+				-->
+				<!-- <li <{if $SearchInfo.tags eq '' && $SearchInfo.category eq '' && $SearchInfo.format eq '' && $SearchInfo.creater eq '' && $SearchInfo.order neq 'view_desc' && $SearchInfo.isorignal eq '' && $SearchInfo.isfree eq '' && $SearchInfo.isanimation eq '' && $SearchInfo.isrigged eq ''}>class="selected"<{/if}>><a href="__APP__/models-index-count-<{$SearchInfo.count}>-thumb-<{$SearchInfo.thumb}>-filter-<{$addSearchInfo}>">全部内容</a></li> -->
+			</ul>
+			<div class="hr"></div>
+			<ul class="catetree">
+				<!-- 模型分类主循环开始 //-->
+				<!-- 选中状态class="selected" //-->
+                <!-- 带分类ID的显示 -->
+                <{if $SearchInfo.category}>
+                    <{foreach from=$CateGroupResult key="key" item="item" name="foo"}>
+                        <{if $item.Selected eq 1}>
+                          <{if $item.pc_id == $SearchInfo.category}><li class="selected"><{else}><li><{/if}>
+					      <a href="<{$cate_url}>-cate-<{$item.pc_id}>"><i><{$item.cnt_num|number_format}></i><{$item.pc_name}></a></li>
+                          <{if $item['Child']}>
+                            <{foreach from=$item['Child'] key="k" item="it" name="bar"}>
+                              <{if $it.pc_id == $SearchInfo.category}><li class="selected sub"><{else}><li class="sub"><{/if}>
+						        <a href="<{$cate_url}>-cate-<{$it.pc_id}>"><i></i><{$it.pc_name}></a></li>
+                            <{/foreach}>
+                          <{/if}>
+                        <{/if}>
+                    <{/foreach}>
+                    <!-- 接着开始输出分类 -->
+                    <!-- miaomin disabled @2013.7.30
+                    <{foreach from=$CateGroupResult key="key" item="item" name="foo"}>
+                <{if $smarty.foreach.foo.index eq $Show_cate_num}>
+                    <{break}>
+                <{/if}>
+                <{if $item.Selected neq 1}>
+                    <{if $item.pc_id == $SearchInfo.category}>
+                    <li class="selected">
+                    <{else}>
+                    <li>
+                    <{/if}>
+					<a href="<{$cate_url}>-cate-<{$item.pc_id}>"><i><{$item.cnt_num|number_format}></i><{$item.pc_name}></a>
+                    <{if $item['Child']}>
+                    <ul>
+                    <{foreach from=$item['Child'] key="k" item="it" name="bar"}>
+                    <{if $it.pc_id == $SearchInfo.category}>
+                    <li class="selected">
+                    <{else}>
+                    <li>
+                    <{/if}>
+						<a href="<{$cate_url}>-cate-<{$it.pc_id}>"><i></i><{$it.pc_name}></a></li>
+                    <{/foreach}>
+                    </ul>
+                    <{/if}>
+                    </li>
+                <{/if}>
+				<{/foreach}>
+                -->
+                <{$morecate}>
+                <!-- 隐藏分类名列表 开始  -->
+                <span class="morecatetree">
+                <{foreach from=$CateGroupResult key="key2" item="item2" name="foo2"}>
+                <{if $item2.Selected neq 1}>
+                <{if $item2.pc_id == $SearchInfo.category}>
+                    <li class="selected">
+                    <{else}>
+                    <li>
+                <{/if}>
+                  <a href="<{$cate_url}>-cate-<{$item2.pc_id}>"><i><{$item2.cnt_num|number_format}></i><{$item2.pc_name}></a>
+                  <{if $item2['Child']}>
+                    <ul>
+                    <{foreach from=$item2['Child'] key="k" item="it" name="bar"}>
+                    <{if $it.pc_id == $SearchInfo.category}>
+                    <li class="selected">
+                    <{else}>
+                    <li>
+                    <{/if}>
+					    <a href="<{$cate_url}>-cate-<{$it.pc_id}>"><i></i><{$it.pc_name}></a></li>
+                    <{/foreach}>
+                    </ul>
+                  <{/if}>
+                  </li>
+                <{/if}>
+                <{/foreach}>
+                </span>
+                <!-- 隐藏分类名列表 结束  -->
+                <!-- 不带分类ID的显示 -->
+                <{else}>
+                    <{foreach from=$CateGroupResult key="key" item="item" name="foo"}>
+                <{if $smarty.foreach.foo.index eq $Show_cate_num}>
+                    <{break}>
+                <{/if}>
+                    <{if $item.pc_id == $SearchInfo.category}>
+                    <li class="selected">
+                    <{else}>
+                    <li>
+                    <{/if}>
+					<a href="<{$cate_url}>-cate-<{$item.pc_id}>"><i><{$item.cnt_num|number_format}></i><{$item.pc_name}></a>
+                   <{if $item['Child']}>
+                    <ul>
+                    <{foreach from=$item['Child'] key="k" item="it" name="bar"}>
+                    <{if $it.pc_id == $SearchInfo.category}>
+                    <li class="selected">
+                    <{else}>
+                    <li>
+                    <{/if}>
+						<a href="<{$cate_url}>-cate-<{$it.pc_id}>"><i></i><{$it.pc_name}></a></li>
+                    <{/foreach}>
+                    </ul>
+                    <{/if}>
+                    </li>
+				<{/foreach}>
+                <{$morecate}>
+                <!-- 隐藏分类名列表 开始  -->
+                <span class="morecatetree">
+                <{foreach from=$CateGroupResult key="key" item="item" name="foo"}>
+                <{if $smarty.foreach.foo.index >= $Show_cate_num}>
+                <{if $item.pc_id == $SearchInfo.category}>
+                    <li class="selected">
+                    <{else}>
+                    <li>
+                <{/if}>
+                  <a href="<{$cate_url}>-cate-<{$item.pc_id}>"><i><{$item.cnt_num|number_format}></i><{$item.pc_name}></a>
+                  <{if $item['Child']}>
+                    <ul>
+                    <{foreach from=$item['Child'] key="k" item="it" name="bar"}>
+                    <{if $it.pc_id == $SearchInfo.category}>
+                    <li class="selected">
+                    <{else}>
+                    <li>
+                    <{/if}>
+					    <a href="<{$cate_url}>-cate-<{$it.pc_id}>"><i></i><{$it.pc_name}></a></li>
+                    <{/foreach}>
+                    </ul>
+                  <{/if}>
+                  </li>
+                <{/if}>
+                <{/foreach}>
+                </span>
+                <!-- 隐藏分类名列表 结束  -->
+                <{/if}>
+				<!-- 模型分类主循环结束 //-->
+                <!-- miaomin disabled @2013.7.29
+				<{if $SearchInfo.category neq ''}>
+				<li><a href="<{$cate_url_rtn}>">返回</a></li>
+				<{/if}>
+                -->
+			</ul>
+		</div>
+		<!-- End of Sidebar::Catetree //-->
+		
+		<!-- Sidebar::Filters //-->
+		<div class="child">
+			<ul class="filters models">
+				<li>
+					<{if $SearchInfo.isanimation eq 1 || $SearchInfo.isrigged eq 1 || $SearchInfo.isar eq 1 || $SearchInfo.isprint eq 1 || $SearchInfo.istexture eq 1}>
+					<input type="checkbox" name="allmodels" value="1" />
+					<{else}>
+					<input type="checkbox" name="allmodels" value="0" checked="checked" />
+					<{/if}>
+					<label>显示所有模型</label></li>
+                    
+				<!--<li><{if $SearchInfo.isprint eq 1}>
+					<input type="checkbox" name="isprint" value="1" checked="checked" />
+					<{else}>
+					<input type="checkbox" name="isprint" value="1" />
+					<{/if}><label>支持3D打印</label></li>	-->
+				
+                <li><{if $SearchInfo.isar eq 1}>
+					<input type="checkbox" name="isar" value="1" checked="checked" />
+					<{else}>
+					<input type="checkbox" name="isar" value="1" />
+					<{/if}><label>提供在线预览</label></li>
+					
+
+
+				<li><{if $SearchInfo.isanimation eq 1}>
+					<input type="checkbox"name="isanimation" value="1" checked="checked" />
+					<{else}>
+					<input type="checkbox" name="isanimation" value="1" />
+					<{/if}><label>包含动画</label></li>
+					
+				<li><{if $SearchInfo.istexture eq 1}>
+					<input type="checkbox" name="istexture" value="1" checked="checked" />
+					<{else}>
+					<input type="checkbox" name="istexture" value="1" />
+					<{/if}><label>包含贴图</label></li>
+			</ul>
+		</div>
+		<!-- End of Sidebar::Filters //-->
+		
+		<!-- Sidebar::Format //-->
+		<div class="child">
+			<ul class="filters format">
+				<!-- 模型文件格式主循环开始 //-->
+				<li>
+				  <{if $SearchInfo.format > 0}>
+				  <input type="checkbox" name="format_clear" value="1" />
+				  <{else}>
+				  <input type="checkbox" name="format_clear" value="0" checked="checked" />
+				  <{/if}>
+				  <label>显示所有格式</label>
+				</li>
+				<{foreach from=$fileopt key="key" item="item" name="foo"}>
+                <{if $smarty.foreach.foo.index eq $Show_format_num}>
+                	<{break}>
+                <{/if}>
+				<{if $item.del eq 1}>
+				<li>
+					<input type="checkbox" name="format" value="<{$item.pct_id}>" checked="checked" />
+					<label><{$item.pct_name}></label><i><{$item.pct_ext}></i>
+				</li>
+				<{else}>
+				<li>
+					<input type="checkbox" name="format" value="<{$item.pct_id}>" />
+					<label><{$item.pct_name}></label><i><{$item.pct_ext}></i>
+				</li>
+				<{/if}>
+				<{/foreach}>
+				<{$moreopt}>
+			</ul>
+		</div>
+		<!-- End of Sidebar::Format //-->
+		
+		<!-- Sidebar::Publisher //-->
+		<div class="child publisher">
+			<h3>共享您的3D模型</h3>
+			<center><a class="btn btn--warning" href="__DOC__/user.php/product_model/upload">立即上传3D模型</a></center>
+			<p>分享或出售3D模型就在3D城</p> 
+		</div>
+		<!-- End of Sidebar::Publisher //-->
+		
+		<div class="clear"></div>
+	</div>
+	<!-- End of Sidebar //-->
+	<div class="clear"></div>
+</div>
+<!-- APElement::MoreFormat //-->
+<div class="abfrm frm-moreformat">
+	<div class="inner">
+		<button type="button" class="frm-close" onclick="closefrm('moreformat')" title="关闭">X</button>
+		<h2>所有模型格式</h2>
+		<div class="mid-frm">
+			<ul class="filters moreformat">
+				<!-- for //-->
+                <{foreach from=$fileopt key="key" item="item" name="foo"}>
+                <{if $smarty.foreach.foo.index >= $Show_format_num}>
+                  <li>
+                    <input type="checkbox" name="format" value="<{$item.pct_id}>" />
+					<label><{$item.pct_name}></label><i><{$item.pct_ext}></i>
+                  </li>
+                <{/if}>
+                <{/foreach}>
+				<!-- for end //-->
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="blackmask"></div>
+<!-- End of APElement::MoreFormat //-->
+<input type="hidden" name="tags" value="<{$SearchInfo.tags}>" />
+<input type="hidden" name="category" value="<{$SearchInfo.category}>" />
+<input type="hidden" name="isfree" value="<{$SearchInfo.isfree}>" /> 
+<input type="hidden" name="isorignal" value="<{$SearchInfo.isorignal}>" />
+<input type="hidden" name="noprint" value="<{$SearchInfo.noprint}>" />
+<input type="hidden" name="isprint" value="<{$SearchInfo.isprint}>" />
+
+<!-- miaomin disabled @2013.7.30
+<input type="hidden" name="isfree" value="<{$SearchInfo.isfree}>" />
+<input type="hidden" name="isorignal" value="<{$SearchInfo.isorignal}>" />
+-->
+<input type="hidden" name="isformal" value="<{$SearchInfo.isformal}>" />
+</form>
+<script type="text/javascript">
+$(document).ready(function (e) {
+	$('.filters li').click(function(e){ $(this).find('input[type=checkbox]').click(); });
+	$('.morecate').click(function(e){ $(this).hide(); $('.morecatetree').show() });
+	$("select").each(function () { replaceSelect('#' + $(this).attr('id'), $(this).attr('class')); });
+		replaceCKB();
+});
+
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/miao.js"></script>
+
+<{include file=C('FOOTPAGE')}> 

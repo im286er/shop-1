@@ -1,0 +1,59 @@
+@charset "utf-8";
+/* 
+	Project Kana ~ Ding Style. / (C)2013 Nagomi Mind
+	For 3D City Prototype used only!
+*/
+html {  }
+h1 { font-size: 26px; font-family: "Microsoft Yahei"; color: #4B4A49; padding: 15px 0; text-shadow: 0px 1px 0 #FFF; }
+h1 span { font-size: 16px; padding-left: 5px; color: #AAA; }
+h1 span a { padding: 0 15px; }
+
+.main-sub.toptopic { margin-top: 0px; border-top: none; }
+
+.creative .productlist { padding-top: 30px; width: 720px; }
+.creative .productlist h2 a { padding-right: 25px }
+
+.shop .productlist { padding-top: 30px; width: 750px; }
+.shop h2 { font-size: 25px; line-height: 32px; padding-bottom: 25px; }
+.shop h2 a { padding-right: 25px; }
+.shop h2 i { padding-left: 20px; font-size: 14px; color: #AAA; font-family: Verdana, Arial, SimSun, \5b8b\4f53, Helvetica, sans-serif;  }
+
+.creative .custom { height: 220px; }
+.creative .custom h1 { font-size: 24px; padding-bottom: 30px;  }
+.creative .custom h3 { line-height: 20px; font-size: 14px; font-weight: bold; }
+.creative .custom p { height: 50px; padding: 5px 0; font-size: 12px; line-height: 150%; }
+.creative .custom .columns { float: left; width: 260px; padding-right: 40px; }
+.creative .sidebar-fixed, .creative .sidebar-fixed .sidebar {width: 230px;}
+.shop .sidebar-fixed, .shop .sidebar-fixed .sidebar {width: 210px;}
+
+.sidebar-fixed { float: right; height: 650px; position: relative; margin-top: 30px; }
+.sidebar-fixed .sidebar { position: ; background: #FDFDFD; border: 1px solid #D4D4D4; box-shadow: 0 0 4px #E0E0E0;  }
+.sidebar-fixed .sidebar ul.catetree { margin: 20px 15px; }
+.sidebar-fixed .sidebar ul.catetree a { padding: 10px; font-size: 14px;  display:block; }
+.closed { cursor: not-allowed; }
+.sidebar-fixed .sidebar ul.catetree a:hover { background: #EEE; border-radius: 3px; }
+.sidebar-fixed .sidebar ul.catetreed { margin: 20px 15px; }
+.shop .sidebar-fixed { float: right; height: 650px; position: relative; margin-top: 30px; }
+.shop .sidebar-fixed .sidebar { position: ; background: #FDFDFD; border: 1px solid #D4D4D4; box-shadow: 0 0 4px #E0E0E0;  }
+.shop .sidebar-fixed .sidebar ul.catetree { margin: 20px 15px; }
+.shop .sidebar-fixed .sidebar ul.catetree a { padding: 10px; font-size: 12px;  display:block; }
+.shop .sidebar-fixed .sidebar ul.catetree i { float: right; color: #AAA;padding: 10px; }
+.shop .closed { cursor: not-allowed; }
+.shop .sidebar-fixed .sidebar ul.catetree a:hover { background: #EEE; border-radius: 3px; }
+
+.sidebar-fixed .sidebar p { padding: 0 25px 25px; font-size: 12px; line-height: 150%; color: #999; }
+.sidebar-fixed .sidebar ul.p-ul { margin: 20px 15px 5px; }
+.sidebar-fixed .sidebar ul.p-ul a { padding: 10px; font-size: 14px; cursor: pointer; display:block; }
+.sidebar-fixed .sidebar ul.p-ul a:hover { background: #EEE; border-radius: 3px; }
+
+.imgifa { width: 960px; margin: 0 auto; position: relative; }
+
+.area-creative { border-top: 4px #3DA9DE solid; }
+.area-shop { border-top: 4px #3DA9DE solid; }
+.toptopic button { margin: 10px 10px 0 0; }
+
+.pagerwarp { height: 90px; clear: both; }
+
+.pagecuter li { float: left;  margin: 0 3px; }
+.pagecuter li a{ padding: 10px; font-size: 14px; display: inline-block; background:#E4E4E4; border-radius: 3px; }
+.pagecuter li a.st { font-weight: bold; background-color: #C9C9C9; color:#333 }

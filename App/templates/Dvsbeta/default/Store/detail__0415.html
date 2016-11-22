@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- InstanceBegin template="/Templates/yagami_global.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title><{$page_title}></title>
+<!-- InstanceEndEditable -->
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<link href="__PUBLIC__/themes/default/css/init.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/themes/default/css/yagami.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.js"></script>
+<!-- InstanceBeginEditable name="head" -->
+<script type="text/javascript" src="__PUBLIC__/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/history.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+
+
+	
+	if ($("#searchbox").val().length <= 0){
+		$("#lab_startsearch").show();	
+	}
+	
+	$("#navsearch").submit(function(){
+		var key_word = $("#searchbox").val();
+		key_word = key_word.replace(/^\s+|\s+$/g,""); 
+		if (key_word.length <= 0){
+			alert('请输入搜索内容!');
+			return false;	
+		}else{
+			//var href = 'search.php?searchbox=' + UrlEncode(key_word);
+			var url_keyword = encodeURIComponent(key_word);
+			var href = '__DOC__/dvsbeta.php/store/search/tags/' + url_keyword;
+			do_add(href);
+		}
+	});
+	
+	/*$("a").live('click', function(event){
+		//alert($(this).attr('href'));
+		var href = $(this).attr('href');
+		do_add(href);
+	});*/
+	
+	/*
+	$("#navsearch").submit(function(){
+		$("#searchbox").val('');
+	});
+	*/
+	
+	/*
+	$("#filter_format").bind("click",function() { 
+					$(".select ul").hide();
+               		$(this).find("ul").fadeIn();
+				});
+	$("#filter_format").bind("click",function() { 
+                	$(this).fadeOut();
+					return false;
+				});
+	*/
+	
+	
+	
+	//$("#menu_list ul.menu_body").css('display','none');
+	
+	/*
+	$("#menu_list ul.menu_body li a").click(function(){
+		$(this).parent("li").addClass("t").siblings("li").removeClass("t");
+	 }
+	);
+	*/
+	
+	
+	
+	
+		
+
+
+	//$("#items").load("ajax.php?{$ajax_act}&page=1", hideLoader);
+});
+</script>
+
+<!-- InstanceEndEditable -->
+</head>
+<body>
+<div class="container"> <!-- InstanceBeginEditable name="maincontent" -->
+	<div class="navbar basic">
+		<div class="navsearch-container fr">
+	 <form class="navsearch" action="__APP__/store/search" method="post" id="navsearch">
+        <input id="searchbox" name="tags" type="text" value="" />
+        <label id="lab_startsearch" style="display:none">Search ...</label>
+        <input type="hidden" id="format_act" value="" />
+        <input type="hidden" id="info_act" value="" />
+    	<input type="hidden" id="price_act" value="" />
+        <input type="hidden" id="ajax_act" value="{$ajax_act}" style="width:350px;"/>
+        <input type="hidden" id="menu_hand" value="" />
+        <button type="sumbit">搜索</button>
+     </form>
+   
+			<script type="text/javascript">
+			$("#searchbox").focus(function(){
+				$("#lab_startsearch").fadeOut();
+			});
+			$("#lab_startsearch").click(function(){
+				$("#searchbox").focus();
+				return false;
+			});
+			
+			$("#searchbox").focusout(function(){
+				//$("#searchbox").val().length > 0 ?  alert($("#searchbox").val()) : $("#lab_startsearch").fadeIn();
+				if ($("#searchbox").val().length <= 0){
+					$("#lab_startsearch").fadeIn();
+				}
+			});
+			</script> 
+		</div>
+		<ul class="nav" id="nav">
+			
+			<!--li class="icon home"><a href="javascript:void(0)" onclick="ShowModel()"><span>本地资源</span></a></li--> 
+			<!-- <li class="icon help"><a href="welcome.html"><span>帮助</span></a></li> -->
+		</ul>
+		<div class="pointinfo"><{$uhtml}></div>
+	</div>
+	<div class="content store">
+		<div id="accordion" class="sidebar fl"><{$slideBar}></div>
+		<script type="text/javascript">
+		var h3 = 0;
+		$("#accordion h3").each(function() {
+			h3+=$(this).height()+3;			
+		});
+		$("#accordion div").height($("#accordion").height()-h3);
+		$(function() {
+		 	$('#accordion div').jScrollPane();
+		});
+		</script>
+		<div class="master-container">
+			<div class="master">
+				<div class="mask"></div>
+				<div class="conform" id="abfrm_c1">
+					<div class="ditels"> <{if $model.isbuy eq 1}>
+						<h2>下载<span> <{$model.p_name|getname}></span></h2>
+						<span class="costs">您已经购买过此模型</span>
+						<div>
+							<div class="controls fr"> <a id="cmask" href="javascript:void(0);" class="button thin"><span>取消</span></a> </div>
+							<a href="__DOC__/down/id/<{$model.p_id}>" class="lsbutton blue download"><span>现在下载</span></a> </div>
+						<{else}>
+						<h2><font color="#999999">购买确认</font><span> <{$model.p_name|getname}></span></h2>
+						<span class="costs"><font color="#999999"><{$alertshow.text}></font><i><{$model.show_price}> <{$alertshow.unit}></i></span>
+						<div>
+							<div class="controls fr"> <a id="cmask" href="javascript:void(0);" class="button thin"><span>取消</span></a></div>
+							<a href="__APP__/store/down/id/<{$model.p_id}>/cateid/<{$cateid}>/cate/<{$cate}>" class="lsbutton orange buynow"><span><{$alertshow.buttontext}></span></a> </div>
+						<{/if}> </div>
+				</div>
+				
+				<div class="conform conform2" id="abfrm_c2">
+					<div class="ditels">
+					<h2><span><{$model.p_name|getname}></span></h2>
+					<div class="form-table">
+                       <table class="filelist">
+							
+                        <{if $model['filelist']}> 
+							<{foreach $model['filelist'] as $File}> 
+								<tr>
+                                <td><{$File['pct_name']}></td>
+                                <td><{$File['pf_filesize_disp']}></td>
+                                <td class="controls"><a href="__APP__/store/downnow/id/<{$model['p_id']}>/fid/<{$File['pf_id']}>/cateid/<{$cateid}>/cate/<{$cate}>" class="button thin center-chid"><span>下载模型</span></a></td>
+                                </tr>
+                               
+							<{/foreach}> 
+						<{else}>
+                         
+						<tr>
+                        	<td>暂无下载文件!</td>
+                        </tr>
+						<{/if}>
+					</table>
+						</div>
+						<div class="controls"><a href="javascript:void(0);" id="cmask2" class="button center-chid"><span>取消</span></a></div>
+					</div>
+				</div>
+				
+				<!--div class="controls fr topline"> <a id="viewditels" href="javascript:void(0);" class="button thin center-chid"><span>详细信息</span></a> </div-->
+				<div class="ptitle"><h2><{$model.p_name|getname}></h2>
+                	<span>
+                		<{if $model.p_lictype eq 1}>
+							 ￥ <{$model.p_price}> .00
+                        <{else}>
+                        	<img src="__DOC__/static/images/star<{$model.p_score}>.png">
+                        <{/if}>
+                   	</span>
+                </div>
+				<div class="ditels-container">
+					<div class="ditels-content-container">
+						<!--style type="text/css">
+  #carousel {
+    width:740px;
+    height: 360px;
+    display: relative;
+  }
+  #carousel img {
+    display: hidden; /* hide images until carousel prepares them */
+    cursor: pointer; /* not needed if you wrap carousel items in links */
+  }
+  .carousel-center { box-shadow: 0px 0px 20px #000; }
+</style>
+						<div class="slideshow">
+							<div id="carousel"> 
+                            	<img src="__PUBLIC__/images/test/1.png" alt="" class="imgbackground"/> 
+                                <img src="__PUBLIC__/images/test/2.png" alt="" class="imgbackground"/> 
+                                <img src="__PUBLIC__/images/test/3.png" alt="" class="imgbackground"/> 
+                                <img src="__PUBLIC__/images/test/4.png" alt="" class="imgbackground"/> 
+                                <img src="__PUBLIC__/images/test/5.png" alt="" class="imgbackground"/>
+                                <img src="__PUBLIC__/images/test/6.png" alt="" class="imgbackground"/> 
+                              </div>
+						</div-->
+                        
+<style type="text/css">
+
+</style>					
+<div class="newcarousel">
+	<div class="rightbar">
+    
+		<div class="slidecontrol thumbs">
+			<ul>
+            <{if $model.pm_isar==1}>
+			<li style="cursor:pointer;"><a name='3d'><img src="__PUBLIC__/images/3dview.png" alt="" /></a></li>
+			<{/if}>
+				<{foreach $ProductPhoto as $Photo}>
+					<li style="cursor:pointer;"><a><img src="__DOC__<{$Photo['pp_path']}>s/220_220_<{$Photo['pp_filename']}>" alt="" class="imgbackground"/></a></li>
+				<{/foreach}>
+			</ul>
+		</div>
+		<div class="attributes">
+			<ul>
+				<li>多边形面数<span><{$model.pm_mash}></span></li>
+				<li>顶点数<span>8,151</span></li>
+				<li>包含贴图<span><{if $model.pm_istexture eq 1}>是<{else}>否<{/if}></span></li>
+				<li>包含材质<span><{if $model.pm_ismaterials eq 1}>是<{else}>否<{/if}></span></li>
+				<li>绑定<span><{if $model.pm_ismaterials eq 1}>是<{else}>否<{/if}></span></li>
+				<li>包含动画<span><{if $model.pm_ismaterials eq 1}>是<{else}>否<{/if}></span></li>
+				<li>UV展开<span><{if $model.pm_ismaterials eq 1}>是<{else}>否<{/if}></span></li>
+				<li>支持3D打印<span><{if $model.pm_isprint eq 1}>是<{else}>否<{/if}></span></li>
+                <li>文件格式
+                <span>
+                <{if $model.filelist}>
+            		<{foreach $model.filelist as $File}>
+					<{$File['pct_name']|default:'未定义'}> <font color="#666666">(<{$File['pct_ext']}>)</font><br>
+            		<{/foreach}>
+            	<{/if}>
+                </span>
+                </li>
+			</ul>
+		</div>
+        
+	</div>
+	<div class="preview pr">
+		<div class="slideshow pa" id="ss_content" style="top:0; z-index:100;">
+				<img src="" alt="" class='imgbackground'/>
+    	</div>
+		<{if $model.pm_isar==1}>
+			<div class="slideshow pa" id="vr_content" style="z-index=10; top: 0; width: 420px; height: 420px;"> 
+				<iframe src="http://www.lao3d.com/bitmap3d_model_link.html?modelid=<{$model.pm_arcode}>" allowfullscreen="true" width="420" height="420"></iframe>
+			</div>
+		<{/if}>
+     
+	</div>
+    
+</div>
+
+					</div>
+        
+		<div class="ditels"> 
+       
+        <{if $model.isbuy eq 1}> 
+		<!--
+        <div class="fr"> <span class="costs">您已经购买过此模型</span><a id="makesure" class="lsbutton blue download"><span>现在下载</span></a></div>
+        -->
+		<div class="fr">
+        	<a id="makesure2" class="lsbutton blue download"><span>现在下载</span></a>
+        </div>
+        <{else}> 
+						<!--  <div class="fr"> 
+            		<span class="costs">需要<i><{$model.p_price}></i>元</span>
+            		<{if $f_userid}>
+            			<{if $userrcoin gte $model.p_price}>
+            				<a id="makesure_buy" class="lsbutton orange buynow" ><span>支付下载</span></a>
+            			<{else}>
+            				<a id="makesure_alert_buy" class="lsbutton orange buynow" ><span>支付下载</span></a>
+            			<{/if}>
+            		<{else}>
+            			<a id="makelogin" class="lsbutton orange buynow"><span>支付下载</span></a>
+            		<{/if}>
+            	</div> -->
+						
+						<div class="fr"> 
+	<{if $f_userid}>
+		<{if $usercoin gte $model.show_price}> 
+        	<a id="makesure" class="lsbutton orange buynow" ><span><{$alertshow.buttontext}></span></a> 
+        <{else}> 
+           	<a id="makesure_alert" class="lsbutton orange buynow" ><span><{$alertshow.buttontext}></span></a> 
+        <{/if}>
+	<{else}> 
+		<a id="makelogin" class="lsbutton orange buynow"><span><{$alertshow.buttontext}></span></a> 
+	<{/if}> </div>
+
+<{/if}>
+						<h5>
+                        	<{$model.pct_name}> 
+							<{$model.pct_ext}> 
+                         </h5>
+						
+						<div class="itemcode">Product ID: <{$model.p_id}></div>
+					</div>
+				</div>
+<script type="text/javascript">
+
+//$('.thumbs').jScrollPane();
+$('.thumbs ul li a').click(function() {
+	
+	if($(this).attr('name')!= '3d'){
+		//alert('aa');
+		$('#vr_content').hide(); 
+		$('#ss_content').show();
+	    $('.preview .slideshow img').attr('src', $(this).find('img').attr('src').replace('/s/220_220_','/s/600_600_'));
+	}else{
+		$('#ss_content').hide(); 
+		$('#vr_content').show(); 
+		
+	}
+});
+
+$('.thumbs ul li a:not([name=3d])').first().click();
+$('#vr_content').show();
+//$('#vr_content').hide();		
+				
+				$('.slidecontrol').jScrollPane();
+				$(function() {
+					$('.ditels .function').jScrollPane();
+				});
+				
+				$("#cmask, #cmask2").bind("click",function() { 
+					$(".master .mask").fadeOut();
+					$(".master .conform").hide();
+				});
+				
+				$("#makesure").bind("click",function() {
+					$.post('__APP__/ajax/index/act/isBuy/id/<{$model.p_id}>/lictype/<{$model.p_lictype}>',
+					function (data){
+						if (data == '0'){
+							$(".master .mask").fadeIn();
+							$("#abfrm_c1").show();
+						}else{
+							window.location = window.location.href;
+						}
+					});
+				});
+				
+				$("#makesure2").bind("click",function() {
+					$(".master .mask").fadeIn();
+					$("#abfrm_c2").show();
+					$('.conform2 .form-table').jScrollPane();
+				});
+				
+				$("#makesure_alert").bind("click",function() {
+					alert('<{$alertshow.notice}>');
+				})
+				
+				
+				$("#makesure_alert_buy").bind("click",function() {
+					alert('很抱歉!您的账户金额不足！请联系客服.');
+				})
+				$("#makelogin").bind("click",function() {
+					alert("抱歉，未登录，请在右上方登录后操作.");
+				});
+
+
+				</script> 
+
+<script>
+var curract="<{$curract}>";
+if(curract==1){
+	$(".master .mask").fadeIn();
+	$("#abfrm_c2").show();
+	$('.conform2 .form-table').jScrollPane();
+}
+</script>
+
+			</div>
+		</div>
+	</div>
+	<!-- InstanceEndEditable --> </div>
+</body>
+<!-- InstanceEnd -->
+<div id="output" style="margin-top:40px;"></div>
+</html>

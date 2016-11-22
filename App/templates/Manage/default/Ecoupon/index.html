@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>优惠券模块-{$site.SITE_INFO.name}</title>
+        <php>
+            $addCss="";
+            $addJs="";
+            $currentNav ='优惠券模块 > 首页';
+        </php>
+        <include file="Common:intohead" />
+    </head>
+    <body>
+        <div class="wrap">
+            <include file="Common:head" />
+            <div class="mainBody">
+                <include file="Common:left" />
+                <div id="Right">
+                    <div class="Item hr">
+                        <div class="current">优惠券模块</div>
+                    </div>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                    <tr>
+                    <td>优惠码</td>
+                    <td>金额</td>
+                    <td>类型</td>
+                    <td>使用限制</td>
+                    <td>使用状态</td>
+                    <td>创建时间</td>
+                    <td>过期时间</td>
+                    </tr>
+                    <foreach name='data' item='vo'>
+                    <tr>
+                    <td>{$vo.ec_code}</td>
+                    <td>￥{$vo.ec_amount}</td>
+                    
+                    <td>
+                    <if condition="$vo.ec_type eq 1">金额抵扣
+                    <elseif condition="$vo.ec_type eq 2" />直接折扣
+                    <else />类型为空
+                    </if>
+                    </td>
+                    <td>
+                    <if condition="$vo.ec_uselimit eq 1">仅单次使用
+                    <elseif condition="$vo.ec_uselimit eq 2" />无限次使用
+                    <else />限制为空
+                    </if>
+                    </td>
+                    
+                    <td>
+                    <if condition="$vo.ec_expiredate gt get_now()">正常
+                    <else />已过期
+                    </if>
+                    </td>
+                    
+                    <td>{$vo.ec_createdate}</td>
+                    <td>{$vo.ec_expiredate}</td>
+                    
+                    </tr>
+                    </foreach>
+                    
+                    </table>
+                    <p style="text-align:center">{$page}</p>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <include file="Common:foot" />
+    </body>
+</html>

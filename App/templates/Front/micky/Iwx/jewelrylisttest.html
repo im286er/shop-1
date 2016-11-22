@@ -1,0 +1,160 @@
+<{include file=C('MHEAD_START')}>
+<link rel="stylesheet" type="text/css" href="/m/kitty/css/kitty.mobile.css">
+<link rel="stylesheet" type="text/css" href="/m/doge/css/doge.mobiletest.css">
+<link rel="stylesheet" href="/m/kitty/css/swiper.min.css">
+<script src="__MSTATIC__/js/jquery-1.11.2.min.js"></script>
+<script src="__MSTATIC__/js/bootstrap.min.js"></script>
+<script src="/m/kitty/js/swiper.min.js"></script>
+<{include file=C('MHEAD_END')}>
+
+<style>
+    a { color: #ED7B33; }
+    a:hover { color: #EA572B !important; }
+    .navbar { border-top-color: #ED7B33 !important; }
+    .navbar .usercal { border-bottom-color: #e7e7e7 !important; }
+</style>
+
+<script>
+    $(document).ready(function(){
+        $("#globalnav").on('shown.bs.collapse', function () {
+            $(".person").toggleClass("open");
+        });
+    });
+</script>
+
+<div class="kitty-product-list">
+    <{foreach $SearchResult as $Result}>
+    <div class="kitty-product-item">
+        <div class="img">
+            <{if $Result['p_producttype'] == 7}>
+                <a href="__DOC__/index/wx-jewelrydetail-cid-<{$Result[$DBF_P->DiyCateCid]}>.html">
+            <{else}>
+                <a href="__DOC__/index/wx-productdetail-id-<{$Result[$DBF_P->ID]}>.html">
+            <{/if}>
+                <img src="__IMG__<{$Result['p_cover']}>" alt="" width="330px">
+            </a>
+        </div>
+        <div class="info">
+            <h2 class="title"><{$Result[$DBF_P->Name]}></h2>
+            <p class="price">￥<i><{$Result['p_price']}>.00</i></p>
+            <{if $Result['p_producttype'] == 7}>
+                <a href="__DOC__/index/wx-jewelrydetail-cid-<{$Result[$DBF_P->DiyCateCid]}>.html" class="btn-buy">
+            <{else}>
+                <a href="__DOC__/index/wx-productdetail-id-<{$Result[$DBF_P->ID]}>.html" class="btn-buy">
+            <{/if}>
+            立即购买</a>
+        </div>
+        <div class="label">
+            <{if $Result['p_producttype'] == 7}><i class="new"></i><{/if}>
+            <{if $Result['p_wpid'] }><i class="diy"></i><{/if}>
+        </div>
+    </div>
+    <{/foreach}>
+</div>
+<div id="loading-more"><i></i>加载中，请稍后...</div>
+<section class="footer-placeholder">
+    <div class="footer-kitty">
+        <a href="#" class="cur"><i></i>专题</a>
+        <a href="#"><i></i>商店</a>
+        <a href="#"><i></i>彩宝</a>
+        <a href="#"><i></i>我</a>
+    </div>
+</section>
+<script>
+    $(function(){
+
+        var oLoading = $('#loading-more');
+        var winH = $(window).height();
+        if(oLoading.length<1 || oLoading.hasClass('no-more'))return;
+        $(window).bind('scroll',loading);
+        var bBtn = true;  //是否可以后续加载，防止连续加载多次
+        var i=1;//此数据用来测试用，可删除
+
+        function loading(){
+            var scrollT = $(this).scrollTop();
+            var loadingTop = oLoading.offset().top;//loading区域距离页面顶部的距离
+            if(scrollT+winH > loadingTop && bBtn)//判断loading区域是否进入可视区并且加载开关为true
+            {
+                bBtn = false;
+                i++;
+               //*这里是测试用   开发时可删除*//*
+                /*setTimeout(function(){
+                    i++;
+                    if(i<5){//可后续加载
+                        bBtn=true;
+                        console.log('当前已加载成功：'+i+'次');
+                    }else{
+                        $(window).unbind('scroll',loading);//解除scroll事件
+                        oLoading.text('没有更多内容！');
+                        bBtn=false;
+                        console.log('没有后续加载了');
+                    }
+
+                },3000)*/
+                /*这里是测试用   开发时可删除*/
+
+                //这里是真正开发的时候用的ajax请求
+
+                 $.ajax({
+                 url:'__DOC__/index/wx-jewelrylistajax',
+                 type:'get',
+                 async:true,
+                 data:{page:i},
+                 error:function(){
+                     $(window).unbind('scroll',loading);//解除scroll事件
+                     oLoading.text('没有更多内容！');
+                     bBtn=false;
+                 },
+                 success:function(bkdata){
+                     //data返回值
+                     //1.一个值判断是否还有后续内容可加载
+                     //2.构成产品的数据
+
+                     //这里是产品数据添加区域
+                     /*for (var i = 0; i < bkdata.length; i++) {
+                         console.log(bkdata[i]);
+                     };*/
+
+                     //这里判断是否还有后续加载
+                     if(bkdata){//还有后续加载内容
+                         var backdata= eval('(' + bkdata + ')');
+                         //console.log(backdata);
+                         $(backdata).each(function(index,item){
+                             //index指下标
+                             //item指代对应元素内容
+                             //this指代每一个元素对象
+
+                             var apphtml="<div class='kitty-product-item'><div class='img'>";
+                             if(item['p_producttype']==7){
+                                 apphtml+="<a href='__DOC__/index/wx-jewelrydetail-cid-"+item['p_diy_cate_cid']+".html'>";
+                             }else{
+                                 apphtml+="<a href='__DOC__/index/wx-productdetail-id-"+item['p_id']+".html'>";
+                             }
+                             apphtml+="<img src='__IMG__"+item['p_cover']+"' width='330px'></a></div>";
+                             apphtml+="<div class='info'><h2 class='title'>"+item['p_name']+"</h2><p class='price'>￥<i>2288</i></p>";
+                             if(item['p_producttype']==7){
+                                 apphtml+="<a href='__DOC__/index/wx-jewelrydetail-cid-"+item['p_diy_cate_cid']+".html' class='btn-buy'>";
+                             }else{
+                                 apphtml+="<a href='__DOC__/index/wx-productdetail-id-"+item['p_id']+".html' class='btn-buy'>";
+                             }
+                             apphtml+="立即购买</a></div>";
+                             apphtml+="<div class='label'>";
+                                if(item['p_wpid']){apphtml+="<i class='new'></i>";}
+                                if(item['p_producttype']==7){apphtml+="<i class='diy'></i>";}
+                             apphtml+="</div></div>";
+                             $('.kitty-product-list').append(apphtml);
+                             //console.log($(this));
+                         });
+                        bBtn=true; //开启后续加载
+                     }else{//没有后续加载内容
+                        $(window).unbind('scroll',loading);//解除scroll事件
+                        oLoading.text('没有更多内容！');
+                        bBtn=false;
+                     }
+                 }
+                 })
+            }
+        }
+    })
+</script>
+<{include file=C('MFOOT')}> 

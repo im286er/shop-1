@@ -1,0 +1,79 @@
+<include file="Common:pageheader_start" />
+<include file="Common:pageheader_end" />
+<div id="Right">
+	<div class="contentArea">
+		<h3>{$Product.p_name} - 商品明细列表 | <a href="__APP__/Endproduct/gendetail/id/{$Product.p_id}">生成明细</a>
+		| <a href="__APP__/Endproduct/pubdetail/id/{$Product.p_id}">一键上线</a>
+		| <a href="__APP__/Endproduct/offdetail/id/{$Product.p_id}">一键下架</a></h3>
+		<if condition="$ErrInfo">
+		<div class="errorinfo">{$ErrInfo}</div>
+		</if>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0"
+			class="tab">
+			<tbody>
+			<tr bgcolor=#E0E0E0>
+				<td width="50">ID</td>
+				<td width="500">商品属性</td>
+				<td width="100">商品主类型</td>
+				<td width="100">商品所有人</td>
+				<td width="100">商品价格*</td>
+				<td width="50">状态*</td>
+				<td width="140">最后修改</td>
+				<td>操作</td>
+			</tr>
+			<if condition="$listCount eq 0">
+				<td colspan="8" align="center">暂未生成明细商品</td>
+			<else />
+				<volist name="listTable" id="item">
+			<tr pid="{$item.p_id}">
+				<td>{$item.p_id}</td>
+				<td>{$item.p_propname_spec}</td>
+				<td><a href="__APP__/Endproduct/defineprop/id/{$item.p_maintype}" target="_blank">{$Product.ipt_name}</a></td>
+				<td>{$Product.u_dispname}</td>
+				<td edit="0" fd="price">{$item.p_price}</td>
+				<td><a href="javascript:void(0);" class="opStatus" val="{$item.p_slabel}">
+				<if condition="$item.p_slabel eq 0">No<else />Yes</if>
+				</a></td>
+				<td>{$item.p_lastupdate}</td>
+				<td><a href="__APP__/Endproduct/editproduct/id/{$item.p_id}">编辑</a></td>
+			</tr>
+			</volist>
+			</if>
+			</tbody>
+		</table>
+	</div>
+</div>
+ <script type="text/javascript">
+ //快捷启用禁用操作
+ $(".opStatus").click(function(){
+     var obj=$(this);
+     var id=$(this).parents("tr").attr("pid");
+     var status=$(this).attr("val");
+     $.getJSON("__APP__/Endproduct/opdetailstat", { pid:id, status:status }, function(json){
+         if(json.status==1){
+             // popup.success(json.info);
+             $(obj).attr("val",json.data.status).html(status==1?"No":"Yes");
+         }else{
+             // popup.alert(json.info);
+         }
+     });
+ });
+ 
+//快捷改变操作排序dblclick
+	$("tbody>tr>td[fd]").click(function(){
+		var inval = $(this).html();
+		var infd = $(this).attr("fd");
+		var inid =  $(this).parents("tr").attr("pid");
+		if($(this).attr('edit')==0){
+			$(this).attr('edit','1').html("<input class='input' size='5' id='edit_"+infd+"_"+inid+"' value='"+inval+"' />").find("input").select();
+		}
+		$("#edit_"+infd+"_"+inid).focus().bind("blur",function(){
+			var editval = $(this).val();
+			$(this).parents("td").html(editval).attr('edit','0');
+			if(inval!=editval){
+				$.post("__APP__/Endproduct/opdetialprice",{pid:inid,fd:infd,price:editval});
+			}
+		})
+	});
+</script>
+<include file="Common:pagefooter" />

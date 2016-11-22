@@ -1,0 +1,73 @@
+<div class="part-selector-item" <{if $item.ishidden eq 1}>style="display: none;"<{/if}>>
+<div class="unit-parent unit-left">
+    <div class="unit-child"><{$item.unit_showname}></div>
+</div>
+
+<div class="unit-parent unit-center">
+    <div class="unit-child in-shop" panelname="panel-<{$item.unit_name}>-shop">
+        <div class="selected-icon-material" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>" mvalue="<{$item.fieldvalue}>"></div>
+        <div class="unit-parent">
+            <div class="unit-child unit-selected-label" mname="<{$item.unit_name}>" mvalue="<{$item.fieldvalue}>"><{$materialId2Name[$item.fieldvalue]}></div>
+        </div>
+    </div>
+</div>
+
+<div class="unit-right in-shop" panelname="panel-<{$item.unit_name}>-shop">
+    <div class="unit-child unit-arrow">
+    </div>
+</div>
+<{if $isMobile == 0}> <!--pc-->
+    <div class="panel-pc panel-<{$item.unit_name}>-shop" style="display: none">
+        <div class="panel-content">
+            <{foreach $mcate as $result}>
+            <{$metal_class_name = "metal-gold-white"}>
+            <{if $result.pma_id eq '127'}>
+            <{$metal_class_name = "metal-silver"}>
+            <{elseif $result.pma_id eq '128'}>
+            <{$metal_class_name = "metal-gold-red"}>
+            <{elseif $result.pma_id eq '130'}>
+            <{$metal_class_name = "metal-gold-yellow"}>
+            <{/if}>
+            <{if $item.fieldvalue == $result.pma_id}>
+            <div class="part-col-4 select-metal part-active" mvalue="<{$result.pma_id}>" mname="<{$item.unit_name}>" title="<{$result.TPM_name}>">
+                <div class="selected-icon <{$metal_class_name}>"></div>
+            <{else}>
+            <div class="part-col-4 select-metal" mvalue="<{$result.pma_id}>" mname="<{$item.unit_name}>" title="<{$result.TPM_name}>">
+                <div class="selected-icon <{$metal_class_name}>"></div>
+            <{/if}>
+            </div>
+            <{/foreach}>
+        </div>
+    </div>
+<{/if}>
+</div>
+
+<{if $isMobile == 1}> <!--mobile-->
+<!-- material shop panel -->
+<div class="panel panel-<{$item.unit_name}>-shop" style="display: none">
+    <div class="panel-title">
+        <span class="title">请选择材质</span>
+        <img class="panel-back" src="__MSTATIC__/imgs/diy_ddd_common/back.png" alt="">
+    </div>
+    <div class="panel-content">
+        <{foreach $mcate as $result}>
+        <{$metal_class_name = "metal-gold-white"}>
+        <{if $result.pma_id eq '127'}>
+        <{$metal_class_name = "metal-silver"}>
+        <{elseif $result.pma_id eq '128'}>
+        <{$metal_class_name = "metal-gold-red"}>
+        <{elseif $result.pma_id eq '130'}>
+        <{$metal_class_name = "metal-gold-yellow"}>
+        <{/if}>
+        <{if $item.fieldvalue == $result.pma_id}>
+        <div class="part-col-2 part-raw-2 select-metal part-active" mvalue="<{$result.pma_id}>" mname="<{$item.unit_name}>" title="<{$result.TPM_name}>">
+            <div class="selected-icon <{$metal_class_name}>"></div>
+        <{else}>
+        <div class="part-col-2 part-raw-2 select-metal" mvalue="<{$result.pma_id}>" mname="<{$item.unit_name}>" title="<{$result.TPM_name}>">
+            <div class="selected-icon <{$metal_class_name}>"></div>
+        <{/if}>
+        </div>
+        <{/foreach}>
+    </div>
+</div>
+<{/if}>

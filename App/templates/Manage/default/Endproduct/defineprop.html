@@ -1,0 +1,35 @@
+<include file="Common:pageheader_start" />
+<include file="Common:pageheader_end" />
+<div id="Right">
+	<div class="contentArea">
+		<h3>商品主类型 - {$mainType.ipt_name} 属性列表 &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Endproduct/addprop/id/{$mainType.ipt_id}">添加属性</a></h3>
+		<if condition="$ErrInfo">
+		<div class="errorinfo">{$ErrInfo}</div>
+		</if>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0"
+			class="tab">
+			<tr bgcolor=#E0E0E0>
+				<td width="50">ID</td>
+				<td width="200">属性名</td>
+				<td width="100">属性权重</td>
+				<td width="600">属性值集合</td>
+				<td>操作</td>
+			</tr>
+			<if condition="$hasRes eq 0">
+			<tr>
+				<td colspan="5" align="center">暂未设定相关属性</td>
+			</tr>
+			<else /> <volist name="listTable" id="item">
+			<tr>
+				<td>{$item.ipp_id}</td>
+				<td>{$item.ipp_name}</td>
+				<td>{$item.ipp_weight}</td>
+				<td>{$item.ipp_vals}</td>
+				<td>
+					<a href="__APP__/Endproduct/editprop/id/{$item.ipp_id}">编辑</a></td>
+			</tr>
+			</volist> </if>
+		</table>
+	</div>
+</div>
+<include file="Common:pagefooter" />

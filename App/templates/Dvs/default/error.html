@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/yagami_global.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DVS3D Library</title>
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<link href="__PUBLIC__/themes/default/css/init.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/themes/default/css/yagami.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/Dvs/js/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+</script>
+</head>
+
+
+<div class="container_e error">	
+	<div class="metrobox slideshow">
+			<div class="info error">
+				<{$error}>
+			</div>
+			<br>
+			<div class="llbuttom">
+				<button class="white-btn" type="button" id="goback">继续操作</button>
+			</div>
+				&nbsp;&nbsp;正在跳转，请稍等 <b id="wait"><{$waitSecond}></b> 秒 !
+	</div>
+</div>
+
+<div class="jump_page shadow radius">
+	<div class="infoshell face">
+		<div class="ctr">
+		
+			<script type="text/javascript">
+				$('#goback').click(function(e) {
+					window.location.href="<{$jumpUrl}>";
+				});
+			</script> 
+		</div>
+	</div>
+	<div class="infoshell bg"></div>
+
+</div>
+<script type="text/javascript">
+(function(){
+var wait = document.getElementById('wait'),href = "<{$jumpUrl}>";
+var interval = setInterval(function(){
+	var time = --wait.innerHTML;
+	if(time == 0) {
+		location.href = href;
+		clearInterval(interval);
+	};
+}, 1000);
+})();
+</script>
+<{include file="./pagefooter.html"}>

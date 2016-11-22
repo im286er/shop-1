@@ -1,0 +1,22 @@
+<div class="part-selector-item part-selector-item-inputslider-pc" <{if $item.ishidden eq 1}>style="display: none;"<{/if}>>
+<div class="unit-parent unit-left">
+    <div class="unit-child"><{$item.unit_showname}></div>
+</div>
+
+<div class="unit-parent unit-center unit-center-inputslider-pc">
+    <div class="unit-child">
+        <div class="nstSlider" data-range_min="<{$item.unit_minvalue * 100}>" data-range_max="<{$item.unit_maxvalue * 100}>" data-cur_min="<{$item.fieldvalue * 100}> " data-cur_max="0" mname="<{$item.unit_name}>">
+            <div class="bar"></div>
+            <div class="leftGrip"></div>
+        </div>
+    </div>
+</div>
+
+<div class="unit-right">
+    <div class="unit-child">
+        <input type="text" mtype="<{$item.fieldtype_second}>" class="unit-input unit-inputslider isNumber diy-text" placeholder="<{$item.fieldvalue}>" mname="<{$item.unit_name}>" data-toggle="tooltip" data-placement="left" title="<{$item.fieldtitle}>">
+        <span><{$item.fieldtitle}></span>
+    </div>
+</div>
+
+</div>

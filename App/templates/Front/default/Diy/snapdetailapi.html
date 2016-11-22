@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN"  style="overflow: scroll">
+<head>
+<meta charset="utf-8">
+<title>3D城 - Powered by 3DCity.com</title>
+<script src="__NEOSTATIC__/js/html5shim.js"></script>
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/diyediter-bootstrap.css">
+<script src="__NEOSTATIC__/js/jquery-1.11.1.min.js"></script>
+<script src="__NEOSTATIC__/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="__NEOSTATIC__/js/jquery.nstSlider.min.js"></script>
+<!-- Begin Case 1: DIYEditor -->
+<!-- <script src="__PUBLIC__/js/diy/plugins/common/js/three.js"></script>
+<script src="__PUBLIC__/js/diy/plugins/common/js/BendModifier.js"></script>
+<script src="__PUBLIC__/js/diy/plugins/common/js/EditorControls.js"></script>
+<script src="__PUBLIC__/js/diy/plugins/common/js/MaterialManage.js"></script>
+<script src="__PUBLIC__/js/diy/plugins/common/js/LightManage.js"></script>
+<script src="__PUBLIC__/js/diy/plugins/common/js/Post.js"></script>
+<script src="__PUBLIC__/js/diy/plugins/common/js/Fonts.js"></script>
+<script src="__PUBLIC__/js/diy/plugins/common/js/Base64.js"></script>
+<script src="__PUBLIC__/js/diy/plugins/common/js/MD5.js"></script>
+<script src="__PUBLIC__/js/diy/plugins/common/js/Viewport.js"></script>
+<script src="__PUBLIC__/js/diy/plugins/common/js/CreateObject.js"></script>
+<script src="__PUBLIC__/js/diy/plugins/common/js/Utils.js"></script>-->
+
+<script src="__PUBLIC__/js/diy/plugins/common/js/build/common.min.js"></script>
+<script src="__PUBLIC__/js/diy/plugins/common/js/build/fonts.min.js"></script>
+<script src="__PUBLIC__/js/diy/plugins<{$dataAll.diy_cate['jspath']}>"></script>
+<!-- End Case 1 -->
+</head>
+<body>
+<div class="container diy">
+<div class="left_inf fr"> 
+<table width="200">
+<tr>
+	<td>
+	<input type="hidden" name="pid" id="pid" value="<{$udinfo.p_id}>">
+	<input type="hidden" name="cid" value="" id="cid">
+	<input type="hidden" name="netType" value=1 id="netType">
+
+	</td>
+</tr>
+<{foreach $dataAll.diy_unit as $item}>
+<tr>
+	<td>
+	
+		<{if $item.fieldtype eq 'MATERIAL'}>
+			<{foreach $mcate as $result}> 
+				<{if $item.fieldvalue == $result.pma_id}>
+					<{if $showtype eq 10}>
+						<{$item.unit_showname}> <{$result.TPM_name}>
+					<{/if}>
+				<{/if}> 
+			<{/foreach}>
+			<input type="hidden" name="<{$item.unit_name}>" value="<{$item.fieldvalue}>" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>">
+		<{else}>
+			 <{if $showtype eq 10}>
+						<{$item.unit_showname}> <{$item.fieldvalue}>
+			 <{/if}>
+			 <input type="hidden" name="<{$item.unit_name}>" value="<{$item.fieldvalue}>" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>">
+		<{/if}>
+	</td>
+</tr>
+<{/foreach}>
+
+
+              
+                <tr>
+                	<td>
+                    <input type="hidden" value="0" id="stype" name="stype">
+                   <span id=showprice style="display:none"></span><input type="hidden" name="price" id="price" value="<{$udinfo.price}>">
+                   
+                    </td>
+                </tr>
+                <tr>
+                
+                <td colspan="3"><br>
+			<{if $showtype eq 10}>
+			 	价格：<{$udinfo.price}>
+				<input type="button" id="savemodel" value="生成模型">
+               
+			    <{if $pfile}>
+               		模型已经生成,可 <a href='__DOC__<{$pfile}>'>下载模型</a>
+                <{else}>
+					<input type="button" id="savemodel" value="生成模型">
+                <{/if}>
+                </td>
+             <{/if}>
+			<input type="button" id="savemodel" value="生成模型">
+				<a href='__DOC__<{$pfile}>'>下载模型</a>
+				</tr>
+				
+            </table>
+	</div>
+	<canvas id = "web3dViewport" class="fr" width="500" height="500"></canvas>
+	<div class="clear"></div>
+</div>
+<script> 
+
+var webpath="__PUBLIC__"; 
+var neowebpath="__NEOSTATIC__"; 
+var pid = document.getElementById("pid").value; 
+<{foreach $mcate as $res}> 
+var pma_diy_formula_s_<{$res.pma_id}>="<{$res.pma_diy_formula_s}>";
+var pma_diy_formula_b_<{$res.pma_id}>="<{$res.pma_diy_formula_b}>";
+var pma_necklace_price_<{$res.pma_id}>="<{$res.pma_necklace_price}>";
+<{/foreach}>
+
+var pmg_global_background = neowebpath+"/imgs/etc/diybg/" + Utils.getRandomInt(1, 15) + ".jpg";
+var islogin=parseInt(<{$islogin}>);
+
+execute(false);
+</script>
+<div class="runtime">{__RUNTIME__}</div>
+</body>
+</html>

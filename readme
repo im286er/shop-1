@@ -1,0 +1,97 @@
+git config --list [查看git的配置信息]
+
+git config --global user.name "username" [配置git用户名]
+
+git config --global user.email "useremail" [配置git邮箱]
+
+
+
+[members 用户操作]
+
+git config branch.dev.remote origin
+
+git config branch.dev.merge refs/heads/master
+
+
+1 git clone -b dev git@192.168.52.50:city.git [文件夹的名字]
+
+2 cd ./App
+
+3 mkdir Runtime
+
+4 mkdir template_c
+
+5 sudo chmod -R 777 ./
+
+6 cd ..
+
+7 git checkout -b  xxx[你名字的简称]  [创建并切换到分支]
+
+....... [加入一些功能]
+
+8 git status [查看状态]
+
+9 git add . [将所有修改了的内容加到缓冲区 git ]
+
+10 git commit -m “...” [从缓冲区提交，git commit --amend -m "...new" 改变最后一次提交的注释]
+
+....... [当一些功能已经完成一些功能]
+
+11 git checkout dev [切换到dev分支]
+
+12 git pull origin dev [从服务器更新dev分支数据]
+
+13 git merge xxx[你名字的简称] [合并xxx分支]
+
+14 git push origin dev [将dev分支推送到服务器]
+
+15 git checkout xxx[你名字的简称] [切换到xxx分支]
+
+[192.168.52.19 用户操作]
+
+1 git clone git@192.168.52.50:city.git [文件夹的名字]
+
+2 git pull origin dev [从服务器更新dev分支数据]
+
+3 git checkout dev [切换到dev分支]
+
+..... [测试没有问题]
+
+4 git checkout master [切换到master分支]
+
+5 git pull origin master [从服务器更新master分支数据]
+
+6 git merge dev [合并dev分支]
+
+7 git push origin master [将master分支推送到服务器]
+
+[192.168.52.40 用户操作]
+
+1 git clone git@192.168.52.50:city.git [文件夹的名字]
+
+2 git pull origin master [将master分支推送到服务器]
+
+[一些git常用操作]
+
+git log
+
+git status
+
+git reset [--hard --soft] HEAD[~1, 2, ...]
+
+git revert HEAD[~1, 2, ...]
+
+git checkout xxx
+
+git add .
+
+git rm <file> [从版本库中删除文件]
+
+git rm <file> --cached [从版本库中删除文件，但不删除文件]
+
+git commit -m "..."
+
+git commit --amend -m "..."
+
+git diff
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Password?</title>
+<meta name="viewport" content="user-scalable=no, width=device-width" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<!--<link href="__PUBLIC__/css/init.css" rel="stylesheet" media="all" type="text/css" />
+<link href="__PUBLIC__/css/admin-init.css" rel="stylesheet" media="screen" type="text/css" />-->
+<link href="__PUBLIC__/css/init.css" rel="stylesheet" media="all" type="text/css" />
+<link href="__PUBLIC__/css/admin-init.css" rel="stylesheet" media="screen" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/js/iefix-pie.js"></script>
+<![endif]-->
+</head>
+<body style="background: #010101;">
+<div class="infoshell face">
+  <div class="ctr">
+  	<form action="__APP__/access" method="post">
+        <div  style="width: 500px; margin: auto; padding-top: 200px;">
+        	<h1 style="color:#0C0; font-size: 24px; padding-bottom: 5px; font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif; font-weight: bold;">Password?</h1>
+            <input type="password" name="accesscode" style=" width: 500px; height: 30px; border: 1px solid #CCC; font-size: 24px;" />
+            <{if $Error}>
+            <h1 style="color:#F00; font-size: 20px; padding-top: 15px; font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif">ERROR!! ERROR!! ERROR!!</h1>
+            <{/if}>
+        </div>
+	    <div class="llbuttom">
+	      <button class="blue" type="submit" style="visibility: hidden;">进入</button>
+	    </div>
+    </form>
+  </div>
+</div>
+<div class="infoshell bg"></div>
+<div class="footbar face">
+	<ul>
+		<li>
+			<a id="wait_info"><{$jump_label.jumpinfo}> <span></span></a>
+		</li>
+	</ul>
+  <a class="fr" href="#"><{$jump_label.copyright}></a> </div>
+<div class="footbar bg"></div>
+<div class="runtime face">{__RUNTIME__}</div>
+<div class="runtime bg"></div>
+</body>
+</html>

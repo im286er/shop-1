@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>云端模块-{$site.SITE_INFO.name}</title>
+        <php>
+            $addCss="";
+            $addJs="";
+            $currentNav ='计价测试';
+        </php>
+        <include file="Common:intohead" />
+    </head>
+    <body>
+        <div class="wrap">
+            <include file="Common:head" />
+            <div class="mainBody">
+                <include file="Common:left" />
+                <div id="Right">
+                    <div class="Item hr">
+                        <div class="current">计价测试</div>
+                    </div>
+                    <form action="" method="post">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                    <tr>
+                    <td>选择材料：<select name="pmaid">{$pmaOption}</select></td>
+                    </tr>
+                    <tr>
+                    <td>打印件体积：<input type="text" name="volume" value="{$volume|default=0.00}"/>mm3</td>
+                    </tr>
+                    <tr>
+                    <td>最小包围盒长度：<input type="text" name='minBoundBoxL' value="{$minBoundBox_L|default=0.00}"/>mm</td>
+                    </tr>
+                    <tr>
+                    <td>最小包围盒宽度：<input type="text" name='minBoundBoxW' value="{$minBoundBox_W|default=0.00}"/>mm</td>
+                    </tr>
+                    <tr>
+                    <td>最小包围盒高度：<input type="text" name='minBoundBoxH' value="{$minBoundBox_H|default=0.00}"/>mm</td>
+                    </tr>
+                    <tr>
+                    <td>打印件表面积：<input type="text" name='surfaceArea' value="{$surfaceArea|default=0.00}"/>mm2</td>
+                    </tr>
+                    <tr>
+                    <td>打印件修复等级：<input type="text" name='repairLevel' value="{$repairLevel|default=1}"/></td>
+                    </tr>
+                    <tr>
+                    <td>
+                    <input type="hidden" name="cdebug" value="1" />
+                    <button type="submit">开始计算</button></td>
+                    </tr>
+                    <tr>
+                    <td>计价公式： {$calcResult->OrgFormula}</td>
+                    </tr>
+                    <tr>
+                    <td>计算公式： {$calcResult->Formula}</td>
+                    </tr>
+                    <tr>
+                    <td>最终价格： ￥{$calcResult->Result}</td>
+                    </tr>
+                    </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <include file="Common:foot" />
+    </body>
+</html>

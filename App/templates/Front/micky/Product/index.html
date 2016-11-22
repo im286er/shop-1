@@ -1,0 +1,146 @@
+<{include file=C('MICKYHEAD_START')}>
+<link rel="stylesheet" href="__PUBLIC__/css/listSearch.css">
+<{include file=C('MICKYHEADBRANDSTORY_END')}>
+
+<!-- banner start-->
+<div class="listBanner">
+    <ul id="slides">
+        <li class="bannerImg" id="imgsearch1">
+            <!--<img src="__PUBLIC__/images/banner_search.jpg" alt="" style="width: 100%;"/>-->
+            <a href="" target="_blank"></a>
+        </li>
+    </ul>
+</div>
+<!--banner end-->
+
+<!--商品列表 start-->
+<div class="shopListBox">
+    <div class="shopList">
+        <div class="shopListTitle">
+            <div class="search fl">
+                <{if $searchtype neq 1}>
+                搜索结果:<span><{$search_key_fmt}></span>
+                <{else}>
+                <{/if}>
+            </div>
+            <div class="shopListTitleInner fr">
+                共&nbsp;<span>
+                <{if $SearchResultCount}>
+                <b><{$SearchResultCount}></b>
+                <{else}>
+                <b>0</b>
+                <{/if}>
+                </span>&nbsp;件商品 &nbsp;&nbsp; <{$currentPage}>/<{$totalPage}> &nbsp;&nbsp;
+                <a id="up" href="" onclick="func1();"><i id="icon" class="iconfont icon-sanjiao"></i></a>
+                <a id="down" href="" onclick="func2();"><i id="icon_down" class="iconfont icon-right"></i></a>
+            </div>
+        </div>
+
+        <ul class="shopListCon">
+            <{foreach $SearchResult as $Result name="foo"}>
+            <li class="lis">
+                <div class="imgBox">
+                    <{if $Result['p_producttype'] eq 7}>
+                    <a href="__DOC__/index/diy-jewelry-cid-<{$Result[$DBF_P->DiyCateCid]}>.html" class="item-img" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+                    <{else}>
+                    <a href="__DOC__/index/product-detail-id-<{$Result[$DBF_P->ID]}>.html" class="item-img" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+                    <{/if}>
+                    <img src="__IMG__<{$Result[$DBF_P->Cover]|replace:'/o/':'/s/240_180_'}>" alt=""/>
+                    <!--图片测试-->
+                    <!--<img style="" src="__PUBLIC__/img/240_180_a6023ce44e9e41de.jpg"/>-->
+                    <!---->
+                    </a>
+                </div>
+                <h4>
+                    <{if $Result['p_producttype'] eq 7}>
+                    <a href="__DOC__/index/diy-jewelry-cid-<{$Result[$DBF_P->DiyCateCid]}>.html" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+                    <{else}>
+                    <a href="__DOC__/index/product-detail-id-<{$Result[$DBF_P->ID]}>.html" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+                    <{/if}>
+                    <{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>
+                    </a>
+                </h4>
+                <h5>￥<{$Result['p_price']|number_format}>.00</h5>
+                <{if $Result['p_producttype'] == 7}>
+                <a href="__DOC__/index/diy-jewelry-cid-<{$Result[$DBF_P->DiyCateCid]}>.html" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+                <{else}>
+                <a href="__DOC__/index/product-detail-id-<{$Result[$DBF_P->ID]}>.html" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+                <{/if}>立即购买</a>
+            </li>
+            <{/foreach}>
+        </ul>
+        <!-- 分页 start -->
+        <div class="page-box" id="page" style="text-align:center;">
+           <!-- <ul class="page">
+                <a href=""><i class=" iconfont icon-sanjiao"></i></a>
+                <a class="aTop" href="javascript:; ">上一页</a>
+                <a href="javascript:;">1</a>
+                <a class="index" href="javascript:;">2</a>
+                <a class="aBottom" href="javascript:;">下一页</a>
+                <a href=""><i class=" iconfont icon-right"></i></a>
+                <span>到第<a class="aNow index" href="javascript:;">4</a>页
+                <a class="aBtn" href="javascript:;">确定</a>
+            </ul>-->
+        </div>
+        <!-- 分页 end -->
+        <input type="hidden" name="disp" id="disp" value="<{$disp}>"/>
+        <input type="hidden" name="thumb" id="thumb" value="<{$thumb}>"/>
+        <input type="hidden" name="tags" id="tags" value="<{$search_key_fmt}>"/>
+        <script src="__PUBLIC__/plug_in/laypage/laypage.js"></script>
+        <script type="text/javascript">
+            laypage({
+                    cont: 'page', //容器。值支持id名、原生dom对象，jquery对象,
+                    pages: <{$totalPage}>, //总页数
+                    skip: false, //是否开启跳页
+                    skin: '#dbc7ba',
+                    groups: 5 ,//连续显示分页数
+                    first: 1,
+                    last: <{$totalPage}>,
+                    curr: function(){ //通过url获取当前页，也可以同上（pages）方式获取
+                        var page = location.href.match(/page-(\d+)/);
+                        return page ? page[1] : 1;
+                    }(),
+                    jump: function(e, first){ //触发分页后的回调
+                        var tags = $('#tags').val();
+                        var disp = $('#disp').val();
+                        var thumb = $('#thumb').val();
+                        if(!first){ //一定要加此判断，否则初始时会无限刷新
+                            location.href = '__DOC__/index.php/product-index-tags-'+tags+'-disp-'+disp+'-thumb-'+thumb+'-count-12-order-sd-page-'+e.curr;
+                        }
+                    }
+            });
+        </script>
+        <script type="text/javascript">
+            var tags = $('#tags').val();
+            var disp = $('#disp').val();
+            var thumb = $('#thumb').val();
+            var currPage = <{$currentPage}>;
+            var totalPage = <{$totalPage}>;
+            function func1(){
+                var i = currPage;
+                if(i <=1){
+                    $('#up').attr('href','javascript:;');
+                    $('#icon').css('background','#ccc');
+                }else{
+                    i--;
+                    $('#up').attr('href','__DOC__/index.php/product-index-tags-'+tags+'-disp-'+disp+'-thumb-'+thumb+'-count-12-order-sd-page-'+i);
+                }
+            }
+            function func2(){
+                var j = totalPage;
+                var k = currPage;
+                if(k >= j){
+                    $('#down').attr('href','javascript:;');
+                    $('#icon_down').css('background','#ccc');
+                }else{
+                    k++;
+                    $('#down').attr('href','__DOC__/index.php/product-index-tags-'+tags+'-disp-'+disp+'-thumb-'+thumb+'-count-12-order-sd-page-'+k);
+                }
+            }
+        </script>
+    </div>
+</div>
+<!-- 商品列表 end -->
+
+<!-- 底部 start-->
+<{include file=C('MICKYFOOT')}>

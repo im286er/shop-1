@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>优惠券模板-{$site.SITE_INFO.name}</title>
+	<include file="Common:intohead" />
+	</head>
+	<body>
+		<div class="wrap">
+		<include file="Common:head" />
+			<div class="mainBody">
+              	<include file="Common:left" />
+    				<div id="Right">
+                 		<div class="Item hr">
+        					<div class="current">优惠券查询</div>
+        					<form action="__URL__/search" method="post">
+        					<select name="xx">
+        					<option value='ec_code'>优惠券码</option>
+        					<option value='ec_owner'>用户邮箱</option>
+        					</select>
+        					<input type="text" name="code"/>
+        					<input type="submit" />
+        					</form>
+        					
+        					<table class="tab">
+        					
+        					<tr><td>优惠码</td><td>类型</td><td>折扣</td><td>抵扣(元)</td><td>公开状态</td><td>状态</td><td>所属人</td><td>使用次数</td><td>操作人ID</td><td>过期时间</td><td>生成时间</td><td>订单号</td><td>使用时间</td></tr>
+        					<volist name="list" id="vo">
+        					<tr>
+        					
+        					<td>{$vo['ec_code']}</td>
+        					<td>
+        					<if condition="$vo['et_type'] eq 1">直接折扣
+        					<elseif condition="$vo['et_type'] eq 2" />金额抵扣
+        					<else />未知
+        					</if>
+        					</td>
+        					
+        					<td>{$vo['et_percent']}%</td>
+        					<td>{$vo['et_amount']}</td>
+        					
+        					
+        					
+        					<td>
+        					<if condition="$vo['et_private'] eq 1">公开优惠券
+        					<elseif condition="$vo['et_private'] eq 2" />私人优惠券
+        					<else />未知
+        					</if>
+        					</td>
+        					
+        					<td>
+        					<if condition="$vo['ec_status'] eq 0">未启用
+        					<elseif condition="$vo['ec_status'] eq 1" />已启用
+        					<elseif condition="$vo['ec_status'] eq 2" />已被充值
+        					<else />未知
+        					</if>
+        					</td>
+        					
+        					<td>{$vo['ec_owner']}</td>
+        					<td>{$vo['et_usecount']}</td>
+        					<td>{$vo['ec_creater']}</td>
+        					<td>{$vo['et_expiredate']}</td>
+        					<td>{$vo['ec_ctime']}</td>
+        					<td><a href="__APP__/diy/PrepaidDetail/id/{$vo['up_id']}" />{$vo['log_orderid']}</a></td>
+        					<td>{$vo['log_usedate']}</td>
+        					
+        					</tr>
+        					</volist>
+        					</table>
+        					{$page}
+      					</div>
+      				</div>
+      		</div>
+      	</div>
+<div class="clear"></div>
+<include file="Common:foot" />
+</body>
+</html>
+

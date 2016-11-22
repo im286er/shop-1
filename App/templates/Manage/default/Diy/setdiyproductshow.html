@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <php>
+            $addCss="";
+            $addJs="";
+            $currentNav ='aa';
+        </php>
+    <include file="Common:intohead" />
+</head>
+<body>  
+    <div class="wrap"> <include file="Common:head" />
+        <div class="mainBody"> <include file="Common:left" />
+            <div id="Right">
+                <div class="contentArea">
+                    <div class="Item hr">
+                        <div class="current">设置DIY产品显示</div>
+                    </div>
+                    <div>
+		<if condition="$pid eq 0">
+			产品未发布，请返回点击发布！ ID为：{$p_diy_cate_cid}
+			<input type="button" class="btn" onclick="javascript:history.go(-1)" value="返回发布"> 
+		<else/>
+            <form method="post" id="show">
+                <input type="hidden" value={$pid} name='p_id'>
+                是否显示:
+                    <select name="p_slabel">
+                        <if condition="$p_slabel eq 1">
+                            <option value="1" selected>显示</option>
+                            <option value="0">不显示</option>
+                        <else/>
+                            <option value="0" selected>不显示</option>
+                            <option value="1" >显示</option>
+                        </if>
+                    </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" class="btn" value="确 定">
+            </form><br><br><br><br>
+			<input type="button" class="" onclick="javascript:history.go(-1)" value="返 回">
+		</if>		                    	
+                    </div>		
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+<include file="Common:foot" />
+
+</body>
+</html>
+
+

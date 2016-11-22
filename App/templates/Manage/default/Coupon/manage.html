@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>优惠券模板-{$site.SITE_INFO.name}</title>
+	<include file="Common:intohead" />
+		<script src="__PUBLIC__/jquery-ui/jquery-1.7.2.js"></script>
+		<script src="__PUBLIC__/jquery-ui/jquery.ui.core.js"></script>
+		<script src="__PUBLIC__/jquery-ui/jquery.ui.widget.js"></script>
+		<script src="__PUBLIC__/jquery-ui/jquery.ui.datepicker.js"></script>
+	<script type="text/javascript">
+	function maillist(){
+		document.form1.action="__URL__/maillists";
+		document.form1.submit();
+	}
+	function activelist(){
+		document.form1.action="__URL__/activelists";
+		document.form1.submit();
+	}
+	//miaomin added@2016.7.26 start
+	function activeMobilelist(){
+		document.form1.action="__URL__/activemoblists";
+		document.form1.submit();
+	}
+	function activeUIDlist(){
+		document.form1.action="__URL__/activeuidlists";
+		document.form1.submit();
+	}
+	//miaomin added@2016.7.26 end
+	function droplist(){
+		document.form1.action="__URL__/droplists";
+		document.form1.submit();
+	}
+	function freeactive(){
+		document.form1.action="__URL__/freeactive";
+		document.form1.submit();
+	}
+	function dc() {
+		//document.form1.action = "__URL__/doExcel";
+		document.frm.action = "__URL__/doExcel";
+		document.frm.submit();
+		//document.form1.submit();
+	}
+	function mailec(){
+		if( $("[name=activepicker]:checked").val() == 1){
+			maillist();
+		} else if($("[name=activepicker]:checked").val() == 2){
+			activelist();
+		} else if($("[name=activepicker]:checked").val() == 3){
+			activeMobilelist();
+		} else if($("[name=activepicker]:checked").val() == 4){
+			activeUIDlist();
+		} else{
+			alert("参数错误");
+		}
+	}
+	</script>
+		<!--新建查询条件-->
+		<script type="text/javascript">
+			function foo() {
+				var val = $('#searchSelect option:selected').val();
+				if (val == '0') {
+					$('#search1').css({'display': 'block'});
+					$('#search2').css({'display': 'none'});
+					$('#search3').css({'display': 'none'});
+					$('#search4').css({'display': 'none'});
+				} else if (val == '1') {
+					$('#search1').css({'display': 'none'});
+					$('#search2').css({'display': 'block'});
+					$('#search3').css({'display': 'none'});
+					$('#search4').css({'display': 'none'});
+				} else if (val == '2') {
+					$('#search1').css({'display': 'none'});
+					$('#search2').css({'display': 'none'});
+					$('#search3').css({'display': 'block'});
+					$('#search4').css({'display': 'none'});
+				} else {
+					$('#search1').css({'display': 'none'});
+					$('#search2').css({'display': 'none'});
+					$('#search3').css({'display': 'none'});
+					$('#search4').css({'display': 'block'});
+				}
+			}
+		</script>
+		<script>
+			$(function () {
+				var val = $('#searchSelect option:selected').val();
+				if (val == '0') {
+					$('#search1').css({'display': 'block'});
+					$('#search2').css({'display': 'none'});
+					$('#search3').css({'display': 'none'});
+					$('#search4').css({'display': 'none'});
+				} else if (val == '1') {
+					$('#search1').css({'display': 'none'});
+					$('#search2').css({'display': 'block'});
+					$('#search3').css({'display': 'none'});
+					$('#search4').css({'display': 'none'});
+				} else if (val == '2') {
+					$('#search1').css({'display': 'none'});
+					$('#search2').css({'display': 'none'});
+					$('#search3').css({'display': 'block'});
+					$('#search4').css({'display': 'none'});
+				} else {
+					$('#search1').css({'display': 'none'});
+					$('#search2').css({'display': 'none'});
+					$('#search3').css({'display': 'none'});
+					$('#search4').css({'display': 'block'});
+				}
+			})
+		</script>
+	</head>
+	<body>
+	{$type}
+		<div class="wrap">
+		<include file="Common:head" />
+			<div class="mainBody">
+              	<include file="Common:left" />
+    				<div id="Right">
+                 		<div class="Item hr">
+        					<div class="current">优惠券管理</div>
+							<!-- add search condition start-->
+							<div style="margin-top:2em;">
+								<form name="frm" method="post" action="__URL__/manage/">
+									<div>
+										<select name="searchSelect" id="searchSelect" onchange="foo();">
+											<option value="0"
+											<if condition="$searchType==0">selected</if>
+											>状态筛选</option>
+											<option value="1"
+											<if condition="$searchType==1">selected</if>
+											>序号</option>
+											<option value="2"
+											<if condition="$searchType==2">selected</if>
+											>名称</option>
+											<option value="3"
+											<if condition="$searchType==3">selected</if>
+											>生成时间</option>
+										</select>
+									</div>
+									<br/>
+									<div id="search1" style="float:left;">
+										<select id="status" name="status">
+											<option value="4"
+											<if condition="$status==4">selected</if>
+											>全部</option>
+											<option value="0"
+											<if condition="$status==0">selected</if>
+											>未激活</option>
+											<option value="1"
+											<if condition="$status==1">selected</if>
+											>可使用</option>
+											<option value="2"
+											<if condition="$status==2">selected</if>
+											>已兑换</option>
+										</select>
+									</div>
+									<div id="search2" style="float:left;display:none;">
+										<input style="line-height: 2em;" type="text" name="ec_id" id="ec_id"
+											   value="{$ecid}"/>
+									</div>
+									<div id="search3" style="display:none;float:left;">
+										<input style="line-height: 2em;" type="text" name="et_name" id="et_name"
+											   value="{$etname}"/>
+									</div>
+									<div style="display:none;float:left;" id="search4">
+										<input style="line-height: 2em;" type="text" name="timeStart" id="timeStart"
+											   value="{$timeStart}"/>--
+										<input style="line-height: 2em;" type="text" name="timeEnd" id="timeEnd"
+											   value="{$timeEnd}"/>
+									</div>
+									<input type="submit" value="查询"
+										   style="float:left;margin-left:10px;width: 50px;height: 25px;border-radius: 3px;"/>
+								</form>
+							</div>
+							<br>
+							<br>
+							<br>
+							<!-- add search condition end-->
+        					<form name="form1" method="post">
+        					用户邮箱或者手机号：<textarea type="text" name="ec_owner" /></textarea>
+        					<input type="radio" name="activepicker" value="1" />关联并发邮件
+        					<input type="radio" name="activepicker" value="2" checked="checked"/>关联账号
+        					<input type="button" value="发送激活" onclick="mailec()" />
+        					<div>
+								<b>多个码关联多个账号时要注意</b> 1. 要保证邮箱数目和勾选的优惠码数量一样多 2. 用户邮箱格式用分号隔开,例如
+								aa@qq.com;bb@qq.com;cc@qq.com
+        					</div>
+        					<!--
+        					<input type="button" id="mail" value= "批量启用并发送邮件" onclick="maillist()" />
+        					<input type="button" id="active" value= "批量启用不发邮件" onclick="activelist()" />
+        					  -->
+        					
+        					<table class="tab">
+        					
+        					<tr>
+        					<td></td>
+        					
+        					<td>
+        					<select class="statuspicker">
+        					<option>序号</option>
+        					<option value="__URL__/manage/orderby/ec_id/desc/asc">升序</option>
+        					<option value="__URL__/manage/orderby/ec_id/desc/desc">降序</option>
+        					</select>
+        					</td>
+        					
+        					<td>名称</td>
+        					<td>优惠码</td>
+        					<td>类型</td>
+        					<td>抵扣（元）</td>
+        					<td>折扣</td>
+        					<td>公开状态</td>
+        					<td>状态</td>
+        					<td>用户名</td>
+        					<td>使用次数</td>
+        					<td>管理员ID</td>
+        					<td>过期时间</td>
+        					<td>生成时间</td>
+        					<td>订单金额限制</td>
+        					<td>操作</td>
+        					
+        					</tr>
+        					
+        					<volist name="list" id="vo">
+        					<tr>
+        					<td><input type="checkbox" name="n[]" value="{$vo['ec_id']}" /></td>
+        					<td>{$vo['ec_id']}</td>
+        					<td>{$vo['et_name']}</td>
+        					<td>{$vo['ec_code']}</td>
+        					<td>
+        					<if condition="$vo['et_type'] eq 1">直接折扣
+        					<elseif condition="$vo['et_type'] eq 2" />金额抵扣
+							<elseif condition="$vo['et_type'] eq 3" />活动抵扣
+        					<else />未知
+        					</if>
+        					</td>
+        					<td>{$vo['et_amount']}</td><td>{$vo['et_percent']}%</td>
+
+        					<td>
+        					<if condition="$vo['et_private'] eq 1"><span style="color:red">公开优惠券</span>
+        					<elseif condition="$vo['et_private'] eq 2" />私人优惠券
+        					<else />未知
+        					</if>
+        					</td>
+        					
+        					<td>
+        					<if condition="$vo['ec_status'] eq 0">未激活
+        					<elseif condition="$vo['ec_status'] eq 1" />可使用
+        					<elseif condition="$vo['ec_status'] eq 2" />已兑换
+        					<elseif condition="$vo['ec_status'] eq 3" />已停用
+        					<else />未知
+        					</if>
+        					</td>
+        					
+        					<td>{$vo['ec_owner']}</td>
+        					<td>{$vo['ec_uc']}</td>
+        					<td>{$vo['ec_creater']}</td>
+        					<td>{$vo['et_expiredate']}</td>
+        					<td>{$vo['ec_ctime']}</td>
+        					<td>{$vo['et_limitamount']}</td>
+        					<td>
+        					
+        					<!--  
+        					<if condition="$vo['ec_status'] eq 0 and $vo['ec_private'] eq 2"><a href="__URL__/drop/id/{$vo['ec_id']}">删除</a>
+        					<else />
+        					</if>
+        					-->
+        					
+        					<if condition="$vo['et_private'] eq 1 and $vo['ec_status'] eq 0"><a href="__URL__/publicoperation/action/startec/id/{$vo['ec_id']}">启用</a>
+        					<elseif condition="$vo['et_private'] eq 1 and $vo['ec_status'] eq 1" /><a href="__URL__/publicoperation/action/stopec/id/{$vo['ec_id']}">停用</a>
+        					</if>
+        					</td>
+        					</tr>
+        					</volist>
+        					</table>
+        					</form>
+        					<hr/>
+        					
+        					<input type="checkbox"  id="checkAll"/>&nbsp;全选
+        					
+        					<input type="button" id="drop" value= "激活" onclick="freeactive()"/>
+        					<input type="button" id="drop" value= "删除" onclick="droplist()"/>
+							<input type="button" id="dc" onclick="dc();" value="导出EXCEL"/>
+        					
+        					<p style="text-align:center">{$page}</p>
+        					
+      					</div>
+      				</div>
+      		</div>
+      	</div>
+<div class="clear"></div>
+<include file="Common:foot" />
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.picker').change(function(){
+		window.location = this.value;
+	});
+	$('.statuspicker').change(function(){
+		window.location = this.value;
+	})
+	
+//	ADD by guyiwei 全选按钮控制 START
+	var allCheckBox = $("input[name='n[]']");
+		$("#checkAll").click(function(){
+			if($("#checkAll").prop("checked") == true){
+				 allCheckBox.prop("checked",function(){
+					 return true;
+				 });
+				 console.info(1111);
+			}else{
+				 allCheckBox.prop("checked",function(){
+					 return false;
+				 });
+				 console.info(2222);
+			}
+	});
+//	ADD by guyiwei END
+
+});
+</script>
+	<script>
+		$(function () {
+			$("#timeStart").datepicker({dateFormat: 'yy-mm-dd'});
+			$("#timeEnd").datepicker({dateFormat: 'yy-mm-dd'});
+		});
+	</script>
+</body>
+</html>
+

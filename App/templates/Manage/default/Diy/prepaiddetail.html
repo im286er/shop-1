@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>-{$site.SITE_INFO.name}</title>
+        <php>
+            $addCss="";
+            $addJs="";
+            $currentNav ='aa';
+        </php>
+    <include file="Common:intohead" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/jdate/css/lq.datetimepick.css"/>
+    <script src='__PUBLIC__/jdate/js/selectUi.js' type='text/javascript'></script>
+    <script src='__PUBLIC__/jdate/js/lq.datetimepick.js' type='text/javascript'></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/manhuaDate.1.0.css">
+    <script src='__PUBLIC__/js/manhuaDate.1.0.js' type='text/javascript'></script>
+</head>
+<style type="text/css">
+.link{
+    position: relative;
+}
+#box{
+    display: none;
+    width: 315px;
+    height: 180px;
+    border: 1px solid #333;
+    padding: 12px;
+    text-align: left;
+    line-height: 175%;
+    text-indent: 2em;
+    position: absolute;
+	position:absolute;top:50%;left:50%;width:600px;height:400px;background:#fff;border:4px solid #417EB7;margin:-202px 0 0 -302px;display:none;z-index:101;
+}
+
+ </style>
+ <script type="text/javascript" language="javascript" >
+ <!--
+  function display(){
+document.getElementById("box").style.display="block";
+  }
+  function disappear(){
+document.getElementById("box").style.display="none";
+  }
+ -->
+ </script>
+<style>
+html,body{height:100%;overflow:hidden;}
+body,div,h2{margin:0;padding:0;}
+body{font:12px/1.5 Tahoma;}
+center{padding-top:10px;}
+button{cursor:pointer;}
+#overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:#000;opacity:0.5;filter:alpha(opacity=100);display:none; z-index:100;}
+#win{position:absolute;top:50%;left:50%;width:600px;height:400px;background:#fff;border:4px solid #417EB7;margin:-202px 0 0 -302px;display:none;z-index:101;}
+#winorder{position:absolute;top:50%;left:50%;width:600px;height:400px;background:#fff;border:4px solid #417EB7;margin:-202px 0 0 -302px;display:none;z-index:101;}
+#winmodifyorder{position:absolute;top:50%;left:50%;width:600px;height:400px;background:#fff;border:4px solid #417EB7;margin:-202px 0 0 -302px;display:none;z-index:101;}
+#winmodifyorderuser{position:absolute;top:50%;left:50%;width:600px;height:400px;background:#fff;border:4px solid #417EB7;margin:-202px 0 0 -302px;display:none;z-index:101;}
+
+.title{color:#FFF; font-size:12px;text-align:right;background:#417EB7;border-bottom:3px solid #417EB7;padding:5px;height:20px}
+.title_left {float:left;}
+.title_right {float:right;}
+.title_right span{color:#00C;cursor:pointer;background:#fff;border:1px solid #00C;padding:0 2px;}
+.content{padding:5px;}
+</style>
+<script>
+window.onload = function ()
+{
+    var oLay = document.getElementById("overlay");
+
+    var oWin = document.getElementById("win");
+	var oClose = document.getElementById("close");
+
+    var oWinOrder = document.getElementById("winorder");
+    var oCloseOrder=document.getElementById("closeorder");
+
+    var oModifyOrder = document.getElementById("winmodifyorder");
+    var oCloseModifyOrder=document.getElementById("closemodifyorder");
+
+    var oModifyOrderUser = document.getElementById("winmodifyorderuser");
+    var oCloseModifyOrderUser=document.getElementById("closemodifyorderuser");
+
+    oClose.onclick = function (){
+        alert("abc");
+		oLay.style.display = "none";
+        oWin.style.display = "none";
+	}
+
+    oCloseOrder.onclick = function (){
+        oLay.style.display = "none";
+        oWinOrder.style.display = "none";
+    }
+
+    oCloseModifyOrder.onclick = function (){
+        oLay.style.display = "none";
+        oModifyOrder.style.display = "none";
+    }
+
+    oCloseModifyOrderUser.onclick = function (){
+        oLay.style.display = "none";
+        oModifyOrderUser.style.display = "none";
+    }
+
+};
+
+
+//;
+
+function onendivWinWorkOrder(val){
+    var oWin = document.getElementById("winorder");
+    var oLay = document.getElementById("overlay");
+    document.getElementById("pid").value=val;
+    oLay.style.display = "block";
+    oWin.style.display = "block";
+}
+
+function onendivWinModifyOrder(val){
+    var oWin = document.getElementById("winmodifyorder");
+    var oLay = document.getElementById("overlay");
+    oLay.style.display = "block";
+    oWin.style.display = "block";
+}
+
+
+function onendivWinModifyOrderUser(val){
+    var oWin = document.getElementById("winmodifyorderuser");
+    var oLay = document.getElementById("overlay");
+    oLay.style.display = "block";
+    oWin.style.display = "block";
+}
+
+function opendiv(value){
+	var process=new Array();
+	<foreach name='process_status' item='res'>
+		 process[{$key}]="{$res}";
+	</foreach>
+	
+	var done_remark=new Array();//备注信息
+	<foreach name='process' item='pres'>
+		done_remark[{$pres.done_process}]="{$pres.done_remark}";
+	</foreach>
+
+	var oWin = document.getElementById("win");
+	var oLay = document.getElementById("overlay");
+	
+	oLay.style.display = "block";
+	oWin.style.display = "block";
+	var vaule_next=parseInt(value+1);
+	if(vaule_next==6){
+		document.getElementById("express").style.display="block";
+		document.getElementById('sms').style.display="inline";
+		document.getElementById('sms_tips').style.display="inline";
+	}else if(vaule_next==2) {
+        document.getElementById('sms').style.display = "inline";
+        document.getElementById('sms_tips').style.display = "inline";
+   	}else{
+		document.getElementById("express").style.display="none";
+		document.getElementById('sms').style.display="none";
+		document.getElementById('sms_tips').style.display="none";
+	}
+	document.getElementById("showproText").innerHTML="<li>"+process[vaule_next]+"</li>";
+	document.getElementById("done_process").value=vaule_next;
+	
+	if(done_remark[vaule_next]){ //是否有值
+		document.getElementById("done_remark").value=done_remark[vaule_next];
+	}
+	
+}
+
+function funProcessDel(pid){
+	if(window.confirm('确定要撤销吗？')){
+
+       document.getElementById('processID').value=pid;
+	   document.getElementById('processdel').submit();
+     }else{
+    	return false;
+    }
+}
+
+
+
+</script>
+<body>
+<div id="overlay"></div>
+<div id="winorder">
+    <div class="title">
+        <div class="title_left">工厂订单号操作</div>
+        <div class="title_right"><span id="closeorder">×</span></div>
+    </div>
+    <div class="contenta">
+        <form action="__APP__/diy/saveworkorder" method="post" id="workorder">
+            <ul>
+                <li>
+                    <span >工厂单号</span>
+                    <input type="hidden" value="{$prepaidInfo.up_id}" name="up_id">
+                </li>
+                 <li>
+                     <input name="workorder" style="width:300px; height:30px;" id="workorder">
+                     <input type="hidden" name="pid" id="pid" >
+                 </li>
+                <li><br><br><input type="submit" value="确定" class="btn"></li>
+            </ul>
+        </form>
+    </div>
+</div>
+<div id="winmodifyorder">
+    <div class="title">
+        <div class="title_left">修改付款金额</div>
+        <div class="title_right"><span id="closemodifyorder">×</span></div>
+    </div>
+    <div class="contenta">
+        <form action="__APP__/diy/savemodifyorder" method="post" id="modifyorder">
+            <ul>
+                <li>
+                <span >订 单 号: {$prepaidInfo.up_orderid}</span>
+                <input type="hidden" value="{$prepaidInfo.up_id}" name="up_id">
+                </li>
+                <li>
+                    <span >创 建 人: {$prepaidInfo.showcreater}</span>
+                </li>
+                <li>
+                    <span >应 付 款: {$prepaidInfo.up_amount} 元</span>
+                </li>
+                <li>
+                    修改应付:<input type="text" name="up_amount" style="margin-left: 10px; width:100px;">
+                </li>
+                <li>
+                    备注说明:&nbsp;<textarea name="ou_text" rows="3" cols="50"></textarea>
+                </li>
+                <li><br><br><input type="submit" value="确定" class="btn"></li>
+            </ul>
+        </form>
+    </div>
+</div>
+<div id="winmodifyorderuser">
+    <div class="title">
+        <div class="title_left">订单转移</div>
+        <div class="title_right"><span id="closemodifyorderuser">×</span></div>
+    </div>
+    <div class="contenta">
+        <form action="__APP__/diy/savemodifyorderuser" method="post" id="modifyorderuser">
+            <ul>
+                <li>
+                    <span >订 单 号: {$prepaidInfo.up_orderid}</span>
+                    <input type="hidden" value="{$prepaidInfo.up_id}" name="up_id">
+                </li>
+                <li>
+                    <span >创 建 人: {$prepaidInfo.showcreater}<input type="hidden" value="{$prepaidInfo.showcreater}" name="up_creater"></span>
+                </li>
+                <li>
+                    <span >应 付 款: {$prepaidInfo.up_amount} 元</span>
+                </li>
+                <li>
+                    转移至用户:<input type="text" name="up_user" style="margin-left: 10px; width:200px;">(可以输入用户ID或用户EMAIL或用户手机号)
+                </li>
+                <li><br><br><input type="submit" value="确定" class="btn"></li>
+            </ul>
+        </form>
+    </div>
+</div>
+
+<div id="win">
+	<div class="title">
+		<div class="title_left">处理操作</div>
+		<div class="title_right"><span id="close">×</span></div>
+	</div>
+	<div class="contenta">
+	<form method="post" id="process">
+	<ul>
+		<li><span id='showproText'></span><input type="hidden" value="{$prepaidInfo.up_id}" name="up_id"><input type="hidden" id="done_process" name="done_process"></li>
+		<li id="express" style="display:none">快递公司: 
+		<select name="express_com">
+		<foreach name="express_com" item="exres" key="exkey">
+			<if condition="$express.express_com eq $exkey">
+				<option value="{$exkey}" selected>{$exres}</option>
+			<else/>
+				<option value="{$exkey}">{$exres}</option>
+			</if>
+		</foreach>
+		</select>
+		快递单号:<input type="text" name="express_number" style="width:100px" value="{$express.express_number}">
+        发货时间:<input type="text" name="express_time" id="express_time" value="{$express.express_time}" class="mh_date" style="width:130px"></li>
+		<li>备 注: <textarea name="done_remark" style="width:400px; height:60px;" id="done_remark"></textarea></li>
+		<li>操作者: {$my_info.nickname}<input type="hidden" name="done_usermail" value="{$my_info.email}"></li>
+		<li><input type="checkbox" name="sms" id='sms' style="display:none" value="sent" checked="checked" />
+            <span id="sms_tips" style="display:none">短信通知</span>
+        </li>
+        <li> <input type="submit" value="确定" class="btn"></li>
+	</ul>
+	</form>
+	
+	<form action="__APP__/diy/processdel" method="post" id="processdel" name="processdel">
+		<input type="hidden" name="processID" id="processID">
+		<input type="hidden" value="{$prepaidInfo.up_id}" name="up_id">	
+	</form>
+	</div>
+</div>
+    <div class="wrap"><include file="Common:head"/>
+        <div class="mainBody"> <include file="Common:left" />
+            <div id="Right">
+                <div class="contentArea">
+                    <div class="Item hr">
+                        <div class="current">用户订单号:<font color="#999999">{$prepaidInfo.up_orderid}</font> &nbsp;&nbsp;处理单号<font color="#FF0000">{$prepaidInfo.up_id}</font>&nbsp;&nbsp;&nbsp;&nbsp;
+                            支付状态:<font color=red> {$prepaidInfo.up_status|replace_int_vars}</font> &nbsp;&nbsp; &nbsp;&nbsp;
+                           <a href='#' class='btn' onclick='onendivWinModifyOrderUser();'> 订单转移 </a>
+                       </div>
+                    </div>
+                    <div>
+                    	<table class='tab'>
+                        <tr>
+                        	<td>创建人</td><td >{$prepaidInfo.showcreater}</td>
+                        	<td>创建时间</td><td >{$prepaidInfo.up_dealdate}</td>
+                            <td>发货时间</td><td>{$prepaidInfo.show_express_time}</td>
+                        </tr>
+                        <tr>
+                        	<td>收件人</td><td>{$prepaidInfo.up_addressee}</td>
+                        	<td>手机</td><td>{$prepaidInfo.up_mobile}</td>
+                            <td>收件地址</td><td colspan="3">{$prepaidInfo.up_address}</td>
+                        </tr>
+						<tr>
+                        	<td>订单总价</td>
+							<td>
+								<if condition="$prepaidInfo.up_amount_account neq 0 or $prepaidInfo.up_amount_coupon neq 0">
+									{$prepaidInfo.up_amount_total}
+								<else/>
+									{$prepaidInfo.up_amount}
+								</if>
+                            </td>
+							<td>运费</td><td>{$prepaidInfo.up_efee}</td>
+                        	<td>付款情况</td>
+							<td>
+							<if condition="$prepaidInfo.up_amount_account neq 0 ">
+								余额支付:{$prepaidInfo.up_amount_account}					
+							</if>
+							<if condition="$prepaidInfo.up_amount_coupon neq 0 ">
+								优惠券抵扣:{$prepaidInfo.up_amount_coupon} (优惠券:{$log_coupon.log_eccode})					
+							</if>							
+							  <br> <font color="#FF0000"> 应付:{$prepaidInfo.up_amount}</font>
+                                <if condition="$admin_user eq 'nxbin@163.com' or $admin_user eq 'pengcuihua@gdi.com.cn'">
+                                    <a href='#' class='btn_in2' onclick='onendivWinModifyOrder("{$product.p_id}");'>修改</a>
+                                </if>
+							</td>
+                        </tr>
+                    <if condition="$prepaidInfo.up_status eq 1">
+                        <tr>
+                            <td>发票信息</td>
+                            <td>{$prepaidInfo.show_paybill}</td>
+                            <td>发票操作</td>
+                            <td>{$pbstatus}</td>
+                            <td>支付方式</td>
+                            <td>{$prepaidInfo.show_paytype}</td>
+                        </tr>
+                        <tr>
+                            <td>回单ID</td>
+                            <td>{$prepaidInfo.up_orderbackid}</td>
+                            <td>回单时间</td>
+                            <td>{$prepaidInfo.up_orderbacktime}</td>
+                            <td>IP</td>
+                            <td>{$prepaidInfo.up_ipaddress}</td>
+                        </tr>
+                        <tr>
+                            <td>用户备注</td>
+                            <td colspan="5"></td>
+                        </tr>
+                        <tr>
+                            <td>系统备注</td>
+                            <td colspan="5"></td>
+                        </tr>
+                    </if>
+                    	</table>
+               		</div>
+                    <div>
+                    	<table class='tab'>
+                        <tr><td>PID</td><td>图片</td><td>类型</td><td>名称</td><td>单价(元)</td><td>数量</td><td>价格(元)</td><td>操作</td><td>工厂单号</td></tr>
+						<foreach name="productList" item="product">
+                        	<tr>
+                                <td>{$product.p_id}</td>
+                                <td><img src="__DOC__{$product.cover_64}" height="80" width="80"></td>
+                                <td>{$product.uc_producttype_name}</td>
+                            	<td>{$product.p_name} {$product.p_propid_spec_desc}</td>
+                                <td>{$product.p_price}</td>
+                                <td>{$product.p_count}</td>
+                                <td>{$product.totle_price}</td>
+                                <td>
+					<if condition="$product.uc_producttype eq 4">			
+								<a href="__APP__/diy/product/pid/{$product.p_id}/producttype/{$product.uc_producttype}/upid/{$prepaidInfo.up_id}/cid/{$product.cid}/diyid/{$product.p_diy_id}" target="_blank">查看</a>
+                               <if condition="$product.file neq null">
+                                   <a href="__DOC__{$product.file}">下 载</a>
+								<else>
+									<a href="__DOC__/index/diy-snapdetailall-pid-{$product.p_id}-upid-{$prepaidInfo.up_id}-cid-{$product.cid}-showtype-10" target="_blank">生成</a>
+								</if>
+					<elseif condition="$product.uc_producttype eq 2"/>
+						<a href="__DOC__/index/shop-detail-id-{$product.p_id}" target="_blank">查看</a>			
+					<elseif condition="$product.uc_producttype eq 1"/>
+						<a href="__DOC__/index/models-detail-id-{$product.p_id}" target="_blank">查看</a>								
+					</if>			
+								</td>
+                                <td>
+                                <if condition="$prepaidInfo.up_status eq 1">
+                                    <font color="blue" style="font-size:15px;">{$product.work_order}</font>
+                                     <a href='#' class='btn_in2' onclick='onendivWinWorkOrder("{$product.p_id}");'>添加</a>
+                                <else/>
+                                    <font color="#cccccc">未支付</font>
+                                </if>
+                                </td>
+                        	</tr>
+                    	</foreach>
+                        </table>
+                    </div>
+					
+					<div> 
+						
+						<a href="__APP__/diy/downPrepaid/upid/{$prepaidInfo.up_id}">订单下载</a>
+						<if condition="$prepaidInfo.isdown eq 0">
+						(<font color="#FF0000">有模型文件未生成，下载的订单压缩包中模型不完整。</font>)
+						</if>
+						<br>
+                        {$order_process}
+
+                        <a href="__APP__/diy/downPrepaid/actiontype/1/upid/{$prepaidInfo.up_id}" target="_blank">打印配送清单</a>
+                        <br><br>
+                        <if condition="$isexpress">
+                            <a href="#" onmouseover="display()" onmouseout="disappear()">物流跟踪（鼠标移到上方）</a>
+                            <div id="box">
+                                {$expressIframe}
+                            </div>
+                        </div>
+                        </if>
+
+					</div>
+                    <if condition = "$logOrderInfo">
+                    <div>
+                        <span>订单价格修改记录</span>
+                        <table class='tab'>
+                            <tr><td>操作用户ID</td><td>操作人</td><td>订单价</td><td>修改价</td><td>修改时间</td><td>备注</td></tr>
+                            <foreach name="logOrderInfo" item="info">
+                                <tr>
+                                    <td>{$info.sm_uid}</td>
+                                    <td>{$info.sm_uname}</td>
+                                    <td>{$info.sm_preamount}</td>
+                                    <td>{$info.sm_amount}</td>
+                                    <td>{$info.sm_createtime}</td>
+                                    <td>{$info.sm_text}</td>
+                                </tr>
+                            </foreach>
+                        </table>
+                    </div>
+                    </if>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+
+<include file="Common:foot" />
+<script type="text/javascript">
+    $(function(){
+        $("input.mh_date").manhuaDate({
+            Event : "click",//可选
+            Left : 0,//弹出时间停靠的左边位置
+            Top : -16,//弹出时间停靠的顶部边位置
+            fuhao : "-",//日期连接符默认为-
+            isTime : false,//是否开启时间值默认为false
+            beginY : 2010,//年份的开始默认为1949
+            endY :2020//年份的结束默认为2049
+        });
+    });
+</script>
+</body>
+</html>
+
+

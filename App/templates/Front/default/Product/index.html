@@ -1,0 +1,105 @@
+<{include file=C('AHEAD_START')}>
+<{include file=C('AHEAD_END')}>
+<div class="hana-prdlist container content-root"> 
+	
+	<div class="dividing pro-dividing"><h2><label class="skew"><span>搜索结果</span></label></h2></div>
+	<!--产品目录开始-->
+	<!-- 
+	<div class="sidebar">
+		<ol class="pro-catalogue">
+			<{foreach $CateList['Child'] as $Cate name="foo"}>
+			<li><a href="__APP__/jewelry-jewelrylist-cate-<{$Cate['pc_id']}>.html"><{$Cate['pc_name']}></a></li>
+			<{/foreach}>
+			<li><a class="all" href="__APP__/jewelry-jewelrylist.html">所有产品</a></li>
+		</ol>
+	</div>
+	 -->
+	<!--产品目录结束--> 
+	
+	<!--产品列表开始-->
+	<div class="sidelist">
+	<div class="prdlist">
+		<ul class="prdlist-gird">
+			<{foreach $SearchResult as $Result name="foo"}>
+			<li> 
+			<{if $Result['p_producttype'] eq 7}>
+				<a href="__DOC__/index/diy-jewelry-cid-<{$Result[$DBF_P->DiyCateCid]}>.html" class="item-img" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+			<{else}>
+				<a href="__DOC__/index/product-detail-id-<{$Result[$DBF_P->ID]}>.html" class="item-img" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+			<{/if}>	
+				
+				<img src="__IMG__<{$Result[$DBF_P->Cover]|replace:'/o/':'/s/240_180_'}>" alt=""/>
+				<label class="skew">
+				<{if $Result['p_producttype'] == 7}>
+				<span>DIY</span>
+				<{else}>
+				<span>非定制</span>
+				<{/if}>
+				</label>
+				</a>
+				<div class="item-info">
+				<h4>
+				<{if $Result['p_producttype'] eq 7}>
+					<a href="__DOC__/index/diy-jewelry-cid-<{$Result[$DBF_P->DiyCateCid]}>.html" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+				<{else}>
+					<a href="__DOC__/index/product-detail-id-<{$Result[$DBF_P->ID]}>.html" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+				<{/if}>		
+				<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}></a>
+				</h4>
+					<span class="item-price">￥<b><{$Result['p_price']|number_format}></b>.00</span> </div>
+			</li>
+			<{/foreach}>
+		</ul>
+		<div class="clear"></div>
+	 </div>
+	 <{if $SearchResultCount neq null }>
+	 <div class="list-bottom">
+					<div class="comment-num"><span><b><{$SearchResultCount}></b>&nbsp;件商品</span></div>
+					<div class="page-num">
+						<ul>
+							<{$Paging}>
+						</ul>
+						<!--
+							<div class="write-page">
+							<input type="text" value="1">
+							<span>/&nbsp;&nbsp;2</span> </div>
+						-->
+					</div>
+					<div class="clear"></div>
+				</div>
+	<{/if}>
+	 </div>
+	<!--产品列表结束--> 
+</div>
+<script>
+$(document).ready(function(){
+	
+	//登陆后用户信息显示消失控制
+	$('.userid').mouseover(function(){
+		$('.drop-usermenu').css('display','block');
+		$('.drop-shopbag').css('display','none');
+	});
+	$('.userinfo').mouseleave(function(){
+		$('.drop-usermenu').css('display','none');
+	});
+	
+	//购物车出现消失控制
+	$('.shopbag').mouseover(function(){
+		$('.drop-shopbag').css('display','block');
+		$('.drop-usermenu').css('display','none');
+	});
+	$('.userinfo').mouseleave(function(){
+		$('.drop-shopbag').css('display','none');
+	});
+	$('textarea').click(function(){
+		$('textarea').text('');
+		});
+	$('textarea').blur(function(){
+		if($('textarea').text()==''){
+			$('textarea').text('这个戒指是来自喵喵的设计，首先它很大，其次它很圆。');
+			}
+		});	
+});
+
+</script>
+<{include file=C('AFOOT')}>

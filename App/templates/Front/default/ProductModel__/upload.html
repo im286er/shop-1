@@ -1,0 +1,143 @@
+<{include file=C('HEADPAGE_START')}>
+<{include file=C('HEADPAGE_END')}>
+
+	<div class="ajaxinfo">
+			<h3>请求处理中...</h3>
+	</div>
+	<div class="blackmask"></div>
+	<div class="frm-tempfile abfrm">
+		<div class="inner">
+			<h2>恢复临时文件<a id="bfrm-2" class="bfrm fr" href="javascript:void(0);">X</a></h2>
+			<div class="drager">
+				<div class="tempfilelist">
+					<ul id="tempfilelist"></ul>
+					<ul id="tempfilelist_template" style="display: none;">
+						<li>
+							<input type="checkbox" /><h5><i></i></h5>
+							<button type="button" name="delete" title="删除该文件" class="tipa">X</button><em></em>
+							<input type="hidden" name="filesize" />
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="controls">
+				<input type="button" id="selectallfile" value="全选" class="btn btn--info" />
+				<input type="button" id="addtempfiletolist" value="加入列表" class="btn btn--warning" />
+				<!--input type="button" value="清空临时文件" class="white-btn small button" /-->
+				<span><a href="javascript:void(0);" id="bfrm-1">取消</a></span>
+			</div>
+		</div>
+	</div>
+    
+	<div class="container upanel">
+		<form action="users_upload_market_1.html" method="post">
+			<h2 class="titlebar">编辑模型 <{$Product[$DBF_P->Name]}>
+			<div class="fr action" style="margin-top: -7px;">
+            <button type="button" id="nextstep" class="btn btn--info" />下一步</button>
+			<input type="submit" id="submit" value="&nbsp;保&nbsp;&nbsp;存&nbsp;" class="btn btn--warning submit" />
+            <!--<input type="submit" id="draft" value="存为草稿" class="btn btn--info" />-->
+            <a id="cancelupload" href="<{$U_Home}>" id="cancelst" style=" font-size: 14px; padding-left: 20px;">取消</a></div>
+			
+			</h2>
+            <div class="cart-breadcrumbs">
+                <ol>
+                    <li class="pass"><a href="javascript:void(0);">1. 上传3D模型</a></li>
+                    <li class="arrow"></li>
+                    <li class=""><{if $PID}><a href="__APP__/product_model-edit-pid-<{$PID}>"><{/if}>2. 添加模型详情<{if $PID}></a><{/if}></li>
+                    <li class="arrow "></li>
+                    <li class=""><{if $PID}><a href="__DOC__/user.php/webgl/index/pid/<{$PID}>"><{/if}>3. 设置在线3D预览 <font color="#999999">(可选)</font><{if $PID}></a><{/if}></li>
+                </ol>
+            </div>
+			<div class="content uploads">
+				<div class="rightbar-nc">
+					<div style="width: 100%; height: 80px; margin-bottom: 20px;">
+						<span id="swf_buttonplaceholder"></span>
+					</div>
+					<div class="tempfiles">
+						<div class="tips">
+							<span class="tips-icon info"></span><b>您有未发布成功的文件</b>
+                            <button class="btn btn--info fahistory" type="button">恢复临时文件 (0)</button>
+							<p>
+								您最近的发布可能遭遇错误，我们保留了您先前发布的文件。
+							</p>
+						</div> 
+					</div>
+					<div class="detail">
+						<h3>注意事项</h3>
+						<ol>
+							<li>支持不超过单个2G的zip、rar、7z格式。</li>
+							<li>请将贴图、文件一同打包在压缩包内。</li>
+							<li>如果您可以提供多种模型格式，请分开打包。</li>
+                            <li>关于著作权，请参见「<a target="_blank" href="__DOC__/index/help/index/id/97">作品著作权申明</a>」。</li>
+                            <li>关于3D模型规格和要求，请参见「<a target="_blank" href="__DOC__/index/help/index/id/87">上传共享模型标准</a>」。</li>
+						</ol>
+					</div>
+				</div>
+				<div class="filelist">
+					<ul id="filelist">
+						<li class="unselected" id="unselected">请先添加3D模型文件</li>
+					</ul>
+					<ul id="filelist_template" style="display: none;">
+						<li id="">
+							<img src="__PUBLIC__/images/comm/files/zip_file.png" alt="" />
+							<div class="imgconfig">
+								<div class="fr">
+									<input type="radio" name="mainfile" title="设置主文件" class="tipa" />
+								</div>
+								<h4></h4>
+								<h5></h5>
+								<div class="str progress">
+									<div class="progressBar">
+										<div></div>
+									</div>
+								</div>
+								<div class="hidden" style="display: none;"></div>
+								<div class="str ct">
+									<select name="ct"></select>
+									<label>版本</label>
+									<input type="text" name="ctv" value="" />
+								</div>
+								<div class="str sct">
+									<select name="sct"></select>
+									<label>版本</label>
+									<input type="text" name="sctv" value="" />
+								</div>
+								<button type="button" name="delete" title="删除该文件" class="tipa" >X</button>
+							</div>
+						</li>
+					</ul>
+					<script type="text/javascript" src="__PUBLIC__/js/swfupload/swfupload.js"></script>
+					<script type="text/javascript" src="__PUBLIC__/js/swf_product/model.js"></script>
+					<script type="text/javascript" src="__PUBLIC__/js/jquery.tiptip.min.js"></script>
+					<script type="text/javascript">
+						var SessionID = '<{$SessionID}>';
+						var UploadUrl = '<{$U_UploadFile}>';
+						var DeleteUrl = '<{$U_DeleteFile}>';
+						var SubmitUrl = '<{$U_Upload}><{if $PID}>/pid/<{$PID}><{/if}>';
+						var EditUrl = '<{$U_Edit}>';
+						var ProductID = <{$PID}>;
+						var MainFile = <{$MainFile}>;
+						var PublicUrl = '__PUBLIC__';
+						var CreateTool = '<{$JsonPCT}>';
+						var CreateToolIndex = '<{$JsonPCTI}>';
+						var ProductFile = '<{$JsonFile}>';
+						var TempFile = '<{$JsonTempFile}>';
+						
+						CreateTool = eval("(" + CreateTool + ")");
+						CreateToolIndex = eval("(" + CreateToolIndex + ")");
+						TempFile = eval("(" + TempFile + ")");
+						ProductFile = eval("(" + ProductFile + ")");
+
+						//$(document).ready(function (e) {
+							//$(".slidelist img").attr("title", "点住鼠标左键拖动，调整排序顺序");
+							//$(".slidelist .imgconfig input[type='text']").attr("title", "输入图片备注");
+							//$(".slidelist .imgconfig input[type='radio']").attr("title", "将这张图片设置为封面");
+							//$(".slidelist .imgconfig button").attr("title", "删除");
+						//});
+					</script>
+				</div>
+			</div>
+			
+		</form>
+	</div>
+<{include file=C('FOOTPAGE')}>

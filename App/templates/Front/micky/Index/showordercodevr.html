@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VR首饰扫码支付 IGNITE</title>
+    <style>
+        .share_fix{
+            position:fixed;
+            top:0;
+            left:0;
+            z_index:9999;
+            width:100%;
+            height:100%;
+            background:rgba(0,0,0,0.8);
+        }
+        .share_erweima{
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            z-index: 100000;
+            width: 355px;
+            height: 355px;
+            text-align: center;
+        }
+        .productlist > ul{
+            width:80%;
+            height:auto;
+            overflow: hidden;
+            margin:0 auto;
+        }
+        .productlist > ul li{
+            height:auto;
+            overflow: hidden;
+        }
+        .productlist > ul li>div{
+            float: left;
+        }
+        .li_title{
+            height:100%;
+            font-size:20px;
+            line-height:120px;
+            width:380px;
+            overflow: hidden;
+            margin-left:20px;
+        }
+        .li_num{
+            float: left;
+            height:100%;
+            line-height:120px;
+            font-size:18px;
+            width:50px;
+            text-align: center;
+
+        }
+        .li_price{
+            float: right;
+            height:100%;
+            line-height:120px;
+            font-size:18px;
+            width:178px;
+            text-align: right;
+        }
+        .zongjia{
+            float: right;
+            font-size:20px;
+            margin-top:20px;
+        }
+    </style>
+    <script type="text/javascript" src="__KITTYPUBLIC__/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="__KITTYPUBLIC__/js/qrcode.js"></script>
+    <link rel="stylesheet" href="__MICKYSTATIC__/touchscreen/css/baiban_pay.css">
+    <script style="text/javascript" src="__MICKYSTATIC__/touchscreen/js/jquery.js"></script>
+    <script  type="text/javascript">
+        function appshare(){
+            $(".share_erweima").show();
+            $(".share_fix").show().click(function () {
+                $(".share_fix").hide();
+                $(".share_erweima").hide();
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="bg_img">
+    <div class="bg_img_zindex">
+        <!-- logo -->
+        <div class="logo">
+            <div class="logoimg">
+                <img src="__MICKYSTATIC__/touchscreen/images/baiban/pay/logo.png" alt="">
+            </div>
+        </div>
+
+        <div class="code" id="qrcode">
+            <!--<img src="__MICKYSTATIC__/touchscreen/images/baiban/pay/erweima.jpg" alt="">-->
+        </div>
+        <p id="time"></p>
+        <h5>
+
+        </h5>
+
+            <div class="productlist">
+                <ul>
+                </ul>
+            </div>
+    </div>
+</div>
+<div class="share_fix" style="display:none;"></div>
+
+</body>
+</html>
+<script>
+    window.onload=function(){
+        //createQr('<{$url}>','qrcode');
+        //createQr('<{$url_share}>','qrcode_share');
+    }
+
+    function createQr(url,qrId) {
+        //var url = "<{$url}>";
+        //参数1表示图像大小，取值范围1-10；参数2表示质量，取值范围'L','M','Q','H'
+        var qr = qrcode(10, 'H');
+        qr.addData(url);
+        qr.make();
+//        var code=document.createElement('DIV');
+        var code = document.getElementById('qrcode');
+        code.innerHTML = qr.createImgTag();
+//        var element=document.getElementById(qrId);
+//        element.appendChild(code);
+    }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        setInterval(queryOrderState, 10000);
+    });
+    var up_id=0;
+    function queryOrderState(){
+        $.ajax({
+            type: "GET",
+            url: "__DOC__/index.php/index-getorderbyvr",
+            data: "",
+            dataType: "json",
+            timeout: 4000,
+            async:false,
+            success: function(result) {
+                console.log('yuan'+up_id);
+                if(up_id !==result.up_id){
+                    createQr(result.url,'qrcode');
+                    var product=result.product;
+                    $("ul").find("li").remove();
+                    for(var i=0;i<product.length;i++){
+                        $("ul").append("<li>"+"<div><img width=150 height=110 src=__DOC__"+product[i]['cover_small']+"></div>"+"<div class='li_title'>"+product[i]['name']+"</div>"+"<span>"+"<span class='li_num'>"+product[i]['count']+"</span>"+"<span class='li_price'>"+product[i]['price']+"</span>"+"</span>"+"</li>");
+                        console.log(product[i]);
+                    }
+                    $("ul").append("<li class='zongjia'>总 价&nbsp;&nbsp; ¥ "+result.up_amount+" </li>");
+                    up_id=result.up_id;
+                    console.log('new:'+up_id);
+                    //setTimeout('jumpurl()',3000);
+                    //window.location.href = "__DOC__/user.php/sales/payresult/otype/1/out_trade_no/<{$en_trade_no}>";
+                }
+            }
+        });
+    }
+    /*function jumpurl(){
+        window.location.href='__DOC__/user.php/sales/payresult/otype/1/out_trade_no/<{$en_trade_no}>';
+    }*/
+</script>

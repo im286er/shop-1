@@ -1,0 +1,88 @@
+<include file="Common:pageheader_start" />
+<include file="Common:pageheader_end" />
+<div id="Right">
+		<h3>活动列表</h3>
+		<if condition="$ErrInfo">
+		<div class="errorinfo">{$ErrInfo}</div>
+		</if>
+		<br>
+           	<if condition='$PI.now gt $PI["disppage"]'><a href="{$BaseUrl}/page/1"><<</a>&nbsp;&nbsp;</if>
+             <if condition='$PI["pre"]'><a href="{$BaseUrl}/page/{$PI.pre}"><</a>&nbsp;&nbsp;
+             <else /><a href="javascript:void(0)" class="here"><</a>&nbsp;&nbsp;</if>
+             <for start="$PI.start" end='($PI["disppage"]+$PI["start"])'>
+            <if condition='$i eq $PI["now"]'><span class='current' style='font-size: 18px;'>{$i}</span>&nbsp;&nbsp;<else /><a href="{$BaseUrl}/page/{$i}">{$i}</a>&nbsp;&nbsp;</if>
+             </for>
+             <if condition='$PI["next"]'><a href="{$BaseUrl}/page/{$PI.next}">></a>
+             <else /><a href="javascript:void(0)" class="current">></a></if>
+             <if condition='$PI.now lt ($PI["totalpage"]-$PI["disppage"])'><a href="{$BaseUrl}/page/{$PI.totalpage}">>></a></if>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0"
+			class="tab">
+			<tr bgcolor=#E0E0E0>
+				<td width="50">ID</td>
+				<td width="400">活动名称</td>
+				<td width="100">开始时间</td>
+				<td width="100">结束时间</td>
+				<td width="100">活动详情</td>
+				<td width="50">涉及货品</td>
+				<td width="50">进展详情</td>
+				<td width="140">状态</td>
+				<td>操作</td>
+			</tr>
+			<volist name="listTable" id="item">
+			<tr pid="{$item.spm_id}">
+				<td>{$item.spm_id}</td>
+				<td>{$item.spm_title}</td>
+				<td>{$item.spm_begin}</td>
+				<td>{$item.spm_end}</td>
+				<td>{$item.spm_detail}</td>
+				<td>{$item.spm_pids}</td>
+				<td>{$item.spm_now}</td>
+				<td><if condition='$item.spm_enabled eq 0'>已关闭<else />进行中</if></td>
+				<td><a href="__APP__/Salesprom/editsp/id/{$item.spm_id}">编辑</a> | <a href="__APP__/Salesprom/setspdetail/id/{$item.spm_id}" target="_blank">设置详情</a></td>
+			</tr>
+			</volist>
+		</table>
+<if condition='$PI.now gt $PI["disppage"]'><a href="{$BaseUrl}/page/1"><<</a>&nbsp;&nbsp;</if>
+             <if condition='$PI["pre"]'><a href="{$BaseUrl}/page/{$PI.pre}"><</a>&nbsp;&nbsp;
+             <else /><a href="javascript:void(0)" class="here"><</a>&nbsp;&nbsp;</if>
+             <for start="$PI.start" end='($PI["disppage"]+$PI["start"])'>
+            <if condition='$i eq $PI["now"]'><span class='current' style='font-size: 18px;'>{$i}</span>&nbsp;&nbsp;<else /><a href="{$BaseUrl}/page/{$i}">{$i}</a>&nbsp;&nbsp;</if>
+             </for>
+             <if condition='$PI["next"]'><a href="{$BaseUrl}/page/{$PI.next}">></a>
+             <else /><a href="javascript:void(0)" class="current">></a></if>
+             <if condition='$PI.now lt ($PI["totalpage"]-$PI["disppage"])'><a href="{$BaseUrl}/page/{$PI.totalpage}">>></a></if>
+</div>
+<script type="text/javascript">
+//快捷启用禁用操作
+$(".opStatus").click(function(){
+    var obj=$(this);
+    var id=$(this).parents("tr").attr("pid");
+    var status=$(this).attr("val");
+    $.getJSON("__APP__/Endproduct/opdetailstat", { pid:id, status:status }, function(json){
+        if(json.status==1){
+            // popup.success(json.info);
+            $(obj).attr("val",json.data.status).html(status==1?"No":"Yes");
+        }else{
+            // popup.alert(json.info);
+        }
+    });
+});
+
+//快捷改变操作排序dblclick
+	$("tbody>tr>td[fd]").click(function(){
+		var inval = $(this).html();
+		var infd = $(this).attr("fd");
+		var inid =  $(this).parents("tr").attr("pid");
+		if($(this).attr('edit')==0){
+			$(this).attr('edit','1').html("<input class='input' size='5' id='edit_"+infd+"_"+inid+"' value='"+inval+"' />").find("input").select();
+		}
+		$("#edit_"+infd+"_"+inid).focus().bind("blur",function(){
+			var editval = $(this).val();
+			$(this).parents("td").html(editval).attr('edit','0');
+			if(inval!=editval){
+				$.post("__APP__/Endproduct/opdispweight",{pid:inid,fd:infd,dispweight:editval});
+			}
+		})
+	});
+</script>
+<include file="Common:pagefooter" />

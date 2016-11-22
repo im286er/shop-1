@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="zh-CN">
+<head> 
+<meta charset="utf-8"> 
+<title><{$dataAll.diy_cate.cate_name}></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+<{if !$mmode}>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<script src="__NEOSTATIC__/js/html5shim.js"></script>
+<{/if}>
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/bootstrap.min.css">
+<{if !$mmode}>
+	<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/doge.css">
+<{else}>
+	<link rel="stylesheet" type="text/css" href="__DOC__/m/doge/css/doge.mobile.css">
+<{/if}>
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/doge.diyediter.css">
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/jquery.qtip.min.css">
+<script src="__NEOSTATIC__/js/jquery-1.11.2.min.js?v121804"></script>
+<script src="__NEOSTATIC__/js/bootstrap.min.js?v121804"></script>
+<script src="__NEOSTATIC__/js/nstslider.jquery.js?v121804"></script>
+<script src="__NEOSTATIC__/js/jquery.qtip.min.js?v121804"></script>
+<script src="__NEOSTATIC__/js/doge.webglchk.js?v121804"></script>
+<script src="__NEOSTATIC__/js/ZInputTextManager.js?v121804"></script>
+<script src="__NEOSTATIC__/diy/seajs-2.3.0/dist/sea.js"></script>
+<script src="__NEOSTATIC__/diy/config.js"></script>
+
+<{if !$mmode}>
+<style>
+.diyeditor-controls .form-group { padding: 20px; }
+.diyeditor-controls .form-group .form-group-ln { clear: both; margin-bottom: 10px; }
+.diyeditor-controls .form-group .form-group-ln label { font-size: 16px; font-weight: normal; color: #333; }
+
+.diyeditor-controls .form-group .form-group-ln input, 
+.diyeditor-controls .form-group .form-group-ln select { border: 1px solid #AAA; background-color: #FBFBFB; border-radius: 0; }
+.diyeditor-controls .form-group .form-group-ln input.inputslider { float: right; width: 25%; height: 30px; padding: 0px; background-color: #FFF; font-size: 12px; text-align: center; border: none; border-bottom-style: solid; border-bottom-width: 1px; margin-top: -5px; }
+
+.diyeditor-controls .form-group .form-group-ln:hover .nstSlider { background-color: #DDDDDD !important; border-color: #666 !important }
+.diyeditor-controls .form-group .form-group-ln .nstSlider { float: left; width: 100% !important; margin: 5px 0 20px; position: relative; width: 100%; height: 8px; cursor: pointer; background-color: #EEE; border: none; }
+.diyeditor-controls .form-group .form-group-ln .nstSlider .rightGrip.gripHighlighted { background: #7FD1BA }
+.diyeditor-controls .form-group .form-group-ln .nstSlider .leftGrip.gripHighlighted { background: #7FD1BA }
+.diyeditor-controls .form-group .form-group-ln .nstSlider .highlightPanel { position: absolute; top: 0; height: 20px; -webkit-transition: all 500ms ease-in-out; -moz-transition: all 500ms ease-in-out; -ms-transition: all 500ms ease-in-out; -o-transition: all 500ms ease-in-out; transition: all 500ms ease-in-out; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; background: #e87722; }
+
+.diyeditor-controls .form-group .form-group-ln .nstSlider .rightGrip, .nstSlider .leftGrip { position: absolute; top: -4px; width: 16px; height: 16px; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; background: #7FD1BA; }
+.diyeditor-controls .form-group .form-group-ln .nstSlider .bar { position: absolute; top: 0px; height: 10px }
+.diyeditor-controls .form-group .form-group-ln span { display: block; float: right; line-height: 30px; font-size: 12px; color: #CCC; margin-left: 5px; }
+</style>
+<{/if}>
+
+<{if $cid eq 27}>
+<style>
+a { color: #C4AB8D !important; }
+.page-jewelry .btn-action { background-color: #C4AB8D; }
+.page-jewelry .btn-action:hover { background-color: #C4AB8D; }
+.diyeditor-controls .mid-func .diy-btn .setting { background-color: #C4AB8D;  } 
+.diy-inf { display: none !important; }
+.special_cho ul { background-color: #EEE !important;}
+.special_cho ul li a { font-size: 38px !important;}
+</style>
+<{/if}>
+<{if $mmode}>
+<{include file=C('MHEAD_END') wxtitle=$dataAll.diy_cate.cate_name}>
+<{else}>
+<body class="page-jewelry">
+<{/if}>
+
+
+
+
+
+<div class="diyeditor-controls-holder">
+<div class="diyeditor-controls">
+<form id="diyf" name="diyf" method="post" role="form" onSubmit="return false;">
+	<input type="hidden" value="<{$udinfo.id}>" name="pid" id="pid">
+	<div class="mid-func-holder">
+		<div class="mid-func">
+			<canvas id="web3dViewport" class="diyeditor-canvas"></canvas>
+			<div class="diy-btn arcruler"><a href="javascript:void(0)" class="setting setting1 guide" data-toggle="tooltip" data-placement="left" title="显示 / 隐藏 标尺"></a></div>
+		</div>
+	</div>
+	<div class="left-func" id="basic">
+		<{$i=0}> 
+
+<!--实验用品end--> 
+
+		<div class="form-group">
+		<{foreach $dataAll.diy_unit as $item}>
+			<div class="form-group-ln pr">
+				<{if $item.ishidden neq 1 && !$mmode}>
+				    <label for="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>"><{$item.unit_showname}></label>
+				<{/if}>
+				<{if $item.fieldtype eq 'INPUT'}>
+				<!-- C1 输入框 -->
+					<{if $mmode}>
+                        <div class="input-group">
+                          <span class="input-group-addon guide" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>-addon" data-toggle="tooltip" data-placement="top" title="上下滚动查看更多功能"><{$item.unit_showname}></span>
+                          <input type="text" style="font-family: 'averia serif', symbol; letter-spacing:1px;" class="form-control character-limit" value="<{$item.fieldvalue}>" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>" name="<{$item.unit_name}>" data-toggle="tooltip"
+                            data-placement="top"  title="这里不能输入中文"fieldlimit="<{$item.fieldlimit}>" maxsize="<{$item.fieldmaxlength}>" aria-describedby="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>-addon">
+                                <{if $dataAll['diy_cate']['fontext'] neq '' }>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default emoji guide" id="emoji" data-toggle="tooltip" data-placement="left" title="插入特殊图案" type="button">
+                                        <img src="__NEOSTATIC__/imgs/jewelry/emoji.png" style="MARGIN-TOP:-2px; width: 16px" alt=""/> 符号
+                                        </button>
+                                      </span>
+                                <{/if}>
+                        </div>
+				    <{else}>
+						<input type="text" style="font-family: 'averia serif', symbol; letter-spacing:1px;" class="form-control character-limit" value="<{$item.fieldvalue}>" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>" name="<{$item.unit_name}>" data-toggle="tooltip"
+					    data-placement="top" fieldlimit="<{$item.fieldlimit}>" maxsize="<{$item.fieldmaxlength}>">
+					    <{if $dataAll['diy_cate']['fontext'] neq '' }>
+                            <a class="emoji" id="emoji" href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="点击后可插入相应图案">
+                                <img src="__NEOSTATIC__/imgs/jewelry/emoji.png" width="100%" style="MARGIN-TOP:-2px;" alt=""/>
+                            </a>
+				        <{/if}>
+				
+				    <{/if}>
+                    <style>
+                    <{if !$mmode}>
+                        .emoji{width:20px;height:20px;display:block;position:absolute;top:35px;right:15px;}
+                        .special_cho{position:absolute;display:none;text-align:center;z-index:6553541;background:#DCDCDC;border:#999999;width:100%;font-family: 'symbol'}
+                        .special_cho ul li a{font-size:14px;}
+                    <{/if}>
+                        .special_cho h3{font-size:15px;text-align:center;}
+                        .special_cho ul{padding:0px;}
+                        .special_cho ul li{float:left;list-style-type:none;display:block;width:20%;}
+                    <{if $mmode}>
+                        .special_cho{position:fixed;display:none;text-align:center;z-index:6553541;background:#fff;border:#999999;width:100%;max-height:100%;top:60px;font-family: 'symbol'}
+                        .special_cho ul li a{font-size:20px;}
+                        .special_cho h3{margin:0px;}
+                    <{/if}>
+                    </style>
+					<script>$('.emoji').tooltip();</script>
+		            <div class="special_cho">
+                    <{if $mmode}>
+                        <a href="javascript:void(0)" class="label label-danger" style="font-family:arial;float:right;margin-top:15px;margin-right:15px;">X</a>
+                        <div class="clear"></div>
+                    <{/if}>
+                    <{foreach $dataAll['diy_cate']['fontextArr'] as $kitem}>
+                        <{if $kitem eq 1}>
+                        <h3>生肖</h3>
+                        <ul>
+                            <li><a href="javascript:void(0)">&#xe000;</a></li>
+                            <li><a href="javascript:void(0)">&#xe001;</a></li>
+                            <li><a href="javascript:void(0)">&#xe002;</a></li>
+                            <li><a href="javascript:void(0)">&#xe003;</a></li>
+                            <li><a href="javascript:void(0)">&#xe004;</a></li>
+                            <li><a href="javascript:void(0)">&#xe005;</a></li>
+                            <li><a href="javascript:void(0)">&#xe006;</a></li>
+                            <li><a href="javascript:void(0)">&#xe007;</a></li>
+                            <li><a href="javascript:void(0)">&#xe008;</a></li>
+                            <li><a href="javascript:void(0)">&#xe009;</a></li>
+                            <li><a href="javascript:void(0)">&#xe00a;</a></li>
+                            <li><a href="javascript:void(0)">&#xe00b;</a></li>
+                            <div class="clear"></div>
+                        </ul>
+                        <{/if}>
+                        <{if $kitem eq 2}>
+                        <h3>罗马数字</h3><!--罗马数字（连）-->
+                        <ul>
+                            <li><a href="javascript:void(0)">&#xe010;</a></li>
+                            <li><a href="javascript:void(0)">&#xe011;</a></li>
+                            <li><a href="javascript:void(0)">&#xe012;</a></li>
+                            <li><a href="javascript:void(0)">&#xe013;</a></li>
+                            <li><a href="javascript:void(0)">&#xe014;</a></li>
+                            <li><a href="javascript:void(0)">&#xe015;</a></li>
+                            <li><a href="javascript:void(0)">&#xe016;</a></li>
+                            <li><a href="javascript:void(0)">&#xe017;</a></li>
+                            <li><a href="javascript:void(0)">&#xe018;</a></li>
+                            <li><a href="javascript:void(0)">&#xe019;</a></li>
+                            <li><a href="javascript:void(0)">&#xe01a;</a></li>
+                            <li><a href="javascript:void(0)">&#xe01b;</a></li>
+                            <div class="clear"></div>
+                        </ul>
+                        <{/if}>
+                        <{if $kitem eq 3}>
+                        <h3>十二星座</h3>
+                        <ul>
+                            <li><a href="javascript:void(0)">&#xe030;</a></li>
+                            <li><a href="javascript:void(0)">&#xe031;</a></li>
+                            <li><a href="javascript:void(0)">&#xe032;</a></li>
+                            <li><a href="javascript:void(0)">&#xe033;</a></li>
+                            <li><a href="javascript:void(0)">&#xe034;</a></li>
+                            <li><a href="javascript:void(0)">&#xe035;</a></li>
+                            <li><a href="javascript:void(0)">&#xe036;</a></li>
+                            <li><a href="javascript:void(0)">&#xe037;</a></li>
+                            <li><a href="javascript:void(0)">&#xe038;</a></li>
+                            <li><a href="javascript:void(0)">&#xe039;</a></li>
+                            <li><a href="javascript:void(0)">&#xe03a;</a></li>
+                            <li><a href="javascript:void(0)">&#xe03b;</a></li>
+                            <div class="clear"></div>
+                        </ul>
+                        <{/if}>
+                        <{if $kitem eq 4}>
+                        <h3>罗马数字</h3><!--罗马数字（不连）-->
+                        <ul>
+                            <li><a href="javascript:void(0)">&#xe020;</a></li>
+                            <li><a href="javascript:void(0)">&#xe021;</a></li>
+                            <li><a href="javascript:void(0)">&#xe022;</a></li>
+                            <li><a href="javascript:void(0)">&#xe023;</a></li>
+                            <li><a href="javascript:void(0)">&#xe024;</a></li>
+                            <li><a href="javascript:void(0)">&#xe025;</a></li>
+                            <li><a href="javascript:void(0)">&#xe026;</a></li>
+                            <li><a href="javascript:void(0)">&#xe027;</a></li>
+                            <li><a href="javascript:void(0)">&#xe028;</a></li>
+                            <li><a href="javascript:void(0)">&#xe029;</a></li>
+                            <li><a href="javascript:void(0)">&#xe02a;</a></li>
+                            <li><a href="javascript:void(0)">&#xe02b;</a></li>
+                            <div class="clear"></div>
+                        </ul>
+                        <{/if}>
+                        <{if $kitem eq 5}>
+                        <h3>特殊图案</h3><!--特殊图案[戒指]-->
+                        <ul>
+                            <li><a href="javascript:void(0)">&#xe040;</a></li>
+                            <li><a href="javascript:void(0)">&#xe041;</a></li>
+                            <li><a href="javascript:void(0)">&#xe042;</a></li>
+                            <li><a href="javascript:void(0)">&#xe043;</a></li>
+                            <li><a href="javascript:void(0)">&#xe044;</a></li>
+                            <li><a href="javascript:void(0)">&#xe045;</a></li>
+                            <li><a href="javascript:void(0)">&#xe046;</a></li>
+                            <li><a href="javascript:void(0)">&#xe047;</a></li>
+                            <li><a href="javascript:void(0)">&#xe048;</a></li>
+                            <li><a href="javascript:void(0)">&#xe049;</a></li>
+                            <li><a href="javascript:void(0)">&#xe04a;</a></li>
+                            <li><a href="javascript:void(0)">&#xe04b;</a></li>
+                            <li><a href="javascript:void(0)">&#xe04c;</a></li>
+                            <li><a href="javascript:void(0)">&#xe04d;</a></li>
+                            <li><a href="javascript:void(0)">&#xe04e;</a></li>
+                            <li><a href="javascript:void(0)">&#xe04f;</a></li>
+                            <li><a href="javascript:void(0)">&#xe050;</a></li>
+                            <li><a href="javascript:void(0)">&#xe051;</a></li>
+                            <div class="clear"></div>
+                        </ul>
+                        <{/if}>
+                        <{if $kitem eq 6}>
+                        <h3>特殊图案</h3><!--特殊图案[项链]-->
+                        <ul>
+                            <li><a href="javascript:void(0)">&#xe060;</a></li>
+                            <li><a href="javascript:void(0)">&#xe061;</a></li>
+                            <li><a href="javascript:void(0)">&#xe062;</a></li>
+                            <li><a href="javascript:void(0)">&#xe063;</a></li>
+                            <li><a href="javascript:void(0)">&#xe064;</a></li>
+                            <li><a href="javascript:void(0)">&#xe065;</a></li>
+                            <li><a href="javascript:void(0)">&#xe066;</a></li>
+                            <li><a href="javascript:void(0)">&#xe067;</a></li>
+                            <li><a href="javascript:void(0)">&#xe068;</a></li>
+                            <li><a href="javascript:void(0)">&#xe069;</a></li>
+                            <li><a href="javascript:void(0)">&#xe06a;</a></li>
+                            <li><a href="javascript:void(0)">&#xe06b;</a></li>
+                            <li><a href="javascript:void(0)">&#xe06c;</a></li>
+                            <li><a href="javascript:void(0)">&#xe06d;</a></li>
+                            <li><a href="javascript:void(0)">&#xe06e;</a></li>
+                            <li><a href="javascript:void(0)">&#xe06f;</a></li>
+                            <li><a href="javascript:void(0)">&#xe070;</a></li>
+                            <li><a href="javascript:void(0)">&#xe071;</a></li>
+                            <li><a href="javascript:void(0)">&#xe072;</a></li>
+                            <li><a href="javascript:void(0)">&#xe073;</a></li>
+                            <li><a href="javascript:void(0)">&#xe074;</a></li>
+                            <li><a href="javascript:void(0)">&#xe075;</a></li>
+                            <li><a href="javascript:void(0)">&#xe0b0;</a></li>
+                            <div class="clear"></div>
+                        </ul>
+                        <{/if}>
+                        <{if $kitem eq 7}>
+                        <h3>节日元素</h3><!--节日元素[戒指]-->
+                        <ul>
+                            <li><a href="javascript:void(0)">&#xe080;</a></li>
+                            <li><a href="javascript:void(0)">&#xe081;</a></li>
+                            <li><a href="javascript:void(0)">&#xe082;</a></li>
+                            <li><a href="javascript:void(0)">&#xe083;</a></li>
+                            <li><a href="javascript:void(0)">&#xe084;</a></li>
+                            <li><a href="javascript:void(0)">&#xe085;</a></li>
+                            <li><a href="javascript:void(0)">&#xe086;</a></li>
+                            <li><a href="javascript:void(0)">&#xe087;</a></li>
+                            <div class="clear"></div>
+                        </ul>
+                        <{/if}>
+                        <{if $kitem eq 8}>
+                        <h3>节日元素</h3><!--节日元素[项链]-->
+                        <ul>
+                            <li><a href="javascript:void(0)">&#xe090;</a></li>
+                            <li><a href="javascript:void(0)">&#xe091;</a></li>
+                            <li><a href="javascript:void(0)">&#xe092;</a></li>
+                            <li><a href="javascript:void(0)">&#xe093;</a></li>
+                            <li><a href="javascript:void(0)">&#xe094;</a></li>
+                            <li><a href="javascript:void(0)">&#xe095;</a></li>
+                            <li><a href="javascript:void(0)">&#xe096;</a></li>
+                            <li><a href="javascript:void(0)">&#xe097;</a></li>
+                            <div class="clear"></div>
+                        </ul>
+                        <{/if}>
+                        <{if $kitem eq 9}>
+                        <h3>叠影</h3><!--素原叠影[项链]-->
+                        <ul>
+                            <li><a href="javascript:void(0)">&#xe0c0;</a></li>
+                            <li><a href="javascript:void(0)">&#xe0c1;</a></li>
+                            <li><a href="javascript:void(0)">&#xe0c2;</a></li>
+                            <li><a href="javascript:void(0)">&#xe0c3;</a></li>
+                            <li><a href="javascript:void(0)">&#xe0c4;</a></li>
+                            <li><a href="javascript:void(0)">&#xe0c5;</a></li>
+                            <li><a href="javascript:void(0)">&#xe0c6;</a></li>
+                            <li><a href="javascript:void(0)">&#xe0c7;</a></li>
+                            <li><a href="javascript:void(0)">&#xe0c8;</a></li>
+                            <li><a href="javascript:void(0)">&#xe0c9;</a></li>
+                            <li><a href="javascript:void(0)">&#xe0ca;</a></li>
+                            <li><a href="javascript:void(0)">&#xe0cb;</a></li>
+                            <li><a href="javascript:void(0)">&#xe0cc;</a></li>
+                            <div class="clear"></div>
+                        </ul>
+                        <{/if}>
+                    <{/foreach}>
+                    </div>
+				<{elseif $item.fieldtype eq 'INPUTSLIDER'}>
+				<!-- C2 滑条输入框 -->
+                    <{if $item.ishidden neq 1}>
+                        <span><{$item.fieldtitle}></span>
+                        <input type="text" class="form-control inputslider input" value="<{$item.fieldvalue}>" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>" name="<{$item.unit_name}>" data-toggle="tooltip" data-placement="left" title="<{$item.fieldtitle}>">
+                        <div class="nstSlider" data-range_min="<{$item.unit_minvalue * 100}>" data-range_max="<{$item.unit_maxvalue * 100}>" data-cur_min="<{$item.fieldvalue*100}> " data-cur_max="0">
+                            <div class="bar"></div>
+                            <div class="leftGrip"></div>
+                        </div>
+                    <{else}>
+                        <input type="hidden" value="<{$item.fieldvalue}>" name="<{$item.unit_name}>" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>">
+                    <{/if}>
+				
+				<{elseif $item.fieldtype eq 'SELECT'}>
+				<!-- C3 下拉框 -->
+				<{if $item.ishidden eq 1}>
+					<input type="hidden" value="<{$item.fieldvalue}>" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>" name="<{$item.unit_name}>">		
+				<{else}>
+				
+				<{if $mmode}>
+				
+				<div class="input-group">
+					<span class="input-group-addon" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>-addon"><{$item.unit_showname}></span>
+					<select class="form-control" style='font-family: "Microsoft yahei", "微软雅黑",  symbol;' id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>" name="<{$item.unit_name}>" data-toggle="tooltip" data-placement="bottom" title="<{$item.fieldtitle}>" form="diyf" aria-describedby="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>-addon">
+						<{foreach $item.unit_value_arr as $result}>
+							<{if $item.fieldvalue == $result.key}>
+							<option value="<{$result.key}>" selected><{$result.value}></option>
+							<{else}>
+							<option value="<{$result.key}>"><{$result.value}></option>
+							<{/if}>
+						<{/foreach}>
+					</select>
+					<{if $item.unit_showname eq '尺寸'}>
+					<span class="input-group-btn">
+						<button class="btn btn-default diy-rin" data-toggle="tooltip" data-placement="left" title="手寸测量说明" onClick="initfrm('img')" type="button"> 
+							<span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+						</button>
+					</span>
+					
+					<{/if}>
+				</div>
+				
+				
+				<{else}>
+				
+				
+				<{if $item.unit_showname eq '尺寸'}>
+				<a class="diy-inf rin" href="javascript:void(0)" onClick="initfrm('img')">?</a>
+				<{/if}>
+				<select class="form-control" style='font-family: "Microsoft yahei", "微软雅黑",  symbol;' id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>" name="<{$item.unit_name}>" data-toggle="tooltip" data-placement="bottom" title="<{$item.fieldtitle}>" form="diyf">
+					<{foreach $item.unit_value_arr as $result}>
+						<{if $item.fieldvalue == $result.key}>
+						<option value="<{$result.key}>" selected><{$result.value}></option>
+						<{else}>
+						<option value="<{$result.key}>"><{$result.value}></option>
+						<{/if}>
+					<{/foreach}>
+				</select>
+				
+				<{/if}>
+
+				
+				<{/if}>
+				<{elseif $item.fieldtype eq 'MATERIAL'}>
+				<!-- C4 材质选择器 -->
+				
+				<{if $mmode}>
+				
+				<div class="input-group">
+					<span class="input-group-addon" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>-addon"><{$item.unit_showname}></span>
+					<select class="form-control" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>" name="<{$item.unit_name}>" data-toggle="tooltip" data-placement="bottom" title="<{$item.fieldtitle}>" form="diyf" aria-describedby="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>-addon">
+						<{foreach $mcate as $result}>
+						<{if $item.fieldvalue == $result.pma_id}>
+						    <option value='<{$result.pma_id}>' selected><{$result.TPM_name}></option>
+						<{else}>
+						    <option value='<{$result.pma_id}>'><{$result.TPM_name}></option>
+						<{/if}>
+						<{/foreach}>
+					</select>
+				</div>
+					
+				<{else}>
+				
+				<select class="form-control" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>" name="<{$item.unit_name}>" data-toggle="tooltip" data-placement="bottom" title="<{$item.fieldtitle}>" form="diyf">
+					<{foreach $mcate as $result}>
+					<{if $item.fieldvalue == $result.pma_id}>
+					<option value='<{$result.pma_id}>' selected><{$result.TPM_name}></option>
+					<{else}>
+					<option value='<{$result.pma_id}>'><{$result.TPM_name}></option>
+					<{/if}>
+					<{/foreach}>
+				</select>
+				<{/if}>
+				<{elseif $item.fieldtype eq 'NECKLACE'}>
+				<!-- C5 项链选择器 -->
+				<{if $mmode}>
+                <{if $item.ishidden neq 1}>
+				<div class="input-group">
+					<span class="input-group-addon" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>-addon"><{$item.unit_showname}></span>
+					<select class="form-control" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>" name="<{$item.unit_name}>" data-toggle="tooltip" data-placement="bottom" title="<{$item.fieldtitle}>" form="diyf" aria-describedby="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>-addon">
+						<{$nDefaultOption}>
+					</select>
+					<span class="input-group-btn">
+						<button class="btn btn-default diy-nck" data-toggle="tooltip" data-placement="left" title="项链款式说明" onClick="initfrm('img')" type="button"> 
+							<span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+						</button>
+					</span>
+				</div>
+                <{else}>
+                <input name='<{$item.unit_name}>' id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>" >
+                <{/if}>
+
+                <{else}>
+                    <{if $item.ishidden neq 1}>
+                        <a class="diy-inf nck" href="javascript:void(0)" onClick="initfrm('img')">?</a>
+                        <select class="form-control" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>"
+                                name="<{$item.unit_name}>" data-toggle="tooltip" data-placement="bottom"
+                                title="<{$item.fieldtitle}>" form="diyf"
+                                aria-describedby="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>-addon">
+                            <{$nDefaultOption}>
+                        </select>
+                    <{else}>
+                        <input name='<{$item.unit_name}>' type="hidden" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>" >
+                    <{/if}>
+                <{/if}>
+				<{/if}>
+			</div>
+		<{if $item.next_fieldgroup eq 2}>
+		<{$i=$i+1}> 
+	 	 <{if $i eq 1}>
+		</div>	
+		<div class="clear"></div>
+	</div>
+    <div class="right-func" id="advance">
+        <div class="form-group">
+            <{/if}>
+            <{else}>
+            <{/if}>
+            <{/foreach}>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="clear"></div>
+	<input type="hidden" value="<{$code}>" name="code" >
+	<input type="hidden" value="<{$mmode}>" name="mmode">
+	<input type="hidden" value="<{$udinfo.cover}>" name="cover" id="cover">
+	<input type="hidden" value="<{$dataAll.diy_cate.cid}>" name="cid" id="cid">
+	<input type="hidden" value="<{$udinfo.price}>" name="price" id="price">
+	<input type="hidden" value="0" id="stype" name="stype">
+	<{if !$mmode}>
+	<div class="buttons arcbar buildit">
+		<label class="price">定制价格: <span class="price-cost">￥<span id="showprice"><{$udinfo.price}></span>.00</span></label>
+		<button type="button" class="btn btn-action arcbuynow"  id="web3dSaveBuy" data-toggle="modal" data-target="#myModal2">加入购物车<span>仅需7日，即可送到您手中</span></button>
+		<a class="saveplan" href="javascript:void(0);" id="web3dSave" data-toggle="modal" data-target="#myModal2">保存我的方案 &gt;</a>
+	</div>
+	<{else}>
+	<div class="arcbar buildit">
+		<label class="price">价格: <span class="price-cost">￥<span id="showprice"><{$udinfo.price}></span>.00</span></label>
+		<button type="button" class="btn btn-default arcbuynow"  id="web3dSaveBuy" data-loading-text="<span class='' aria-hidden='true' style='display:inline-block;float:left;height:45px;line-height:45px;padding:0 5px 0 0;'><img src='__NEOSTATIC__/imgs/jewelry/loading.gif' width='20' height='20'/></span>正在提交..." autocomplete="off">立即购买</button>
+		<!--a class="btn btn-default arcsetting" id="web3dSave" data-toggle="modal" data-target="#myModal2" href="javascript:void(0);" >分享</a-->
+	</div>
+	<script>
+  	
+	</script>
+	<{/if}>
+</form>
+</div>
+</div>
+<{if $mmode eq 0}>
+<div class="frm-img frm-img_ring pa" ><a href="javascript:void(0)" class="clos" >X</a></div>
+<div class="frm-img frm-img_nec pa" ><a href="javascript:void(0)" class="clos" >X</a></div>
+<{elseif $mmode eq 1}>
+<div class="frm-img frm-img_ring pa" ><a href="javascript:void(0)" class="clos" >X</a>
+<img src="__NEOSTATIC__/imgs/jewelry/rin_phone.png" width="100%"/>
+</div>
+<div class="frm-img frm-img_nec pa" ><a href="javascript:void(0)" class="clos" >X</a>
+<img src="__NEOSTATIC__/imgs/jewelry/nec_phone.png" width="100%"/>
+</div>
+
+<{/if}>
+<style>
+.diy-inf{border-radius:100%;background:#D6F0E8;width:20px;height:20px;line-height:15px;text-align:center;margin-top:5px;display:inline-block;border:1px solid #4EBF9A; vertical-align:middle;margin-top:-5px;}
+.frm-img{display:none;top:50%;left:50%;margin-left:-360px;margin-top:-300px;width:700px;height:550px;border:1px solid #999;z-index:40000;}
+.frm-img img{width:100%;height:100%;}
+.frm-img a{display:block;text-align:right;width:100%;position:relative;z-index:44444;padding:20px;font-size:25px;font-weight:bold;color:#7FD1BA;}
+.frm-img_nec{background:url(__NEOSTATIC__/imgs/jewelry/frm-img_nec.jpg) center center no-repeat;background-size:cover;}
+.frm-img_ring{background:url(__NEOSTATIC__/imgs/jewelry/frm-img_rin.jpg) center center no-repeat;background-size:cover;}
+
+<{if $mmode==1}>
+.btn-default.disabled{background-color: #cd6466!important;}
+.frm-img{width:100%;height:100%;position:fixed;top:0px;left:0px;margin:auto;}
+.frm-img img{ width:100%;}
+.frm-img_nec{background:none;}
+.frm-img a{position:absolute;top:0px;}
+.frm-img_ring{background:none;}
+<{/if}>
+
+</style>
+<script>
+$(".diy-inf.nck").click(function(){
+	$(".frm-img_nec").fadeToggle();
+});
+$(".diy-inf.rin").click(function(){
+
+	$(".frm-img_ring").fadeToggle();
+});
+$(".diy-rin").click(function(){
+	$(".frm-img_ring").fadeToggle();
+});
+$(".diy-nck").click(function(){
+	$(".frm-img_nec").fadeToggle();
+});
+$(".clos").click(function(){
+	$(".frm-img").hide();
+});
+
+</script>
+
+<{$show_neck}> 
+<script>
+    var showtype = "<{$showtype}>";
+    if(showtype == 10) {
+	//$('.left-func').hide();
+	//$('.right-func').hide();
+	//$('#web3dSaveBuy').hide();
+	$('#web3dSave').hide();
+	$('#web3dSaveBuy').text("保存修改");
+}
+
+function chat() {  
+	$('.guide').tooltip("hide");
+	clearTimeout(interval);
+	     }     
+	$('.guide').tooltip("show");
+	var interval = setInterval(function(){
+		$('.guide').tooltip("hide");
+		clearTimeout(interval);
+	},5000);
+
+var editstats = 1;
+/*$('.btn--settings').click(function(e) {
+    if(editstats) {
+        $('.tab-content, .nav-tabs, .desp ').fadeOut();
+        $('.diyeditor-controls').height('auto');
+        $(this).html('编辑');
+        editstats = 0;
+    } else {
+        $('.tab-content, .nav-tabs, .desp ').show();
+        $('.diyeditor-controls').css('height','100%');
+        $(this).html('预览'); 
+        editstats = 1;  
+    }
+});*/
+
+    // zhengweifu code --------------start--------------
+	window.requestAnimationFrame = (function(){
+	  return  window.requestAnimationFrame       ||
+	          window.webkitRequestAnimationFrame ||
+	          window.mozRequestAnimationFrame    ||
+	          function( callback ){
+	            window.setTimeout(callback, 1000 / 60);
+	          };
+	})();
+
+
+    seajs.config({
+        alias : {
+            // 'intersectionjs' :  "__NEOSTATIC__/diy/js/<{$dataAll.diy_cate['jspath']}>",
+            'intersectionjs' :  "<{$dataAll.diy_cate['jspath']}>",
+        }
+    });
+
+    seajs.use(["index.js", "common/ZUtils.js"], function(execute, utils) {
+    	// 检测是否支持webgl
+		if(!isSupportWebGL()) {
+			alert("亲，您的当前浏览器不支持webgl, 请预览非DIY产品。");
+			if(utils.IsMobile.Any()) {
+				window.location.href='__DOC__/index/wx-jewelrylist';
+			} else {
+				window.location.href='__DOC__/index/jewelry';
+			}
+		}
+
+        var parameters = {
+			rootpath : "__DOC__",
+            webpath : "__NEOSTATIC__/diy",
+            neostatic : "__NEOSTATIC__",
+            canvas : document.getElementById("web3dViewport"),
+            globalChainStyleIDName : "<{$dataAll.diy_cate.idprefix}>Chaintype",
+            globalMaterialStyleIDName : "<{$dataAll.diy_cate.idprefix}>Material",
+            islogin : parseInt("<{$islogin}>"),
+            startprice : "<{$udinfo.startprice}>",
+            pid : document.getElementById("pid").value,
+            cameraMatrix:"<{$dataAll.diy_cate.cameramatrix}>",
+            chainMatrix:"<{$dataAll.diy_cate.chainmatrix}>",
+            chainMeshPaths:"<{$dataAll.diy_cate.chainmeshpaths}>"
+        }
+        //<{foreach $mcate as $res}>
+        //parameters["pma_diy_formula_s_<{$res.pma_id}>"]="<{$res.pma_diy_formula_s}>";
+        //parameters["pma_diy_formula_b_<{$res.pma_id}>"]="<{$res.pma_diy_formula_b}>";
+        //parameters["pma_necklace_price_<{$res.pma_id}>"]="<{$res.pma_necklace_price}>"
+        //<{/foreach}>
+        //execute(parameters);
+    })
+    // zhengweifu code ---------------end------------------
+
+
+//点击笑脸外的区域后选择框消失
+$('.diyeditor-controls').click(function(){         
+	$(".special_cho").hide();
+	return false;
+});
+
+//点击出现特殊符号选择
+$('.emoji').click(function(){
+// //	$('.special_cho').slideToggle('500');
+	$(this).parent().parent().nextAll('.special_cho').first().slideToggle('500');
+	$(this).nextAll('.special_cho').first().slideToggle('500');
+	return false;
+	}); 
+	
+//将特殊符号插入到input中
+$('.special_cho a').click(function(){
+	<{if $mmode ==0 }>
+	var inp = $(this).parent().parent().parent().prevAll('input.form-control').last();
+	<{else if $mmode ==1}>
+	var inp = $(this).parent().parent().parent().prevAll('.input-group').last().children('input.form-control');
+	<{/if}>
+	var inp_val = inp.val();
+	var textmaxsize = parseInt(inp.attr('maxsize'));
+	var limitType = parseInt(inp.attr('fieldlimit'));
+	if(inp_val.length === textmaxsize) {
+		ZInputTextManager.warningTiptool(inp, '已达到最大'+textmaxsize+'个字符的限制。', 1500);
+		return;
+	}
+
+	var currentText = $(this).text();
+	inp.insertAtCaret(currentText);
+
+	if(ZInputTextManager.execute(inp, textmaxsize, limitType, inp_val)) {
+		inp.change();
+	}
+})
+
+// 限制input字符
+$('.character-limit').bind(
+'input propertychange',
+function(e){
+	var textmaxsize = parseInt($(this).attr('maxsize'));
+	var limitType = parseInt($(this).attr('fieldlimit'));
+	ZInputTextManager.execute($(this), textmaxsize, limitType);
+});
+
+// 设置按钮动画控制
+var setting_btn=self.setInterval("clock()",2500);
+function clock(){   
+  	$(".setting").animate({opacity:'0.7'},1250);
+	$(".setting").animate({opacity:'0.3'},1250);
+}
+
+function clear_setting_btn(){
+	setting_btn=window.clearInterval(setting_btn);
+	}
+//setting_btn();
+//$(".setting").mouseout(int());
+$(".setting").mouseover(function(){
+	int=window.clearInterval(setting_btn);
+	});
+$(".setting").mouseout(function(){
+	setting_btn=self.setInterval("clock()",2500);
+	});
+		
+//手机版“立即支付”按钮点击后动画
+$('#web3dSaveBuy').on('click', function () {
+   	 	var $btn = $(this).button('loading');
+	 });
+
+</script>
+
+
+
+
+</body>
+</html>

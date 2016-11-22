@@ -1,0 +1,176 @@
+@charset "utf-8";
+/* 
+	Project Nyan ~ Core CSS. / (C)2012 Erinago / (C)2010-2012 Nagomi Mind
+	Rev. 1.0.2 / Last Update: June 15, 2012
+	
+	For Program 3D Factory Lite used only!
+*/
+body { font-size: 12px; background: #FFF url(/static/images/nyan/common/bg_top_rap.jpg) repeat-x; font-family: Verdana, Tahoma, Arial, SimSun, "宋体", Helvetica, sans-serif; }
+a { color: #0074C0; text-decoration: none }
+a:hover { text-decoration: none }
+
+/* global */
+h1, h2, h3, h4, h5, h6 { padding: 10px 0 15px 10px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height: normal; }
+
+/* shadows */
+.shadowed { box-shadow: 0 0 4px #E0E0E0; -webkit-box-shadow: 0 0 4px #E0E0E0; -moz-box-shadow: 0 0 4px #E0E0E0; behavior: url(/static/images/iefix/pie.htc); }
+.shadowed-dark { box-shadow: 0 0 5px #000; -webkit-box-shadow: 0 0 5px #000; -moz-box-shadow: 0 0 5px #000; behavior: url(/static/images/iefix/pie.htc); }
+
+.radius { border-radius: 3px; -khtml-border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; behavior: url(/static/images/iefix/pie.htc); }
+
+/* page layouts */
+.container { width: 984px; margin: 0 auto }
+.container.homepage { padding-top: 50px }
+.topbar { height: 30px; color: #FFF; border-bottom: 4px solid #0075C1; background: #2C2E2D url(/static/images/nyan/common/topbar_bg_rap.jpg) 0 -10px repeat-x; box-shadow: 0 0 5px #888;  -webkit-box-shadow: 0 0 5px #888; -moz-box-shadow: 0 0 5px #888; }
+.header { height: 85px; border-bottom: 1px solid #444; background: #3E3E3E }
+.content { padding-bottom: 20px }
+.footer { border-top: 4px solid #0075C1; border-bottom: 1px solid #444; background: #333; box-shadow: 0 0 5px #888; -webkit-box-shadow: 0 0 5px #888; -moz-box-shadow: 0 0 5px #888; }
+.copyright { height: 40px; color: #999; border-top: 3px solid #262626; border-bottom: 1px solid #444; line-height: 38px; clear: both; background: #232323; }
+
+/* topbar */
+.topbar ul.topnav li.str a { padding-left: 0 }
+.topbar ul.topnav li.ntr { background: none }
+.topbar ul.topnav li { float: left; background: url(/static/images/nyan/common/topnav_column_thin.jpg) center right no-repeat }
+.topbar ul.topnav li a { display: inline-block; height: 30px; padding: 0 15px 0 16px; color: #E9E9E9; font-size: 14px; line-height: 30px }
+.topbar ul.topnav li a:hover { border-bottom: 4px solid #CD4900 }
+.topbar .userbar { float: right; position: relative; height: 40px; border-bottom: 4px solid #0075C1; background: #2C2E2D url(/static/images/nyan/common/topbar_bg_rap.jpg) repeat-x }
+.topbar .userbar .usernav .icon.login { background-position: 16px 3px }
+.topbar .userbar .usernav li.ntr { border: none }
+.topbar .userbar .usernav .icon { padding-left: 28px; background: url(/static/images/icons/icon_user_login.png) no-repeat }
+.topbar .userbar .usernav li { float: left; height: 20px; margin: 10px 0; border-right: 1px solid #CCC }
+.topbar .userbar .usernav li a { margin: 0px 18px; color: #E9E9E9; font-size: 12px; line-height: 20px }
+.topbar ul.topnav li a:hover, .topbar .userbar .usernav li a:hover { color: #FFF; text-decoration: none }
+
+/* logos */
+.pagetopic-container { padding-top: 20px; }
+.logo { position: relative; padding-right: 25px; }
+.logo span { position: absolute; right: 25px; top: 3px; color: #FFF; }
+.pagetopic-container .logo { padding-right: 5px; }
+.pagetopic-container h1 { font-size: 30px; color: #FFF; font-weight: normal; font-family: Microsoft YaHei, STHeiti Light, SimSun; _float: left; padding-top: 5px; }
+ 
+/* column */
+.column-two, .column-three { clear: both }
+.column-two .columns { width: 50% }
+.column-three .columns { width: 33.3% }
+
+/* breadcrumbs */
+.breadcrumbs { height: 12px; padding: 14px 0; color: #999; font-size: 12px }
+.breadcrumbs a.home { margin-left: 2px }
+.breadcrumbs a { display: inline-block; margin: 0 .8em; color: #999 }
+.breadcrumbs a:hover { color: #333 }
+
+/* avater */
+.avater { border: 1px solid #FFF; -webkit-box-shadow: 0 0 5px #C8C8C8; -moz-box-shadow: 0 0 5px #C8C8C8; box-shadow: 0 0 5px #C8C8C8; behavior: url(/static/images/iefix/pie.htc); }
+.avater, .avater img { border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px;  }
+.avater.amin, .avater.amin img { width: 45px; height: 45px;  }
+.avater.alarge, .avater.alarge img  { width: 80px; height: 80px }
+
+/* nya */
+.nya { margin-bottom: 17px; padding-top: 6px; border-bottom: 1px solid #CCC; background: #FFF url(/static/images/nyan/common/nya_t_bg_rap.jpg) repeat-x }
+.nya.nal { padding-top: 0px }
+.nya-inner { padding: 10px; background: url(/static/images/nyan/common/nya_bg_rap.jpg) repeat-x; border: 1px solid #CCC; border-bottom: none; }
+.nya-inner h3 { float: left; color: #191919; font-weight: normal; font: 20px/1 "Microsoft Yahei", "微软雅黑", "STHeiti Light", SimSun }
+.nya-inner h3 span { padding-left: 20px; color: #CCC; font-size: 16px }
+.nya-inner h4 { line-height: 40px; font-weight: normal; font: 18px/1 "Microsoft Yahei", "微软雅黑", "STHeiti Light", SimSun; }
+.nya-inner h5 { font-weight: normal; font-size: 12px; }
+/* nya.with-cate-switcher */
+.nya.with-cate-switcher ul.nav { float: right; height: auto; height: 20px; padding: 10px 10px 15px }
+.nya.with-cate-switcher ul.nav li { float: left; height: 20px }
+.nya.with-cate-switcher ul.nav li a.it { color: #FFF; background: #7EB8DD }
+.nya.with-cate-switcher ul.nav li a { display: block; margin-left: 2px; padding: 5px 15px; color: #666; font-size: 12px; border-radius: 3px; -khtml-border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+.nya.with-cate-switcher ul.nav li a:hover { color: #FFF; text-decoration: none; background: #0074BE }
+/* nya ul.linkmore */
+ul.linkmore { height: 16px; padding: 10px 0 }
+ul.linkmore li.ntr { border: none }
+ul.linkmore li { float: right; height: 16px; padding: 0 10px; border-right: 1px solid #E6E6E6; line-height: 16px }
+ul.linkmore li a:hover { color: #666 }
+
+/* footer */
+.footer a, .copyright a { color: #CCC }
+.footer a:hover, .copyright a:hover { color: #FFF; text-decoration: none }
+.copyright a { padding-left: 8px }
+.footer li { float: left; width: 16.2%; height: 160px; padding: 30px 15px 20px 0; background: url(/static/images/nyan/common/etc_column.jpg) 87% 10px no-repeat }
+.footer li .new { width: 100px; padding-left: 6px; color: #F00; font-weight: bold; font-size: 10px }
+.footer li dt { display: block; padding-bottom: 10px; color: #FFF; font-size: 14px }
+.footer li dd { line-height: 185% }
+.footer li.followus { width: 10%; background: none }
+.footer li.followus dd { float: left; clear: both }
+.footer li.followus dd img { padding: 3px 0 }
+.footer li.counter { float: right; width: 140px; padding-right: 0; background: none }
+.footer li.counter dt { width: 100%; padding-bottom: 0px; font-size: 12px; text-align: right }
+.footer li.counter dd { width: 100%; padding-bottom: 16px; color: #FFF; font-size: 22px; text-align: right }
+
+/* ====================================================================================================== */
+/* nya.home-panel */
+.nya.welcome .nya-inner { padding: 0; height: 300px; background: #333 url(/static/images/nyan/index/welcome_bg.jpg) }
+.nya.welcome .homesearch-container { margin: 70px 30px; }
+
+.nya.welcome .tsearch { display: block; height: 30px; width: 450px; margin-top: 6px;}
+.nya.welcome .tsearch label { position: absolute; width: 100px; top: 0px; left: 15px; color: #D8D8D8; font-size: 16px; line-height: 30px; z-index: 21; cursor: text; }
+.nya.welcome .tsearch input { position: absolute; width: 420px; height: 30px; padding: 0 10px; border-radius: 2px; border: 1px solid #C6C6C6; background: #FFF url(/static/images/nyan/search/tsearch_input_bg.jpg) no-repeat; -webkit-border-radius: 2px; -moz-border-radius: 2px; -khtml-border-radius: 2px; font-size: 16px; line-height: 30px; z-index: 20; }
+.nya.welcome .tsearch button { position: absolute; top: 1px; right: 9px; width: 70px; height: 30px; color: #FFF; font-size: 14px; text-indent: -3000px; cursor: pointer; border: none; background: #0072BC url(/static/images/nyan/search/tsearch_btn.jpg); z-index: 21; }
+
+.nya.welcome .tguider { position: absolute; left: 1px; bottom: 1px; width: 100% }
+.nya.welcome .tguider .caseshare { background: #008641 }
+.nya.welcome .tguider .caseshare:hover { background: #00A763 }
+.nya.welcome .tguider .casethink { background: #CD4900 }
+.nya.welcome .tguider .casethink:hover { background: #DD6D00 }
+.nya.welcome .tguider .casefind { background: #0072BC }
+.nya.welcome .tguider .casefind:hover { background: #0096D1 }
+.nya.welcome .tguider li { float: left; display: block; width: 326px; height: 34px; margin-right: 1px; font-size: 16px; line-height: 34px; cursor: pointer; }
+.nya.welcome .tguider li b { float: right; padding-right: 10px; color: #FFF; font-weight: normal; font-size: 22px; font-family: Verdana }
+.nya.welcome .tguider li a { padding-left: 28px; color: #FFF }
+.nya.welcome .tguider li a:hover { text-decoration: none }
+
+.nya.recentitem { width: 690px }
+.nya.recentitem .nya-inner { height: 370px }
+
+.nya.hottopic { width: 280px; }
+.nya.hottopic .nya-inner { height: 390px; padding: 0; }
+.nya.hottopic .topicbox { width: 248px; height: 80px; margin: 13px auto; background-color: #FFF; box-shadow: 0 0 5px #CCC; background-position: 50%; -webkit-box-shadow: 0 0 5px #CCC; -moz-box-shadow: 0 0 5px #CCC; }
+.nya.hottopic .topicbox span { position: relative; display: block; top: 55px; left: 0px; height: 25px; padding: 0 5px; color: #FFF; font-weight: bold; text-align: center; opacity: 0.6; line-height: 25px; filter: alpha(opacity=60); background: #000; }
+
+.nya.expro .expro-bywork-ul { padding: 5px; _padding-top: 0 }
+.nya.expro .expro-bywork-ul li.ntr { padding-right: 0 }
+.nya.expro .expro-bywork-ul li { float: left; width: 160px; padding: 0 29px 20px 5px }
+.nya.expro .expro-bywork-ul li .industrybox { width: 160px; height: 90px; margin-bottom: 5px; background: 50% }
+.nya.expro .expro-bywork-ul li .industrybox.case1 { background-image: url(/static/images/nyan/guide/buliding.jpg) }
+.nya.expro .expro-bywork-ul li .industrybox.case2 { background-image: url(/static/images/nyan/guide/military.jpg) }
+.nya.expro .expro-bywork-ul li .industrybox.case3 { background-image: url(/static/images/nyan/guide/industry.jpg) }
+.nya.expro .expro-bywork-ul li .industrybox.case4 { background-image: url(/static/images/nyan/guide/medicine.jpg) }
+.nya.expro .expro-bywork-ul li .industrybox.case5 { background-image: url(/static/images/nyan/guide/transport.jpg) }
+.nya.expro .expro-bywork-ul li .industrybox span { position: absolute; display: block; left: 0px; bottom: 0px; height: 26px; color: #FFF; font-size: 14px; text-indent: 10px; text-align: left; line-height: 26px }
+.nya.expro .expro-bywork-ul li .industrybox img { width: 160px; height: 89px }
+.nya.expro .expro-bywork-ul li .industrybox a { position: relative; display: block; border: 1px solid #E5E5E5 }
+.nya.expro .expro-bywork-ul li .industrybox a:hover { font-weight: bold; text-decoration: none; border: 1px solid #666; background: url(/static/images/nyan/guide/more_s.png) 130px 68px no-repeat; }
+.nya.expro .expro-bywork-ul li .tags { width: 160px; line-height: 175% }
+.nya.expro .expro-bywork-ul li .tags a { display: inline-block; margin: 0 3px; color: #333 }
+
+.nya.hotitem h4 { margin-bottom: 10px; padding: 10px 5px; margin: 0 10px; border-bottom: 1px solid #CCC; line-height: 20px }
+.nya.hotitem h4 .more { float: right; padding: 0px 10px 0 0; margin: 2px 0; font: 12px Verdana, Tahoma, Arial, SimSun, "宋体", Helvetica, sans-serif; }
+.nya.hotitem .recentitem-ul { height: 370px; margin: 5px }
+.nya.topmember .recentuser-ul { padding: 10px 12px; height: 1%; }
+
+.recentitem-ul { padding: 0 5px }
+.recentitem-thumbnail li { float: left; padding: 5px }
+.recentitem-thumbnail li a.thumblink { display: block; width: 80px; height: 80px; padding: 2px }
+.recentitem-thumbnail li a.thumblink:hover { padding: 0; border: 2px solid #999 }
+.recentitem-thumbnail li a.thumblink img { width: 80px; height: 80px }
+.recentitem-thumbnail li .detials { display: none }
+
+.recentitem-list li { float: left; width: 95%; padding: 7px; clear: both }
+.recentitem-list li a.thumblink { float: left; display: block; width: 60px; height: 60px }
+.recentitem-list li a.thumblink img { width: 60px; height: 60px }
+.recentitem-list li .detials { float: left; padding: 0 10px 0 15px; color: #999; line-height: 165% }
+.recentitem-list li .detials .column { display: inline-block; width: 90px }
+.recentitem-list li .detials h5 { width: 190px; padding: 0; line-height: 20px }
+.recentitem-ul .detials .hehe { text-align: left; z-index: 1; animation: ease; animation-delay: 5; animation-name: maho; margin: auto; alignment-baseline: baseline; word-wrap: break-word; }
+.recentitem-list li:hover { background: #F8F8F8 }
+.recentuser-min li { float: left; width: 25%; padding: 5px 0 }
+.recentuser-min li .detials { float: left; padding: 0 10px 0 15px; color: #999; line-height: 165% }
+.recentuser-min li .detials h5 { padding: 0; line-height: 20px }
+.recentuser-min li .avater { float: left }
+
+.recentitem-ul .detials h5 a, .recentuser-ul .detials h5 a { color: #333 }
+.recentitem-ul .detials a, .recentuser-ul .detials a { display: block; color: #999 }
+.recentitem-ul .detials a:hover, .recentuser-ul .detials a:hover { color: #0074C0 }

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>优惠券模板-{$site.SITE_INFO.name}</title>
+	<include file="Common:intohead" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-ui.js"></script>
+	</head>
+	<body>
+		<div class="wrap">
+		<include file="Common:head" />
+			<div class="mainBody">
+              	<include file="Common:left" />
+    				<div id="Right">
+                 		<div class="Item hr">
+        					<div class="current">优惠券生成</div>
+        					<form action="__URL__/generate" method="post">
+        				
+        					
+
+        					数量：<input type="text" name="num" />
+        					<select name="etid">
+        					<option>类别</option>
+        					
+        					<volist name="list" id="vo">
+        					<option value="{$vo['et_id']}">{$vo['et_name']}</option>
+        					</volist>
+        					
+        					</select>
+        					<input type="submit"  value="提交"/>
+        					</form>
+      					</div>
+      				</div>
+      		</div>
+      	</div>
+<div class="clear"></div>
+<include file="Common:foot" />
+<script type="text/javascript">
+$(function() {
+	$( "#expirepicker" ).datepicker();
+});
+</script>
+<script>
+</script>
+</body>
+</html>

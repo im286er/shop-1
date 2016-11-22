@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>代金券模板-{$site.SITE_INFO.name}</title>
+	<include file="Common:intohead" />
+	<link href="__PUBLIC__/Css/jquery-ui.css" rel="stylesheet" media="all" type="text/css" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-ui.js"></script>
+	<script type="text/javascript">
+	$('document').ready(function(){
+		$("#privatepicker").change(function(){
+			if(this.value == 2){
+				$("#usecount").attr('disabled','disabled');
+			}
+			else{
+				$("#usecount").removeAttr('disabled');
+			}	
+		})
+		$("#typepicker").change(function(){
+			if(this.value == 1){
+				$("#typea").attr("disabled","disabled");
+				$("#typem").attr("disabled","disabled");
+				$("#typep").removeAttr('disabled');
+			}
+			else if (this.value == 2){
+				$("#typep").attr("disabled","disabled");
+				$("#typem").attr("disabled","disabled");
+				$("#typea").removeAttr('disabled');
+			}
+			else if (this.value == 3){
+				$("#typep").attr("disabled","disabled");
+				$("#typea").removeAttr('disabled');
+				$("#typem").removeAttr('disabled');
+			}
+		})
+	});
+	
+	function edit(obj){
+		var txt="";
+		var a = obj.parentNode.parentNode.childNodes;
+		for(i=0;i<a.length;i++){
+			if(a[i].nodeName != '#text'){
+				a[i].innerHTML = "<input type='text' value='"+a[i].innerHTML+"' />";
+			}
+			
+		}
+		$('#res').html(txt); 
+	}
+	</script>
+	<style>
+	td input{
+		width:auto;
+	}
+	</style>
+	</head>
+	<body>
+		<div class="wrap">
+		<include file="Common:head" />
+			<div class="mainBody">
+              	<include file="Common:left" />
+    				<div id="Right">
+                 		<div class="Item hr">
+        					<div class="current">代金券模块</div>
+        					<form action="__APP__/coupon/addi" method="post">
+        					代金券名字：<input type="text" name="name" /></br>
+        					订单金额限制<input type="text" name="limitamount" value="0" />元<br/>
+        					
+        					
+        					<select name="private" id="privatepicker">
+        					<option value="2">私人优惠券</option>
+        					<option value="1">公开优惠券</option>
+        					</select>
+        					公开券次数<input type="text" name="usecount" id="usecount" disabled="disabled" /><br/>
+        					
+        					<select name="type" id="typepicker">
+        					<option value="1">直接折扣券</option>
+        					<option value="2">金额抵扣券</option>
+							<option value="3">活动抵扣券</option>
+        					</select>
+        					折扣百分比<input type="text" name="percent" id="typep"  />%  
+        					抵扣金额<input type="text" name="amount" id="typea" disabled="disabled" />元
+							活动金额<input type="text" name="mamount" id="typem" disabled="disabled" />元<br/>
+        					
+        					
+        					
+        					过期时间<input type="text" id="expirepicker" name="expiredate" />
+        					<input type="submit" value="生成" />
+        					</form>
+        					<table class="tab">
+        					<tr><td>名称</td><td>公开&私人</td><td>折扣类型</td><td>折扣</td><td>抵扣金额</td><td>订单金额限制</td><td>使用次数</td><td>创建日期</td><td>过期日期</td><!--<td>操作</td>--></tr>
+        					
+        					<volist name="list" id="vo">
+        					<tr>
+        					<td>{$vo['et_name']}</td>
+        					<td><if condition="$vo['et_private'] eq 1">公开<else />私人</if></td>
+        					<td><if condition="$vo['et_type'] eq 1">直接折扣<else />金额抵扣</if></td>
+        					<td>{$vo['et_percent']}%</td>
+        					<td>{$vo['et_amount']}</td>
+        					<td>{$vo['et_limitamount']}</td>
+        					<td>{$vo['et_usecount']}</td>
+        					<td>{$vo['et_createdate']}</td>
+        					<td>{$vo['et_expiredate']}</td>
+        					<!-- <td><p onclick="edit(this);">编辑</p></td> -->
+        					</tr>
+        					</volist>
+        					
+        					</table>
+        					<p id='res'></p>
+      					</div>
+      				</div>
+      		</div>
+      	</div>
+<div class="clear"></div>
+<include file="Common:foot" />
+<script type="text/javascript">
+$(function() {
+	$( "#expirepicker" ).datepicker();
+});
+</script>
+<script>
+</body>
+</html>
+

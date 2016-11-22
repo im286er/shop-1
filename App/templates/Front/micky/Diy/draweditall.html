@@ -1,0 +1,53 @@
+<!DOCTYPE>
+<html>
+<head>
+    <{assign var='mJquery' value='Public/static/jquery-1.11.2.min.js'}>
+    <{assign var='mFabric' value='Public/static/fabric.min.js'}>
+    <{assign var='mTHREE' value='Public/static/threejs/v77/three.min.js'}>
+    <{assign var='mReact' value='Public/static/react-15.1.0/react.min.js'}>
+    <{assign var='mReactDom' value='Public/static/react-15.1.0/react-dom.min.js'}>
+    <{assign var='mDraw' value=<{'Public/diy/dist/draw_v02'|cat:$DOTSERVER|cat:'.bundle.js'}>}>
+    <{assign var='mZBasic' value='Public/static/ZBasic.js'}>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+    <meta name="viewport" content="user-scalable=no">
+    <title>智绘首饰</title>
+    <!-- <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script> -->
+    <!--百度统计-----Start-->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?2882261a9ea7c30daa303ff64d127130";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <!--百度统计-----End-->
+    <script src="__DOC__/<{$mJquery}>?<{md5_file filename=<{$mJquery}>}>"></script>
+    <script src="__DOC__/<{$mFabric}>?<{md5_file filename=<{$mFabric}>}>"></script>
+    <script src="__DOC__/<{$mTHREE}>?<{md5_file filename=<{$mTHREE}>}>"></script>
+    <script src="__DOC__/<{$mReact}>?<{md5_file filename=<{$mReact}>}>"></script>
+    <script src="__DOC__/<{$mReactDom}>?<{md5_file filename=<{$mReactDom}>}>"></script>
+</head>
+<body style="margin: 0px">
+    <script>
+        var M_PARAMETERS = {
+            isLocal: false,
+            cid: "<{$cid}>",
+            uid: "<{$uid}>",
+            diyid: "<{$udid}>",
+            clienttype:"<{$clienttype}>",
+            defaultpid:"<{$productInfo.p_id}>",
+            agentId:'<{$agentId}>',
+            productKey:"<{$productKey}>",
+            showtype:"<{$showtype}>",
+            img:"<{$img}>"
+        };
+    </script>
+
+    <div id='app'></div>
+    <script src="__DOC__/<{$mZBasic}>?<{md5_file filename=<{$mZBasic}>}>"></script>
+    <script src="__DOC__/<{$mDraw}>?<{md5_file filename=<{$mDraw}>}>"></script>
+</body>
+</html>

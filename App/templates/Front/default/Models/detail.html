@@ -1,0 +1,782 @@
+﻿<{include file=C('HEADPAGE_START')}> 
+<script type="text/javascript" src="__PUBLIC__/js/jquery.tiptip.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/jquery.jscrollpane.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/jquery.mousewheel.js"></script> 
+<{include file=C('HEADPAGE_END')}> 
+<input type="hidden" class="motherfuck" value="<{$PrintModels['p_id']}>">
+<!-- End of Header Warp //--> 
+<!--
+	//// Page Warp From Here!!! //// ---------------------------------------
+		Page Code: 3DCity/3DModels/PrdDetail (Rev.1)
+		Based: prdlist/prddetail
+		Last Update: 20130710
+--> 
+<!-- Smarty tags dispCategory begin //--> 
+<{function name=dispCategory Category=0}> <a href="__APP__/models-index-cate-<{$Category[$DBF_PC->ID]}>-thumb-2-count-30-order-sd.html"><{$Category[$DBF_PC->Name]}></a> <{if $Category['Child']}> 
+\ 
+<{dispCategory Category=$Category['Child']}> 
+<{/if}> 
+<{/function}> 
+<!-- Smarty tags dispCategory end //--> 
+<!-- AP Element::AjaxInfo //-->
+
+<div class="ajaxinfo">
+	<h3>请求处理中...</h3>
+</div>
+<!-- End of AP Element::AjaxInfo //--> 
+
+<!-- APElement::Buynow //-->
+<div class="abfrm frm-buynow">
+	<div class="inner">
+		<button type="button" class="frm-close" onClick="closefrm('buynow')" title="关闭">X</button>
+		<h2>确认下载</h2>
+		<div class="mid-frm">
+			<div class="mid-frm-inner">
+				<h3><{$Product.p_name}></h3>
+				<i>作者: <{$user.u_dispname}></i>
+				<div class="prdcosts"> 
+					<!-- <span class="price"></span> --> 
+					<span class="lic">下载该模型将扣除您 <{$Product.p_vprice}> 个积分。</span> </div>
+			</div>
+		</div>
+		<div class="controls">
+			<button type="button" class="btn btn--warning" onClick="location.href='__APP__/download-index-id-<{$Product.p_id}>-curract-1';">兑换并下载</button>
+			<span>/<a href="javascript:void(0);" onClick="closefrm('buynow')">取消</a></span> </div>
+	</div>
+	<div class="clear"></div>
+</div>
+<!-- End of APElement::Buynow //--> 
+
+<!-- APElement::Get3dcp //-->
+<div class="abfrm frm-get3dcp">
+	<div class="inner">
+		<button type="button" class="frm-close" onClick="closefrm('get3dcp')" title="关闭">X</button>
+		<div class="opern">
+			<h2>属于你自己的3D云打印机！</h2>
+			<p>3D打印新体验，随时随地<br />
+				点击一步，打印之旅一触即发。</p>
+			<a class="abtn-large download" href="http://www.3dcity.com/install/3dcpInstaller.exe"><b>3D云打印软件</b><i>立即下载 1.0.39.281</i></a> <a class="learnmore" href="http://www.3dcity.com/product.html" target="_blank">更多功能介绍</a> </div>
+	</div>
+</div>
+<!-- End of APElement::Get3dcp //--> 
+
+<!-- APElement::Download //-->
+<div class="abfrm frm-download">
+	<div class="inner">
+		<button type="button" class="frm-close" onClick="closefrm('download')" title="关闭">X</button>
+		<h2>下载内容</h2>
+		<div class="mid-frm">
+			<div class="mid-frm-inner">
+				<h3>请选择您需要下载的格式</h3>
+			</div>
+			<ul class="filters moreformat">
+				<{if $Product['filelist']}> 
+				<{foreach $Product['filelist'] as $File}>
+				<li><a type="button" class="btn btn--warning" href="__APP__/download-now-fid-<{$File[$DBF_PF->ID]}>-id-<{$Product.p_id}>">下载</a>
+					<label><{$File[$DBF_PCT->Name]}></label>
+					<i><{$File[$DBF_PCT->Ext]}></i></li>
+				<{/foreach}> 
+				<{else}>
+				<li>没有可供下载的模型文件。</li>
+				<{/if}>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- End of APElement::Download //-->
+
+<div class="blackmask"></div>
+<div class="container prddetail islicense"> 
+	
+	<!-- UserAuthor //-->
+	<div class="user-author">
+		<div class="usr-avatar avatar"> <img src="<{$user.u_avatar}>" /> </div>
+		<h3><a href="__DOC__/<{$user.dis_u_domain}>" class="more" target="_blank"><{$user.u_dispname}></a></h3>
+		<a href="__DOC__/<{$user.dis_u_domain}>" class="more" target="_blank">更多来自 <b><{$user.u_dispname}></b> 的作品...</a> </div>
+	<!-- End of UserAuthor //--> 
+	
+	<!-- Channel Title //-->
+	
+	<div class="channel-title pr"> <{if $Product.pm_isprint==1}> 
+		
+		<!--<div class="printbtnarea">
+			<button type="button" class="white-btn" onclick="initfrm('get3dcp')"><img src="__PUBLIC__/images/comm/icon/print.png" />打印3D模型</button>
+        </div>--> 
+		
+		<{/if}>
+		<h1><{$Product[$DBF_P->Name]|regex_replace:"/^[\d\w]+[|]!*[-]*/":""}> <span style="font-size:14px; color:#999"><{$Category['pc_name']}></span> <!-- <{if $Product['price'] eq 0}><img style="margin-left:30px;" src="__PUBLIC__/images/star<{$Product['p_score']}>.gif"><{/if}>--> </h1>
+		<div class="breadcrumbs"><a href="__APP__/<{$Category['pc_name_link']}>"><{$Category['pc_name']}></a> \ <{dispCategory Category=$Category['Child']}> </div>
+	</div>
+	<!-- End of Channel Title //-->
+	
+	<div class="general fl" >
+		<div class="preview pr"> <{if $WEB3D_ENABLED==1}> 
+			<!-- Preview Slideshow //--> 
+			<{if $Product.pm_isar==1}>
+			<div class="slideshow pa" style="width: 600px; height: 600px;" id="vr_content" style="z-index:10;">
+			<iframe src="__WEB3D__/web3d.php/index/web3dshow/modelid/<{$Product.pm_webpf}>" allowfullscreen="true" width="600" height="600" style="z-index:1000;"></iframe>
+		</div>
+		<{/if}>
+		<{else}> 
+		<!-- Preview Slideshow //--> 
+		<{if $Product.pm_isar==1}>
+		<div class="slideshow pa" style="width: 600px; height: 600px;" id="vr_content" style="z-index:10;">
+		<!--<iframe src="http://www.lao3d.com/bitmap3d_model_link.html?modelid=<{$Product.pm_arcode}>" allowfullscreen="true" width="600" height="600" style="z-index:1000;"></iframe>-->
+	</div>
+	<{/if}>
+	<{/if}>
+	<div class="slideshow pa" id="ss_content" style="top:0; z-index:100;"> <img src="" alt="<{$showtitle}>" title="<{$showtitle}>"/> </div>
+	<div class="slideshow fucker"></div>
+	<div class="slideselecter">
+		<div class="thumbs">
+			<ul class="clear">
+				<{if $Product.pm_isar==1}>
+				<li style="cursor:pointer;"><a name='3d'><img src="__PUBLIC__/images/3dview.png" alt="<{$showtitle}>" title="<{$showtitle}>"/></a></li>
+				<{/if}>
+				<{foreach $ProductPhoto as $Photo}>
+				<li style="cursor:pointer;"><a><img src="__IMG__<{$Photo[$DBF_PP->Path]}>s/220_220_<{$Photo[$DBF_PP->FileName]}>" alt="<{$showtitle}>" title="<{$showtitle}>"/></a></li>
+				<{/foreach}>
+			</ul>
+		</div>
+	</div>
+	<{if $Product[$DBF_P->Intro] neq ''}>
+	<div class="description">
+		<p><{$Product[$DBF_P->Intro]}></p>
+	</div>
+	<{/if}> 
+	<!--<div class="maintenance"><a href="#" class="a-icon report">报告错误</a></div>--> 
+</div>
+<h2>更多相关模型</h2>
+<!--  ProductList Grid - Normal Display //-->
+<ul class="items-grid-nd flat-s  setting-gird">
+	<{foreach $SimilarProduct as $Result}>
+	<li><span class="thumb"> <a href="__APP__/models-detail-id-<{$Result[$DBF_P->ID]}>.html"><img src="__IMG__<{$Result[$DBF_P->Cover]|replace:'/o/':'/s/220_220_'}>" alt="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d\w]+[|]!*[-]*/":""}>" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d\w]+[|]!*[-]*/":""}>"/></a> </span>
+		<h3><a href="__APP__/models-detail-id-<{$Result[$DBF_P->ID]}>.html"><{$Result[$DBF_P->Name]|regex_replace:"/^[\d\w]+[|]!*[-]*/":""}></a></h3>
+		<!--<div class="etc">
+           <{if $Result['filelist']}>
+						<{foreach $Result['filelist'] as $File name="bar"}>
+                <{if $smarty.foreach.bar.index eq 1}>
+              	<{break}>
+               	<{/if}>
+                <span><{$File[$DBF_PCT->Ext]}></span>
+            <{/foreach}>
+				 <{/if}>
+					<div class="costs"><{if $Result['price'] eq 0}><img src="__PUBLIC__/images/star<{$Result['p_score']}>.gif"><{else}>&yen;<{$Result['price']}>.00<{/if}></div>
+				</div>
+				<div class="etc2"><{if $Result['filelist']}>
+					<{foreach $Result['filelist'] as $File}><span><a href="javascript:void(0)"><{$File[$DBF_PCT->Ext]}></a></span><{/foreach}>
+					<{/if}>
+                 </div-->
+		<div class="itemstatus"> <span class="icon good"><{$Result[$DBF_P->Zans]}></span> <span class="icon view"><{$Result[$DBF_P->Views_disp]}></span> </div>
+	</li>
+	</li>
+	<{/foreach}>
+	<{if $SimilarNum >= 4}>
+	<li class="more"><a href="__APP__/models-index">&gt;</a></li>
+	<{/if}> 
+	<!--  hr 1 //-->
+</ul>
+<!-- End of ProductList Grid - Normal Display //-->
+
+<div class="clear"></div>
+<h2>更多来自 <{$user.u_dispname}> 的作品</h2>
+<!--  ProductList Grid - Normal Display //-->
+<ul class="items-grid-nd flat-s  setting-gird">
+	<{foreach $CreaterProduct as $Result}>
+	<li><span class="thumb"> <a href="__APP__/models-detail-id-<{$Result[$DBF_P->ID]}>.html"><img src="__IMG__<{$Result[$DBF_P->Cover]|replace:'/o/':'/s/220_220_'}>" alt="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d\w]+[|]!*[-]*/":""}>" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d\w]+[|]!*[-]*/":""}>"/></a> </span>
+		<h3><a href="__APP__/models-detail-id-<{$Result[$DBF_P->ID]}>.html"><{$Result[$DBF_P->Name]|regex_replace:"/^[\d\w]+[|]!*[-]*/":""}></a></h3>
+		<!--div class="etc"><{if $Result['filelist']}>
+					   <{foreach $Result['filelist'] as $File name="bar"}>
+                    <{if $smarty.foreach.bar.index eq 1}>
+                	<{break}>
+                	<{/if}>
+                    <span><{$File[$DBF_PCT->Ext]}></span><{/foreach}>
+					<{/if}>
+					<div class="costs"><{if $Result['price'] eq 0}><img src="__PUBLIC__/images/star<{$Result['p_score']}>.gif"><{else}>&yen;<{$Result['price']}>.00<{/if}></div>
+				</div>
+				<div class="etc2"><{if $Result['filelist']}>
+					<{foreach $Result['filelist'] as $File}><span><a href="javascript:void(0)"><{$File[$DBF_PCT->Ext]}></a></span><{/foreach}>
+				<{/if}></div-->
+		<div class="itemstatus"> <span class="icon good"><{$Result[$DBF_P->Zans]}></span> <span class="icon view"><{$Result[$DBF_P->Views_disp]}></span> </div>
+	</li>
+	<{/foreach}>
+	<{if $CreaterNum >= 4}>
+	<li class="more"><a href="__APP__/models-index-creater-<{$user.u_id}>">&gt;</a></li>
+	<{/if}> 
+	<!--  hr 1 //-->
+</ul>
+<!-- End of ProductList Grid - Normal Display //-->
+
+</div>
+<div class="sidebar sidebar-detail">
+	<div class="child">
+	
+	<{if $Product['p_producttype'] == 3}>
+		<{if $Product['pm_isprready'] == 1}>
+		<div class="choose">
+			<ul>
+				<li><a href="javascript:void(0)" class="normal_btn">下载/购买 模型</a></li>
+				<li><a href="javascript:void(0)" class="print_btn">在线打印</a></li>
+				<div class="clear"></div>
+			</ul>
+		</div>
+		<{/if}>
+	<{/if}>	
+		<div class="choose-content normal">
+			<div class="prdcosts"> <{if $Product[$DBF_P->Price] eq 0}>免费模型下载需要<{else}>出售模型<{/if}><{if $Product[$DBF_P->Price] eq 0}><i><{$Product['p_vprice']}></i>积分<{else}>售价 <i>&yen;<{$Product[$DBF_P->Price]}>.00</i><{/if}> </div>
+			<div class="controls">
+				<div class="noda"> <{if $UserZan eq 0}>
+					<button type="button" title="点赞" class="btn btn--info good imgbtn" onClick="location.href='__USERIDX__/myzan/add/id/<{$Product[$DBF_P->ID]}>';"><img src="__PUBLIC__/images/comm/icon/good.png" /></button>
+					<{else}>
+					<button type="button" title="点赞" class="btn btn--info good imgbtn" onClick="location.href='__USERIDX__/myzan/add/id/<{$Product[$DBF_P->ID]}>';"><img src="__PUBLIC__/images/comm/icon/good-2.png" /><i><{$UserZan}></i></button>
+					<{/if}>
+					
+					<{if $LoginUser}> 
+					<{if $UserFavor eq 0}>
+					<button type="button" title="收藏" class="btn btn--info imgbtn" onClick="location.href='__USERIDX__/myfavor/add/id/<{$Product[$DBF_P->ID]}>';"><img src="__PUBLIC__/images/comm/icon/heart.png" /></button>
+					<{else}>
+					<button type="button" title="收藏" class="btn btn--info imgbtn" onClick="location.href='__USERIDX__/myfavor/remove/id/<{$Product[$DBF_P->ID]}>';"><img src="__PUBLIC__/images/comm/icon/heart-2.png" /></button>
+					<{/if}>
+					<{else}>
+					<button type="button" title="收藏" class="btn btn--info imgbtn" onClick="initfrm('login');"><img src="__PUBLIC__/images/comm/icon/heart.png" /></button>
+					<{/if}>
+					<button type="button" title="访问量" class="btn btn--info imgbtn last"><img src="__PUBLIC__/images/comm/icon/view.png" /><i><{$Product['p_views_disp']}></i></button>
+				</div>
+				<div class="fr"> <{if $AllowDown eq 1}>
+					<button type="button" class="btn btn--warning" onClick="initfrm('download')">下载模型</button>
+					<{else}>
+					<{if $Product[$DBF_P->Price] > 0}>
+					<{if $LoginUser}>
+					<button type="button" class="btn btn--warning" onClick="#" id="buy_href">加入购物车</button>
+					<{else}>
+					<button type="button" class="btn btn--warning" onClick="initfrm('login')">加入购物车</button>
+					<{/if}>
+					<{else}>
+					<{if $LoginUser}>
+					<{if $Product[$DBF_P->VPrice] > 0}>
+					<button type="button" class="btn btn--warning" onClick="initfrm('buynow')">积分下载</button>
+					<{else}>
+					<button type="button" class="btn btn--warning" onClick="#" id="free_href">下载模型</button>
+					<{/if}>
+					<{else}>
+					<button type="button" class="btn btn--warning" onClick="initfrm('login')">积分下载</button>
+					<{/if}>
+					<{/if}>
+					<{/if}> </div>
+			</div>
+		</div>
+		<div class="choose-content printer">
+			
+			<div class="controls ">
+				<div class="noda choose_caizhi"> 	
+				<{if $allmaterials == 1}>
+				<{foreach $supportMaterials as $item}>
+				  <div class="caizhi">
+						<h3><{$item['pma_name']}></h3>
+						<ul>
+							<{foreach $item['Child'] as $item2}>
+							<li class="caizhi_item" title="<{$item2['pma_name']}>">
+							    <input type="hidden" class="pma_name" value="<{$item2['pma_name']}>">
+							    <a href="javascript:void(0)"><img src="__PUBLIC__/img/comm/materials/selector/<{$item2['pma_image']}>"></a>
+								<input type="hidden" class="pma_id" value="<{$item2['pma_id']}>">
+							</li>
+							<{/foreach}>
+							
+							<div class="clear"></div>
+						</ul>
+					</div> 
+					<{/foreach}>
+				<{else}>
+				<{foreach $supportMaterials as $item}>
+					<{if $item['checked'] == 1}>
+					<div class="caizhi">
+						<h3><{$item['pma_name']}></h3>
+						<ul>
+							<{foreach $item['Child'] as $item2}>
+							<{if $item2['checked'] == 1}>
+								<{if $item2['enchecked'] == 1}>
+							<li class="caizhi_item" title="<{$item2['pma_name']}>">
+							    <input type="hidden" class="pma_name" value="<{$item2['pma_name']}>">
+							    <a href="javascript:void(0)"><img src="__PUBLIC__/img/comm/materials/selector/<{$item2['pma_image']}>"></a>
+								<input type="hidden" class="pma_id" value="<{$item2['pma_id']}>">
+							</li>
+								<{/if}>
+							<{/if}>
+							<{/foreach}>
+							<div class="clear"></div>
+						</ul>
+					</div>
+					<{/if}>
+				<{/foreach}>
+				<{/if}>
+
+					 </div>
+				<div class="prdcosts"> 售价 &yen;<i id="printer_price"></i><br>
+				                      您选择的材质为 <i class="caizhi_name"></i> </div>	
+				<div class="fr"> <{if $LoginUser}>
+						<{if $Product['p_producttype'] == 3}>
+							<{if $Product['pm_isprready'] == 1}> 
+								<button type="button" class="btn btn--warning" id="printer_href">加入购物车</button>
+							<{else}>
+								<button type="button" class="btn btn--warning" id="printer_href" disabled="disabled">加入购物车</button>
+							<{/if}>
+						<{/if}>
+					<{else}>
+						<button type="button" class="btn btn--warning" onClick="initfrm('login')">加入购物车</button>
+					<{/if}> 
+					<input type="hidden" class="end_pma" value="-1">
+					</div>
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="child">
+		<h5>支持格式</h5>
+		<ul class="filetype">
+			<{if $Product['filelist']}>
+			<{foreach $Product['filelist'] as $File}>
+			<li><{$File[$DBF_PCT->Name]|default:'未定义'}> <{$File[$DBF_PF->CSVersion]}><i><{$File[$DBF_PF->FileSize_disp]}></i><span><{$File[$DBF_PCT->Ext]}></span></li>
+			<{/foreach}>
+			<{/if}>
+		</ul>
+		<div class="hr"></div>
+		<!--
+			<ul class="linkitem">	
+				<li><a href="#"><img src="__PUBLIC__/images/comm/icon/exchange.png" />需要更多格式？</a></li>
+			</ul>
+			--> 
+	</div>
+	<div class="child">
+		<h5>3D模型参数</h5>
+		<ul class="attribute">
+			<li>发布于<span><{$Product[$DBF_P->CreateDate]|date_format:"%Y-%m-%d"}></span></li>
+			<li>最后更新<span><{$Product[$DBF_P->LastUpdate]|date_format:"%Y-%m-%d"}></span></li>
+		</ul>
+		<div class="hr"></div>
+		<ul class="attribute">
+		    <li>长度<span><{$PrintModels['ppr_length']}>&nbsp;&nbsp;&nbsp;mm</span></li>
+			<li>宽度<span><{$PrintModels['ppr_width']}>&nbsp;&nbsp;&nbsp;mm</span></li>
+			<li>高度<span><{$PrintModels['ppr_height']}>&nbsp;&nbsp;&nbsp;mm</span></li>
+			<li>多边形面数<span><{$Product[$DBF_PM->Mesh]|number_format}></span></li>
+			<li>顶点数<span><{$Product[$DBF_PM->Vertices]|number_format}></span></li>
+			<li>包含贴图<span><{if $Product[$DBF_PM->IsTexture] == 1}>是<{else}>否<{/if}></span></li>
+			<li>包含材质<span><{if $Product[$DBF_PM->IsMaterials] == 1}>是<{else}>否<{/if}></span></li>
+			<li>绑定<span><{if $Product[$DBF_PM->IsRigged] == 1}>是<{else}>否<{/if}></span></li>
+			<li>包含动画<span><{if $Product[$DBF_PM->IsAnimation] == 1}>是<{else}>否<{/if}></span></li>
+			<li>UV展开<span><{if $Product[$DBF_PM->IsUVLayout] == 1}>是<{else}>否<{/if}></span></li>
+			
+			<!--<li>支持3D打印<span><{if $Product[$DBF_PM->IsPrint] == 1}>是<{else}>否<{/if}></span></li>-->
+		</ul>
+	</div>
+	<div class="child">
+		<div class="shareto">&nbsp;分享到 : 
+			<!-- Baidu Button BEGIN -->
+			<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"> <a class="bds_tsina"></a> <a class="bds_tqq"></a> <a class="bds_twi"></a> <a class="bds_renren"></a> <span class="bds_more"></span> <a class="shareCount"></a> </div>
+			<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=0" ></script> 
+			<script type="text/javascript" id="bdshell_js"></script> 
+			<script type="text/javascript">
+				document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+				</script> 
+			<!-- Baidu Button END -->
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="ibchild">
+		<ul class="tags">
+			<{foreach $Product['Tags'] as $Tags}>
+			<{if $Tags}>
+			<li><a href="__DOC__/index/models-index-tags-<{$Tags|escape:"url"}>-thumb-2-count-20-order-sd.html"><{$Tags}></a></li>
+			<{/if}>
+			<{/foreach}>
+		</ul>
+		<div class="clear"></div>
+		<div class="mt10"></div>
+		<div class="hr"></div>
+		<ul class="etc-link">
+			<!-- <li class="prdrights">&copy;2013 <{$user.u_dispname}> 所有权利保留</li> -->
+			<li><a href="__APP__/help-index-id-97.html" class="icon" target="_blank"><img src="__PUBLIC__/images/comm/icon/customers.png" />免责声明</a><a href="__APP__/help-index-id-98.html" class="icon" target="_blank"><img src="__PUBLIC__/images/comm/icon/contact.png" />联系客服</a></li>
+		</ul>
+	</div>
+</div>
+<div>
+	<div class="clear"></div>
+	<h2>用户评论</h2>
+	<div class="comments">
+		<div class="comments-submit">
+			<form action="__USERIDX__/comment/post/pid/<{$Product[$DBF_P->ID]}>" method="post" id="comment_form">
+				<div class="avatar"> <{if $LoginUser}> <img src="__UPLOAD__/avatar/<{$LoginUser.u_avatar|replace:'_200':'_50'}>" /> <{else}> <img src="__PUBLIC__/images/avatar/default.png" alt="" id="avatar_img"> <{/if}> </div>
+				<div class="postform"> <{if $LoginUser}>
+					<textarea name="comment">您有什么想要与大家分享的吗？</textarea>
+					<{else}>
+					<div contenteditable="true" id="comment_pl"> 请先 <a href="#" style="cursor: pointer;" onClick="initfrm('login')">登录</a> 后再发表评论。</div>
+					<{/if}> </div>
+				<{if $LoginUser}>
+				<div class="verify"> 验证码：
+					<input type="text" name="verifycode" id="verifycode" />
+					<img src="__USERIDX__/userconf/captcha?v=<{$random}>" class="captchaimg" name="captchaimg" id="captchaimg" border="1" width="120" height="42px"> </div>
+				<{/if}>
+				<div class="controls">
+					<div class="trips"> <i id="comment_current_size">0</i> / <span id="comment_max_size">255</span> </div>
+					<input type="hidden" name="act" value="comment">
+					<input type="hidden" name="pid" value="<{$Product[$DBF_P->ID]}>">
+					<input type="hidden" name="type" value="1">
+					<input type="hidden" name="from" value="__SELF__">
+					<input type="hidden" name="reply_id" value="" />
+					<!--a class="imgupload grey-btn">发表图片</a-->
+					<button  type="submit" class="btn" disabled="disabled">发表评论</button>
+				</div>
+			</form>
+		</div>
+		<ul class="comments-reply">
+			<{foreach from=$ProductComment key="key" item="item" name="foo"}>
+			<li>
+				<div class="avatar"><img src="<{$item.u_avatar}>" /></div>
+				<div class="inner">
+					<h4><strong><{$item.u_dispname}></strong><{$item.u_title}></h4>
+					<div class="content"><{$item.uc_content}></div>
+				</div>
+				<div class="controls"> <span>Posted on: <{$item.uc_createdate}><i>#<{$smarty.foreach.foo.total - $key}></i></span><a class="white-btn replyto">回复</a> </div>
+				<div id="comment_id" style="display:none"><span><{$item.uc_id}></span></div>
+			</li>
+			<{/foreach}>
+		</ul>
+	</div>
+	<!-- PageCutter //-->
+	<div class="pagerwarp">
+		<ul class="pagecuter">
+			<{$Paging}>
+		</ul>
+	</div>
+	<!-- End of PageCutter //--> 
+</div>
+</div>
+<div class="clear"></div>
+<script type="text/javascript">
+$(document).ready(function(e) {
+	<{if $Product['p_producttype'] == 3}>
+		var buy_href_ajax_url = '__APP__/cart-additem';
+	<{else}>
+		var buy_href_ajax_url = '__APP__/cart-addproduct';
+	<{/if}>
+	
+	$("#captchaimg").click(function(e) {
+		var img_src = '__USERIDX__/userconf/captcha?v=' + Math.random();
+		$(this).attr('src',img_src);
+	});
+	
+	$('.thumbs').jScrollPane();
+	
+	$('.thumbs ul li a').click(function() {
+		if($(this).attr('name')!= '3d')
+		{
+			$('#vr_content').hide(); $('#ss_content').show();
+	    	$('.slideshow img').attr('src', $(this).find('img').attr('src').replace('/s/220_220_','/s/600_600_'));
+		}
+		else { $('#vr_content').show(); $('#ss_content').hide(); }
+	});
+	
+	$('.thumbs ul li a:not([name=3d])').first().click();
+	
+	$('#vr_content').show();
+  
+	//评论点击没字
+	<{if $LoginUser}>
+		$("textarea[name=comment]").focus(function() {
+			if($(this).val()=="您有什么想要与大家分享的吗？") { $(this).val(""); }
+			$(document).keyup();
+		}).blur(function() {
+	  		if($(this).val() == "") { $(this).val("您有什么想要与大家分享的吗？"); }
+  		});
+  //表单字数统计
+  var max_size = 255;	//最多允许评论的字数
+  var comment_text = $("#comment_form textarea").val();
+  var verify_text = $("#verifycode").val();
+  var comment_counter = comment_text.length;
+  var verify_counter = verify_text.length;
+  $(document).keyup(function() {
+	verify_text = $("#verifycode").val();
+	verify_counter = verify_text.length;
+    comment_text = $("#comment_form textarea").val();
+    comment_counter = comment_text.length;
+    $("#comment_max_size").text(max_size - comment_counter);
+    $("#comment_current_size").text(comment_counter);
+    //如果字数超限提交按钮失效
+    if ((comment_counter > max_size) || (comment_counter <= 0) || (verify_counter < 4)){
+      $("#comment_form :submit").attr('disabled','disabled');
+      $("#comment_form :submit").attr('class','btn');
+    }else{
+      $("#comment_form :submit").removeAttr('disabled');
+      $("#comment_form :submit").attr('class','btn btn--warning'); 
+    }
+  });
+  <{/if}>
+  //评论回复事件绑定
+  $(".replyto").bind("click",function(event){
+      //$(this).parent().prev().find("strong").css("background","red");
+	  //alert($(this).parent().prev().find("strong").text());
+	  $("#comment_form textarea").val('@' + $(this).parent().prev().find("strong").text() + ':');
+	  $("#comment_form textarea").focus();
+	  $("#comment_form input[name='reply_id']").attr("value",$(this).parent().next("#comment_id").find("span").text());
+	  //$(this).parent().next("#comment_id").find("span").css("background","yellow");
+  });
+  //购买的AJAX调用
+  $("#buy_href").click(function(event){
+	 $.ajax({
+	   url: buy_href_ajax_url,
+	   type:'get',
+       cache:false,
+       dataType:'json',
+       data:{
+		    pid : <{$Product['p_id']}>,
+			isreal : 2
+		},
+       success: function(data,textStatus){
+         if(data.isSuccess == true){
+           //成功加入购物车
+		   $(".ajaxinfo h3").text('已加入购物车');
+		   $(".ajaxinfo").fadeIn(1500).delay(2000).fadeOut(1500);
+		   $.ajax({
+						url:'__DOC__/index/cart-cartnum',
+						type:'get',
+						cache:false,
+						dataType:'json',
+						data:{timestamp : new Date().getTime()},
+						success: function(data,textStatus){
+						if(data.isSuccess == true){
+							$("#cartnum").text(data.result);
+							// $(".ajaxinfo").fadeIn(1500).delay(2000).fadeOut(1500);
+           					return;
+						}else{
+							$("#cartnum").text(0);
+							// $(".ajaxinfo").fadeIn(1500).delay(2000).fadeOut(1500);
+							return;
+						}
+					},error: function(Request,Status,Error) {alert(Request + '|' + Status + '|' +Error);}
+					});
+           return;
+         }else{
+		   //出错
+		   $(".ajaxinfo h3").text('购买失败');
+		   $(".ajaxinfo").fadeIn(1500).delay(2000).fadeOut(1500);
+		   return;
+         }
+       },
+       error: function(Request,Status,Error) {alert(Request + '|' + Status + '|' +Error);}
+	});
+  });
+  //免费下载的AJAX调用
+  $("#free_href").click(function(event){
+	 $.ajax({
+	   url:'__APP__/download-index',
+	   type:'get',
+       cache:false,
+       dataType:'json',
+       data:{id : <{$Product[$DBF_P->ID]}>,reqtype : 'ajax'},
+       success: function(data,textStatus){
+         if(data.isSuccess == true){
+           //直接跳出下载页
+		   initfrm('download');
+           return;
+         }else{
+		   //出错
+		   if (data.Reason == '0001'){
+			 location.href = "__USERIDX__/login/?from_url=" + data.fromUrl;
+		   }else{
+			 $(".ajaxinfo h3").text('请重新尝试下载');
+		     $(".ajaxinfo").fadeIn(1500).delay(2000).fadeOut(1500);   
+		   }
+		   /*
+		   $(".ajaxinfo h3").text('请重新尝试下载');
+		   $(".ajaxinfo").fadeIn(1500).delay(2000).fadeOut(1500);
+		   */
+		   return;
+         }
+       },
+       error: function(Request,Status,Error) {alert(Request + '|' + Status + '|' +Error);}
+	});
+  });
+
+<{if $Product['p_producttype'] == 3}>
+//3D打印的AJAX调用
+$("#printer_href").click(function(event){
+	if($('.end_pma').val() == -1){
+	 alert('请选择打印的材质！！');
+		}
+	else{
+	 console.info($('.end_pma').val());
+	 console.info(<{$PrintModels['p_id']}>);
+	 console.info(<{$PrintModels['ppr_length']}>);
+	 console.info(<{$PrintModels['ppr_width']}>);
+	 console.info(<{$PrintModels['ppr_height']}>);
+	 console.info(<{$PrintModels['ppr_volume']}>);
+	 $.ajax({
+	   url:'__DOC__/index/cart-additem',
+	   type:'get',
+       cache:false,
+       dataType:'json',
+       data:{
+		    pid : <{$PrintModels['p_id']}>,
+			isreal : 1,
+			count : 1,
+			pmaId : $('.end_pma').val(),
+			// pmdId : 10,
+			length : <{$PrintModels['ppr_length']}>,
+			width : <{$PrintModels['ppr_width']}>,
+			height : <{$PrintModels['ppr_height']}>,
+			volume : <{$PrintModels['ppr_volume']}>,
+			},
+      success: function(data,textStatus){
+         if(data.isSuccess == true){
+           //成功加入购物车
+		   $(".ajaxinfo h3").text('已加入购物车');
+		   $(".ajaxinfo").fadeIn(1500).delay(2000).fadeOut(1500);
+		   $.ajax({
+						url:'__DOC__/index/cart-cartnum',
+						type:'get',
+						cache:false,
+						dataType:'json',
+						data:{timestamp : new Date().getTime()},
+						success: function(data,textStatus){
+						if(data.isSuccess == true){
+							$("#cartnum").text(data.result);
+							// $(".ajaxinfo").fadeIn(1500).delay(2000).fadeOut(1500);
+           					return;
+						}else{
+							$("#cartnum").text(0);
+							// $(".ajaxinfo").fadeIn(1500).delay(2000).fadeOut(1500);
+							return;
+						}
+					},error: function(Request,Status,Error) {alert(Request + '|' + Status + '|' +Error);}
+				});
+           return;
+         }else{
+		   //出错
+		   $(".ajaxinfo h3").text('购买失败');
+		   $(".ajaxinfo").fadeIn(1500).delay(2000).fadeOut(1500);
+		   return;
+         }
+       },
+       error: function(Request,Status,Error) {alert(Request + '|' + Status + '|' +Error);}
+	});}
+  });
+<{/if}>
+});
+</script> 
+<{if $Product['p_producttype'] == 3}>
+<script>
+//点击材料改价格的AJAX
+$(document).ready(function(e) {
+	$(".caizhi_item").click(function(event){
+	/*alert("暂时注解了点击后价格实时变动的AJAX");*/
+	// alert($(this).children().first().val());
+	// alert($(this).children().last().val());
+	
+	$('.end_pma').val($(this).children().last().val());
+	$('.caizhi_name').html($(this).children().first().val());
+	printer_price=$.ajax({
+		url:'__DOC__/index/cart-calc',
+		type:'get',
+		cache:false,
+		dataType:'json',
+		// dataType: "jsonp",
+		// jsonp: "jsoncallback",//服务端用于接收callback调用的function名的参数
+		data:{
+			pid : <{$PrintModels['p_id']}>,
+			isreal : 1,
+			count : 1,
+			pmaId : $('.end_pma').val(),
+			length : <{$PrintModels['ppr_length']}>,
+			width : <{$PrintModels['ppr_width']}>,
+			height : <{$PrintModels['ppr_height']}>,
+			volume : <{$PrintModels['ppr_volume']}>,
+			convex : <{$PrintModels['ppr_convex']}>,
+			},
+			success: function(data,textStatus){
+			if(data.isSuccess == true){
+			$("#printer_price").text('' + data.Message);
+			return;
+			 }
+		},
+		error: function(Request,Status,Error) {alert(Request + '|' + Status + '|' +Error);}
+		});
+	});
+});
+</script> 
+<{/if}>
+<script>
+	$(document).ready(function(e) {
+		//用于选择3d打印标签
+		$('.print_btn').click(function(){
+			$('.print_btn').css('backgroundColor','#eee');
+			$('.normal_btn').css('backgroundColor','#fff');
+			$('.printer').css('display','block');
+			$('.normal').css('display','none');
+			});
+		//用于选择非3d打印界面
+		$('.normal_btn').click(function(){
+			$('.normal_btn').css('backgroundColor','#eee');
+			$('.print_btn').css('backgroundColor','#fff');
+			$('.normal').css('display','block');
+			$('.printer').css('display','none');
+			});
+		//用于设置点击材料图标时的效果
+		$('.caizhi_item').click(function(){
+			$('.caizhi_item').css('borderColor','#ccc');
+			$(this).css('borderColor','#000');
+			});
+	});
+</script>
+<{if $Product['p_producttype'] == 3}>
+<script>
+$(document).ready(function(e) {
+	//打开页面时的初始状态
+	$('.end_pma').val($('.pma_id').first().val());
+	$('.caizhi_name').html($('.pma_name').first().val());
+	$('.caizhi_item').css('borderColor','#ccc');
+	$('.caizhi_item').first().css('borderColor','#000');
+	printer_price=$.ajax({
+		url:'__DOC__/index/cart-calc',
+		type:'get',
+		cache:false,
+		dataType:'json',
+		// dataType: "jsonp",
+		// jsonp: "jsoncallback",//服务端用于接收callback调用的function名的参数
+		data:{
+			pid : <{$PrintModels['p_id']}>,
+			isreal : 1,
+			count : 1,
+			pmaId : $('.end_pma').val(),
+			length : <{$PrintModels['ppr_length']}>,
+			width : <{$PrintModels['ppr_width']}>,
+			height : <{$PrintModels['ppr_height']}>,
+			volume : <{$PrintModels['ppr_volume']}>,
+			convex : <{$PrintModels['ppr_convex']}>,
+			},
+			success: function(data,textStatus){
+			if(data.isSuccess == true){
+			$("#printer_price").text('' + data.Message);
+			return;
+			 }
+		},
+		error: function(Request,Status,Error) {alert(Request + '|' + Status + '|' +Error);}
+		});
+});
+</script>
+<{/if}>
+<script>
+var curract="<{$curract}>";
+//alert(curract);
+if(curract==1){
+	initfrm('download');
+}
+</script> 
+<script>
+function goprint(){
+	location.href = "www.3dcity.com";
+}
+
+</script> 
+<!-- Footer Warp - Ding Ver 1.2 //-->
+<div class="clear"></div>
+<{include file=C('FOOTPAGE')}>

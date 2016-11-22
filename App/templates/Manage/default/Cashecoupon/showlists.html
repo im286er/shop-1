@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>代金券模板-{$site.SITE_INFO.name}</title>
+	<include file="Common:intohead" />
+	<script type="text/javascript">
+	function maillists(){
+		document.form1.action = "__APP__/cashecoupon/sendmail";
+		document.form1.submit();		
+	}
+	function droplists(){
+		document.form1.action = "__APP__/cashecoupon/droplist";
+		document.form1.submit();
+	}
+	function activelists(){
+		document.form1.action = "__APP__/cashecoupon/activelist";
+		document.form1.submit();
+	}
+	function cityactivelists(){
+		document.form1.action = "__APP__/cashecoupon/cityactivelist";
+		document.form1.submit();
+	}
+	
+	function allpick(obj){
+		if(obj.checked == true){
+			$(".lists").attr("checked","true");
+			alert("yes");
+		}
+		else if(obj.checked == false){
+			$(".lists").attr("checked","false");
+			alert('no');
+		}
+		else{}
+	}
+	
+	$(document).ready(function(){
+		$('.picker').change(function(){
+			window.location = this.value;
+		});
+
+	});
+	
+	</script>
+	</head>
+	
+	<body>
+		<div class="wrap">
+		<include file="Common:head" />
+			<div class="mainBody">
+              	<include file="Common:left" />
+    				<div id="Right">
+                 		<div class="Item hr">
+        					<div class="current">代金券管理</div>
+      					</div>
+      					<table class='tab' style="border:0px solid red;text-align:center;" >
+      					<form name="form1" method="post">
+      					用户邮箱：<input type="text" name="mailadr" />
+      					<input type="button" value="批量激活并发送邮件" onclick="maillists()"/>
+      					<input type="submit" value="批量激活不发送邮件" onclick="cityactivelists()" />
+      					<input type="submit" value="批量激活" onclick="activelists()" />
+      					<input type="submit" value="批量删除" onclick="droplists()" />
+      					
+      					<br/>
+      					<tr>
+      					<td></td>
+      					<td>
+      					<select class="picker">
+      					<option>状态</option>
+      						<option value="__URL__/showlists/orderby/ca_status/desc/">正序</option>
+      						<option value="__URL__/showlists/orderby/ca_status/desc/desc">反序</option>
+      					</select>
+      					</td>
+      					<td>
+      					<select class="picker">
+      					<option>金额</option>
+      						<option value="__URL__/showlists/orderby/ca_amount/desc/">正序</option>
+      						<option value="__URL__/showlists/orderby/ca_amount/desc/desc">反序</option>
+      					</select>
+      					</td>
+      					<td>
+      					<select class="picker">
+      					<option>代金券</option>
+      						<option value="__URL__/showlists/orderby/ca_code/desc/">正序</option>
+      						<option value="__URL__/showlists/orderby/ca_code/desc/desc">反序</option>
+      					</select>
+      					</td>
+      					
+      					<td>
+      					<select class="picker">
+      					<option>发放邮箱</option>
+      						<option value="__URL__/showlists/orderby/ca_email/desc/">正序</option>
+      						<option value="__URL__/showlists/orderby/ca_email/desc/desc">反序</option>
+      					</select>
+      					</td>
+      					<td>
+      					<select class="picker">
+      					<option>激活方式 </option>
+      						<option value="__URL__/showlists/orderby/ca_sentwho/desc/">正序</option>
+      						<option value="__URL__/showlists/orderby/ca_sentwho/desc/desc">反序</option>
+      					</select>
+      					</td>
+      					<td>
+      					<select class="picker">
+      					<option>创建时间</option>
+      						<option value="__URL__/showlists/orderby/ca_createdate/desc/">正序</option>
+      						<option value="__URL__/showlists/orderby/ca_createdate/desc/desc">反序</option>
+      					</select>
+      					</td>
+      					<td>
+      					<select class="picker">
+      					<option>过期时间</option>
+      						<option value="__URL__/showlists/orderby/ca_expiredate/desc/">正序</option>
+      						<option value="__URL__/showlists/orderby/ca_expiredate/desc/desc">反序</option>
+      					</select>
+      					</td>
+      					<td>
+      					<select class="picker">
+      					<option>充值时间</option>
+      						<option value="__URL__/showlists/orderby/ca_usedate/desc/">正序</option>
+      						<option value="__URL__/showlists/orderby/ca_usedate/desc/desc">反序</option>
+      					</select>
+      					</td>
+      					<td>
+      					<select class="picker">
+      					<option>操作人ID</option>
+      						<option value="__URL__/showlists/orderby/ca_operator/desc/">正序</option>
+      						<option value="__URL__/showlists/orderby/ca_operator/desc/desc">反序</option>
+      					</select>
+      					</td>
+      					
+      					<td>操作</td>
+      					</tr>
+      					
+      					<foreach name="list" item="vo">
+      					<tr>
+      					<td><input type="checkbox" name="n[]" value="{$vo['ca_id']}" class="lists" /></td>
+      					<td>
+      					<if condition="$vo['ca_status'] eq 1">未激活
+      						<elseif condition="$vo['ca_status'] eq 2" />已激活
+      						<elseif condition="$vo['ca_status'] eq 3" />已充值
+      						<else />未知
+      					</if>
+      					</td>
+      					<td>￥{$vo['ca_amount']}</td>
+      					<td>{$vo['ca_code']}</td>
+      					
+      					<td>{$vo['ca_email']}</td>
+      					<td>
+      					<if condition="$vo['ca_sentwho'] eq 1">邮箱发送激活
+      					<elseif condition="$vo['ca_sentwho'] eq 2" />手动激活
+      					<elseif condition="$vo['ca_sentwho'] eq 3" />站内激活
+      					<else />未激活
+      					</if>
+      					</td>
+      					<td>{$vo['ca_createdate']}</td>
+      					<td>
+      					<if condition="$vo['ca_expiredate'] eq 0">永不过期
+      					<else />{$vo['ca_expiredate']}
+      					</if>
+      					</td>
+      					<td>{$vo['ca_usedate']}</td>
+      					<td>{$vo['ca_operator']}</td>
+      					
+      					<td>
+      					<a href="__URL__/del/id/{$vo['ca_id']}">删除 </a>
+      					<a href="__URL__/marksent/id/{$vo['ca_id']}"> 激活</a>
+      					</td>
+      					</tr>
+      					
+      					</foreach>
+      					</form>
+      					<!--<tr><td>全选 <input type="checkbox" id="allpick" onclick="allpick(this)" /></td></tr>-->
+      					</table>
+      					<p style="text-align:center;font-size:16px">{$page}</p>
+      					
+      					
+      				</div>
+      		</div>
+      	</div>
+<div class="clear"></div>
+<include file="Common:foot" />
+</body>
+</html>
+

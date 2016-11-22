@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=">
+<title>优惠券列表</title>
+<link rel="stylesheet" href="__PUBLIC__/Admin/css/css.css">
+<script src="__PUBLIC__/Admin/js/jquery-1.9.1.js"></script>
+<script src="__PUBLIC__/Common/Layer/layer.js"></script>
+<script>
+//删除
+function del(id){
+	$("#del"+id+" td").css('background','#CBDFF2');
+	parent.layer.confirm('真的要删除吗？', {
+		btn: ['确认','取消'], //按钮
+		shade: 0.5 //显示遮罩
+	}, function(){
+		$.post("{:U('User/coupons_del')}", { "id": id},function(data){
+			if(data.code == 1){
+				parent.layer.msg('删除成功', { icon: 1, time: 1000 }, function(){
+						$("#del"+id).remove();
+					});
+			}else{
+				parent.layer.msg('删除失败', {icon: 2, time: 2000 }); 
+			}
+		}, "json");
+	},function(){
+		$("#del"+id+" td").css('border-top','0');
+		$("#del"+id+" td").css('border-bottom','1px solid #EFEFEF');
+	});
+}
+//指定发送优惠券
+function conpons_add(){
+	parent.layer.open({
+		type: 2,
+		title: '指定发送优惠券',
+		shadeClose: true,
+		shade: 0.5,
+		area: ['560px', '360px'],
+		content: '{:U("User/coupons_add")}'
+	});
+}
+</script>
+</head>
+<body>
+<div class="nav">
+	<div class="nav_title">
+    	<h4><img class="nav_img" src="__PUBLIC__/Admin/img/tab.gif" /><span class="nav_a"><php>echo urldecode($_GET['menu_title']);</php></span></h4>
+    </div>
+</div>
+
+<form action="__SELF__" method="post">
+<div class="search" style="height:50px; line-height:50px; padding-left:30px; margin-top:3px;">
+	领取手机号：<input type="text" name="mobile" value="{$where.field_val}" maxlength="16" class="input" style="height:28px;" />&nbsp;&nbsp;&nbsp;
+    使用状态：<select name="used_status" id="use_status" style="min-height:30px;">&nbsp;&nbsp;&nbsp;
+    	<if condition="$post['use_status'] === 0"><option value="0">未使用</option>
+        <elseif condition="$post['use_status'] === 1"/><option value="1">已使用</option>
+        <else/><option value="">--------------</option></if>    	
+    	<option value="0">未使用</option>
+        <option value="1">已使用</option>
+    </select>&nbsp;&nbsp;&nbsp;
+    <button type="submit" name="submit" class="button">查 询</button>
+    <button type="button" class="button" onClick="conpons_add();">指定发送优惠券</button>
+    <button type="button" class="button" onClick="guoqi_del();" style="background:#146AC1;">删除已过期</button>
+</div>
+</form>
+
+<div class="list">
+	  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table">
+      <thead>
+	    <tr>
+	      <td width="23%"><div align="center">使用有效期</div></td>
+	      <td width="12%"><div align="center">优惠券（元）</div></td>
+	      <td width="12%"><div align="center">限制条件（元）</div></td>          
+	      <td width="15%"><div align="center">领取时间</div></td>
+	      <td width="12%"><div align="center">领取手机号</div></td>
+	      <td width="13%"><div align="center">使用状态</div></td>
+	      <td width="13%"><div align="center">操作</div></td>
+        </tr>
+        </thead>
+        <tbody>
+        <foreach name="result" item="vo">
+	    <tr id="del{$vo.id}">
+	      <td height="50"><div align="center">{$vo.begin_date} 至 {$vo.end_date}<br/>
+          <if condition="$vo.end_date lt date('Y-m-d',time()) && $vo.use_status != 1"><span style="color:#F00">已过期</span></if>
+          </div></td>     
+	      <td><div align="center">{$vo.money_youhui} </div></td>
+	      <td><div align="center">{$vo.money_xianzhi}</div></td>
+	      <td><div align="center">{$vo.create_time}</div></td>
+	      <td><div align="center">{$vo.mobile}</div></td>
+	      <td><div align="center">
+	        <if condition="$vo.use_status == 1"><span style="color:#03C;">已使用<br/>{$vo.use_date}</span>
+	          <else/><span style="color:#F00;">未使用</span></if></div></td>
+	      <td><div align="center"><a class="a_button" href="javascript:;" onClick="del({$vo.id})">删除</a></div></td>
+	      </tr>
+        </foreach>
+        </tbody>
+  </table>
+</div>
+
+<!-- 分页 -->
+<div class="page">
+  <div align="center">{$page} </div>
+</div>
+
+
+</body>
+</html>

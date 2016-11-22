@@ -1,0 +1,354 @@
+<{if $diyparse == 2}><!--第三版手机版-->
+
+<{include file=C('IWXHEADER_START')}>
+<link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/app_list.css">
+<link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/swiper/swiper-3.2.7.min.css">
+<link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/fonts.css">
+<link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/top.css">
+<link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/app_list.css">
+<link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/footer.css">
+<script src="__MICKYMOBILESTATIC__/new/swiper/swiper-3.2.7.min.js"></script>
+<script>
+    $(function () {
+        $(".shopmass").find("a").click(function () {
+            $(this).css("background","#c4a591");
+        })
+    })
+</script>
+
+<{include file=C('IWXHEADER_END')}>
+<!--商品列表-->
+<div class="app_list">
+    <div class="container-fluid">
+        <div class="row">
+            <!--菜单-->
+            <{include file=C('IWXMENU')}>
+            <!--列表-->
+            <div class="app_shopList">
+                <ul class="applist">
+                    <{foreach $SearchResult as $Result name="foo"}>
+                    <li class="col-xs-6">
+                        <!--产品图片-->
+                        <div class="shopList_img">
+                            <{if $Result['p_producttype'] == 7}>
+                            <a href="__DOC__/index/iwx-jewelrydetail-curMenu-1-cid-<{$Result[$DBF_P->DiyCateCid]}>.html">
+                                <{else}>
+                                <a href="__DOC__/index/iwx-productdetail-curMenu-1-id-<{$Result[$DBF_P->ID]}>.html">
+                                    <{/if}>
+                                    <img src="__IMG__<{$Result['p_cover']}>" alt=""/>
+                                    <!--图片测试-->
+                                    <!--<img src="__MICKYMOBILESTATIC__/new/images/list/1.jpg" alt="">-->
+                                </a>
+                        </div>
+                        <!-- 产品信息 -->
+                        <div class="shopmass">
+                            <h1>
+                                <a href=""><{$Result[$DBF_P->Name]|substr:0:40}></a>
+                            </h1>
+                            <h2>￥<{$Result['p_price']}></h2>
+                            <{if $Result['p_producttype'] == 7}>
+                            <a href="__DOC__/index/iwx-jewelrydetail-curMenu-1-cid-<{$Result[$DBF_P->DiyCateCid]}>.html">
+                                <{else}>
+                                <a href="__DOC__/index/iwx-productdetail-curMenu-1-id-<{$Result[$DBF_P->ID]}>.html">
+                                    <{/if}>
+                                    立即购买
+                                </a>
+                        </div>
+                    </li>
+                    <{/foreach}>
+                </ul>
+            </div>
+            <div id="loading-more" style="text-align:center;font-size:1em;"><i style="color:#f5f5f5;">加载中，请稍后... </i></div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function(){
+        var oLoading = $('#loading-more');
+        var winH = $(window).height();
+        if(oLoading.length<1 || oLoading.hasClass('no-more'))return;
+        $(window).bind('scroll',loading);
+        var bBtn = true;  //是否可以后续加载，防止连续加载多次
+        var i=1;//此数据用来测试用，可删除
+
+        function loading(){
+            var scrollT = $(this).scrollTop();
+            var loadingTop = oLoading.offset().top;//loading区域距离页面顶部的距离
+            if(scrollT+winH > loadingTop && bBtn)//判断loading区域是否进入可视区并且加载开关为true
+            {
+                bBtn = false;
+                i++;
+                //*这里是测试用   开发时可删除*//*
+                /*setTimeout(function(){
+                 i++;
+                 if(i<5){//可后续加载
+                 bBtn=true;
+                 console.log('当前已加载成功：'+i+'次');
+                 }else{
+                 $(window).unbind('scroll',loading);//解除scroll事件
+                 oLoading.text('没有更多内容！');
+                 bBtn=false;
+                 console.log('没有后续加载了');
+                 }
+
+                 },3000)*/
+                /*这里是测试用   开发时可删除*/
+
+                //这里是真正开发的时候用的ajax请求
+
+                $.ajax({
+                    url:'__DOC__/index/iwx-jewelrylistajax/type/diy',
+                    type:'get',
+                    async:true,
+                    data:{page:i},
+                    error:function(){
+                        $(window).unbind('scroll',loading);//解除scroll事件
+                        oLoading.text('没有更多内容！');
+                        bBtn=false;
+                    },
+                    beforeSend:function(){
+                        //oLoading.text('加载中，请稍后...');
+                    },
+                    success:function(bkdata){
+                        //data返回值
+                        //1.一个值判断是否还有后续内容可加载
+                        //2.构成产品的数据
+
+                        //这里是产品数据添加区域
+                        /*for (var i = 0; i < bkdata.length; i++) {
+                         console.log(bkdata[i]);
+                         };*/
+
+                        //这里判断是否还有后续加载
+                        if(bkdata){//还有后续加载内容
+                            var backdata= eval('(' + bkdata + ')');
+                            //console.log(backdata);
+                            $(backdata).each(function(index,item){
+                                //index指下标
+                                //item指代对应元素内容
+                                //this指代每一个元素对象
+
+                                var apphtml="<li class='col-xs-6'><div class='shopList_img'>";
+                                if(item['p_producttype']==7){
+                                    apphtml+="<a href='__DOC__/index/iwx-jewelrydetail-curMenu-1-cid-"+item['p_diy_cate_cid']+".html'>";
+                                }else{
+                                    apphtml+="<a href='__DOC__/index/iwx-productdetail-curMenu-1-id-"+item['p_id']+".html'>";
+                                }
+                                apphtml+="<img src='__IMG__"+item['p_cover']+"' width='330px' style='max-height:166px'></a></div>";
+                                apphtml+="<div class='shopmass'><h1>"+item['p_name']+"</h1><h2>￥"+item['p_price']+"</h2>";
+                                if(item['p_producttype']==7){
+                                    apphtml+="<a href='__DOC__/index/iwx-jewelrydetail-curMenu-1-cid-"+item['p_diy_cate_cid']+".html'>";
+                                }else{
+                                    apphtml+="<a href='__DOC__/index/iwx-productdetail-curMenu-1-id-"+item['p_id']+".html'>";
+                                }
+                                apphtml+="立即购买</a></div>";
+//                                apphtml+="<div class='label'>";
+//                                if(item['p_wpid']==1){apphtml+="<i class='new'></i>";}
+//                                if(item['p_producttype']==7){apphtml+="<i class='diy'></i>";}
+                                apphtml+="</li>";
+                                $('.applist').append(apphtml);
+                                //console.log($(this));
+                            });
+                            bBtn=true; //开启后续加载
+                        }else{//没有后续加载内容
+                            $(window).unbind('scroll',loading);//解除scroll事件
+                            oLoading.text('没有更多内容！');
+                            bBtn=false;
+                        }
+                    }
+                })
+            }
+        }
+    })
+</script>
+<{include file=C('IWXFOOTER')}>
+
+
+
+<{else}><!--PC版-->
+<{include file=C('MICKYHEAD_START')}>
+<link rel="stylesheet" href="__PUBLIC__/css/list.css">
+<{include file=C('MICKYHEAD_END')}>
+<!--商品列表 start-->
+<div class="shopListBox">
+    <div class="shopList">
+        <div class="shopListTitle">
+            <div class="shopListTitleInner fr">
+                共<span><{$SearchResultCount}></span>件 &nbsp; 商品 &nbsp;&nbsp; <{$currentPage}>/<{$totalPage}> &nbsp;&nbsp;
+                <a id="up" href="" onclick="func1();"><i id="icon" class="iconfont icon-sanjiao"></i></a>
+                <a id="down" href="" onclick="func2();"><i id="icon_down" class="iconfont icon-right"></i></a>
+
+            </div>
+        </div>
+        <ul class="shopListCon">
+
+
+
+            <{foreach $SearchResult as $Result name="foo"}>
+            <li class="lis" style="position:relative;">
+
+                <!--**********DIY图标***************-->
+                <{if $Result['p_producttype'] == 7}>
+                <div class="img-VR" style="left:-10px;position:absolute;margin-top:5px;z-index:999;">
+                    <img src="__PUBLIC__/images/diynew_icon.png" alt="" style="float:left;">
+                </div>
+                <{/if}>
+                <!--**********DIY图标***************-->
+
+                <div class="imgBox">
+                    <{if $Result['p_producttype'] == 7}>
+                    <a href="__DOC__/index/diy-jewelry-cid-<{$Result[$DBF_P->DiyCateCid]}>.html" class="item-img" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+                    <{else}>
+                    <a href="__DOC__/index/product-detail-id-<{$Result[$DBF_P->ID]}>.html" class="item-img" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+                    <{/if}>
+                    <img src="__IMG__<{$Result[$DBF_P->Cover]|replace:'/o/':'/s/240_180_'}>" alt=""/>
+                    <!--图片测试-->
+                    <!--<img style="" src="__PUBLIC__/img/240_180_a6023ce44e9e41de.jpg"/>-->
+                    <!---->
+                    </a>
+
+                </div>
+                <h4>
+                    <{if $Result['p_producttype'] == 7}>
+                    <a href="__DOC__/index/diy-jewelry-cid-<{$Result[$DBF_P->DiyCateCid]}>.html" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+                    <{else}>
+                    <a href="__DOC__/index/product-detail-id-<{$Result[$DBF_P->ID]}>.html" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+                    <{/if}>
+                    <{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>
+                    </a>
+                </h4>
+                <h5>￥<{$Result['p_price']|number_format}>.00</h5>
+                <{if $Result['p_producttype'] == 7}>
+                <a href="__DOC__/index/diy-jewelry-cid-<{$Result[$DBF_P->DiyCateCid]}>.html" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+                <{else}>
+                <a href="__DOC__/index/product-detail-id-<{$Result[$DBF_P->ID]}>.html" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+                <{/if}>立即购买</a>
+
+
+                <!----------VR图标-------------->
+                <{if $Result[$DBF_P->DiyCateCid] == 53}>
+                <div class="img-VR " style="right:0;position:absolute;bottom:0;">
+                    <img src="__PUBLIC__/images/vrnew_icon.png" alt="" style="float:right;">
+                </div>
+                <{/if}>
+                <{if $Result[$DBF_P->DiyCateCid] == 54}>
+                <div class="img-VR " style="right:0;position:absolute;bottom:0;">
+                    <img src="__PUBLIC__/images/vrnew_icon.png" alt="" style="float:right;">
+                </div>
+                <{/if}>
+                <{if $Result[$DBF_P->DiyCateCid] == 55}>
+                <div class="img-VR " style="right:0;position:absolute;bottom:0;">
+                    <img src="__PUBLIC__/images/vrnew_icon.png" alt="" style="float:right;">
+                </div>
+                <{/if}>
+                <!----------VR图标-------------->
+            </li>
+            <{/foreach}>
+        </ul>
+        <!-- 分页 start -->
+        <div class="page-box" style="text-align:center;" id="page">
+            <!--<ul class="page">
+                <a href=""><i class=" iconfont icon-sanjiao"></i></a>
+                <a class="aTop" href="javascript:; ">上一页</a>
+                <a href="javascript:;">1</a>
+                <a class="index" href="javascript:;">2</a>
+                <a class="aBottom" href="javascript:;">下一页</a>
+                <a href=""><i class=" iconfont icon-right"></i></a>
+                <span>到第<a class="aNow index" href="javascript:;">4</a>页</span>
+                <a class="aBtn" href="javascript:;">确定</a>
+            </ul>-->
+        </div>
+        <input type="hidden" name="cate" id="cate" value="<{$category}>"/>
+        <script src="__PUBLIC__/plug_in/laypage/laypage.js"></script>
+        <script type="text/javascript">
+            //区分轻定制 1为轻定制
+            <{if $diyparse==1}>
+                laypage({
+                        cont: 'page', //容器。值支持id名、原生dom对象，jquery对象,
+                        pages: <{$totalPage}>, //总页数
+                        skip: false, //是否开启跳页
+                        skin: '#dbc7ba',
+                        groups: 5 ,//连续显示分页数
+                        first: 1,
+                        last: <{$totalPage}>,
+                curr: function(){ //通过url获取当前页，也可以同上（pages）方式获取
+                    var page = location.href.match(/page-(\d+)/);
+                    return page ? page[1] : 1;
+                }(),
+                        jump: function(e, first){ //触发分页后的回调
+                    var cate = $('#cate').val();
+                    if(!first){ //一定要加此判断，否则初始时会无限刷新
+                        location.href = '__DOC__/index/jewelry-jewelrylist-diy-1-page-'+e.curr;
+                    }
+                }
+                });
+
+            <{else}>
+
+                laypage({
+                    cont: 'page', //容器。值支持id名、原生dom对象，jquery对象,
+                    pages: <{$totalPage}>, //总页数
+                    skip: false, //是否开启跳页
+                    skin: '#dbc7ba',
+                    groups: 5 ,//连续显示分页数
+                    first: 1,
+                    last: <{$totalPage}>,
+                    curr: function(){ //通过url获取当前页，也可以同上（pages）方式获取
+                        var page = location.href.match(/page-(\d+)/);
+                        return page ? page[1] : 1;
+                    }(),
+                    jump: function(e, first){ //触发分页后的回调
+                        var cate = $('#cate').val();
+                        if(!first){ //一定要加此判断，否则初始时会无限刷新
+                            location.href = '__DOC__/index/jewelry-jewelrylist-cate-'+cate+'-page-'+e.curr;
+                        }
+                    }
+                });
+
+            <{/if}>
+        </script>
+        <!-- 分页 end -->
+        <script type="text/javascript">
+            var cate = $('#cate').val();
+            var currPage = <{$currentPage}>;
+            var totalPage = <{$totalPage}>;
+            var divparse = <{$diyparse}>;
+            function func1(){
+                var i = currPage;
+                if(i <=1){
+                    $('#up').attr('href','javascript:;');
+                    $('#icon').css('background','#ccc');
+                }else {
+                    i--;
+                    <!--区分是否为轻定制 1是-->
+                    if (divparse == '1') {
+                        $('#up').attr('href', '__DOC__/index/jewelry-jewelrylist-diy-1-page-' + i);
+                    }else{
+                        $('#up').attr('href', '__DOC__/index/jewelry-jewelrylist-cate-' + cate + '-page-' + i);
+                    }
+                }
+            }
+            function func2(){
+                var j = totalPage;
+                var k = currPage;
+                if(k >= j){
+                    $('#down').attr('href','javascript:;');
+                    $('#icon_down').css('background','#ccc');
+                }else{
+                    k++;
+                    <!--区分是否为轻定制 1是-->
+                    if (divparse == '1') {
+                        $('#down').attr('href', '__DOC__/index/jewelry-jewelrylist-diy-1-page-' + k);
+                    }else{
+                        $('#down').attr('href', '__DOC__/index/jewelry-jewelrylist-cate-' + cate + '-page-' + k);
+                    }
+                }
+            }
+        </script>
+    </div>
+</div>
+<!-- 商品列表 end -->
+<{include file=C('MICKYFOOT')}>
+<{/if}>
+

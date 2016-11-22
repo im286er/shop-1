@@ -1,0 +1,104 @@
+<include file="Common:pageheader_start" />
+	<script type="text/javascript" src="__DOC__/static/js/swfupload/swfupload.js"></script>
+	<script type="text/javascript" src="__DOC__/static/js/swfupload/plugins/swfupload.cookies.js"></script>
+	<script type="text/javascript" src="__DOC__/static/js/swf_yun/yun_upload.js"></script>
+<include file="Common:pageheader_end" />
+<div class="contents divlist">
+	<form method="post" action="__APP__/printer_model_audit/audit/id/{$Post['id']}" enctype="multipart/form-data">
+		<h3>打印审核</h3>
+		<if condition="$ErrInfo"><div class="errorinfo">{$ErrInfo}</div></if>
+		
+		<h4>
+			当前状态: {$PModel['pm_status']}<br/><br/>
+			封面: <img src="__DOC__{:str_replace('/o/','/s/64_64_',$PModel['pm_cover'])}" />
+			上传封面: <input type="file" name="modelcover" />
+		</h4>
+	<ul>
+		<li>模型长度(mm)
+			<input type="text" name="originallength" value="{$Post['originallength']}" /><span class="verify"></span>
+		</li>
+		<li>模型宽度(mm)
+			<input type="text" name="originalwidth" value="{$Post['originalwidth']}" /><span class="verify"></span>
+		</li>
+		<li>模型高度(mm)
+			<input type="text" name="originalheight" value="{$Post['originalheight']}" /><span class="verify"></span>
+		</li>
+		<li>打印长度(mm)
+			<input type="text" name="length" value="{$Post['length']}" /><span class="verify"></span>
+		</li>
+		<li>打印宽度(mm)
+			<input type="text" name="width" value="{$Post['width']}" /><span class="verify"></span>
+		</li>
+		<li>打印高度(mm)
+			<input type="text" name="height" value="{$Post['height']}" /><span class="verify"></span>
+		</li>
+		<li>打印体积(cm3)
+			<input type="text" name="volume" value="{$Post['volume']}" /><span class="verify"></span>
+		</li>
+		<li>打印填充度(%)
+			<input type="text" name="ratio" value="{$Post['ratio']}" /><span class="verify"></span>
+		</li>
+</ul>
+	<div class="lilist_more">
+		可用材料
+		<volist name="MaterialList" id="Material">
+			<div>
+				<b>{$Material.pma_name}</b>
+				<if condition="$Material.Child">
+				<div>
+					<volist name="Material.Child" id="MaterialChild">
+					<in name="MaterialChild['pma_id']" value="$Post['materials']">
+					<label class="tlabel"><input type="checkbox" name="materials[]" value="{$MaterialChild.pma_id}" checked="checked" /> {$MaterialChild.pma_name}</label>
+					<else/>
+					<label class="tl"><input type="checkbox" name="materials[]" value="{$MaterialChild.pma_id}" /> {$MaterialChild.pma_name}</label>
+					</in>
+					</volist>
+				</div>
+				</if>
+			</div>
+		</volist>
+	</div>
+	<div class="lilist_more">
+		可打印性
+		<select name="needverify">
+			<option value="0" <if condition="$Post.needverify eq 0">selected="selected"</if>>不需要审核</option>
+			<option value="1" <if condition="$Post.needverify eq 1">selected="selected"</if>>用户审核</option>
+			<option value="2" <if condition="$Post.needverify eq 2">selected="selected"</if>>订单审核</option>
+			<option value="3" <if condition="$Post.needverify eq 3">selected="selected"</if>>联盟审核</option>
+		</select>
+		<label><input type="checkbox" name="needfix" <if condition="$Post.needfix eq 1">checked="checked"</if> /> 需要修复</label>
+		<label><input type="checkbox" name="needmaterial" <if condition="$Post.needmaterial eq 1">checked="checked"</if> /> 需要检查材质</label>
+	</div>
+    <input type="hidden" name="status" value="1" />
+		<input type="submit" name="auditpass" value="审核通过" /> <input type="submit" name="auditfail" value="审核不通过" />
+		<a href="__APP__/printer_model_audit/">取消...</a>
+</form>
+	<div class="button"><span id="swf_buttonplaceholder"></span></div>
+	<div class="uploader">
+		<ul id="filelist"></ul>
+		<ul id="filelist_template" style="display:none;">
+			<li>
+				<div>
+					<b>file.zip</b><i>22.32MB</i>
+					<span>10%</span>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript">
+	var UploadUrl = "{$U_UploadFile}";
+	var PublicUrl = "__DOC__/static/";
+	
+	(function ($) {
+		var verified = '<b>√</b>';
+		var notverified = '<b>X</b>';
+		var fadeTime = 100;
+		
+		$(document).ready(function () {
+			$(':submit[name=auditpass]').click(function() { $(':hidden[name=status]').val(1); });
+			$(':submit[name=auditfail]').click(function() { $(':hidden[name=status]').val(3); });
+		});
+	})(jQuery);
+</script>
+<include file="Common:pagefooter" />

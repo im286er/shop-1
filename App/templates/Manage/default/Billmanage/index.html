@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>订单流程管理{$site.SITE_INFO.name}</title>
+	<include file="Common:intohead" />
+	</head>
+	<style>
+	th{background:#dddddd}
+	</style>
+	<body>
+		<div class="wrap">
+		<include file="Common:head" />
+			<div class="mainBody">
+              	<include file="Common:left" />
+    				<div id="Right">
+                 		<div class="Item hr">
+        					<div class="current">生产件列表</div>
+        					<table class="tab">
+        					<tr><th>序号</th><th>支付时间</th><th>材质</th><th>制作要求</th><th>类别</th><th>效果图</th><th>份数</th><th>原始体积</th><th>实际体积</th><th>配件</th><th>链条</th><th>电镀</th><th>后处理</th><th>备注</th><th>出售价</th><th>生产价</th><th>折扣状态</th><th>异常状态</th><th>操作</th></tr>
+        					<volist name="list" id="vo">
+        					<tr>
+        					<td>{$vo['bm_id']}</td>
+        					<td>{$vo['up_orderbacktime']}</td>
+        					<td>{$vo['bm_material']}</td>
+        					<td>{$vo['bm_mname']}</td>
+        					<td>{$vo['bm_typename']}</td>
+        					<td><img src="{$vo['bm_fname']}" /></td>
+        					<td>{$vo['bm_count']}</td>
+        					<td>{$vo['bm_rcapacity']}</td>
+        					<td>{$vo['bm_ccapacity']}</td>
+        					<td>{$vo['bm_otheritem']}</td>
+        					<td>{$vo['bm_chain']}</td>
+        					<td>{$vo['bm_eletro']}</td>
+        					<td>{$vo['bm_reprocess']}</td>
+        					<td>{$vo['bm_comment']}</td>
+
+        					<td>{$vo['bm_price']}</td>
+        					<td>{$vo['bm_cprice']}</td>
+        					<td>
+        					<if condition="$vo['amount_coupon'] eq 0">原价件
+        					<else />折扣件
+        					</if>
+        					</td>
+        					<td>
+        					{$vo['bm_status']}
+        					</td>
+        					<td><a href="__URL__/edit/id/{$vo['bm_id']}">「编辑」</a><a href="#">「查看原始模型」</a><a href="#">「下载模型」</a><a href="#">「查看订单」</a></td>
+        					</tr>
+        					</volist>
+        					
+        					</table>
+      					</div>
+      				</div>
+      		</div>
+      	</div>
+<div class="clear"></div>
+<include file="Common:foot" />
+</body>
+</html>
+

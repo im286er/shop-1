@@ -1,0 +1,80 @@
+<{include file=C('MHEAD_START')}>
+<{include file=C('MHEAD_END')}>
+<div class="page-content">
+	<div class="prdselecter toparcbar">
+		<div class="btn-group">
+		<{if $Cateinfo}>
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><{$Cateinfo.pc_name}><span class="caret"></span></button>
+		<{else}>
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">所有款式<span class="caret"></span></button>
+		<{/if}>
+			<ul class="dropdown-menu" role="menu">
+				<li><a href="__APP__/wx-jewelrylist">所有款式</a></li>
+				<li class="divider"></li>
+				<{foreach $CateList['Child'] as $Cate name="foo"}>
+					<{if $Cate['pc_name'] <> '商务礼品'}>
+				<li><a href="__APP__/wx-jewelrylist-cate-<{$Cate['pc_id']}>.html"><{$Cate['pc_name']}></a></li>
+					<{/if}>
+				<{/foreach}>
+				<li class="divider"></li>
+				<li><a href="__APP__/wx-jewelrylist-cate-1274.html">商务礼品</a></li>
+			</ul>
+		</div>
+		<{if $SearchResultCount}>
+		<div class="comment-num"><span><b><{$SearchResultCount}></b>&nbsp;个款式</span></div>
+		<{/if}>
+	</div>
+	<div class="prdlist">
+		<{if $SearchResultCount}>
+		<ul class="prdlist-gird">
+			<{foreach $SearchResult as $Result name="foo"}>
+			<li>
+			<{if $Result['p_producttype'] == 7}>
+				<a href="__DOC__/index/wx-jewelrydetail-cid-<{$Result[$DBF_P->DiyCateCid]}>.html"><span class="item-img">
+					<img src="__IMG__<{$Result[$DBF_P->Cover]|replace:'/o/':'/s/240_180_'}>" alt=""/>
+					<span class="skew"><i>DIY</i></span>
+                <{if $Result['p_wpid'] == 1}><div class="skew_new"></div><{/if}>
+
+				</span>
+				<span class="item-info">
+					<h4><{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}></h4>
+					<span class="item-price">￥<b><{$Result['p_price']|number_format}></b>.00</span>
+				</span>
+				</a>
+			<{else}>
+				<a href="__DOC__/index/wx-productdetail-id-<{$Result[$DBF_P->ID]}>.html"><span class="item-img">
+					<img src="__IMG__<{$Result[$DBF_P->Cover]|replace:'/o/':'/s/240_180_'}>" alt=""/>
+                   <{if $Result['p_wpid'] == 1}><div class="skew_new"></div><{/if}>
+				</span>
+				<span class="item-info">
+					<h4><{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}></h4>
+					<span class="item-price">￥<b><{$Result['p_price']|number_format}></b>.00</span>
+				</span>
+				</a>
+			<{/if}>
+			</li>
+			<{/foreach}>
+		</ul>
+		<div class="clear"></div>
+		<{if $SearchResultCount > 10}>
+		<!-----------------------------------  请调整分页 ----------------------------- !-->
+		<nav class="pagination-fortable">
+			<ul class="pagination">
+				<{$Paging}>
+			</ul>
+		</nav>
+		<{/if}>
+		<{else}>
+		<div class="bg-notice">
+			<center>
+				<img src="__MSTATIC__/imgs/comm/graybird.png">
+				<h2>款式呢？<br>设计师们正在努力，过几天再来看看！</h2>
+				<a href="__APP__/wx-jewelrylist" class="btn btn-default">浏览所有款式</a>
+			</center>
+		</div>
+		<{/if}>
+	</div>
+	<br>
+	<div class="clear"></div>
+</div>
+<{include file=C('MFOOT')}> 

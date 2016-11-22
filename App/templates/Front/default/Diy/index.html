@@ -1,0 +1,159 @@
+<{include file=C('AHEAD_START')}>
+<!--<script src="__NEOSTATIC__/js/jquery-1.11.1.min.js"></script> -->
+<!--<style>
+/* footer */
+
+.footer { margin-top: 40px; background-color: #333333; padding-bottom:0px; }
+.footer .footer-bottom { background-color: #222222; line-height: 40px; height:40px; }
+.footer .footer-bottom .center { }
+.footer .footer-bottom .center ul li { color: #333333;width:auto; height:auto; padding:0px 0 0 15px;; }
+.footer .footer-bottom .center ul li a { color: #999999; font-size: 12px }
+.footer .footer-bottom .center ul li a:hover { color: #fff }
+.footer .footer-bottom .right { color: #fff; font-size: 12px }
+.footer .footer-bottom .left { color: #fff; font-size: 12px }
+.footer .footer-center { }
+.footer .footer-center .item { float: left; width: 20% }
+.footer .footer-center .item ol li{float:none; width:auto; height:auto; padding:0px;}
+.footer .footer-center .item ol li a { color: #999; font-size: 14px; line-height: 25px }
+.footer .footer-center .item ol li a:hover { color: #FFFFFF }
+.footer .footer-center .item h3 { color: #FFFFFF; line-height: 70px; font-size: 16px; }
+.footer .footer-center b a { color: #D1D0D0; line-height: 85px; font-size: 14px; }
+.footer .footer-top { border-bottom: 1px solid #6C6C6C; line-height: 75px }
+.footer .footer-top .right { }
+.footer .footer-top .right span { padding: 0 10px; color: #FFFFFF; font-size: 14px }
+.footer .footer-top .right span strong { padding: 0 5px; font-size: 22px; font-weight: normal }
+.footer .footer-top .left { font-size: 20px }
+.footer .footer-top .left .pindao { margin-left: 190px; color: #fff; line-height: 75px }
+.footer .footer-top .left .logo { display: inline-block; width: 200px; height: 73px; background: url(__NEOSTATIC__/imgs/footer/foooter-logo.png) no-repeat center center }
+</style>-->
+<!--<script src="__NEOSTATIC__/js/bootstrap.min.js"></script> -->
+<{include file=C('AHEAD_END')}>
+<div class="index"> 
+	<div class="story1 container">
+		<h2>「“打”造你的专属物品 」</h2>
+		<div class="item item1 pr fl">
+			<div class="item-word pa">
+				<h3>Rinora Ring</h3>
+				<b>「你的，专属宣言」</b> </div>
+			<div class="item-bottom pa"> <a href="__DOC__/index/diy-jewelry-cid-14" target="_blank" class="butn">立即开始定制</a>
+				<h3><span>￥</span>54.<span>99 起</span></h3>
+			</div>
+			<img src="__NEOSTATIC__/imgs/story/story1/story1-master.png" width="100%" height="100%"/>
+		</div>
+		<div class="item item2 pr fr">
+			<div class="item-word pa">
+				<h3>Rinora Necklace</h3>
+				<b>「相恋相连」</b> </div>
+			<div class="item-bottom pa"> <a target="_blank" href="__DOC__/index/diy-jewelry-cid-15" class="butn">立即开始定制</a>
+				<h3><span>￥</span>114.<span>99 起</span></h3>
+			</div>
+			<img src="__NEOSTATIC__/imgs/story/story1/story1-master.png" width="100%" height="100%"/>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="story2 container">
+		<div class="top">
+			<h2>
+				<div class="top-right fr"></div>
+				精致的3D打印首饰
+				<div class="top-left fl"></div>
+			</h2>
+			<span>不管是幸福的结婚戒，幸运的小指戒还是装饰的首饰戒。私人的订制不同的宣言，彰显个性的物品！</span>
+			<div class="clear"></div>
+		</div>
+		<div class="mid">
+			<ul>
+				<{foreach $diylistinfo as $result}>
+				
+				<li > <a href="__DOC__/index/diy-jewelry-cid-<{$result.cid}>" class="item">
+				<div class="item-img">
+				     <img src="__DOC__<{$result.cate_icon_list}>" />
+				   </div>
+					<div class="word"><span><{$result.cate_name}></span>
+						<div class="price"> <strong>限时折扣</strong>
+							<h3><p>￥</p><{$result.startprice}> 起</p>
+							</h3>
+						</div>
+				</div>
+				</a></li>
+				<{/foreach}>
+					
+					
+					
+				<!--<li><a href="#" class="item item2">
+				   <div class="item-img">
+				     <img src="__NEOSTATIC__/imgs/story/story2/item/item2.png" />
+				   </div>
+					<div class="word"><span>Raw R</span>
+						<div class="price"> <strong> </strong>
+							<h3><p>￥</p>116.<p>00 起</p>
+							</h3>
+						</div>
+					</div>
+					
+					</a></li>-->
+				
+			
+			
+				
+				<div class="clear"></div>
+			</ul>
+		</div>
+		<div class="bottom"> <a href="#" class="butn">浏览所有款式</a> </div>
+	</div>
+	<div class="story3  ">
+		<div class="content container-full pr">
+			<div class="container">
+				<div class="item">
+					<div class="story-pic story-pic1"></div>
+					<h4>完好保证</h4>
+					<p>我们承诺将您的商品完好送达，如有运输中的损坏，我们将负责调换。</p>
+				</div>
+				<div class="item">
+					<div class="story-pic story-pic2"></div>
+					<h4>高效的物流</h4>
+					<p>十天内，我们会完成制作并免费将您订制的专属物件送达。</p>
+				</div>
+				<div class="item">
+					<div class="story-pic story-pic3"></div>
+					<h4>品质保证</h4>
+					<p>可能是您买的到的最高品质3D打印产品，快来亲身体验吧。</p>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<img class="pa" src="__NEOSTATIC__/imgs/story/story3/story-master.png" /> </div>
+	</div>
+	<div class="story4 container">
+		<div class="top">
+			<h2>优秀的设计，来源于优秀的他们</h2>
+			<span>在3DCity，设计师离你并不遥远，只要有想法，人人都可以成为设计师。</span> </div>
+		<div class="mid">
+			<ul>
+				<li class="item item1 ">
+					<div class="word ">
+						<h3>Bram Vanhaeren</h3>
+						<b>工业设计师</b> </div>
+				</li>
+				<li class="item item2 ">
+					<div class="word ">
+						<h3>远坂 凛</h3>
+						<b>魔术师</b> </div></li>
+				<li class="item item3">
+					<div class="word ">
+						<h3>Mercedes deBellard</h3>
+						<b>珠宝设计师</b> </div></li>
+				<li class="item item4">
+					<div class="word ">
+						<h3>Amanda Mocci</h3>
+						<b>珠宝设计师</b> </div></li>
+				<div class="clear"></div>
+			</ul>
+		</div>
+		<div class="bottom">
+		
+		<a href="#" class="butn">浏览所有设计师</a>
+		
+		</div>
+	</div>
+</div>
+<{include file=C('AFOOT')}>

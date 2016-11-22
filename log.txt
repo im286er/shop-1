@@ -1,0 +1,8 @@
+﻿request body = <TemplateSMS>
+                    <to>15151687580</to> 
+                    <appId>8a216da85607361a01560bf70cf90410</appId>
+                    <templateId>102939</templateId>
+                    <datas><data>144150662527514952</data><data>顺丰快递</data><data>213801008048</data><data>213801008048</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/aaf98f89499d24b501499e6628f001a7/SMS/TemplateSMS?sig=D8D4DFF741E030A7755AB6CF4AC10503
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>000000</statusCode><TemplateSMS><dateCreated>20160829172527</dateCreated><smsMessageSid>7c23494461dc4d5390ec098f80560791</smsMessageSid></TemplateSMS></Response>

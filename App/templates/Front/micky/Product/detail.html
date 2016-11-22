@@ -1,0 +1,685 @@
+<{include file=C('MICKYHEAD_START')}>
+<link rel="stylesheet" type="text/css" href="__KITTYSTATIC__/css/init.css" media="all">
+<link rel="stylesheet" type="text/css" href="__KITTYSTATIC__/css/doge.css" media="all">
+<link rel="stylesheet" type="text/css" href="__KITTYSTATIC__/css/kitty.css" media="all">
+<link rel="stylesheet" type="text/css" href="__KITTYSTATIC__/css/jquery-ui.css" media="all">
+<link rel="stylesheet" href="__KITTYSTATIC__/css/layerslider.css" type="text/css">
+<script src="__KITTYSTATIC__/js/jquery-1.11.2.js"></script>
+<script src="__KITTYSTATIC__/js/jquery-ui-1.11.4.js"></script>
+<script src="__KITTYSTATIC__/js/masonry.pkgd.min.js"></script>
+<script src="__KITTYSTATIC__/js/imagesloaded.pkgd.min.js"></script>
+<script src="__KITTYSTATIC__/js/greensock.js"></script>
+<script src="__KITTYSTATIC__/js/layerslider.transitions.js"></script>
+<script src="__KITTYSTATIC__/js/layerslider.kreaturamedia.jquery.js"></script>
+<script src="__KITTYSTATIC__/js/doge.controls.js"></script>
+<link rel="stylesheet" href="__NEOSTATIC__/css/layerslider.css" type="text/css">
+<script src="__NEOSTATIC__/js/greensock.js"></script>
+<script src="__NEOSTATIC__/js/layerslider.transitions.js"></script>
+<script src="__NEOSTATIC__/js/layerslider.kreaturamedia.jquery.js"></script>
+<script src="__NEOSTATIC__/js/es5-shim.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/css/details.css">
+<link rel="stylesheet" href="__PUBLIC__/css/zimujie.css">
+<link rel="stylesheet" href="__PUBLIC__/css/yuvideo.css">
+<style>
+
+</style>
+<{include file=C('MICKYHEADBRANDSTORY_END')}>
+<div class="prd container">
+    <br>
+    <div class="breadcrumb"><a class="home" href="#">珠宝首饰</a>\<a href="#">戒指</a></div>
+    <div class="prd-titile hla">
+        <h2><{$Product.p_name}></h2>
+    </div>
+    <div class="clear"></div>
+    <div class="prd-gal-holder">
+        <div class="prd-gal" style="width: 560px; height: 420px; max-width: 560px;">
+            <{foreach $ProductPhotoList as $ProductPhoto name="foo"}>
+            <div class="ls-slide">
+                <img src="__DOC__<{$ProductPhoto.pp_path}>o/<{$ProductPhoto.pp_filename}>" class="ls-bg" alt="Slide background">
+            </div>
+            <{/foreach}>
+        </div>
+    </div>
+    <!-- miaomin disabled@2015.10.30
+    <div class="tablayer layer-info">
+        <div class="prd-info-holder">
+            <div class="prd-info">
+                <p><{$Product.p_mini}></p>
+                <div class="buildit">
+                    <button class="btn btn-action" id="go-ordergen"><i>现在开始定制<span>￥<b><{$Product.p_gprice|number_format}>.00</b> 起</span></i></button>
+                </div>
+                <div class="author">
+                    <span class="powered">By</span><img src="__UPLOAD__/avatar/<{$Product.u_avatar|replace:'/o/':'/s/96_96_'}>" class="avatar">
+                    <div class="author-info">
+                        <h4><{$Product.u_dispname}></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     -->
+    <div class="tablayer layer-ordergen">
+        <div class="prd-info-holder">
+            <div class="prd-ordergen">
+                <h4><{$Product.p_name}><br><br>现在订购</h4>
+                <div class="tr bucks">
+                    <h5 class="first"></h5>
+                </div>
+                <{if $RelationProductList|@count}>
+                <div class="tr relation">
+                    <h5 class="jstitle gen"><i>相关商品</i></h5>
+                    <div class="radiogroup" id="rdgrp-relation-div">
+                        <!--<{foreach $RelationProductList as $RelationProduct name="foo"}>
+                        <{if $RelationProduct.p_default == 1}>
+                        <input type="radio" class="rdgrp-relation-radio" id="rdgrp-<{$RelationProduct.p_id}>" name="relationid" price="<{$RelationProduct.p_price}>" value="<{$RelationProduct.p_id}>" checked="checked"><label for="rdgrp-<{$RelationProduct.p_id}>"><{$RelationProduct.p_name}></label></li>
+                        <{else}>
+                        <input type="radio" class="rdgrp-relation-radio" id="rdgrp-<{$RelationProduct.p_id}>" name="relationid" price="<{$RelationProduct.p_price}>" value="<{$RelationProduct.p_id}>"><label for="rdgrp-<{$RelationProduct.p_id}>"><{$RelationProduct.p_name}></label></li>
+                        <{/if}>
+                        <{/foreach}>-->
+                    </div>
+                </div>
+                <{/if}>
+                <div class="buildit">
+                    <div class="review"><span class="costs">每件最低 ￥<b><{$Product.p_gprice|number_format}></b>.00起，</span><span class="counts">份数<input value="1" class="input" id="buycount"><{$Product.p_unitname|default:'个'}></span></div>
+                    <{if $isLogin}>
+
+                    <button class="btn btn-action" id="buy_href" style="border: 2px solid #000;"><i>加入购物袋</i></button>
+                    <{else}>
+                    <button class="btn btn-action" id="go-ordergen" onClick="goLogin()"><i>加入购物袋</i></button>
+                    <{/if}>
+                    <input type="hidden" class="pid" id="pid" name="pid" value="">
+                    <input type="hidden" class="pprice" id="pprice" name="pprice" value="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- div class="prd-gal-holder">
+        <div class="prd-gal" style="width: 560px; height: 420px; max-width: 560px;">
+            <{foreach $ProductPhotoList as $ProductPhoto name="foo"}>
+            <div class="ls-slide">
+                <img src="__DOC__<{$ProductPhoto.pp_path}>o/<{$ProductPhoto.pp_filename}>" class="ls-bg" alt="Slide background">
+            </div>
+            <{/foreach}>
+        </div-->
+</div>
+<div class="clear"></div>
+
+<!--div class="prd-diyframe">
+    <iframe class="webeditor" scrolling="no" allowfullscreen="true" src="/city/index.php/diy-jewelryeditall-pid-0-cid-14-showtype-0.html"></iframe>
+</div-->
+
+<{if $Product.p_intro}>
+<div class="dividing">
+    <h2><label class="skew" style="    border: 2px solid #cca324;border-radius: 18px;
+    transform: skew(0);"><i style="transform: skew(0);">商品介绍</i></label></h2>
+</div>
+
+<div class="contentex">
+    <{$Product.p_intro}>
+</div>
+<{/if}>
+
+
+<!-- 公共部分 -->
+<!-- 标题 -->
+<div style="width: 1200px;margin:0 auto;">
+    <div class="publicT text-c">
+        <h1>匠心工艺</h1>
+        <div class="icon"></div>
+    </div>
+    <!-- 图片 -->
+    <div class="publicImg">
+        <ul>
+            <li>
+                <img src="__PUBLIC__/images/details1.jpg" alt="">
+            </li>
+            <li><img src="__PUBLIC__/images/details2.jpg" alt=""></li>
+            <li>
+                <div class="">
+                    <img src="__PUBLIC__/images/details3.jpg" alt="">
+                </div>
+                <div class="publicTxt">
+                    IGNITE所有的产品都采用优质的材料精心加工而成，虽然不全是顶级珠宝那么璀璨无比，但在这里能见识到不同的风格，融合不同文化的珠宝设计，在IGNITE我们可以尽情的享受美轮美奂的珠宝给我们带来的视觉冲击。
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- 标题 -->
+    <!--<div class="publicT text-c">-->
+        <!--<h1>测量方法</h1>-->
+        <!--<div class="icon"></div>-->
+    <!--</div>-->
+     <!--&lt;!&ndash;测量方法&ndash;&gt;-->
+    <!--<div class="clff">-->
+        <!--<img src="__PUBLIC__/images/celiang.jpg" alt="">-->
+    <!--</div>-->
+    <!--&lt;!&ndash; 七天退货 &ndash;&gt;-->
+    <!--<div class="publicT tuihuo text-c">-->
+        <!--<div class="rili">-->
+            <!--<img src="__PUBLIC__/images/rili.png" alt="">-->
+        <!--</div>-->
+        <!--<h1>七天退换货</h1>-->
+        <!--<h2>仅限非定制产品</h2>-->
+        <!--<div class="icon"></div>-->
+    <!--</div>-->
+    <!--<div class="tuohuoText">-->
+        <!--<ul>-->
+            <!--<li>-->
+                <!--<h1 class="chengnuo">退换货承诺</h1>-->
+                <!--<div class="chengnuoLis">-->
+                    <!--<p>IGNITE伊格纳为了营造能让顾客放心购物的消费环境，诚意对已售出的有质量问题产品做出以下退换货承诺</p>-->
+						<!--<pre>-->
+<!--A.  质量问题（您需提供技术质量监督部门的质量问题鉴定说明）-->
+<!--B.  收到产品后7天内, 联系客服进行退换货预约( 时间以快递货品签收单的日期为准)-->
+<!--C.  退换货时，应退还全部随货单据、检测证书、发票及销售时的所有促销赠品。-->
+<!--D.  收到您的退货并经检验符合退换货条件,我们将会在7个工作日内给您办理退换。-->
+						<!--</pre>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<h1 class="tiaojian">退换货条件</h1>-->
+                <!--<div class="chengnuoLis">-->
+						<!--<pre>-->
+<!--A.  仅限有质量问题的非定制产品。-->
+<!--B.  凭发票、产品及包装方可办理。-->
+<!--C.  个人原因所致的K金系列刮花、银饰品镀层损坏引起的氧化现象等均不属于质量问题。-->
+<!--D.  彩宝内部的天然包裹体、内部显现的天然纹理属于天然宝石物理特征，不属于质量问题。-->
+<!--E.  由于人为外力造成产品变形、宝石脱落、遗失，不属于质保范围。-->
+						<!--</pre>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<h1 class="jisong">寄送方式</h1>-->
+                <!--<div class="chengnuoLis">-->
+						<!--<pre>-->
+<!--A.  您可选择顺丰速递的方式退换货，并索要一份货到回执单。-->
+<!--B.  在寄送货品时，外包装或运单上任何地方不要标识“珠宝”、“首饰”等字样。-->
+<!--C.  寄送前请务必先联系客服，确认您的寄送地址 。 -->
+<!--E.  完成检验后退款时效为7个工作日。-->
+<!--F.  因质量问题产生的快递费用，由我司承担。-->
+						<!--</pre>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li class="border">-->
+                <!--<h1 class="tiaokuan">免责条款</h1>-->
+                <!--<div class="chengnuoLis">-->
+						<!--<pre>-->
+<!--A.  因退换货过程中发生的丢失和损坏，IGNITE伊格纳概不负责。 -->
+<!--B.  IGNITE伊格纳承诺于工作日寄送，遇国家法定节假日相应顺延，敬请谅解。-->
+						<!--</pre>-->
+                <!--</div>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <!-- 标题 首饰维修-->
+    <div class="publicT text-c">
+        <h1>首饰维修</h1>
+        <div class="icon"></div>
+    </div>
+    <!-- 图片 -->
+    <div class="weixiuImg">
+        <div class="weixiuIL fl">
+            <img src="__PUBLIC__/images/weixiu.jpg" alt="">
+        </div>
+        <div class="weixiuIText fl">
+				<pre>
+在IGNITE伊格纳所购的产品包括配件（配件如彩宝、耳背和搭扣等）如果因为非质量
+原因导致的损坏缺失，如配件遗失，外力所致破损断裂等，IGNITE伊格纳可提供有偿
+维修，费用请咨询客服。
+A.维修周期为20-30个工作日，遇节假日顺延。
+B.不受理促销活动期间赠送饰品、礼品的维修业务。
+				</pre>
+        </div>
+    </div>
+    <!-- 标题 品牌包装-->
+    <div class="publicT text-c">
+        <h1>品牌包装</h1>
+        <div class="icon"></div>
+    </div>
+    <!-- 包装袋 -->
+    <div class="baozhuang">
+        <img src="__PUBLIC__/images/baozhuang.jpg" alt="">
+    </div>
+    <!-- 标题 品牌包装-->
+    <div class="publicT text-c">
+        <h1>饰品保养</h1>
+        <div class="icon"></div>
+    </div>
+    <!-- 饰品保养 图文 -->
+    <div class="shipin">
+        <div class="shipinL fl">
+            <img src="__PUBLIC__/images/baoyang.jpg" alt="">
+        </div>
+        <div class="shipinR fl">
+            <ul>
+                <li style="border-bottom: 1px solid #f2e4d8;">
+                    <h1>金</h1>
+                    <p>化学成分非常稳定，金饰的保养要注意以下几点：</p>
+					<pre>
+A.  洗洁精的化学物质会改变金的色泽，所以做清洁工作之前应该脱掉金饰。
+B.  避免直接与香水、发胶等高挥发性物质接触，否则容易导致金饰褪色。
+C.  游泳时要取下金饰，以免碰到海水或池水后，表层产生化学变化。
+D.  保管的时候用绒布包好再放进首饰箱，避免互相摩擦损坏。
+E.  黄金比较软，容易变形，所以不要拉扯，以免变形。
+F.  纯金饰在遇水银时会产生化学反应，出现白色斑点，清洗时只要在酒精灯下烧烤一
+    会儿，就能恢复原色。
+G.  配戴后的金饰常因污渍及灰尘的沾染而失去光泽，此时，只要将金饰置于中性洗洁
+    剂以温水浸泡并清洗，再取出拭擦干即可。
+F.  对于镶嵌宝石的金饰，需要每六个月清洁一次。
+					</pre>
+                </li>
+                <li class="border">
+                    <h1>银</h1>
+                    <p>化学性质较活泼，当银饰表面氧化变黑时，可通过以下方式恢复光泽： </p>
+					<pre>
+A.  可在清水中加入苏打粉，然后清洗擦拭。
+B.  使用擦银布、擦银膏擦拭（擦银布中含有特别的药水，不能水洗）。
+C.  用软布沾些牙膏搓洗饰品、再用清水洗干净，以棉布擦拭干净。
+D.  浸泡洗银水，再用清水洗干净，以棉布擦拭干净，使其保持干燥即可。
+E.  银饰最好避免接触海水、温泉，若未佩戴时，可装入隔绝空气的容器中，如绒布袋或珠宝盒，
+    可使您的银饰常保如新
+					</pre>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 标题 品牌印记-->
+    <div class="publicT text-c">
+        <h1>品牌印记</h1>
+        <div class="icon"></div>
+    </div>
+    <!-- 品牌印记 图片 -->
+    <div class="yinji">
+        <img src="__PUBLIC__/images/yinji.jpg" alt="">
+    </div>
+    <div class="di">
+        <div class="diText text-c">
+			<pre style="font-weight: normal;">
+你，是人海中的一粒
+做着，平凡的自己
+但，总有一瞬间
+“这是我的第一件文艺小试炼”
+“这是我自信的呈现”
+“这是和你在一起的第100天”
+“这是我们共同去过的地点”
+“这是面对未知世界的信念”
+“这是脑海中的灵光乍现”
+
+每个人心中都有一道光
+我们用“科技+定制+珠宝首饰”的方式
+呈现你心中闪耀的灵光
+这里有脑洞大开的潮流尖货
+拒绝千篇一律，拒绝无聊复刻
+没有做不到，只有想不到
+我们是剁手党追捧的时代弄潮儿
+帮你找到适合自己的独特风格
+			</pre>
+        </div>
+        <img src="__PUBLIC__/images/di.jpg" alt="">
+    </div>
+
+
+
+<!--<div class="frm-img frm-img_ring pa" ><a href="javascript:void(0)" class="clos" >X</a></div>-->
+<!--
+<div class="frm-img frm-img_nec pa" ><a href="javascript:void(0)" class="clos" >X</a></div>
+-->
+
+<style>
+    .diy-inf{border-radius:100%;background:#D6F0E8;width:20px;height:20px;line-height:15px;text-align:center;margin-top:5px;display:inline-block;border:1px solid #4EBF9A; vertical-align:middle;margin-top:-5px;}
+    .frm-img{display:none;top:50%;left:50%;margin-left:-360px;margin-top:-260px;width:800px;height:600px;border:1px solid #999;z-index:40000;}
+    .frm-img img{width:100%;height:100%;}
+    .frm-img a{display:block;text-align:right;width:100%;position:relative;z-index:44444;font-size:25px;font-weight:bold;color:#7FD1BA;}
+    .frm-img_nec{background:url(__NEOSTATIC__/imgs/jewelry/frm-img_nec.jpg) center center no-repeat;background-size:cover;}
+    .frm-img_ring{background:url(__NEOSTATIC__/imgs/jewelry/frm-img_rin.jpg) center center no-repeat;background-size:cover;}
+</style>
+<script type="text/javascript">
+    function initfrmabc(){
+        $(".frm-img_ring").fadeToggle();
+    }
+    $(".clos").click(function(){
+        $(".frm-img").hide();
+    });
+
+    /*$(".diy-inf.nck").click(function(){
+     $(".frm-img_nec").fadeToggle();
+     });
+     $(".diy-inf.rin").click(function(){
+     $(".frm-img_ring").fadeToggle();
+     });
+     $(".diy-rin").click(function(){
+     $(".frm-img_ring").fadeToggle();
+     });
+     $(".diy-nck").click(function(){
+     $(".frm-img_nec").fadeToggle();
+     });*/
+</script>
+<script>
+    $(document).ready(function(e) {
+        $(".prd-gal").layerSlider({
+            pauseOnHover: false,
+            navStartStop: false,
+            showCircleTimer: false,
+            skin: 'fullwidth',
+            skinsPath: '__NEOSTATIC__/js/ls-skins/'
+        });
+        $("#go-ordergen").click(function(e) {
+            $(".layer-info").fadeOut(500);
+            $(".layer-ordergen").delay(600).fadeIn(300);
+        });
+        $(".author").delay(1000).fadeTo(500, 1);
+
+// === Starting Order Generator ===
+        /*************************
+         谨以此诗献给小顾
+
+         这是勇敢的海燕，在怒吼的大海上，在闪电中间，高傲地飞翔；这是胜利的预言家在叫喊：
+
+         ——让暴风雨来得更猛烈些吧！
+         *************************/
+
+        // 属性选择器数组
+        var json = new Array();
+        json[0] = <{$Selector}>;
+
+        // 属性值映射列表
+        var provallist = <{$PropValList}>;
+
+        // 属性列表带排序
+        var proplist = <{$PropList}>;
+
+        $('.first').html("<i>" + proplist[0]["ipp_name"] + "</i>").addClass("gen");
+
+        // 是否有尺码下拉菜单选择
+        var hasSizeSelector = 0;
+
+        if( proplist[0]["ipp_name"] != '号码' ){
+
+            // 全RADIO
+
+            // $('.num').css('display','none');
+
+            var j = 0;
+            var p = 1;
+
+            var tempDiv = '<div class="tr jam"><h5 class="jstitle"></h5><div class="radiogroup" id="rdgrp-0">';
+
+            for(var key in json[0] ){
+
+                tempDiv += '<input type="radio" class="rdgrp-22" id="rdgrp-0-'+p+'" name="rdgrp-0" ref="0" value="'+key+'"><label for="rdgrp-0-'+p+'" class="rdgrp-222">'+provallist[key]+'</label>';
+
+                p++;
+
+            }
+
+            tempDiv += '</div></div>';
+
+            $('.prd-ordergen').find('.tr:eq(0)').after(tempDiv);
+
+            $( ".radiogroup" ).buttonset();
+
+        } else {
+
+            hasSizeSelector = 1;
+
+            var j = 0;
+            var p = 1;
+
+            // 初始化第一个下拉菜单选择器
+            var tempDiv = '<div class="tr num"><div class="selectmenu"><select name="radius" id="radius" ref="0" class="selectgroup fkk">';
+            tempDiv += '<option value="0">请选择'+proplist[0]["ipp_name"]+'</option>';
+
+            // 通过一个循环添加所有选项
+            for(var key in json[0] ){
+
+                tempDiv += '<option  value="'+key+'">'+provallist[key]+'</option>';
+
+                p++;
+
+            }
+            tempDiv += '</select></div><a href="javascript:void(0);onClick=initfrmabc();" class="infolink rin">教您如何测量尺寸 &gt;</a></div>';
+
+            // 添加下拉菜单选择器
+            $('.prd-ordergen').find('.tr:eq(0)').after(tempDiv);
+
+            // 下拉菜单选择器事件绑定
+            $('.prd-ordergen').delegate("#radius",'change',function(){
+                // 选中的值
+                var json_val = $(this).val();
+
+                // 层级
+                var ref_val = parseInt($(this).attr("ref"));
+
+                var nxt_refval = ref_val + 1;
+
+                var nnxt_refval = nxt_refval + 1;
+
+                // 每次点击后pid的数据必须清空
+                $('.pid').val('');
+
+                // 必要的数据清空否则可能出现迭代出现
+                $('.prd-ordergen').find('.tr.jam').remove();
+
+                // 如果值不为0
+                if (json_val != 0){
+
+                    json[nxt_refval] = json[ref_val][ json_val];
+
+                    var tempDiv = '<div class="tr jam"><h5 class="jstitle gen"><i>' + proplist[nxt_refval]["ipp_name"] + '</i></h5><div class="radiogroup" id="rdgrp-'+nxt_refval+'">';
+
+                    var p=1;
+
+                    // 最后一层
+                    if (Object.keys(json[nxt_refval]).length == 1){
+
+                        for(var key in  json[nxt_refval] ){
+
+                            if(key!='p_id' && key!='p_price'){
+                                tempDiv += '<input type="radio" class="rdgrp-22" id="rdgrp-'+nxt_refval+'-'+p+'" name="rdgrp-'+nxt_refval+'" ref="'+nxt_refval+'" value="'+key+'"><label for="rdgrp-'+nxt_refval+'-'+p+'" class="rdgrp-222">'+provallist[key]+'</label></li>';
+                            } else {
+                            }
+
+                            tempDiv += '</div></div>';
+
+                            $('.prd-ordergen').find('.tr:eq('+nxt_refval+')').after(tempDiv);
+
+                            $( ".radiogroup" ).buttonset();
+
+                            // console.info('rdgrp-'+nxt_refval+'-'+p);
+
+                            $('#rdgrp-'+nxt_refval+'-'+p).trigger("click");
+
+                            p++;
+                        }
+                    }else{
+                        for(var key in  json[nxt_refval] ){
+                            if(key!='p_id' && key!='p_price'){
+                                tempDiv += '<input type="radio" class="rdgrp-22" id="rdgrp-'+nxt_refval+'-'+p+'" name="rdgrp-'+nxt_refval+'" ref="'+nxt_refval+'" value="'+key+'"><label for="rdgrp-'+nxt_refval+'-'+p+'" class="rdgrp-222">'+provallist[key]+'</label></li>';
+                            } else {
+                            }
+
+                            p++;
+                        }
+
+                        tempDiv += '</div></div>';
+
+                        $('.prd-ordergen').find('.tr:eq('+nxt_refval+')').after(tempDiv);
+
+                        $( ".radiogroup" ).buttonset();
+                    }
+                }
+            });
+        }
+
+        // 属性选择器 Radio Click事件绑定
+        $(".prd-ordergen").delegate(".rdgrp-22",'click',function(){
+
+            var json_val = $(this).val();
+
+            var ref_val = parseInt($(this).attr("ref"));
+
+            var nxt_refval = ref_val + 1;
+
+            var nnxt_refval = nxt_refval + 1;
+
+            json[nxt_refval] = json[ref_val][ json_val];
+
+            // console.info(json);
+
+            if ('p_id' in json[nxt_refval]){
+                // 最后一层
+                $('.pid').val(json[nxt_refval]['p_id']);
+                $('.pprice').val(json[nxt_refval]['p_price']);
+
+                // 需要加上关联商品价格
+                // $('.costs').html('每件 ￥<b>' + json[nxt_refval]['p_price'] + '</b>.00，');
+            <{if $RelationProductList|@count}>
+                var totalprice = 0;
+                var relationprice = $("input[name='relationid']:checked").attr("price");
+                // console.info('RelationPrice:' + relationprice);
+                totalprice = parseInt(json[nxt_refval]['p_price']) + parseInt(relationprice);
+                $('.costs').html('每件 ￥<b>' + totalprice + '</b>，');
+            <{else}>
+                $('.costs').html('每件 ￥<b>' + json[nxt_refval]['p_price'] + '</b>，');
+            <{/if}>
+
+                return;
+            }else{
+                var removeJam;
+
+                // 每次点击后pid的数据必须清空
+                $('.pid').val('');
+
+                removeJam = ref_val - hasSizeSelector;
+                // console.info('REMOVE_JAM:' + removeJam);
+                $('.prd-ordergen').find('.tr.jam:gt('+removeJam+')').remove();
+
+                var tempDiv = '<div class="tr jam"><h5 class="jstitle gen"><i>' + proplist[nxt_refval]["ipp_name"] + '</i></h5><div class="radiogroup" id="rdgrp-'+nxt_refval+'">';
+            }
+
+            var p=1;
+
+            if (Object.keys(json[nxt_refval]).length == 1){
+
+                for(var key in  json[nxt_refval] ){
+
+                    if(key!='p_id' && key!='p_price'){
+                        tempDiv += '<input type="radio" class="rdgrp-22" id="rdgrp-'+nxt_refval+'-'+p+'" name="rdgrp-'+nxt_refval+'" ref="'+nxt_refval+'" value="'+key+'"><label for="rdgrp-'+nxt_refval+'-'+p+'" class="rdgrp-222">'+provallist[key]+'</label></li>';
+                    } else {
+                    }
+
+                    tempDiv += '</div></div>';
+
+                    $('.prd-ordergen').find('.tr:eq('+nxt_refval+')').after(tempDiv);
+
+                    $( ".radiogroup" ).buttonset();
+
+                    // console.info('rdgrp-'+nxt_refval+'-'+p);
+
+                    $('#rdgrp-'+nxt_refval+'-'+p).trigger("click");
+
+                    p++;
+                }
+            }else{
+                for(var key in  json[nxt_refval] ){
+                    if(key!='p_id' && key!='p_price'){
+                        tempDiv += '<input type="radio" class="rdgrp-22" id="rdgrp-'+nxt_refval+'-'+p+'" name="rdgrp-'+nxt_refval+'" ref="'+nxt_refval+'" value="'+key+'"><label for="rdgrp-'+nxt_refval+'-'+p+'" class="rdgrp-222">'+provallist[key]+'</label></li>';
+                    } else {
+                    }
+
+                    p++;
+                }
+
+                tempDiv += '</div></div>';
+
+                $('.prd-ordergen').find('.tr:eq('+nxt_refval+')').after(tempDiv);
+
+                $( ".radiogroup" ).buttonset();
+            }
+        });
+
+        // 相关商品 Radio Click事件绑定
+        $(".prd-ordergen").delegate(".rdgrp-relation-radio",'click',function(){
+            if ($('.pid').val() != ""){
+                var totalprice = 0;
+                var relationprice = $("input[name='relationid']:checked").attr("price");
+                totalprice = parseInt($('.pprice').val()) + parseInt(relationprice);
+                $('.costs').html('每件 ￥<b>' + totalprice + '</b>，');
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(e) {
+
+        // $(".ajaxinfo").hide();
+
+        var buy_href_ajax_url = '__APP__/cart-additem';
+
+//购买的AJAX调用
+        $("#buy_href").click(function(event){
+            var pid = $(".pid").val();
+            if (pid == ''){
+                alert('请正确选择饰品的尺寸或材质信息后再次提交');
+                return;
+            }
+
+            if (($("#buycount").val() < 1) || ($("#buycount").val() > 99)){
+                alert( '请正确填写份数' );
+                return ;
+            }
+
+            $.ajax({
+                url: buy_href_ajax_url,
+                type:'get',
+                cache:false,
+                dataType:'json',
+                data:{
+                    pid : $(".pid").val(),
+                    isreal : 1,
+                    count : $("#buycount").val(),
+                    // count : 2,
+                },
+                success: function(data,textStatus){
+                    if(data.isSuccess == true){
+                        //加入购物车成功
+                        location.href= "__DOC__/user.php/cart";
+                        return;
+                    }else{
+                        //加入购物车失败
+                        location.href= "__DOC__/user.php/cart";
+                        return;
+                    }
+                },
+                error: function(Request,Status,Error) {alert(Request + '|' + Status + '|' +Error);}
+            });
+        });
+    });
+
+    $("#buycount").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                // Allow: Ctrl+A
+                (e.keyCode == 65 && e.ctrlKey === true) ||
+                // Allow: home, end, left, right
+                (e.keyCode >= 35 && e.keyCode <= 39)) {
+            // let it happen, don't do anything
+            return;
+        }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+
+    function goLogin(){
+        location.href= "__DOC__/user.php/login?from_url=__SELF__";
+    }
+</script>
+<{include file=C('MICKYFOOT')}>

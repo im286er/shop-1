@@ -1,0 +1,106 @@
+<div class="part-selector-item" <{if $item.ishidden eq 1}>style="display: none;"<{/if}>>
+<div class="unit-parent unit-left">
+    <div class="unit-child"><{$item.unit_showname}></div>
+    <{if $item.unit_showname eq '尺寸'}>
+        <a class="unit-child diy-rin" href="javascript:void(0)">
+            <span class="glyphicon glyphicon-question-sign unit-clts" aria-hidden="true"></span>
+        </a>
+    <{/if}>
+</div>
+<div class="unit-parent unit-center">
+    <{if $item.fieldtype_second eq 'Pic'}>
+        <div class="unit-child in-shop" panelname="panel-<{$item.unit_name}>-shop">
+        <div class="selected-icon-common font-<{$item.fieldvalue}>">
+
+        </div>
+   <{elseif $item.fieldtype_second eq 'Text' || $item.fieldtype_second eq 'Number'}>
+        <div class="unit-child in-shop" panelname="panel-<{$item.unit_name}>-shop">
+            <div class="unit-parent">
+                <div class="unit-child unit-selected-label" mname="<{$item.unit_name}>" mvalue="<{$item.fieldvalue}>"><{$item.unit_value_arr[$item.fieldvalue].value}></div>
+            </div>
+    <{else}>
+    <div class="unit-child">
+        <div class="unit-parent">
+            <div class="unit-child unit-selected-label" mname="<{$item.unit_name}>" mvalue="<{$item.fieldvalue}>"><{$item.unit_value_arr[$item.fieldvalue].value}></div>
+        </div>
+    <{/if}>
+    </div>
+</div>
+
+<div class="unit-right in-shop" panelname="panel-<{$item.unit_name}>-shop">
+    <div class="unit-child unit-arrow">
+    </div>
+</div>
+<{if $isMobile == 0}>
+    <{if $item.fieldtype_second eq 'Pic'}>
+    <div class="panel-pc panel-<{$item.unit_name}>-shop" style="display: none">
+        <div class="panel-content">
+            <{foreach $item.unit_value_arr as $result}>
+                <{if $item.fieldvalue == $result.key}>
+                <div class="select-pic part-active" mvalue="<{$result.key}>" mname="<{$item.unit_name}>" title="<{$result.TPM_name}>">
+                <{else}>
+                <div class="select-pic" mvalue="<{$result.key}>" mname="<{$item.unit_name}>" title="<{$result.TPM_name}>">
+                <{/if}>
+                    <div class="selected-icon font-<{$result.key}>"></div>
+                </div>
+            <{/foreach}>
+        </div>
+    </div>
+    <{elseif $item.fieldtype_second eq 'Text' || $item.fieldtype_second eq 'Number'}>
+    <div class="panel-pc panel-<{$item.unit_name}>-shop" style="display: none">
+        <div class="panel-content">
+            <div class="part-text">
+                <{foreach $item.unit_value_arr as $result}>
+                <{if $item.fieldvalue == $result.key}>
+                <span class="select-text part-active" mtype="<{$item.fieldtype_second}>" mvalue="<{$result.key}>" mname="<{$item.unit_name}>"><{$result.value}></span>
+                <{else}>
+                <span class="select-text" mtype="<{$item.fieldtype_second}>" mvalue="<{$result.key}>" mname="<{$item.unit_name}>"><{$result.value}></span>
+                <{/if}>
+                <{/foreach}>
+            </div>
+        </div>
+    </div>
+    <{/if}>
+<{/if}>
+</div>
+<{if $isMobile == 1}>
+<!--pic shop panel -->
+<{if $item.fieldtype_second eq 'Pic'}>
+<div class="panel panel-<{$item.unit_name}>-shop" style="display: none">
+    <div class="panel-title">
+        <span class="title">请选择字体</span>
+        <img class="panel-back" src="__MSTATIC__/imgs/diy_ddd_common/back.png" alt="">
+    </div>
+    <div class="panel-content">
+        <{foreach $item.unit_value_arr as $result}>
+            <{if $item.fieldvalue == $result.key}>
+                <div class="part-col-2 part-raw-3 select-pic part-active" mvalue="<{$result.key}>" title="<{$result.TPM_name}>">
+            <{else}>
+                <div class="part-col-2 part-raw-3 select-pic" mvalue="<{$result.key}>" title="<{$result.TPM_name}>">
+            <{/if}>
+                    <div class="selected-icon font-<{$result.key}>"></div>
+                </div>
+        <{/foreach}>
+        </div>
+    </div>
+<!--text shop panel -->
+<{elseif $item.fieldtype_second eq 'Text' || $item.fieldtype_second eq 'Number'}>
+<div class="panel panel-<{$item.unit_name}>-shop" style="display: none">
+    <div class="panel-title">
+        <span class="title">请选择<{$item.unit_showname}></span>
+        <img class="panel-back" src="__MSTATIC__/imgs/diy_ddd_common/back.png" alt="">
+    </div>
+    <div class="panel-content">
+        <div class="part-text">
+            <{foreach $item.unit_value_arr as $result}>
+                <{if $item.fieldvalue == $result.key}>
+                    <span class="select-text part-active" mtype="<{$item.fieldtype_second}>" mvalue="<{$result.key}>" mname="<{$item.unit_name}>"><{$result.value}></span>
+                <{else}>
+                    <span class="select-text" mtype="<{$item.fieldtype_second}>" mvalue="<{$result.key}>" mname="<{$item.unit_name}>"><{$result.value}></span>
+                <{/if}>
+            <{/foreach}>
+        </div>
+    </div>
+</div>
+<{/if}>
+<{/if}>

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>-{$site.SITE_INFO.name}</title>
+<php>
+$addCss="";
+            $addJs="";
+            $currentNav =' > ';
+            </php>
+            <include file="Common:intohead" />
+            </head>
+            <body>
+<!-- AP Element::AjaxInfo //-->
+<div class="ajaxinfo">
+	<h3></h3>
+</div>
+<!-- End of AP Element::AjaxInfo //-->
+<div class="wrap"> <include file="Common:head" />
+	<div class="mainBody"> <include file="Common:left" />
+        <div id="Right">
+        <div class="masterpanel">
+    <div class="nagiscroll">
+      <div class="nagi">
+      <br><br>
+        <form action="" method="post">
+          <h3>添加分类</h3>
+          <table class="tab">
+              <tr>
+                <td>分类名</td>
+                <td><input type="text" name="cat_name" />
+                  <span class="must">*</span></td>
+              </tr>
+              <tr>
+                <td>排序</td>
+                <td><input type="text" name="sort_order" value="0"/></td>
+              </tr>
+     
+              <tr>
+                <td>父级分类</td>
+                <td><select class="dropdown form" name="parent_id">
+                {$form_combo}
+                  </select>
+                  <span class="must">*</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="buttonbar">
+            <button class="green" type="submit">添加</button>
+            <button class="gray" type="button" id="goback">返回</button>
+          </div>
+        </form>
+        <script type="text/javascript">
+						$(document).ready(function () {
+							$('#goback').click(function (e) { window.location.href = "__APP__/Cates/index"; });
+						});
+					</script> 
+      </div>
+    </div>
+  </div>
+  	</div>
+</div>
+<div class="clear"></div>
+<include file="Common:foot" />
+</body>
+</html>

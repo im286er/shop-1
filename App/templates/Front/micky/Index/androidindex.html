@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IGNITE</title>
+    <link rel="stylesheet" href="__MICKYSTATIC__/touchscreen/css/baiban.css">
+    <script style="text/javascript" src="__MICKYSTATIC__/touchscreen/js/jquery.js"></script>
+</head>
+<body>
+<div class="bg_img">
+    <div class="bg_img_zindex">
+        <!-- logo -->
+        <div class="logo">
+            <img src="__MICKYSTATIC__/touchscreen/images/baiban/logo.png" alt="">
+        </div>
+        <!-- lunbo -->
+        <div class="scroll">
+            <div class="list_lunbo">
+                <ul id="box_img">
+                    <{foreach from=$info item=vo}>
+                    <li>
+                        <!-- 图片 -->
+                        <div class="list_img">
+                            <a href="__DOC__/<{$vo.pic_link}>-agentid-<{$agentid}>.html">
+                              1111  <img src="<{$vo.pic}>" alt="">
+                            </a>
+                        </div>
+                        <!-- 标题 -->
+                        <div class="list_title">
+                            <a href="">
+                                <{$vo.title}>
+                            </a>
+                        </div>
+                    </li>
+                    <{/foreach}>
+                    <!--<li>-->
+                        <!--&lt;!&ndash; 图片 &ndash;&gt;-->
+                        <!--<div class="list_img">-->
+                            <!--<a href=""><img src="__MICKYSTATIC__/touchscreen/images/baiban/1.png" alt=""></a>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash; 标题 &ndash;&gt;-->
+                        <!--<div class="list_title">-->
+                            <!--<a href="">-->
+                                <!--智慧首饰-->
+                            <!--</a>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--&lt;!&ndash; 图片 &ndash;&gt;-->
+                        <!--<div class="list_img">-->
+                            <!--<a href=""><img src="__MICKYSTATIC__/touchscreen/images/baiban/2.png" alt=""></a>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash; 标题 &ndash;&gt;-->
+                        <!--<div class="list_title">-->
+                            <!--<a href="">-->
+                                <!--电影同款-->
+                            <!--</a>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--&lt;!&ndash; 图片 &ndash;&gt;-->
+                        <!--<div class="list_img">-->
+                            <!--<a href=""><img src="__MICKYSTATIC__/touchscreen/images/baiban/3.png" alt=""></a>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash; 标题 &ndash;&gt;-->
+                        <!--<div class="list_title">-->
+                            <!--<a href="">-->
+                                <!--字母系列-->
+                            <!--</a>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script language="javascript">
+    var len = $(".list_lunbo ul li").length;
+    $(".list_lunbo ul").css('width',(700+30)*len+"px");
+</script>
+</body>
+</html>

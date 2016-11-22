@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IGNITE"智绘首饰"珠宝展现场体验报名</title>
+    <!--一定放 herd中-->
+    <meta name="viewport" content="user-scalable=no"/>
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/bootstrap/css/bootstrap.min.css">
+    <script src="__MICKYMOBILESTATIC__/js/jquery.js"></script>
+    <script src="__MICKYMOBILESTATIC__/laydate/laydate.js"></script>
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/laydate/skins/default/laydate.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/css/form.css">
+    <script>
+        $(function () {
+            $("#myform").submit(function () {
+                var name = $("#name").val();
+                var phone = $("#phone").val();
+                var company = $("#company").val();
+                var date = $("#date").val();
+                var time= $('input:radio[name="radio1"]:checked').val();
+                var desc = $('#desc').val();
+                if (!name){
+                    $("#name").next().html("不能为空");
+                    return false;
+                }else if(!phone){
+                    $("#name").next().html("");
+                    $("#phone").next().html("不能为空");
+                    return false;
+                }else if(!(/^(1[0-9])\d{9}$/.test(phone))){
+                    $("#name").next().html("");
+                    $("#phone").next().html("输入正确的手机号");
+                    return false;
+                }else if(!company){
+                    $("#phone").next().html("");
+                    $("#company").next().html("不能为空");
+                    return false;
+                }else if(!date){
+                    $("#name").next().html("");
+                    $("#phone").next().html("");
+                    $("#company").next().html("");
+                    $("#date").next().html("请选择日期");
+                    return false;
+                }else if(time == null){
+                    $("#name").next().html("");
+                    $("#phone").next().html("");
+                    $("#company").next().html("");
+                    $("#date").next().html("");
+                    $("#time").html("请选择时间段");
+                    return false;
+                } else {
+                    return true;
+                    //$('#myform').submit();
+//                    $.ajax({
+//                        type:'post',
+//                        data:'name='+name+"&phone="+phone+"&company="+company+"&date="+date+"&radio1="+time+"&desc="+desc,
+//                        dateType:'json',
+//                        url:"<{U('Event/doSubscribe')}>",
+//                        success:function(msg){
+//                            if(msg.info == 1){
+//                                window.location.href="__DOC__/index.php/event-oresult-msg-1";
+//                                //swal("IGNITE欢迎您!", "You clicked the button!", "预约成功");
+//                            }else if(msg.info == 3){
+//                                //重复提交
+//                                window.location.href="__DOC__/index.php/event-oresult-msg-3";
+//                            }else{
+//                                window.location.href="__DOC__/index.php/event-oresult-msg-2";
+//                            }
+//                        }
+//                    })
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="top_img">
+    <div class="container-fluid">
+        <div class="row">
+            <img src="__MICKYMOBILESTATIC__/images/top.jpg" alt="">
+        </div>
+    </div>
+</div>
+<!-- 表单 -->
+<div class="form-box">
+    <div class="container-fluid">
+        <div class="row">
+            <form action="<{U('Event/doSubscribe')}>" id="myform" method="post">
+                <div class="form_name">
+                    <h4>姓名&nbsp;*</h4>
+                    <input type="text" value="" id="name" name="name" />
+                    <span style="color:red;"></span>
+                </div>
+                <div class="form_name">
+                    <h4>手机&nbsp;*</h4>
+                    <input type="tel" value="" id="phone" name="phone" maxlength="11"/>
+                    <span style="color:red;"></span>
+                </div>
+                <div class="form_name">
+                    <h4>公司&nbsp;*</h4>
+                    <input type="text" value="" id="company" name="company"/>
+                    <span style="color:red;"></span>
+                </div>
+                <div class="form_name">
+                    <h4 class="yuyueDate">预约日期&nbsp;*</h4>
+                    <p>现场体验时间仅限：10月13日-16日</p>
+                    <input type="text" value="" name="date" id="date" onclick="laydate()" class="laydate-icon"/>
+                    <span style="color:red;"></span>
+                </div>
+                <div class="form_name">
+                    <h4 class="yuyueDate">预计体验时间段&nbsp;*</h4>
+                    <p>现场人比较多，请按照预约时间来体验~</p>
+                    <ul>
+                        <li>
+                            <input type="radio" name="radio1" id="radio1"  value="1"/>
+                            <label for="radio1" id="label1">10:00-11:00</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="radio1" id="radio2" value="2"/>
+                            <label for="radio2" id="label2">11:00-12:00</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="radio1" id="radio3" value="3"/>
+                            <label for="radio3" id="label3">13:00-14:00</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="radio1" id="radio4" value="4"/>
+                            <label for="radio4" id="label4">14:00-15:00</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="radio1" id="radio5" value="5"/>
+                            <label for="radio5" id="label5">15:00-16:00</label>
+                        </li>
+                    </ul>
+                    <br/>
+                    <span id="time" style="color:red;"></span>
+                </div>
+                <div class="form_name">
+                    <p>备注（如有其它需求，可留言~）</p>
+                    <textarea rows="3" cols="20" maxlength="100" name="desc" id="desc"></textarea>
+                </div>
+                <input class="btn btn-default" type="submit" value="立即预约">
+            </form>
+            <p class="welcome">期待您的到来，不见不散~</p>
+        </div>
+    </div>
+</div>
+<script>
+    ;!function(){
+        laydate({
+            elem: '#date',
+            event: 'focus',
+            format: 'YYYY-MM-DD', //日期格式
+            isclear: false, //是否显示清空
+            istoday: false, //是否显示今天
+            issure: false, //是否显示确认
+            min: '2016-10-13', //最小日期
+            max: '2016-10-16', //最大日期
+            choose: function(datas){ //选择日期完毕的回调
+                $.ajax({
+                    type:'post',
+                    data:'datas='+datas,
+                    dateType:'json',
+                    url:"<{U('Event/getNumBydate')}>",
+                    success:function(msg){
+                        if(msg){
+                            $('#radio1').removeAttr('disabled');
+                            $('#label1').css('color','#000');
+                            $('#radio2').removeAttr('disabled');
+                            $('#label2').css('color','#000');
+                            $('#radio3').removeAttr('disabled');
+                            $('#label3').css('color','#000');
+                            $('#radio4').removeAttr('disabled');
+                            $('#label4').css('color','#000');
+                            $('#radio5').removeAttr('disabled');
+                            $('#label5').css('color','#000');
+                            //循环获取不符合要求的时间段
+                            for (var i = 0; i < msg.length; i++) {
+                                //alert(i+":"+msg[i]['timetype']);
+                                if(msg[i]['timetype']=='1'){
+                                    $('#radio1').attr('disabled','disabled');
+                                    $('#label1').css('color','#ccc');
+                                }
+                                if(msg[i]['timetype']=='2'){
+                                    $('#radio2').attr('disabled','disabled');
+                                    $('#label2').css('color','#ccc');
+                                }
+                                if(msg[i]['timetype']=='3'){
+                                    $('#radio3').attr('disabled','disabled');
+                                    $('#label3').css('color','#ccc');
+                                }
+                                if(msg[i]['timetype']=='4'){
+                                    $('#radio4').attr('disabled','disabled');
+                                    $('#label4').css('color','#ccc');
+                                }
+                                if(msg[i]['timetype']=='5'){
+                                    $('#radio5').attr('disabled','disabled');
+                                    $('#label5').css('color','#ccc');
+                                }
+                            }
+                        }
+                    }
+                })
+            }
+        })
+
+    }();
+</script>
+</body>
+</html>

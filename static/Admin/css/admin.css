@@ -1,0 +1,269 @@
+@charset "utf-8";
+/* 
+	Project Nyan ~ Core CSS. / (C)2013 Erinago / (C)2010-2013 Nagomi Mind
+	Rev. 1.0.0 / Last Update: March 5, 2012
+	
+	For Program 3D Factory MP used only!
+*/ 
+html { overflow: auto }
+body { font-size: 12px; background: #171B19 center center; font-family: \5fae\8f6f\96c5\9ed1 , Arial, sans-serif; }
+
+a { color: #09F; text-decoration: none }
+a:hover { color:#06F; text-decoration: none }
+
+/* global */
+h1, h2, h3, h4, h5, h6 { font-weight: normal; white-space: nowrap; text-overflow: ellipsis; line-height: normal; }
+
+/* shadows */
+.shadowed { box-shadow: 0 0 4px #E0E0E0; -webkit-box-shadow: 0 0 4px #E0E0E0; -moz-box-shadow: 0 0 4px #E0E0E0; }
+.shadowed-dark { box-shadow: 0 0 5px #000; -webkit-box-shadow: 0 0 5px #000; -moz-box-shadow: 0 0 5px #000; }
+
+/* page warps */
+.warp { padding-top: 80px; min-width: 1007px; }
+.bg { z-index: 50; background: #010101; }
+
+/* header layouts */
+.header { position: fixed; top: 0px; left: 0px; width: 100%; height: 80px; color: #FFF; min-width: 1007px; }
+.header.front { height: 73px; border-top: 7px solid #F25237; border-bottom: 2px solid #F25237; z-index: 100 }
+.header .textlogo { padding: 10px 20px 0 }
+.header .textlogo h1 { padding: 0; margin: 0; line-height: 100%; font: 24px "微软雅黑" ,Microsoft YaHei, arial, sans-serif;  }
+.header .textlogo h1 a { color: #FFF; }
+.header .textlogo h2 { padding: 0; margin: 0; line-height: 100%; font: 16px "微软雅黑" ,Microsoft YaHei, arial, sans-serif; }
+
+/* userpanel layouts */
+.userpl { width: 250px; height: 73px }
+.userpl .avatar { float: left; width: 50px; height: 50px; padding: 4px; margin: 7px; background: #FFF }
+.userpl .avatar img { width: 50px; height: 50px }
+.userpl .info { float: right; width: 170px; margin: 7px 0 }
+.userpl .info a { color: #FFF } 
+.userpl .info a.btn { float: left; display: block; padding-right: 20px; color: #F25237; line-height: 23px }
+.userpl .info span { display: block; font-size: 12px; font-family: Verdana, Geneva, sans-serif }
+.userpl .info h4 { font-size: 16px }
+
+/* sidebar layouts */
+.sidebar { position: fixed; width: 180px; min-height: 500px; background: #3D3D3D; z-index: 9999; }
+.sidebar #globalnav { position: relative }
+.sidebar #globalnav li { position: relative; z-index: 12000; }
+.sidebar #globalnav li:hover ul, .sidebar #globalnav li li:hover ul, .sidebar #globalnav li li li:hover ul, .sidebar #globalnav li li li li:hover ul { display: block }
+.sidebar #globalnav li:hover ul ul, .sidebar #globalnav li:hover ul ul ul, .sidebar #globalnav li:hover ul ul ul ul { display: none }
+.sidebar #globalnav li ul ul { top: 0px; left: 100% }
+.sidebar #globalnav li ul a { width: 150px; border-left: 2px solid #484848; background: #555 }
+.sidebar #globalnav li a.st { border-bottom: 2px solid #C0412B; background: #F25237 }
+.sidebar #globalnav li a { display: block; padding-left: 20px; color: #FFF; border-bottom: 2px solid #616161; font-size: 14px; line-height: 36px; height: 36px }
+.sidebar #globalnav li a:hover { color: #CCC; border-bottom: 2px solid #8A8A8A; background: #484848 }
+.sidebar #globalnav ul { position: absolute; display: none; top: 0px; left: 100%; z-index: 3000 }
+.sidebar #globalnav ul ul { top: auto }
+/* sidebar ~ ffsearch */
+.sidebar .ffsearch { padding: 20px 0; text-align: center; display: none; }
+.sidebar .ffsearch button { position: absolute; top: 0px; right: 0px; width: 30px; background-color: transparent; text-indent: -1000px; border: none; background: url(../images/admin/frame/ffsearch.jpg) center center no-repeat; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
+.sidebar .ffsearch input { width: 140px; padding: 7px 5px; color: #999; border: none; border-bottom: 1px solid #202020; font-size: 12px; background: none; }
+.sidebar .ffsearch form { position: relative; width: 150px; margin: 0 auto }
+
+/* masterpanel layouts */
+.masterpanel { background: #FFF; }
+.masterpanel .nagiscroll {margin-left: 10px; }
+*+html .masterpanel .nagiscroll { margin-left: 0; }
+.masterpanel .nagi { padding: 20px; background: #FFF; padding-bottom: 60px; }
+.masterpanel .leftform { width: 500px; float: left; }
+.masterpanel .rightform { width: 250px; float: left; padding-left: 30px }
+.masterpanel .rightbar { width: 230px; height: 370px; float: left; padding-left: 20px; border: 0px solid  #F00; }
+.masterpanel .rightbar .lgavatar { border: 1px solid #CCC; width: 214px; height: 214px; padding: 10px; }
+.masterpanel .rightbar .lgavatar img { width: 214px; height: 214px }
+.masterpanel .rightbar h3 { font-size: 16px; line-height: 35px; padding: 0 5px; }
+.masterpanel .rightbar h3 span { font-size: 14px; line-height: 35px; padding-right: 10px; color: #999; }
+.masterpanel .rightbar a.editpfo { padding: 0 5px; font-size: 12px; line-height: 150%; }
+.masterpanel .rightbar .activity { padding: 5px; }
+.masterpanel .rightbar .activity dt { color: #CCC; padding-top: 10px; }
+.masterpanel .rightbar .activity dd { font-size: 14px; color: #666; font-family: Verdana, Geneva, sans-serif; line-height: 30px;}
+.masterpanel .rightbar .moreoption { padding: 5px }
+.masterpanel .rightbar .moreoption dt { color: #666; padding: 10px 0 5px; }
+.masterpanel .rightbar .moreoption dd { font-size: 14px; color: #333; font-family: Verdana, Geneva, sans-serif; line-height: 26px;}
+
+/* yes! nagi! */
+/* nagi ~ public elements */
+.nagi h2 { padding: 2px 0 25px; font-size: 20px; line-height: 125% }
+.nagi h2 span { padding-left: 20px; color: #999; font-size: 14px }
+html .nagi h2.sub { padding-bottom: 15px; padding-top: 5px; font-size: 18px; }
+.nagi h3 { margin-bottom: 10px; padding: 2px 0 5px; border-bottom: 1px solid #CCC; font-size: 14px; line-height: 125% }
+.nagi p { color: #333; line-height: 150% }
+.nagi .ntr { height: 5px }
+/* nagi ~ form tables */
+.nagi table.listtable {  }
+.nagi table.listtable a { line-height: 20px; }
+.nagi table.listtable tr.h { background: #F0F0F0; }
+.nagi table.listtable tr.h td { border-right: none; color: #333; padding: 8px 5px; }
+.nagi table.listtable tr:hover { background: #F8F8F8; }
+.nagi table.listtable td { padding: 5px; border-right: 1px solid #EAEAEA; border-bottom: 1px solid #CCC }
+.nagi table.listtable .action { border-right: none }
+.nagi table.listtable .action a { display: block }
+.nagi table.listtable .order input { width: 30px; text-align: center; cursor: pointer; border: none; box-shadow: none; border: 1px solid #FFF; padding: 0; }
+.nagi table.listtable .order input:hover { border: 1px solid #CCC; }
+.nagi table.listtable .order input:focus { border: 1px solid #CCC; cursor: text }
+.nagi table.catelist .catename a { background:url(../images/admin/frame/cate_levels.png) no-repeat; line-height: 30px; display: block; margin-left: 10px; }
+.nagi table.catelist .catename .lv0 { background-image: none; } 
+.nagi table.catelist .catename .lv1 { background-position: -60px 0; padding-left: 35px; } 
+.nagi table.catelist .catename .lv2 { background-position: -30px 0; padding-left: 65px } 
+.nagi table.catelist .catename .lv3 { background-position: 0 0; padding-left: 95px }
+.nagi table.prdlist .date { color: #CCC }
+.nagi table.prdlist .thumbs { width: 64px; height: 64px; background: #FEE; -moz-box-shadow: 0px 0px 3px #888; -webkit-box-shadow: 0px 0px 3px #888; box-shadow: 0px 0px 3px #888; }
+.nagi table.prdlist .thumbs img { width: 64px; height: 64px }
+.nagi table.prdlist .stats { display: inline-block; padding-left: 5px; border-left: 3px solid #096; line-height: 64px }
+.nagi table.prdlist .price { text-align: right }
+.nagi table.prdlist .cate { color: #CCC }
+.nagi table.listtable .atter a { display: block; float: left; height: 18px; margin: 2px 5px 2px 0; padding: 0 5px; line-height: 18px; overflow: hidden; white-space: nowrap; }
+.nagi table.listtable .atter a:hover { color: #CCC }
+.nagi table.listtable .atter a.yes { color: #FFF; background: #019967 }
+.nagi table.listtable .atter a.no { color: #FFF; background: #999 }
+.nagi table.prdlist .pdname span { display: block }
+.nagi table.prdlist .pdname span a { margin-right: 7px; color: #666 }
+
+/*******************************************************************************/
+.nagi table { width: 100%; margin-bottom: 15px; border: none }
+.nagi table td.checkboxbar { width: auto }
+.nagi table td { padding-left: 10px; font-size: 12px; text-align: left }
+.nagi table th { width: 120px; color: #666; font-size: 12px; text-align: left }
+.nagi table tr { height: 34px }
+.nagi table tr:hover th { background: #F9F9F9 }
+.nagi table th, .nagi table td { vertical-align: middle }
+.nagi table td i { display: inline-block; padding-left: 15px; color: #999; font-size: 12px; font-style: italic }
+/* nagi ~ form tables ~ horizontal tabel */
+.nagi .horizontal { width: auto;  font-size: 14px; padding-bottom: 10px; } 
+html .nagi .horizontal input, html .nagi .horizontal label { height: 26px; line-height: 26px }
+.nagi .horizontal .controler {float: left; margin-right: 10px; height: 35px; }
+.nagi .horizontal label { padding: 0 5px 0 0; color: #666; }
+.nagi .horizontal button { height: 28px; }
+/* nagi ~ form tables ~ moreoption layout */
+.nagi .moreoption tr { height: 55px; }
+.nagi .moreoption th { width: 350px; color: #222; padding-right: 15px; padding-bottom: 10px; }
+.nagi .moreoption th i { display: block; color: #AAA; font-size: 12px; font-style: normal; -webkit-text-size-adjust: none; padding: 2px 0; }
+/* nagi ~ controls */
+/* nagi ~ controls ~ textbox */
+.nagi input[type="text"], .nagi input[type="password"], .nagi textarea { height: 24px; width: 180px; padding: 0px 10px; color: #333; font-size: 12px; -moz-box-shadow: 0px 0px 3px #CCC inset; -webkit-box-shadow: 0px 0px 3px #CCC inset; border: 1px solid #C0C0C0; box-shadow: 0px 0px 3px #CCC inset; line-height: 24px; }
+html .nagi textarea { width: 260px; height: 95px; margin-bottom: 5px;}
+.nagi input[type="text"]:focus, .nagi input[type="password"]:focus, .nagi textarea:focus  { background: #FFFBFB; border: 1px solid #FF8080; }
+.nagi input[type="text"]:hover, .nagi input[type="password"]:hover, .nagi textarea:hover  { border: 1px solid #999 }
+/* nagi ~ controls ~ checkbox */
+.nagi .grub label { height: 24px; padding: 0px 10px; background:#F4F4F4; font-size: 12px; color: #222;border: 1px solid #C0C0C0; border-right-width: 0px;   min-width: 50px;  }
+.nagi .grub .checkbox { margin: 0; border: 1px solid #CCC; padding: 3px; }
+.nagi .grub .checkbox.checked { background-position: 3px 3px;}
+.nagi .grub .checkbox:hover { border-color: #999;}
+.nagi .checkbox { display: inline-block; float: left; width: 20px; height: 20px; margin-left: 3px; box-shadow: 0px 0px 3px #CCC inset; -webkit-box-shadow: 0px 0px 3px #CCC inset; -moz-box-shadow: 0px 0px 3px #CCC inset; border: 1px solid #C0C0C0; cursor: pointer }
+.nagi .checkbox:hover { border: 1px solid #999 }
+.nagi .checkbox.checked { background: #EEE url(../images/admin/frame/nyan.png) 0px 0px no-repeat; }
+/* nagi ~ controls ~ dropdown menu */
+.nagi .dropdown { position: relative; display: inline-block; min-width: 60px; height: 24px; padding: 1px 20px 1px 10px; color: #333; font-size: 12px; line-height: 24px; cursor: pointer; box-shadow: 0px 0px 8px #EEE inset; border: 1px solid #C0C0C0; background: #FFF url(../images/admin/frame/nyan.png) right -20px no-repeat; -webkit-box-shadow: 0px 0px 8px #EEE inset; -moz-box-shadow: 0px 0px 8px #EEE inset; }
+.nagi .dropdown.form { width: 170px; }
+.nagi .grubleft .dropdown { float: left; border-right: none; background-color:#F4F4F4; }
+.nagi select.dropdown { height: 28px; padding-right: 0; }
+.nagi .dropdown:hover { border: 1px solid #999; background-color: #F3F3F3; color: #000; }
+.nagi .grubleft .dropdown:hover { border-right: none;}
+.nagi .dropdown ul { width: 100%; background: #616161; position: absolute; top: 25px; left: -1px; padding: 1px; display: none; z-index: 1600 }
+.nagi .dropdown ul li { color: #FFF; padding: 10px; line-height: 125%; display: block; }
+.nagi .dropdown ul li:hover { background: #888 }
+.nagi .dropdown ul li.disable { color: #999; background: #727272; cursor: default }
+.nagi h2 span.dropdown { min-width: inherit; min-width: auto\9; padding: 0 24px 0 0; box-shadow: none; border: 1px solid #FFF; background-position: right -20px; -webkit-box-shadow: none; -moz-box-shadow: none; }
+.nagi h2 span.dropdown span { padding-left: 0px }
+/* nagi ~ controls ~ passschecker */
+.nagi .passstrength { width: 200px; height: 22px; text-align: center; border: 1px solid #F4F4F4; background: #F9F9F9; line-height: 22px; /*default*/ }
+.nagi .passstrength.red { color: #F25237; border: 1px solid #F25237; background: #FFE8E8; }
+.nagi .passstrength.yellow { color: #FFB997; border: 1px solid #FFB997; background: #FFEBE1; }
+.nagi .passstrength.green { color: #096; border: 1px solid #C4FFD2; background: #DDFFE6; }
+/* nagi ~ controls ~ labels */
+.nagi label { display: inline-block; float: left; height: 22px; padding: 0 20px 0 10px; line-height: 22px }
+/* nagi ~ notice */
+.nagi span.must { font-size: 12px; color: #900; margin-left: 10px; font-weight: bold; }
+/* nagi ~ attention */
+.nagi .attention { width: 500px; padding-bottom: 20px; color: #F25237; line-height: 150% }
+.nagi .attention h3 { color: #F25237; border-bottom: 2px solid #F25237; font-weight: bold }
+.nagi .attention ol { padding-left: 20px; list-style: decimal }
+
+/* buttons */
+.nagi .buttonbar { padding: 5px 0 25px }
+.nagi .buttonbar button { margin-right: 10px }
+.nagi .buttonbar.fr button { margin-left: 10px; margin-right: 0px; }
+
+button { height: 35px; margin: 0; padding: 0 15px; color: #FFF; font-size: 14px; cursor: pointer; font-family: \5fae\8f6f\96c5\9ed1 , Arial, sans-serif; overflow: visible; -moz-box-shadow: 0px 0px 3px #CCC; -webkit-box-shadow: 0px 0px 3px #666; box-shadow: 0px 0px 3px #CCC; text-shadow: 0px 0px 1px #333; }
+/* buttons ~ styles */
+button.full { height: 35px }
+button.thin { height: 32px }
+button.blue { border: 1px solid #0085E8; background: #0072C6; }
+button.blue:active { border: 1px solid #0072C6 }
+button.blue:hover { border: 1px solid #0D98FF; background: #0082E1; }
+button.lightgray { border: 1px solid #AAA; background: #999; }
+button.lightgray:active { border: 1px solid #999 }
+button.lightgray:hover { border: 1px solid #999; background: #888; }
+button.gray { border: 1px solid #888; background: #777; }
+button.gray:active { border: 1px solid #777 }
+button.gray:hover { border: 1px solid #999; background: #888; }
+button.darkgray { border: 1px solid #6E6E6E; background: #555; }
+button.darkgray:active { border: 1px solid #555 }
+button.darkgray:hover { border: 1px solid #8B8B8B; background: #676767; }
+button.red { border: 1px solid #F4735B; background: #F25237; }
+button.red:active { border: 1px solid #F25237 }
+button.red:hover { border: 1px solid #F79280; background: #F3664E; }
+button.green { border: 1px solid #74B923; background: #5EAC1A; }
+button.green:active { border: 1px solid #5EAC1A }
+button.green:hover { border: 1px solid #8FD935; background: #6AC01D; }
+
+.pagebutton li { float: left; margin-left: 7px }
+.pagebutton li a { display: block; padding: 0 10px; border: 1px solid #888; background: #777; -moz-box-shadow: 0px 0px 3px #CCC; -webkit-box-shadow: 0px 0px 3px #CCC; box-shadow: 0px 0px 3px #CCC; line-height: 26px; height: 26px; color: #FFF; text-shadow: 0px 0px 1px #333;  }
+.pagebutton li a:hover { border: 1px solid #999; background: #888; }
+.pagebutton li a.here { background:#CCC; border:1px solid #BBB; }
+
+.nagi .horizontal .dropdown.searchmethod { width: 60px }
+.nagi .horizontal .dropdown.cate { width: 95px }
+.nagi .horizontal .dropdown.cate ul { width: 170px; }
+.nagi .horizontal .dropdown.format ul { width: 160px }
+
+
+/* footer */
+.footbar { position: fixed; bottom: 0px; width: 100%; height: 42px; color: #FFF; font-size: 14px; _position: absolute; _margin-top: expression(this.style.pixelHeight+document.documentElement.scrollTop); _bottom: 0px; min-width: 1007px; background: #171B19 url(../images/login_bg.jpg) center bottom;  }
+.footbar.front { z-index: 100 }
+.footbar ul li { float: left }
+.footbar a { display: block; padding: 0 26px; color: #FFF; line-height: 42px }
+.footbar a:hover { background: #666 }
+
+/* fix ipad3 layout */
+@media only screen and (max-device-width: 1024px) and (orientation:portrait) { 
+    html .rightbar { display: none }
+    html .header, html .warp, html .footbar { min-width: inherit }
+}
+@media only screen and (max-device-width: 1024px) and (orientation:landscape) { 
+    html .header, html .warp, html .footbar { min-width: inherit }
+}
+
+.runtime { position: fixed; left: 0px; bottom: 42px; width: 100%; height: 30px; _position: absolute; _margin-top: expression(this.style.pixelHeight+document.documentElement.scrollTop-30); _bottom: 40px; line-height: 30px; white-space: nowrap; overflow:hidden; }
+.runtime.face { color: #FFF; font-size: 12px; text-indent: 200px; z-index: 99; font-family: Tahoma, Geneva, sans-serif }
+html .runtime.bg { background: #333; opacity: .7 }
+#think_page_trace_open { z-index: 9999 }
+
+/* 
+	third-party plugin styles
+	jScrollPane 2.0.0 beta11 / https://github.com/vitch/jScrollPane
+*/
+.jspContainer { position: relative; overflow: hidden; }
+.jspPane { position: absolute }
+.jspVerticalBar { width: 10px; top: 0; right: 0; position: absolute; height: 100%; }
+.jspVerticalBar .jspArrow { height: 10px }
+.jspVerticalBar .jspArrow:focus { outline: none }
+.jspHorizontalBar { width: 100%; position: absolute; left: 0; height: 10px; bottom: 0; }
+.jspHorizontalBar .jspArrow { width: 10px; height: 100%; float: left; }
+.jspHorizontalBar .jspTrack, .jspHorizontalBar .jspDrag { height: 100%; float: left; }
+.jspHorizontalBar .jspCap { float: left }
+.jspVerticalBar *, .jspHorizontalBar * { padding: 0; margin: 0; }
+.jspCap { display: none }
+.jspTrack { position: relative; background: #E6E6E6; }
+.jspDrag { top: 0; position: relative; left: 0; cursor: pointer; background: #777; }
+.jspArrow { text-indent: -20000px; display: block; cursor: pointer; background: #50506D; }
+.jspArrow.jspDisabled { cursor: default; background: #80808D; }
+.jspCorner { height: 100%; float: left; background: #EEEEF4; }
+
+
+/* 
+	third-party plugin styles
+	zzexy
+*/
+.zzexy { font-size: 12px; min-height: 300px; margin-bottom: 20px }
+/*
+
+*/ 

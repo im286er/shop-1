@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>后台管理首页-{$site.SITE_INFO.name}</title>
+        <php>
+            $addCss="";
+            $addJs="";
+            $currentNav ='网站管理 > 系统信息';
+        </php>
+        <include file="Common:intohead" />
+    </head>
+    <body>
+        <div class="wrap">
+            <include file="Common:head" />
+            <div class="mainBody">
+                <include file="Common:left" />
+                <div id="Right">
+                    <div class="Item hr">
+                        <div class="current">Information</div>
+                    </div>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+                        <if condition="$todayOrderCount neq 0">
+                        <tr>
+                            <td>
+                            今天成功支付的订单：<font color="red">{$todayOrderCount}</font>
+                                <div class="mOrderList">
+                                <ul>
+
+                                    <foreach name="todayOrderInfo" item="pinfo">
+                                    <li>
+                                        <a href="__APP__/diy/PrepaidDetail/id/{$pinfo.up_id}/Pnodeid/104/nodeid/112/searchtype/0/keywords/" target="_blank">
+                                            <span>ID：{$pinfo.up_id}</span>
+                                            <span> ￥{$pinfo.up_amount} </span>
+                                            <span> Time:{$pinfo.up_orderbacktime} </span>
+                                            <span style="color: red"> 第 {$pinfo.day} 天</span>
+                                            <span> {$pinfo.up_done_status}</span>
+                                        </a>
+                                    </li>
+                                    </foreach>
+                                </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        </if>
+
+                        <if condition="$fiveOrderCount neq 0">
+                            <tr>
+                                <td>
+                                    1-5天成功支付的订单：<font color="red">{$fiveOrderCount}</font>
+                                    <div class="mOrderList">
+                                        <ul>
+                                            <foreach name="fiveOrderInfo" item="pinfo">
+                                                <li>
+                                                    <a href="__APP__/diy/PrepaidDetail/id/{$pinfo.up_id}/Pnodeid/104/nodeid/112/searchtype/0/keywords/" target="_blank">
+                                                        <span>ID：{$pinfo.up_id}</span>
+                                                        <span> ￥{$pinfo.up_amount} </span>
+                                                        <span> Time:{$pinfo.up_orderbacktime} </span>
+                                                        <span style="color: red"> 第 {$pinfo.day} 天</span>
+                                                        <span> {$pinfo.up_done_status}</span>
+
+                                                    </a>
+                                                </li>
+                                            </foreach>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </if>
+
+                        <if condition="$tenOrderCount neq 0">
+                            <tr>
+                                <td>
+                                    5-10天内成功支付的订单：<font color="red">{$tenOrderCount}</font>
+                                    <div class="mOrderList">
+                                        <ul>
+                                            <foreach name="tenOrderInfo" item="pinfo">
+                                                <li>
+                                                    <a href="__APP__/diy/PrepaidDetail/id/{$pinfo.up_id}/Pnodeid/104/nodeid/112/searchtype/0/keywords/" target="_blank">
+                                                        <span>ID：{$pinfo.up_id}</span>
+                                                        <span> ￥{$pinfo.up_amount} </span>
+                                                        <span> Time:{$pinfo.up_orderbacktime} </span>
+                                                        <span style="color: red"> 第 {$pinfo.day} 天</span>
+                                                        <span> {$pinfo.up_done_status}</span>
+                                                    </a>
+                                                </li>
+                                            </foreach>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </if>
+
+                        <if condition="$tenOrderCount neq 0">
+                            <tr>
+                                <td>
+                                    10-15天内成功支付的订单：<font color="red">{$fifteenOrderCount}</font>
+                                    <div class="mOrderList">
+                                        <ul>
+                                            <foreach name="fifteenOrderInfo" item="pinfo">
+                                                <li>
+                                                    <a href="__APP__/diy/PrepaidDetail/id/{$pinfo.up_id}/Pnodeid/104/nodeid/112/searchtype/0/keywords/" target="_blank">
+                                                        <span>ID：{$pinfo.up_id}</span>
+                                                        <span> ￥{$pinfo.up_amount} </span>
+                                                        <span> Time:{$pinfo.up_orderbacktime} </span>
+                                                        <span style="color: red"> 第 {$pinfo.day} 天</span>
+                                                        <span> {$pinfo.up_done_status}</span>
+                                                    </a>
+                                                </li>
+                                            </foreach>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </if>
+
+                        <if condition="$upfifteenOrderCount neq 0">
+                            <tr>
+                                <td>
+                                    15天前成功支付的订单：<font color="red">{$upfifteenOrderCount}</font>
+                                    <div class="mOrderList">
+                                        <ul>
+                                            <foreach name="upfifteenOrderInfo" item="pinfo">
+                                                <li>
+                                                    <a href="__APP__/diy/PrepaidDetail/id/{$pinfo.up_id}/Pnodeid/104/nodeid/112/searchtype/0/keywords/" target="_blank">
+                                                        <span>ID：{$pinfo.up_id}</span>
+                                                        <span> ￥{$pinfo.up_amount} </span>
+                                                        <span> Time:{$pinfo.up_orderbacktime} </span>
+                                                        <span style="color: red"> 第 {$pinfo.day} 天</span>
+                                                        <span> {$pinfo.up_done_status}</span>
+                                                    </a>
+                                                </li>
+                                            </foreach>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </if>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <include file="Common:foot" />
+        <script type="text/javascript">
+           /* $(function(){
+                $.post("{:U('SysData/backup')}", { systemBackup: 1 },function(json){
+                    if(json.status==1){
+                       // popup.success(json.info,"系统定期备份成功提醒");
+                    }
+                });
+            });*/
+        </script>
+    </body>
+</html>

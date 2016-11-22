@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="__MICKYMOBILESTATIC__/js/jquery.js"></script>
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/css/form.css">
+    <title>预约成功</title>
+    <style>
+        body{
+            margin:0;
+            padding:0;
+            background: #f7f7f7;
+        }
+        .msgbox{
+            width:100%;
+            height:100%;
+            overflow: hidden;
+            
+        }
+        .msgbox .msg{
+            position: fixed;
+            width:55%;
+            line-height:2;
+            /*text-align: center;*/
+            font-size: 50px;
+            height:4%;
+            top:0;
+            bottom:0;
+            left:0;
+            right: 0;
+            margin:auto;
+        }
+    </style>
+</head>
+<body>
+<div class="top_img">
+    <div class="container-fluid">
+        <div class="row">
+            <img src="__MICKYMOBILESTATIC__/images/top.jpg" alt="">
+        </div>
+    </div>
+</div>
+<div class="msgbox">
+    <div class="msg">
+        <{if $msg ==1}> 
+        亲爱的 <span style="font-size: 70px;color: #a9784d;"><{$info['name']}></span>，<br/>
+        您预约体验时间为：
+        <div style="color: #a9784d;font-size: 45px;">
+            <{$info['ordertime']}>
+            <{if $info['timetype']==1}>10:00-11:00
+            <{else if $info['timetype']==2}>11:00-12:00
+            <{else if $info['timetype']==3}>13:00-14:00
+            <{else if $info['timetype']==4}>14:00-15:00
+            <{else $info['timetype']==5}>15:00-16:00
+            <{/if}>
+        </div>
+        IGNITE 静候您的到来！
+        <{else if $msg ==3}>
+        <div style="width: 70%;">
+            亲，不要贪心~<br/>
+            您已经成功预约
+        </div>
+
+        <div style="color: #a9784d;font-size: 45px;">
+        <{if $info['timetype']==1}>10:00-11:00
+        <{else if $info['timetype']==2}>11:00-12:00
+        <{else if $info['timetype']==3}>13:00-14:00
+        <{else if $info['timetype']==4}>14:00-15:00
+        <{else $info['timetype']==5}>15:00-16:00
+        <{/if}>
+        </div>
+        时间段了哦！
+        <{else}>
+        <div style="text-align: center;">
+            请重新预约
+        </div>
+
+        <{/if}><br/>
+        <input type="hidden" id="msg" value="<{$msg}>"/>
+    </div>
+</div>
+
+
+
+
+
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function(){
+        setTimeout("jump();",5000);
+    })
+    function jump(){
+        var msg = $('#msg').val();
+        if(msg == 1){
+            window.location.href="__DOC__/index.php/wx";
+        }else{
+            window.location.href="__DOC__/index.php/event-subscribe2016" ;
+        }
+
+    }
+</script>

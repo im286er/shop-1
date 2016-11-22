@@ -1,0 +1,164 @@
+@charset "utf-8";
+/* 
+	Project Kana ~ Core CSS. / (C)2013 Erinago / (C)2010-2013 Nagomi Mind
+	Rev. 1.0.0 PRV / Last Update: March 8, 2013
+	
+	For Program 3D City Prototype used only!
+*/
+body { font-size: 12px; background: #F1EDE7; font-family: Verdana, Arial, SimSun, \5b8b\4f53, Helvetica, sans-serif; color: #757372; }
+a { color: #416B80; text-decoration: none; }
+a:hover { color: #0B70A5; text-decoration: none; }
+
+/* global */
+h1, h2, h3, h4, h5, h6 { white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height: normal; }
+h2 { line-height: 20px; height: 30px; font-family: SimHei; font-size: 20px; padding-bottom: 10px; text-shadow: 0px 1px 0 #FFF; }
+h2 .more { float: right; font-size: 12px; font-family: Verdana, Arial, SimSun, \5b8b\4f53; text-shadow: none; }
+
+/* shadows */
+.shadowed { box-shadow: 0 0 4px #E0E0E0; -webkit-box-shadow: 0 0 4px #E0E0E0; -moz-box-shadow: 0 0 4px #E0E0E0; behavior: url(../images/iefix/pie.htc); }
+.shadowed-dark { box-shadow: 0 0 5px #000; -webkit-box-shadow: 0 0 5px #000; -moz-box-shadow: 0 0 5px #000; behavior: url(../images/iefix/pie.htc); }
+
+.radius { border-radius: 3px; -khtml-border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; behavior: url(../images/iefix/pie.htc); }
+
+/* page layouts */
+.container { width: 960px; margin: 0 auto }
+.container.homepage {  }
+.navigation { height: 50px; color: #FFF; border-top: 4px solid #6E6E6E; border-bottom: 1px solid #EEE; background: #333 }
+.main {  }
+.main-sub { padding: 20px 0; margin: 40px 0 0 0; }
+.main-sub.nowarp { margin-top: 0px; }
+.main-sub.homesearch { border-top: 3px solid #DFDDD9;  border-bottom: 3px solid #DFDDD9;}
+.highlight { background: #FFF; border-top: 1px solid #DFDDD9; border-bottom: 1px solid #DFDDD9 }
+.footer { background: #EEE9E1; }
+.copyright { border-top: 1px solid #585858; background: #4A4A4A; height: 45px; color: #999; line-height: 45px; clear: both; }
+/* - column */
+.column-two, .column-three { clear: both }
+.column-two .columns { width: 50% }
+.column-three .columns { width: 33.3% }
+
+/* - navigation */
+.navigation .mlogo { float: left; padding: 5px 10px 0 0 }
+.navigation ul { float: left; height: 50px; padding: 0 10px; line-height: 50px }
+.navigation ul li { float: left; font-size: 14px; font-weight: normal }
+.navigation ul li a.ll { color: #FFF }
+.navigation ul li a { display: inline-block; height: 50px; padding: 0 10px; color: #B4B4B4 }
+.navigation ul.menu li a:hover { background-color: #2B2F31; color: #FFF }
+.navigation .vh { border-left: 1px solid #4A4A4A }
+.navigation .vh ul { border-left: 1px solid #272727 }
+.navigation .shopcart .cart { width: 18px }
+.navigation .userinfo ul { padding-right: 0 }
+.navigation .search { position: relative; height: 50px; padding: 0 5px; padding: 10px 15px 0 0; text-align: right }
+.navigation .search button { position: absolute; display: none; top: 13px; right: 10px; width: 26px; height: 26px }
+.navigation .search input { width: 110px; height: 18px; padding: 6px 5px 6px 40px; color: #EEE; font-size: 12px; border: none; background: #626262 url(../images/comm/nav-search-bg.png) 10px center no-repeat; line-height: 18px; border-radius: 2px; -khtml-border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px; cursor: pointer; }
+.navigation .search input:focus { width: 165px }
+.navigation .search input:hover { background-color: #686868 }
+
+/* - breadcrumbs */
+.breadcrumbs { height: 12px; padding: 20px 5px; color: #535353; font-size: 12px }
+.breadcrumbs a.home { margin-left: 2px; background: url(/static/images/nyan/common/home.png) 0px center no-repeat; padding-left: 30px }
+.breadcrumbs a { display: inline-block; margin: 0 .8em; color: #535353 }
+.breadcrumbs a:hover { color: #333 }
+
+/* - itemlist */
+.items-grid .listitem { float: left; width: 220px; height: 266px; margin-right: 15px; margin-bottom: 25px; background: #FFF; border: 1px solid #D4D4D4; box-shadow: 0 0 4px #E0E0E0; }
+.items-grid .listitem .thumb { display: block; width: 200px; height: 150px; margin: 10px; background: #EEE; overflow: hidden; }
+.items-grid .listitem .thumb img { width: 200px; height: 150px }
+.items-grid .listitem h3 { height: 20px; padding: 5px 10px 0; font-size: 14px; line-height: 20px }
+.items-grid .listitem i { display: block; height: 25px; padding: 5px 10px; color: #CCC }
+.items-grid .listitem i a { color: #CCC }
+.items-grid .listitem i a:hover { color: #AAA }
+.items-grid .listitem .etc { height: 35px; border-top: 1px solid #CCC; background: #F0F0F0; box-shadow: 1px 1px 1px #F9F9F9 inset; }
+.items-grid .listitem .etc .costs { float: right; width: 100px; height: 35px; color: #444; border-left: 1px solid #CCC; font-size: 14px; font-weight: bold; text-align: center; background: #F4F4F4; box-shadow: 1px 1px 1px #F9F9F9 inset; line-height: 35px; font-family: Arial, Helvetica, sans-serif; }
+.items-grid .listitem .etc .costs em { color: #AAA; font-size: 12px; font-weight: normal; font-style: normal }
+.items-grid .listitem:hover { border: 1px solid #FFA88A; box-shadow: 0 0 8px #CCC; }
+.items-grid .listitem:hover .thumb img { width: 240px; height: 180px; margin-left: -20px; margin-top: -15px; }
+
+/* - author-grid */
+.author-grid .listitem { float: left; width: 240px; height: 80px; margin-right: 15px; margin-bottom: 25px; background: #FFF; border: 1px solid #D4D4D4; box-shadow: 0 0 4px #E0E0E0; }
+.author-grid .listitem:hover { border: 1px solid #FFA88A; box-shadow: 0 0 8px #CCC; }
+.author-grid .listitem .thumb { float: left; display: block; width: 60px; height: 60px; margin: 10px; background: #EEE }
+.author-grid .listitem .thumb img { width: 100%; height: 60px }
+.author-grid .listitem h3 { height: 20px; padding: 15px 5px 0 0; font-size: 14px; line-height: 20px }
+.author-grid .listitem i { display: block; padding: 10px 5px; color: #CCC; font-family: Arial, Helvetica, sans-serif; }
+.author-grid .listitem i a { color: #CCC }
+
+/* - footer */
+.footer {background:#F5F3EF; border-top:1px solid #C0AD92; -moz-box-shadow:0px 1px 0px #fff inset;	-webkit-box-shadow:0px 1px 1px #fff inset; box-shadow:0px 1px 1px #fff inset;}
+.footer a { color: #416B80; font-size:12px; }
+.footer a:hover { text-decoration: underline; }
+.footer li { float: left; width: 14%; height: 160px; padding: 30px 15px 20px 0; background: url(../images/nyan/common/etc_column.jpg) 87% 10px no-repeat }
+.footer li .new { width: 100px; padding-left: 6px; color: #F00; font-weight: bold; font-size: 10px }
+.footer li dt { display: block; padding-bottom: 10px; color: #666; font-size: 14px; font-weight: bold; }
+.footer li dd { line-height: 185% }
+.footer li.followus { width: 10%; background: none }
+.footer li.followus dd { float: left; clear: both }
+.footer li.followus dd img { padding: 3px 0 }
+.copyright a { color: #CCC; padding-left: 8px }
+.copyright a:hover { color: #FFF }
+
+/* icons */
+.icon { display: inline-block; text-indent: -5000px }
+.icon.cart { background: url(../images/comm/icon/icon-g2-shopcart.png) center center no-repeat }
+
+/* buttons */
+.wtf { display: inline-block; padding: 6px 24px; background-color: #eb3d68; color: #ffffff; font-size: 15px; font-weight: bold; text-decoration: none; -moz-box-shadow: inset 0px 1px 0px 0px #c2c2c2; -webkit-box-shadow: inset 0px 1px 0px 0px #c2c2c2; box-shadow: inset 0px 1px 0px 0px #c2c2c2; background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #eb3d68), color-stop(1, #9e0c33) ); background: -moz-linear-gradient( center top, #eb3d68 5%, #9e0c33 100% ); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eb3d68', endColorstr='#9e0c33'); -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px; border: 1px solid #b30d44; font-family: arial; text-shadow: 1px 1px 0px #706c70; }
+.wtf:active { position: relative; top: 1px }
+.wtf:hover { background-color: #9e0c33; background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #9e0c33), color-stop(1, #eb3d68) ); background: -moz-linear-gradient( center top, #9e0c33 5%, #eb3d68 100% ); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e0c33', endColorstr='#eb3d68'); }
+
+/* star-rating */
+.star-rating { }
+
+/* nya */
+.ad-index { width: 960px; height: 120px; background: #666; margin-top: 30px; }
+
+/* index - slideshow */
+.index .slideshow { width: 960px; height: 360px; background: #CCC; margin: 30px 0; }
+
+.index .homesearch {  }
+.index .homesearch .inputctl { width: 650px; height: 38px; margin: 10px 30px }
+.index .homesearch .inputctl button { float: left; width: 80px; height: 38px; padding: 0; font-size: 14px; border: 1px solid #BEBEBE; border-radius: 0 5px 5px 0; background: #F8F8F8; }
+.index .homesearch .inputctl button:hover { box-shadow: inset 0 1px 0 white,0 0 8px rgba(255, 142, 0, 0.6); border: 1px solid #FF9566; }
+.index .homesearch .inputctl button span { display: block; width: 78px; height: 36px; color: #777; font-weight: bold; text-align: center; background: #F8F8F8; box-shadow: inset 0 1px 1px #FFF; line-height: 36px; cursor: pointer; }
+.index .homesearch .inputctl input { float: left; width: 500px; height: 36px; padding: 0 20px; color: #666; font-size: 16px; border: 1px solid #CCC; border-right: none;line-height: 36px; border-radius: 5px 0 0 5px; box-shadow: 0 0 4px #E0E0E0 inset; text-shadow: 0px 1px 0 #CCC; }
+.index .homesearch .inputctl input:focus { box-shadow: inset 0 1px 0 white,0 0 8px rgba(255, 142, 0, 0.6) }
+.index .homesearch .sharework { float: right; border-left: 1px solid #CCC; height: 50px; padding-left: 35px; }
+
+.index .featured { margin-top: 30px }
+.index .featured.prod { width: 720px }
+.index .featured.prod h2 { padding-right: 25px }
+.index .featured.artist { width: 240px; height: 500px }
+.index .featured.artist ul { border-top: 2px solid #DDD }
+.index .featured.artist li { float: left; width: 240px; height: 80px; margin-right: 15px; border-bottom: 2px solid #DDD; overflow: hidden }
+.index .featured.artist li .thumb { display: block; float: left; width: 60px; height: 60px; margin: 10px; background: #CCC }
+.index .featured.artist li .thumb img { width: 100%; height: 60px }
+.index .featured.artist li .rank { float: right; margin-top: 15px; padding-right: 5px; color: #BBB; font-size: 90px; font-family: "Courier New", Courier, monospace }
+.index .featured.artist li:hover { border-bottom: 2px solid #CCC }
+.index .featured.artist li:hover .thumb { box-shadow: 0px 0px 5px #CCC }
+.index .featured.artist li:hover .rank { margin-top: 12px; color: #AAA }
+.index .featured.artist li h3 { height: 20px; padding: 15px 5px 0 0; font-size: 14px; line-height: 20px }
+.index .featured.artist li i { display: block; padding: 10px 5px; color: #CCC; font-family: Arial, Helvetica, sans-serif }
+
+.index .article { }
+.index .article .column { background: #CCC; height: 80px; float: left; text-align: left; }
+
+
+/* 
+	third-party plugin styles
+	jScrollPane 2.0.0 beta11 / https://github.com/vitch/jScrollPane
+*/
+.jspContainer { position: relative; overflow: hidden; }
+.jspPane { position: absolute }
+.jspVerticalBar { width: 10px; top: 0; right: 0; position: absolute; height: 100%; }
+.jspVerticalBar .jspArrow { height: 10px }
+.jspVerticalBar .jspArrow:focus { outline: none }
+.jspHorizontalBar { width: 100%; position: absolute; left: 0; height: 10px; bottom: 0; }
+.jspHorizontalBar .jspArrow { width: 10px; height: 100%; float: left; }
+.jspHorizontalBar .jspTrack, .jspHorizontalBar .jspDrag { height: 100%; float: left; }
+.jspHorizontalBar .jspCap { float: left }
+.jspVerticalBar *, .jspHorizontalBar * { padding: 0; margin: 0; }
+.jspCap { display: none }
+.jspTrack { position: relative; background: #E6E6E6; }
+.jspDrag { top: 0; position: relative; left: 0; cursor: pointer; background: #777; }
+.jspArrow { text-indent: -20000px; display: block; cursor: pointer; background: #50506D; }
+.jspArrow.jspDisabled { cursor: default; background: #80808D; }
+.jspCorner { height: 100%; float: left; background: #EEEEF4; }

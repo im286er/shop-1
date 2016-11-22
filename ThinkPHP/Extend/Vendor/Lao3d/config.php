@@ -1,0 +1,7 @@
+<?php
+
+define("BITMAP3D_ENTERPRISE_API", '325160102d45487cabfdcc09ec9d6f3c');
+define("BITMAP3D_ENTERPRISE_LIBNAME", 'bitmap3d');
+define("BITMAP3D_ENTERPRISE_PRIVILEDGE", 1);
+
+?>

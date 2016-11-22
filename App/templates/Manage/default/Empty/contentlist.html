@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{$currentitle}-后台管理首页</title>
+		<link rel="stylesheet" type="text/css" href="__DOC__/doge/css/doge.diyediter.css">
+
+
+        <php>
+            $addCss="";
+            $addJs="";
+        </php>
+        <include file="Common:intohead" />
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/jdate/css/lq.datetimepick.css"/>
+        <script src='__PUBLIC__/jdate/js/selectUi.js' type='text/javascript'></script>
+        <script src='__PUBLIC__/jdate/js/lq.datetimepick.js' type='text/javascript'></script>
+        <style>
+            #divsearchTime{float: left;}
+            #divSearchKeywords{float:left;}
+            #divSearchType{float:left; }
+            #divSearchPrice{float: left;}
+        </style>
+        <if condition="$jsdate">
+            <script type="text/javascript">
+                function showinput(){
+                    if($("#searchtype").val()==201) {
+                        $("#divSearchTime").css("display", "block");
+                        $("#divSearchKeywords").css("display", "none");
+                        $("#divSearchPrice").css("display", "none");
+                    }else if($("#searchtype").val()==200){
+                        $("#divSearchPrice").css("display", "block");
+                        $("#divSearchTime").css("display","none");
+                        $("#divSearchKeywords").css("display", "none");
+                    }else{
+                        $("#divSearchKeywords").css("display","block");
+                        $("#divSearchTime").css("display","none");
+                        $("#divSearchPrice").css("display", "none");
+                    }
+                }
+                var id0="{$jsdate.0}";
+                var id1="{$jsdate.1}";
+                $(function() {
+                    showinput();
+                    $("#searchtype").change(function(){
+                        showinput();
+                    })
+
+                    $("#"+id0+"").on("click",function(e){
+                        e.stopPropagation();
+                        $(this).lqdatetimepicker({
+                            css : 'datetime-day',
+                            dateType : 'D',
+                            selectback : function(){
+
+                            }
+                        });
+                    });
+                    $("#"+id1+"").on("click",function(e){
+                        e.stopPropagation();
+                        $(this).lqdatetimepicker({
+                            css : 'datetime-day',
+                            dateType : 'D',
+                            selectback : function(){
+
+                            }
+                        });
+                    });
+
+
+                });
+
+
+
+            </script>
+
+        </if>
+    </head>
+    <body>
+        <div class="wrap">
+            <include file="Common:head" />
+            <div class="mainBody">
+                <include file="Common:left" />
+                <div id="Right">
+                    <div class="Item hr">
+                        {$currentNav}
+                    </div>
+                   {$showtable}
+                   {$page}&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="dc" onclick="dc();" value="导出EXCEL"/>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <include file="Common:foot" />
+
+<script type="text/javascript">
+function del_confirm(){
+    var gnl=confirm("你真的确定要删除吗?");
+    if(gnl==true){
+        return true;
+    }else{
+
+        return false;
+    }
+}
+
+</script>
+</body>
+</html>
+<script type="text/javascript">
+    function dc(){
+        var url = window.location.href;
+        var s = url.indexOf('/nodeid/');
+        var start = s+8;
+        var node = url.substring(start);
+        window.location.href="__URL__/do_Excel/nodeid/"+node;
+    }
+</script>

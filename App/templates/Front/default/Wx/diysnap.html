@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN"  style="overflow: scroll">
+<head>
+<meta charset="utf-8">
+<title>3D城 - Powered by 3DCity.com</title>
+<script src="__NEOSTATIC__/js/html5shim.js"></script>
+<link rel="stylesheet" type="text/css" href="__DOC__/m/doge/css/doge.mobile.css">
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/diyediter-bootstrap.css">
+<link rel="stylesheet" type="text/css" href="__DOC__/m/doge/css/doge.mobile.css">
+<style>
+.container.diy{padding-left:0px;padding-right:0px;}
+</style>
+<script src="__NEOSTATIC__/js/jquery-1.11.2.min.js?<{$dataAll.diy_cate['version']}>"></script>
+<script src="__NEOSTATIC__/js/bootstrap.min.js?<{$dataAll.diy_cate['version']}>"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="__NEOSTATIC__/js/jquery.nstSlider.min.js?<{$dataAll.diy_cate['version']}>"></script>
+<script src="__NEOSTATIC__/diy/seajs-2.3.0/dist/sea.js"></script>
+<script src="__NEOSTATIC__/diy/config.js"></script>
+<!-- End Case 1 -->
+<{include file=C('MHEAD_END') wxtitle="我的定制"}>
+<div class="container diy">
+<div class="left_inf fr"> 
+<table width="200">
+<tr>
+	<td>
+	<input type="hidden" name="pid" id="pid" value="<{$udinfo.p_id}>">
+	<input type="hidden" name="cid" id="cid" value="<{$udinfo.cid}>">
+	</td>
+</tr>
+<{foreach $dataAll.diy_unit as $item}>
+<tr>
+	<td>
+	
+		<{if $item.fieldtype eq 'MATERIAL'}>
+			<{foreach $mcate as $result}> 
+				<{if $item.fieldvalue == $result.pma_id}>
+					<{if $showtype eq 10}>
+						<{$item.unit_showname}> <{$result.TPM_name}>
+					<{/if}>
+				<{/if}> 
+			<{/foreach}>
+			<input type="hidden" name="<{$item.unit_name}>" value="<{$item.fieldvalue}>" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>">
+		<{else}>
+			 <{if $showtype eq 10}>
+						<{$item.unit_showname}> <{$item.fieldvalue}>
+			 <{/if}>
+			 <input type="hidden" name="<{$item.unit_name}>" value="<{$item.fieldvalue}>" id="<{$dataAll.diy_cate.idprefix}><{$item.unit_name}>">
+		<{/if}>
+	</td>
+</tr>
+<{/foreach}>
+
+
+              
+                <tr>
+                	<td>
+                    <input type="hidden" value="0" id="stype" name="stype">
+                   <span id=showprice style="display:none"></span><input type="hidden" name="price" id="price" value="<{$udinfo.price}>">
+                   
+                    </td>
+                </tr>
+                <tr>
+                
+                <td colspan="3"><br>
+			<{if $showtype eq 10}>
+			 	价格：<{$udinfo.price}>
+				<input type="button" id="savemodel" value="生成模型">
+               
+			    <{if $pfile}>
+               		模型已经生成,可 <a href='__DOC__<{$pfile}>'>下载模型</a>
+                <{else}>
+					<input type="button" id="savemodel" value="生成模型">
+                <{/if}>
+                </td>
+             <{/if}>
+				</tr>
+				
+            </table>
+	</div>
+	<canvas id = "web3dViewport" class="fr" width="500" height="500"></canvas>
+	<div class="clear"></div>
+</div>
+<script> 
+ // zhengweifu code --------------start--------------
+    seajs.config({
+        alias : {
+            // 'intersectionjs' :  "__NEOSTATIC__/diy/js/<{$dataAll.diy_cate['jspath']}>",
+            'intersectionjs' :  "<{$dataAll.diy_cate['jspath']}>",
+        }
+    });
+
+    seajs.use("index.js", function(execute) {
+        var parameters = {
+            webpath : "__NEOSTATIC__/diy",
+            neostatic : "__NEOSTATIC__",
+            canvas : document.getElementById("web3dViewport"),
+            globalChainStyleIDName : "<{$dataAll.diy_cate.idprefix}>Chaintype",
+            globalMaterialStyleIDName : "<{$dataAll.diy_cate.idprefix}>Material",
+            islogin : parseInt("<{$islogin}>"),
+            startprice : "<{$udinfo.startprice}>",
+            pid : document.getElementById("pid").value,
+        };
+
+        <{foreach $mcate as $res}> 
+        parameters["pma_diy_formula_s_<{$res.pma_id}>"]="<{$res.pma_diy_formula_s}>";
+        parameters["pma_diy_formula_b_<{$res.pma_id}>"]="<{$res.pma_diy_formula_b}>";
+        parameters["pma_necklace_price_<{$res.pma_id}>"]="<{$res.pma_necklace_price}>";
+        <{/foreach}>
+
+        execute(parameters);
+    });
+    // zhengweifu code ---------------end------------------
+
+
+</script>
+<div class="runtime">{__RUNTIME__}</div>
+<{include file=C('MFOOT')}> 

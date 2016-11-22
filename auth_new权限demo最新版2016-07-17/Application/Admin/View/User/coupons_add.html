@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=">
+<title>后台管理系统</title>
+<link rel="stylesheet" href="__PUBLIC__/Admin/css/css.css">
+<script src="__PUBLIC__/Admin/js/jquery-1.9.1.js"></script>
+<script src="__PUBLIC__/Common/Layer/layer.js"></script>
+<script src="__PUBLIC__/Common/My97Date/WdatePicker.js"></script>
+<script>
+//检查form
+function check_form(){
+		var begin_date = $('#begin_date').val();
+		var end_date = $('#end_date').val();
+		var amount_youhui = $('#amount_youhui').val();
+		var money_xianzhi = $('#money_xianzhi').val();
+		if(begin_date == ''){
+			layer.tips('请输入起始日期', '#begin_date');
+			return false;
+		}
+		if(end_date == ''){
+			layer.tips('请输入结束日期', '#end_date');
+			return false;
+		}
+		if(money_youhui == ''){
+			layer.tips('请输入优惠券面额', '#money_youhui');
+			return false;
+		}
+		if(money_youhui > 99){
+			layer.tips('金额不能大于99', '#money_youhui');
+			return false;
+		}
+		if(money_xianzhi < 0){
+			layer.tips('满足金额不能小于0', '#amount_manzu');
+			return false;
+		}
+		return true;
+}
+</script>
+</head>
+<body>
+<div class="list">
+<form action="__SELF__" method="POST" onSubmit="return check_form();">
+	  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="details">
+        <tbody>
+	      <tr>
+	      	<td width="35%"><div align="right">开始有效期：</div></td>
+	      	<td width="65%">
+            <input type="text" name="begin_date" id="begin_date" style="width:180px;" value="{$result.begin_date}" class="Wdate" onFocus="WdatePicker({minDate:'%y-%M-{%d-1}'})" /></td>
+	      </tr>
+	      <tr>
+	        <td><div align="right">结束有效期：</div></td>
+	        <td><input type="text" name="end_date" id="end_date" style="width:180px;" value="{$result.end_date}" class="Wdate" onFocus="WdatePicker({minDate:'%y-%M-{%d+7}'})" value="{$end_date}" /></td>
+          </tr>
+	      <tr>
+	        <td><div align="right">优惠券面值：</div></td>
+	        <td><input type="text" name="money_youhui" id="money_youhui" style="width:180px;" value="10" /> ( 元 )</td>
+          </tr>
+	      <tr>
+	        <td><div align="right">最小使用金额：</div></td>
+	        <td><input type="text" name="money_xianzhi" id="money_xianzhi" style="width:180px;" value="50" /> ( 元 ) </td>
+          </tr>
+	      <tr>
+	        <td><div align="right">发送的手机号：</div></td>
+	        <td><input type="text" name="mobile" id="mobile" class="input" style="width:170px;" value=""></td>
+          </tr>
+        </tbody>
+  </table>
+<div class="footer">
+  <button type="submit" class="button" id="button" style="min-width:160px;" onclick="coupons_add();">发送优惠券</button>
+</div>
+</form>
+</div>
+</body>
+</html>

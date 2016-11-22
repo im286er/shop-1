@@ -1,0 +1,27 @@
+<{include file=C('HEADPAGE_START')}>
+
+<{include file=C('HEADPAGE_END')}>
+<style>
+li {line-height:30px;}
+</style>
+<div class="sidebar"> 
+<ul class="filters models"> 
+<li> 
+<input type="checkbox" checked="checked" class="all" /><label>显示所有模型</label> 
+</li> 
+<li> 
+<input type="checkbox" class="sign" /><label><a href="#" title="了解更多" class="fr"><span class="tips-icon help"></span></a>模型可供3D打印</label> 
+</li> 
+<li> 
+<input type="checkbox" class="sign" /><label>包含动画</label> 
+</li> 
+<li> 
+<input type="checkbox" class="sign" /><label>已经绑定骨骼</label> 
+</li> 
+</ul> 
+<input type="text" class="sign" /><label>已经绑定骨骼</label> 
+</div>
+<script>
+$('input').click(function () { alert("1"); });
+</script>
+<{include file=C('FOOTPAGE')}>

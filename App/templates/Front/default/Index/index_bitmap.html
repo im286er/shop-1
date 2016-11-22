@@ -1,0 +1,197 @@
+<{include file=C('HEADPAGE_START')}>
+<{include file=C('HEADPAGE_END')}>
+<!-- 1.1.1 SlideShow Control -->
+<div class="lg-slideshow">
+	<ul class="content">
+    <{foreach $IndexPic as $Result}>
+        <li style="background-image:url(<{$Result.pic}>)">
+            <div class="inner">
+                <div class="inner-content">
+                    <{$Result.content}>
+                </div>
+            </div>
+        </li>
+      <{/foreach}>  
+    </ul>
+    <ul class="page-num">
+		<li>3</li>
+		<li>2</li>
+		<li class="select">1</li>
+	</ul>
+</div>
+<script type="text/javascript" src="static/js/com.slideshow.js"></script>
+<!-- 1.1.1 End - SlideShow Control -->
+ 
+<div>
+	<div class="container index">
+		<div class="featured"> <!--a class="more btn btn--warning" href="__DOC__/index/product_model/upload">上传3D模型</a-->
+			<h2 class="hotpoint"><span>热门3D模型</span></h2><h2 class="saspoint"> <span>最近更新</span></h2>
+		</div>
+		<div class="clear"></div>
+		<div class="ocbslideshow fl">
+            <div class="content slide">
+				<ul>
+                 
+                    <li>
+                    
+						<span class="thumb">
+                        <a href="__DOC__/index/models-detail-id-<{$ztinfo_top.p_id}>.html"><img src="__DOC__<{$ztinfo_top.p_cover|replace:'/o/':'/s/220_220_'}>" title="<{$ztinfo_top.p_name|regex_replace:"/^[\d]+[|]!*[-]*/":""}> 3D模型下载" alt="<{$ztinfo_top.p_name|regex_replace:"/^[\d]+[|]!*[-]*/":""}> 3D模型下载"  ></a></span>
+						<h3><a href="__DOC__/index/models-detail-id-<{$ztinfo_top.p_id}>.html"><{$ztinfo_top.p_name|regex_replace:"/^[\d]+[|]!*[-]*/":""}></a></h3>
+						<i><a href="__DOC__/index/models-detail-id-<{$ztinfo_top.p_id}>.html">&nbsp;&nbsp;&nbsp;&nbsp;<{$ztinfo_top.p_intro}></a></i>
+					</li>
+				</ul>
+			</div>
+
+			<div class="clear-l"></div>
+			<div class="moretopics">
+			<ul>
+             <{foreach $ztinfo_list as $Result}>
+				<li>
+                	<span class="thumb">
+                		<a href="__DOC__/index/models-detail-id-<{$Result.p_id}>.html"><img src="__DOC__<{$Result.p_cover|replace:'/o/':'/s/220_220_'}>" title="<{$Result.p_name|regex_replace:"/^[\d]+[|]!*[-]*/":""}> 3D模型下载" alt="<{$Result.p_name|regex_replace:"/^[\d]+[|]!*[-]*/":""}> 3D模型下载" ></a>
+                    </span>
+					<p><a href="__DOC__/index/models-detail-id-<{$Result.p_id}>.html"><{$Result.p_name|regex_replace:"/^[\d]+[|]!*[-]*/":""}></a>
+					<br><a href="__DOC__/index/models-detail-id-<{$Result.p_id}>.html" style="color:#999";><{$Result.p_intro}></a></p>
+				</li>
+             <{/foreach}>
+			</ul>
+			</div>
+		</div>
+     
+		<ul class="featured prod fr items-grid-nd flat-s  setting-gird">
+			<{foreach $ProductList as $Result}> 
+        
+			    <li <{if ($Result@iteration) % 5 == 0}> class="last"<{/if}> >
+				<span class="thumb">
+					<a href="__APP__/models-detail-id-<{$Result[$DBF_P->ID]}>.html">
+					   <img alt="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""}> 3D模型下载" src="__DOC__<{$Result[$DBF_P->Cover]|replace:'/o/':'/s/220_220_'}>"  title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""}> 3D模型下载"/>o
+				    </a>
+				</span>
+				<h3><a href="__APP__/models-detail-id-<{$Result[$DBF_P->ID]}>.html"><{$Result[$DBF_P->Name]|regex_replace:"/^[\d\w]+[|]!*[-]*/":""}></a></h3>
+               				<div class="itemstatus"> <span class="icon good"><{$Result[$DBF_P->Zans]}></span> 
+					<span class="icon view"><{$Result[$DBF_P->Views_disp]}></span> </div>
+				</li>
+            <{/foreach}>
+		</ul>
+		<div class="clear"></div>
+	</div>
+  </div>
+<div class="highlight">
+
+<!--div class="container index">
+	<div class="clear"></div>
+		<div class="featured cate cate-grid hotdesigner">
+			<h2>热门设计师 <a class="more btn btn--info" href="__DOC__/index/models/index">更多设计师</a></h2>
+			<{foreach $designuser as $uresult}>
+            <{$tempi=$tempi+1}>
+            <{if $tempi eq 6}>
+	            <div class="listitem last"> 
+            <{else}>
+            	<div class="listitem"> 
+            <{/if}>
+            <span class="thumb"> <a href="__DOC__/index/models-index-creater-<{$uresult.u_id}>"><img src="upload-avatar-<{$uresult.u_avatar}>"></a> </span>
+				<h3><a href="__DOC__/index/models-index-cate-1004.html"><{$uresult.u_dispname}></a></h3>
+			</div>
+            
+            <{/foreach}>	
+			<div class="listitem last"> 	
+			
+			<span class="thumb"> <a href="__DOC__/index/models-index-creater-1111.html"><img src="upload-avatar-111"></a> </span>
+				<h3><a href="__DOC__/index/models-index-cate-1004.html">111111</a></h3>
+			</div>	
+			
+		</div>
+</div-->
+
+<div class="designer">
+        <div class="designer-img"><a href="__DOC__/<{$designinfo[0].dis_u_domain}>"><img src="__DOC__/upload/avatar/<{$designinfo[0]['u_avatar']}>" title="<{$designinfo[0]['u_dispname']}>" alt="<{$designinfo[0]['u_dispname']}>"></a></div>
+        <div class="content">
+            <p class="designer-name"><i>推荐设计师</i><{$designinfo[0]['u_dispname']}></p>
+            <p class="designer-dialogue btn btn--warning"><a href="__DOC__/<{$designinfo[0].dis_u_domain}>">作品集</a></p>
+            <p class="shop-info"></p>
+            <p class="motto red"><i><{$designinfo[0]['u_intro']}></i></p>
+			<ul class="moreprds">
+				<{foreach $designinfo as $result}>
+					<li><a href="__APP__/models-detail-id-<{$result.p_id}>.html"><img src="__DOC__<{$result.p_cover|replace:'/o/':'/s/220_220_'}>" title="<{$result.p_name|regex_replace:"/^[\d]+[|]!*[-]*/":""}> 3D模型下载" alt="<{$result.p_name|regex_replace:"/^[\d]+[|]!*[-]*/":""}> 3D模型下载"></a></li>
+				<{/foreach}>
+				
+			</ul>
+        </div>
+    </div>    
+</div>
+
+<div>
+	<div class="container index">
+		<div class="clear"></div>
+		<div class="featured cate cate-grid">
+			<h2>3D市场分类 <a class="more btn btn--info" href="__DOC__/index/models-index-thumb-2-count-30-order-sd.html">查看所有分类</a></h2>
+			<div class="listitem"> <span class="thumb"> <a href="__DOC__/index/models-index-tags-DIY-count-20-order-crd.html"><img src="__PUBLIC__/images/_fortestonly_/catelist-1.jpg" title="DIY" alt="DIY"/></a> </span>
+				<h3><a href="__DOC__/index/models-index-tags-DIY-count-20-order-crd.html">DIY</a></h3>
+			</div>
+			<div class="listitem"> <span class="thumb"> <a href="__DOC__/index/models-index-tags-工具-count-20-order-crd.html"><img src="__PUBLIC__/images/_fortestonly_/catelist-2.jpg" title="工具" alt="工具"/></a> </span>
+				<h3><a href="__DOC__/index/models-index-tags-工具-count-20-order-crd.html">工具</a></h3>
+			</div>
+			<div class="listitem"> <span class="thumb"> <a href="__DOC__/index/models-index-tags-家具-count-20-order-crd.html"><img src="__PUBLIC__/images/_fortestonly_/catelist-3.jpg" title="家具" alt="家具"/></a> </span>
+				<h3><a href="__DOC__/index/models-index-tags-家具-count-20-order-crd.html">家具</a></h3>
+			</div>
+			<div class="listitem"> <span class="thumb"> <a href="__DOC__/index/models-index-tags-建筑-count-20-order-crd.html"><img src="__PUBLIC__/images/_fortestonly_/catelist-4.jpg" title="建筑" alt="建筑"/></a> </span>
+				<h3><a href="__DOC__/index/models-index-tags-建筑-count-20-order-crd.html">建筑</a></h3>
+			</div>
+			<div class="listitem last"> <span class="thumb"> <a href="__DOC__/index/models-index-tags-时尚-count-20-order-crd.html"><img src="__PUBLIC__/images/_fortestonly_/catelist-5.jpg" title="时尚" alt="时尚"/></a> </span>
+				<h3><a href="__DOC__/index/models-index-tags-时尚-count-20-order-crd.html">时尚</a></h3>
+			</div>
+			<div class="listitem"> <span class="thumb"> <a href="__DOC__/index/models-index-tags-收纳-count-20-order-crd.html"><img src="__PUBLIC__/images/_fortestonly_/catelist-6.jpg" title="收纳" alt="收纳"/></a> </span>
+				<h3><a href="__DOC__/index/models-index-tags-收纳-count-20-order-crd.html">收纳</a></h3>
+			</div>
+			<div class="listitem"> <span class="thumb"> <a href="__DOC__/index/models-index-tags-首饰-count-20-order-crd.html"><img src="__PUBLIC__/images/_fortestonly_/catelist-7.jpg" title="首饰" alt="首饰"/></a> </span>
+				<h3><a href="__DOC__/index/models-index-tags-首饰-count-20-order-crd.html">首饰</a></h3>
+			</div>
+			<div class="listitem"> <span class="thumb"> <a href="__DOC__/index/models-index-tags-玩具-count-20-order-crd.html"><img src="__PUBLIC__/images/_fortestonly_/catelist-8.jpg" title="玩具" alt="玩具"/></a> </span>
+				<h3><a href="__DOC__/index/models-index-tags-玩具-count-20-order-crd.html">玩具</a></h3>
+			</div>
+			<div class="listitem"> <span class="thumb"> <a href="__DOC__/index/models-index-tags-艺术-count-20-order-crd.html"><img src="__PUBLIC__/images/_fortestonly_/catelist-9.jpg" title="艺术" alt="艺术"/></a> </span>
+				<h3><a href="__DOC__/index/models-index-tags-艺术-count-20-order-crd.html">艺术</a></h3>
+			</div>
+			<div class="listitem last"> <span class="thumb"> <a href="__DOC__/index/models-index-tags-装饰-count-20-order-crd.html"><img src="__PUBLIC__/images/_fortestonly_/catelist-10.jpg" title="装饰" alt="装饰"/></a> </span>
+				<h3><a href="__DOC__/index/models-index-tags-装饰-count-20-order-crd.html">装饰</a></h3>
+			</div>
+			<div class="clear"></div>
+			<h2 style="padding-top: 20px; border-top: 1px solid #CCC; margin-top: 10px;">友情链接</h2>
+            <ul class="frinedlink change">
+			<{foreach $links as $result}>
+                <li><a href="<{$result.pic_link}>" target="_blank"><{$result.title}></a></li>
+			<{/foreach}>
+            </ul>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<div class="clear"></div>
+<!--div class="highlight">
+<div class="container index">
+    <div class="article">
+        <h1>蔚图网能给您带来什么？</h1>
+        <div class="columns cate1">
+            <h3>原创作品商业价值体现</h3>
+            <p>蔚图网提供了安全可靠的模型交易平台，让您的作品在蔚图网体现价值。</p>
+            <a href="__APP__/help-index-id-92">了解服务流程 »</a> </div>
+        <div class="columns cate2">
+            <h3>拒绝重复劳动</h3>
+            <p>这里有十万个3D模型，使用它们来缩短您的工期。</p>
+            <a href="__APP__/models-index-count-16/filter/or">进入3D商城 »</a> </div>
+        <div class="columns cate3">
+            <h3>以最少的投入找到最好的资源</h3>
+            <p>这里有上万个原创作品和上千名设计师，为寻找符合用户需求的产品提供便捷。</p>
+            <a href="__APP__/models-index-count-16/filter/or">现在就去挑选 »</a> </div>
+    </div>
+</div></div-->
+<!-- InstanceEndEditable --> 
+<!-- Footer Warp - Ding Ver 1.2 //-->
+<div class="clear"></div>
+
+<{include file=C('FOOTPAGE')}>
+<!-- End of Header Warp //-->
+
+<!-- InstanceEnd -->

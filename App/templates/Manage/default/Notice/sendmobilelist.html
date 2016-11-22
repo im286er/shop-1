@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>消息中心-{$site.SITE_INFO.name}</title>
+        <php>
+            $addCss="";
+            $addJs="";
+            $currentNav ='消息中心 > 发送手机短信';
+        </php>
+        <include file="Common:intohead" />
+        <script language=javascript>
+            function selectAll(){
+                var a = document.getElementsByTagName("input");
+                if(a[0].checked){
+                    for(var i = 0;i<a.length;i++){
+                        if(a[i].type == "checkbox") a[i].checked = false;
+                    }
+                }
+                else{
+                    for(var i = 0;i<a.length;i++){
+                        if(a[i].type == "checkbox") a[i].checked = true;
+                    }
+                }
+            }
+
+            function submitfrom(){
+                if($("input[type='checkbox']").is(':checked')==true){
+                    document.getElementById('mailform').submit()
+                }else{
+                    alert('未选择!');
+                    return false;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="wrap">
+            <include file="Common:head" />
+            <div class="mainBody">
+                <include file="Common:left" />
+                <div id="Right">
+                    <div class="Item hr">
+                        <div class="current">保存手机短信</div>
+                    </div>
+                    <form method="post" name="theForm2" id="mailform">
+
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+                        <tr><td></td><td>ID</td><td>手机号码</td><td>观影时间</td><td>观影位置</td><td>状态</td><td>发送时间</td></tr>
+                        <volist name="mailList" id="vo">
+                            <tr><td width="15px;"><input type="checkbox" value="{$vo['id']}" name="mailid[]"></td><td>{$vo['id']}</td><td>{$vo['mailto']}</td><td>{$vo['mailsubject']}</td><td>{$vo['mailcontent']}</td><td>{$vo['status']}</td><td>{$vo['sendtime']}</td></tr>
+                        </volist>
+                        <tr>
+                            <td colspan="7">
+                                <input type="button" name="select" onclick="selectAll()" value=" 全 选 " class="btn_ind"/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn" value="发送短信" onclick="submitfrom()">
+                            </td>
+                        </tr>
+                    </table>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <include file="Common:foot" />
+    </body>
+</html>

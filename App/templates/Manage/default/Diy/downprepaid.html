@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>订单详细表格</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/init.css">
+<style>
+/*global*/
+html, body { font-size: 10px; font-weight: normal; font-family: "Helvetica Neue", Helvetica, Arial, Verdana, "Microsoft Yahei", YouYuan, sans-serif,symbol; background: #FFF !important; }
+body { height: auto;min-height:960px; position: relative; }
+th, td { text-align: left;vertical-align:middle;}
+a { text-decoration: none; color: #EA572B; }
+a:hover { text-decoration: none; color: #BB3912; }
+/*.title { font-size: 16px; font-weight: bold; padding: 10px 0; }*/
+.container { max-width: 1200px; margin: 0 auto; padding: 10px 0px; }
+.btn { padding: 6px 18px; font-size: 13px; font-weight: bold; font-family: "Microsoft yahei", "微软雅黑", Tahoma, Verdana, Arial, sans-serif; cursor: pointer; background: #bdc3c7; border: none; }
+.btn--warning { background-color: #EA572B; color: #fff; -webkit-transition: .3s ease-in-out background; -moz-transition: .3s ease-in-out background; transition: .3s ease-in-out background; }
+.btn--warning:hover, .btn--warning:active, .btn--warning:focus { border-color: #AE3215; background-color: #AE3215; color: white }
+/*banner*/
+.banner { height: 90px; margin-top: 30px; }
+.banner .logo { width: 100%; float: left; text-align: center; height: 100%; }
+.banner .logo img{width:30%;}
+/*weixin*/
+.weixin { width: 70px; height: 70px; text-align: center; border: 1px solid #999999; margin: 0 auto; }
+.weixin img { width: 100%; }
+/*footer*/
+.footer { bottom: 0px; position: absolute; left: 50%; margin-left: -150px; }
+.footer h3 { text-align: center; font-size: 18px; line-height: 60px; }
+/*send-to*/
+.list-inf { border: 1px solid #D4D4D4; padding-left: 0px; padding-right: 0px; }
+.list-inf table { display: inline-block;  padding-left: 10px; vertical-align: top; height: 100%; width:45%;}
+.list-inf .receiver {/* width: 30%; */border: none; }
+.list-inf .func { /*width: 42%;*/ color: #666666; }
+.list-inf .receiver-inf { /*width: 20%;*/ }
+.list-inf .title { color: #333333; font-size: 10px; font-weight: bold;padding-bottom:5px; }
+.list-inf table tr {  }
+.list-inf table tr td { padding-right: 2em; color: #666; font-size: 10px; line-height: 18px; }
+.list-inf table tr td.bill-addr { height: 105px; }
+/*detail*/
+.detail { }
+.detail th { text-align: center; padding: 5px 0px; }
+.detail td { padding: 0px 10px 0; text-align: center; }
+.detail >table { width: 100%; }
+.detail .detail-title { background-color: #6D6D6D; border:1px solid #6D6D6D;}
+.detail .detail-title th { color: #FFFFFF; width: 10%; }
+.detail .detail-title .goods-inf { width: 50%; text-align:left;padding-left:10px;}
+.detail .detail-content { border: 1px solid #D4D4D4; }
+.detail .detail-content>td { border-right: 1px solid #D4D4D4; vertical-align: middle; }
+.detail .detail-content table { display: inline-block; height: 100%; vertical-align: middle; }
+.detail .detail-content table tr { line-height: 45px; }
+.detail .detail-content .goods-inf { text-align: left; padding-left:0px;}
+.detail .detail-content .goods-inf table tr td{line-height:20px;}
+.detail .detail-content .goods-inf .detail-img { padding: 5px 0; width:75px;}
+.detail .detail-content .goods-inf .detail-img img{width:60px;height:60px;}
+.detail .detail-content .goods-inf .detail-inf{width:80%; padding-top:8px;} 
+.detail .detail-content .goods-inf .detail-inf .goods-name { text-align: left; color: #666666 }
+.detail .detail-content .goods-inf .detail-inf .material { color: #999999; text-align: left;width:100%;line-height:12px;}
+/*remark*/
+.remark { margin-bottom: 10px; padding-top:0px;border:1px solid #D4D4D4;border-top:none;}
+.remark .title{background-color:#CBCBCB;padding:0 0px;}
+.remark .title h2{border:1px solid #D4D4D4;border-bottom:1px solid #fff;border-left:none;width:auto;display:inline-block;line-height:35px; color:#666666;text-align:center;position:relative; z-index:100;margin:0 0px -2px 0px;background-color:#FFFFFF;padding:0 10px;}
+.remark .postform { height: 60px; margin: 0px 0px 10px 0; }
+.remark .postform table th,.remark .postform table tr{padding:10px 10px 10px 10px; color:#666666;}
+/*price*/
+.price {padding:0 10px;margin-bottom:150px;}
+.price table{float:right;}
+.price table tr{}
+.price table th{color:#999999;text-align:right;width:120px;padding:2px 0;}
+.price table td{color:#999999;text-align:right;width:120px;padding:2px 0;}
+.price table td span{color:#666;font-size:16px;font-weight:bold;}
+.price table .total{border-top:1px solid #D4D4D4}
+.price table .total th{color:#666666;}
+.price table .total td span{color:#FF0000;font-size:18px;}
+.price p{font-weight:normal;width:300px;display:block;padding-top:30px;color:#474747}
+/*simple-intro*/
+.simple-intro { margin-top:-25px;}
+.simple-intro .num { float: left; }
+.simple-intro .num h2{font-size:14px;}
+.simple-intro .date { float: right; }
+</style>
+</head>
+<body>
+<div class="banner container">
+	<div class="logo"><img src="__PUBLIC__/Img/logo.png"/> </div>
+	<!--<div class="weixin"><img src="static/img/qrcode.jpg"/></div>-->
+	<div class="clear"></div>
+</div>
+<div class="simple-intro container">
+		<div class="num">
+		<br>
+			<h2>订单编号：{$upinfo.up_orderid}</h2>
+		</div>
+		<div class="date">
+			<h2>下单时间：{$upinfo.up_dealdate}</h2>
+			<h2>发货时间：{$expressinfo.ctime}</h2>
+		</div>
+		<div class="clear"></div>
+	</div>
+<div class="list-inf container">
+	<table class="receiver">
+		<tr>
+			<th class="title">收货人信息</th>
+				</td>
+		<tr>
+			<td>收件人：{$upinfo.up_addressee}</td>
+		</tr>
+		<tr>
+			<td>地 址：{$upinfo.up_address}</td>
+		</tr>
+		<tr>
+			<td>电 话：{$upinfo.up_mobile}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+	
+	<if condition="$expressinfo.express eq 1">
+	<table class="func"> 
+		<tr>
+			<th class="title">配送方式</th>
+		</tr>
+		<tr>
+			<td>送货方式：普通快递</td>
+		</tr>
+		<tr>
+			<td>承运：{$expressinfo.express_com_name}</td>
+		</tr>
+		<tr>
+			<td>运费：0.00元</td>
+		</tr>
+		<tr>
+			<td>货运单号：{$expressinfo.express_number}</td>
+		</tr>
+	</table>
+	</if>
+	<if condition="$billis eq 1">
+	<table class="receiver-inf">
+		<tr>
+			<th class="title">发票信息</th>
+		</tr>	
+		<tr>
+			<td>发票类型：{$billinfo.billtypename}</td>
+		</tr>
+		<tr>
+			<td>发票抬头：{$billinfo.billcompany}</td>
+		</tr>
+		<tr>
+			<td>发票内容：{$billinfo.billcontent}</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+	</if>
+</div> 
+<div class="remark container">
+
+		<div class="title"><h2 class="title">订单备注</h2></div>
+		<div class="postform">
+			<table>
+			<tr>
+				<th></th><td></td>
+			
+			</tr>
+			</table>
+		</div>	
+		<!--<button type="submit" class="btn--warning btn fr">提交订单</button>-->
+
+</div>
+<div class="detail container">
+	<table>
+		<tr class="detail-title">
+			<th class="goods-inf">商品</th>
+			<th>商品类型</th>
+			<th>单价(元)</th>
+			<th>份数</th>
+		</tr>
+	<foreach name="productlist" item="product">
+		<tr class="detail-content">
+				<td class="goods-inf">
+					<table class="detail-img">
+						<tr>
+							<td><img src="__DOC__{$product.product_cover64}" alt=""/></td>
+						</tr>
+					</table>
+					
+					<table class="detail-inf">
+						<tr>
+							<td class="goods-name">{$product.product_name}</td>
+						</tr>
+						<tr>
+							<td class="material">
+							{$product.product_type}
+							</td>
+						</tr> 
+					</table>
+				</td>
+			
+			<td>{$product.uc_producttype_name}</td>
+			<td>{$product.product_price}</td>
+			<td>{$product.product_count}</td>
+		</tr>
+	</foreach>
+		
+	</table>
+</div>
+			
+<div class="container">
+	<div class="price">
+		<table>
+			<tr>
+				<th>商品总金额：</th>
+				<td><span>
+				<if condition="$upinfo.up_amount_account neq 0 or $upinfo.up_amount_coupon neq 0">
+					{$upinfo.up_amount_total}
+				<else/>
+					{$upinfo.up_amount}
+				</if>
+				
+				</span>&nbsp;元</td>
+				
+			</tr>
+			
+			<if condition="$upinfo.up_amount_account neq 0 ">
+			<tr>
+				<th>- 余额支付：</th>
+				<td><span>{$upinfo.up_amount_account}&nbsp;</span>元</td>
+			</tr>
+			</if>
+			<if condition="$upinfo.up_amount_coupon neq 0 ">
+				<tr>
+					<th>- 优惠券折扣：</th>
+					<td><span>{$upinfo.up_amount_coupon}&nbsp;</span>元</td>
+				</tr>	
+			</if>	
+			
+			
+			
+			<tr>
+				<th>运费：</th>
+				<td><span>0.00&nbsp;</span>元</td>
+			</tr>
+			<tr class="total">
+				<th>应付款总额：</th>
+				<td><span>{$upinfo.up_amount}&nbsp;</span>元</td>
+			</tr>
+		</table>
+		<p>配送清单上的所有资料以本网站版本为准。</p>
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="footer container">
+	<div>
+		<div class="weixin"><img src="__PUBLIC__/Img/qrcode.jpg" /></div>
+	</div>
+	<h3>感谢您对我们的支持，欢迎再次光临！</h3>
+</div>
+</body>
+</html>
+
+

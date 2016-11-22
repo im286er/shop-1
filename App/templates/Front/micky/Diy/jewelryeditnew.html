@@ -1,0 +1,83 @@
+<!DOCTYPE>
+<html>
+<head>
+    <{assign var='mJquery' value='Public/static/jquery-1.11.2.min.js'}>
+    <{assign var='mTHREE' value='Public/static/threejs/v77/three.min.js'}>
+    <{assign var='mReact' value='Public/static/react-15.1.0/react.min.js'}>
+    <{assign var='mReactDom' value='Public/static/react-15.1.0/react-dom.min.js'}>
+    <{assign var='mCommom' value=<{'Public/diy/dist/common'|cat:$DOTSERVER|cat:'.js'}>}>
+    <{assign var='mJsPath' value=<{'Public'|cat:$dataAll.diy_cate.jspath|cat:$DOTSERVER|cat:'.bundle.js'}>}>
+    <{assign var='mShell' value=<{'Public/diy/dist/diy_v01'|cat:$DOTSERVER|cat:'.bundle.js'}>}>
+    <{assign var='mZBasic' value='Public/static/ZBasic.js'}>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Ignite珠宝编辑器</title>
+<{if $mmode}>
+    <!-------------第三版手机版------------->
+    <{if $mtype == 'iwx'}>
+    
+    <{include file=C('IWXHEADER_START')}>
+    <link rel="stylesheet" type="text/css" href="__MSTATIC__/css/doge.mobile.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/fonts.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/top.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/footer2.css">
+    <style>
+        .wy-logo{
+            margin-top:11px;
+        }
+    </style>
+    <{include file=C('IWXHEADER_END')}>
+    <script src="__DOC__/<{$mJquery}>?<{md5_file filename=<{$mJquery}>}>"></script>
+    <script src="__DOC__/<{$mTHREE}>?<{md5_file filename=<{$mTHREE}>}>"></script>
+    <script src="__DOC__/<{$mReact}>?<{md5_file filename=<{$mReact}>}>"></script>
+    <script src="__DOC__/<{$mReactDom}>?<{md5_file filename=<{$mReactDom}>}>"></script>
+    <!-------------第二版手机版------------->
+    <{else}>
+    <{include file=C('KITTYMHEAD_START') wxtitle="3DCity - 3D城 | 珠宝首饰 | 设计师 | 极客 | DIY创意 | 3D打印"}>
+    <script src="__DOC__/<{$mJquery}>?<{md5_file filename=<{$mJquery}>}>"></script>
+    <script src="__DOC__/<{$mTHREE}>?<{md5_file filename=<{$mTHREE}>}>"></script>
+    <script src="__DOC__/<{$mReact}>?<{md5_file filename=<{$mReact}>}>"></script>
+    <script src="__DOC__/<{$mReactDom}>?<{md5_file filename=<{$mReactDom}>}>"></script>
+<{if $showtype == "0"}>
+    <{include file=C('KITTYMHEAD_END') wxtitle="3DCity" ch="dft"}>
+<{/if}>
+    <{/if}>
+<{else}>
+    <script src="__DOC__/<{$mJquery}>?<{md5_file filename=<{$mJquery}>}>"></script>
+    <script src="__DOC__/<{$mTHREE}>?<{md5_file filename=<{$mTHREE}>}>"></script>
+    <script src="__DOC__/<{$mReact}>?<{md5_file filename=<{$mReact}>}>"></script>
+    <script src="__DOC__/<{$mReactDom}>?<{md5_file filename=<{$mReactDom}>}>"></script>
+<{/if}>
+</head>
+<body style="margin: 0px; padding: 0px">
+<script>
+    var M_PARAMETERS = {
+        cid: "<{$cid}>",
+        uid: "<{$uid}>",
+        diyid: "<{$udid}>",
+        zan: "<{$productInfo.p_zans}>",
+        clienttype:"<{$clienttype}>",
+        defaultpid:"<{$productInfo.p_id}>",
+        showtype:"<{$showtype}>",
+        productKey:"<{$productKey}>",
+        enforceWeb:"<{$enforceWeb}>"
+    };
+
+</script>
+<{if $mmode}>
+<{if $showtype == "0"}>
+<div id='app' style='height: 100%; padding-top: 50px; padding-botom: 45px; position: absolute; top: 0px; left: 0px; width: 100%'></div>
+<{else}>
+<div id='app' style='height: 100%; position: absolute; top: 0px; left: 0px; width: 100%'></div>
+<{/if}>
+<{else}>
+<div id='app'></div>
+<{/if}>
+<script src="__DOC__/<{$mZBasic}>?<{md5_file filename=<{$mZBasic}>}>"></script>
+<script src="__DOC__/<{$mCommom}>?<{md5_file filename=<{$mCommom}>}>"></script>
+<script src="__DOC__/<{$mJsPath}>?<{md5_file filename=<{$mJsPath}>}>"></script>
+<script src="__DOC__/<{$mShell}>?<{md5_file filename=<{$mShell}>}>"></script>
+</body>
+</html>

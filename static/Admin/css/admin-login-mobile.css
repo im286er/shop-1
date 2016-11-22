@@ -1,0 +1,48 @@
+/* 
+	Project Nyan ~ Core CSS. / (C)2012 Erinago / (C)2010-2012 Nagomi Mind
+	Rev. 1.0.2 / Last Update: June 15, 2012
+	
+	For Program 3D Factory Lite used only!
+*/ 
+body { font-size: 14px; background: #171B19; font-family:  Microsoft YaHei, arial, sans-serif; }
+a { color: #09F; text-decoration: none }
+a:hover { text-decoration: none }
+
+/* global */
+
+/* shadows */
+.shadowed { box-shadow: 0 0 4px #E0E0E0; -webkit-box-shadow: 0 0 4px #E0E0E0; -moz-box-shadow: 0 0 4px #E0E0E0; behavior: url(/static/images/iefix/pie.htc); }
+.shadowed-dark { box-shadow: 0 0 5px #000; -webkit-box-shadow: 0 0 5px #000; -moz-box-shadow: 0 0 5px #000; behavior: url(/static/images/iefix/pie.htc); }
+
+.radius { border-radius: 3px; -khtml-border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; behavior: url(/static/images/iefix/pie.htc); }
+
+/* page layouts */
+.bg { display: none; }
+
+/* loginshell layouts */
+.loginshell { width: 100%; color: #FFF }
+.loginshell .ctr { padding: 20px 5%; }
+.loginshell .ctr_footer { display: none; }
+.loginshell h1 { padding: 0 0 23px; margin: 0px; line-height: 36px; font-size: 28px; }
+.loginshell h2 { padding: 0; margin: 0px; line-height: 24px; font-size: 20px; }
+.loginshell .ll_lable { padding-top: 5px; font-size: 12px; line-height: 14px }
+.loginshell .ll_lable a { display: none }
+.loginshell .ll_input, .loginshell .ll_input input { width: 98%; height: 32px; }
+.loginshell .ll_input { position: relative; margin: 8px 0; }
+.loginshell .ll_input input { padding: 0 1%; font-size: 14px; line-height: 32px; box-shadow: 0px 0px 3px #999 inset; -webkit-box-shadow: 0px 0px 3px #999 inset; -moz-box-shadow: 0px 0px 3px #999 inset; border: 1px solid #333; }
+.loginshell .ll_input h4 { position: absolute; top: 0px; left: 10px; color: #444; font-size: 14px; line-height: 32px; margin: 0; padding: 0; font-weight: normal; }
+.loginshell .llbuttom { padding-top: 15px }
+.loginshell .llbuttom button { width: 90px }
+.loginshell .ll_info { display: none; padding: 5px 0 3px; color: #F00 }
+
+/* buttons */
+button { height: 40px; padding: 0 15px; margin: 0; cursor: pointer; color: #FFF; font-size: 14px }
+button.blue { border: 1px solid #0085E8; background: #0072C6; }
+button.blue:active { border: 1px solid #0072C6 }
+button.blue:hover { border: 1px solid #0D98FF; background: #0082E1; }
+
+/* footbar */
+.footbar { width: 100%; color: #FFF; font-size: 14px; text-align: center; margin-top: 20px; }
+.footbar ul { display: none; } 
+.footbar a { color: #FFF; line-height: 42px; display: block; width: 100%; text-align: center; background: #333; }
+.footbar a:hover { background: #666 }

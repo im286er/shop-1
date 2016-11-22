@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>全局分类设置-{$site.SITE_INFO.name}</title>
+<php>
+$addCss="";
+            $addJs="";
+            $currentNav ='全局分类设置 ';
+            </php>
+            <include file="Common:intohead" />
+            </head>
+            <body>
+<!-- AP Element::AjaxInfo //-->
+<div class="ajaxinfo">
+	<h3></h3>
+</div>
+<!-- End of AP Element::AjaxInfo //-->
+
+
+
+
+
+
+<div class="wrap">
+    <include file="Common:head" />
+	<div class="mainBody"> <include file="Common:left" />
+        <div id="Right">
+
+        <div class="nagiscroll">
+          <div class="nagi">
+            <div class="buttonbar fr">
+            </div>
+              <form method="get" action="?">
+              <h2 style="padding-top: 10px; width: 300px;">全局分类设置<button class="red" type="button" id="goaddcate">添加分类</button></h2>
+                    <table  class="tab">
+                      <tr class="h">
+                        <td width="5%">#</td>
+                        <td>分类</td>
+                          <td width="30">图片</td>
+                          <td width="30">排序</td>
+                        <td width="8%">操作</td>
+                      </tr>
+                    <foreach name="cat_list" item="cat">
+                    <tr>
+                      <td><span class="stats">{$cat.pc_id}</span></td>
+                      <td><a class="lv{$cat.level}" href="__APP__/Cates/edit/id/{$cat.pc_id}">{$cat.pc_name}</a></td>
+                      <td>
+                          <if condition="$cat.pc_icon eq '0' ">
+                            <font color="#ccc">No Upload</font>
+                          <else/>
+                              <img src="__DOC__{$cat.pc_icon}" width="80px" height="30px">
+                          </if>
+                      </td>
+                      <td>{$cat.pc_dispweight}</td>
+                      <td><a href="__APP__/Cates/edit/id/{$cat.pc_id}">编辑</a> <a href="__APP__/Cates/remove/id/{$cat.pc_id}">删除</a></td>
+                    </tr>
+                    </foreach>
+
+                  </table>
+                </form>
+          </div>
+        </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<include file="Common:foot" />
+<script type="text/javascript">
+    $('.nagi table.catelist tr td:last-child').addClass('action');
+    $('.nagi table.catelist tr td:nth-child(2)').addClass('catename');
+    $('.nagi table.catelist tr td:nth-child(3)').addClass('order');
+
+    $('#goaddcate').click(function(e) {
+        window.location.href="__APP__/Cates/add";
+    });
+    $('#goccmgr').click(function(e) {
+        window.location.href="__APP__/Models/index";
+    });
+    $('#gotags').click(function(e) {
+        window.location.href="#";
+    });
+    $('#mass_del').click(function(e) {
+        window.location.href="__APP__/Cates/index";
+    });
+</script>
+</body>
+</html>

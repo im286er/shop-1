@@ -1,0 +1,40 @@
+﻿body { font-size: 12px; color: #fff; background: #1d1d1d; }
+
+.upload_button { position: relative; }
+.button { border: 2px solid #666; width: 96px; height: 26px; font-weight: bold; text-align: center; line-height: 26px; background: #444; float: left; }
+.button:hover { border: 2px solid #fff; cursor: pointer; }
+.noborder { border: 0; width: 100px; height: 30px; }
+.noborder:hover { border: 0; }
+#upload_info { margin-left: 10px; float: left; line-height: 30px; }
+
+#upload_list { border: 2px solid #666; padding: 0px 10px 10px; width: 480px; }
+#upload_list .margin_top_10 { margin-top: 10px; }
+#upload_list .fileitem { margin-top: 10px; border: 2px solid #4D3; padding: 5px; width: 461px; background: #0A0; }
+#upload_list .fileitem b { width: 400px; font-weight: bold; white-space: nowrap; overflow: hidden; display: block; }
+#upload_list .fileitem span { margin-right: 4px; border: 1px solid #666; width: 15px; height: 15px; background: #444; text-align: center; float: right; }
+#upload_list .fileitem span:hover { border: 1px solid #fff; cursor: pointer; }
+#upload_list .fileitem i { width: 0px; height: 20px; margin-top: 5px; display: block; background: #444; line-height: 20px; white-space: nowrap; }
+#upload_list .info { margin-top: 10px; }
+#upload_list .uploaderror { border: 2px solid #C90; background: #EA0; }
+
+#upload_error { width: 500px; }
+#upload_error div { margin-top: 10px; border: 2px solid #d00; padding: 10px; background: #b14; line-height: 20px; }
+#upload_error div span { margin-top: 1px; border: 1px solid #666; width: 15px; height: 15px; line-height: 15px; background: #444; text-align: center; float: right; }
+
+#upload_control { width: 480px; height: 30px; }
+
+#fileinfo table { margin: 0; border: 0; padding: 0; }
+#fileinfo table tr th { text-align: right; }
+#fileinfo table tr td { text-align: left; }
+#fileinfo table tr td input { margin: 0; border: 0; padding: 5px; }
+#fileinfo table tr td select { margin: 0; border: 0; padding: 5px; width: 210px; }
+
+.border666 { border: 2px solid #666; padding: 10px; }
+.float_left { float: left; margin-right: 10px; }
+.margin_top_0 { margin-top: 0px; }
+.margin_top_10 { margin-top: 10px; }
+.margin_left_10 { margin-left: 10px; }
+.input_normal { width: 200px; }
+.input_min { width: 50px; }
+.disabled:hover { cursor: not-allowed; }
+.cc { clear: both; }

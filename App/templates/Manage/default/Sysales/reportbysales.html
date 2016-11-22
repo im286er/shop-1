@@ -1,0 +1,97 @@
+<include file="Common:pageheader_start" />
+<include file="Common:pageheader_end" />
+<link href="__DOC__/App/templates/Manage/default/Public/Css/jquery-ui.css" rel="stylesheet" media="all" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/Js/jquery-ui.js"></script>
+<div id="Right">
+		<h3>素原销售报表管理</h3>
+		<br>
+		<form action="" method="post">
+		<div>
+		销售员：<select name="salesid">{$salesOption}</select>
+		<label for="from">From</label>
+				<input type="text" id="from" name="from" value="{$from}">
+			<label for="to">to</label>
+				<input type="text" id="to" name="to" value="{$to}"><input type="submit" value="go">
+		</div>
+		</form>
+		<if condition="$ErrInfo">
+		<div class="errorinfo">{$ErrInfo}</div>
+		</if>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0"
+			class="tab">
+			<tr bgcolor=#E0E0E0>
+				<td width="50">ID</td>
+				<td width="64">缩略图</td>
+				<td width="400">商品名称</td>
+				<td width="100">所属订单</td>
+				<td width="100">销售价格</td>
+				<td width="50">销售数量</td>
+				<td width="100">小计</td>
+				<td width="50">销售日期</td>
+			</tr>
+			<volist name="listTable" id="item">
+			<tr pid="{$item.p_id}">
+				<td>{$item.p_id}</td>
+				<td><div class="thumbs"><img src="__DOC__{$item.p_cover}" height="64px" width="64px" /></div></td>
+				<td>{$item.p_name}</td>
+				<td>{$item.up_orderid}</td>
+				<td>{$item.p_price}</td>
+				<td>{$item.sr_pcount}</td>
+				<td>{$item.sr_amount}</td>
+				<td>{$item.sr_createdate}</td>
+			</tr>
+			</volist>
+		</table>
+</div>
+<script type="text/javascript">
+//快捷启用禁用操作
+$(".opStatus").click(function(){
+    var obj=$(this);
+    var id=$(this).parents("tr").attr("pid");
+    var status=$(this).attr("val");
+    $.getJSON("__APP__/Endproduct/opdetailstat", { pid:id, status:status }, function(json){
+        if(json.status==1){
+            // popup.success(json.info);
+            $(obj).attr("val",json.data.status).html(status==1?"No":"Yes");
+        }else{
+            // popup.alert(json.info);
+        }
+    });
+});
+
+//快捷改变操作排序dblclick
+	$("tbody>tr>td[fd]").click(function(){
+		var inval = $(this).html();
+		var infd = $(this).attr("fd");
+		var inid =  $(this).parents("tr").attr("pid");
+		if($(this).attr('edit')==0){
+			$(this).attr('edit','1').html("<input class='input' size='5' id='edit_"+infd+"_"+inid+"' value='"+inval+"' />").find("input").select();
+		}
+		$("#edit_"+infd+"_"+inid).focus().bind("blur",function(){
+			var editval = $(this).val();
+			$(this).parents("td").html(editval).attr('edit','0');
+			if(inval!=editval){
+				$.post("__APP__/Endproduct/opdispweight",{pid:inid,fd:infd,dispweight:editval});
+			}
+		})
+	});
+	
+	$( "#from" ).datepicker({
+	      defaultDate: "+1w",
+	      changeMonth: true,
+	      numberOfMonths: 1,
+	      onClose: function( selectedDate ) {
+	        $( "#to" ).datepicker( "option", "minDate", selectedDate );
+	      }
+	});
+	
+	$( "#to" ).datepicker({
+	      defaultDate: "+1w",
+	      changeMonth: true,
+	      numberOfMonths: 1,
+	      onClose: function( selectedDate ) {
+	        $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+	      }
+	});
+</script>
+<include file="Common:pagefooter" />

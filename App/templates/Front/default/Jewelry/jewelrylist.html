@@ -1,0 +1,109 @@
+<{include file=C('AHEAD_START')}>
+<{include file=C('AHEAD_END')}>
+<div class="hana-prdlist container content-root">
+	<div class="dividing margin">
+		<h2>
+			<label class="skew"><i>产品目录</i></label>
+		</h2>
+	</div> 
+	<!--产品目录开始-->
+	<div class="sidebar" >
+		<ol class="pro-catalogue" >
+			<{foreach $CateList['Child'] as $Cate name="foo"}>
+			<li><a href="__APP__/jewelry-jewelrylist-cate-<{$Cate['pc_id']}>.html"><{$Cate['pc_name']}></a></li>
+			<{/foreach}>
+			<li><a class="all" href="__APP__/jewelry-jewelrylist.html">所有产品</a></li>
+		</ol>
+	</div>
+	<!--产品目录结束--> 
+	<!--产品列表开始-->
+	<style>
+	.prdlist .prdlist-gird li { margin: 0px 15px 10px;  }
+	</style>
+	<div class="sidelist">
+		<div class="prdlist">
+			<ul class="prdlist-gird">
+				<{foreach $SearchResult as $Result name="foo"}>
+				<li style="position: relative">
+					<{if $Result['p_producttype'] == 7}>
+                        <!--<a href="__DOC__/index/diy-jewelry-cid-<{$Result[$DBF_P->DiyCateCid]}>.html" class="item-img" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">-->
+                        <a href="__APP__/diy-jewelry-cid-<{$Result[$DBF_P->DiyCateCid]}>.html" style="position: absolute; left: 14px; top:0; width: 180px; height:155px; z-index:8;" onMouseOver="changeImg(this,1);" onMouseOut="changeImg(this,0);">
+                            <img src="<{$Result['p_awards']}>" alt="<{$Result[$DBF_P->Name]}>" style="opacity: 0;width: 180px; height: 135px !important;"/>
+                        </a>
+                        <a href="__APP__/diy-jewelry-cid-<{$Result[$DBF_P->DiyCateCid]}>.html" class="item-img" title="<{$Result[$DBF_P->Name]}>">
+                    <{else}>
+			    		<!--<a href="__DOC__/index/product-detail-id-<{$Result[$DBF_P->ID]}>.html" class="item-img" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">-->
+                        <a href="__APP__/product-detail-id-<{$Result[$DBF_P->ID]}>.html" style="position: absolute; left: 14px; top:0; width: 180px; height:155px; z-index:8;" onMouseOver="changeImg(this,1);" onMouseOut="changeImg(this,0);">
+                            <img src="<{$Result['p_awards']}>" alt="<{$Result[$DBF_P->Name]}>" style="opacity: 0; width: 180px; height: 135px !important;"/>
+                        </a>
+                        <a href="__APP__/product-detail-id-<{$Result[$DBF_P->ID]}>.html" class="item-img" title="<{$Result[$DBF_P->Name]}>">
+                    <{/if}>
+				        <img src="__IMG__<{$Result[$DBF_P->Cover]|replace:'/o/':'/s/240_180_'}>" alt=""/>
+    				<{if $Result['p_producttype'] == 7}><span class="skew"><i>DIY</i></span><{/if}>
+                    <{if $Result['p_wpid'] == 1}><div class="skew_new"></div><{/if}>
+                        </a>
+					<div class="item-info">
+						<h4>
+							<{if $Result['p_producttype'] == 7}>
+							<a href="__DOC__/index/diy-jewelry-cid-<{$Result[$DBF_P->DiyCateCid]}>.html" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+							<{else}>
+							<a href="__DOC__/index/product-detail-id-<{$Result[$DBF_P->ID]}>.html" title="<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>">
+							<{/if}>
+							<{$Result[$DBF_P->Name]|regex_replace:"/^[\d]+[|]!*[-]*/":""|truncate:15:"..."}>
+							</a>
+						</h4>
+						<span class="item-price">￥<b><{$Result['p_price']|number_format}></b>.00</span>
+					</div>
+				</li>
+				<{/foreach}>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<div class="list-bottom">
+			<div class="comment-num"><span><b><{$SearchResultCount}></b>&nbsp;件商品</span></div>
+			<div class="page-num">
+				<ul>
+					<{$Paging}>
+				</ul>
+				<!--
+				<div class="write-page">
+				<input type="text" value="1">
+				<span>/&nbsp;&nbsp;2</span> </div>
+			--> 
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<!--产品列表结束-->
+	<div class="clear"></div>
+</div>
+<script>
+    function changeImg(ob,vala){
+        var jqueryElement = $(ob.children[0]);
+        if(vala==1){
+            jqueryElement.animate({opacity : 1}, "slow");
+        }else{
+            jqueryElement.animate({opacity : 0}, "slow");
+        }
+    }
+
+    $(function(){
+        $('.hana-slide-index').layerSlider({
+            pauseOnHover: false,
+            navStartStop: false,
+            hoverBottomNav: true,
+            skin: 'fullwidth',
+            skinsPath: '__NEOSTATIC__/js/ls-skins/',
+            showCircleTimer: false,
+        });
+        var $container = $('.uservoice');
+        $container.imagesLoaded( function() {
+            $container.masonry({
+                "itemSelector": ".item",
+                "isFitWidth": true,
+                "gutter": 20
+            });
+        });
+    });
+</script>
+<{include file=C('AFOOT')}> 

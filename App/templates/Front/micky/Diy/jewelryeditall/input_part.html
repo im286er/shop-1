@@ -1,0 +1,465 @@
+<div class="part-selector-item" <{if $item.ishidden eq 1}>style="display: none;"<{/if}>>
+    <div class="unit-parent unit-left">
+        <div class="unit-child"><{$item.unit_showname}></div>
+    </div>
+    <div class="unit-parent unit-center">
+        <div class="unit-child">
+            <input class="unit-input character-limit diy-text" type="text" mtype="<{$item.fieldtype_second}>" placeholder="<{$item.fieldvalue}>" style="font-family: 'averia serif', symbol; letter-spacing:1px;" value="" mname="<{$item.unit_name}>" fieldlimit="<{$item.fieldlimit}>" maxsize="<{$item.fieldmaxlength}>">
+        </div>
+    </div>
+
+    <{if $dataAll['diy_cate']['fontext'] neq '' }> <!--emoji-->
+    <div class="unit-right">
+        <div class="unit-child unit-emoji-default in-shop" panelname="panel-<{$item.unit_name}>-shop">
+        </div>
+    </div>
+    <{/if}>
+
+    <{if $isMobile == 0 && $dataAll['diy_cate']['fontext'] neq ''}>
+    <div class="panel-pc panel-swiper-pc panel-<{$item.unit_name}>-shop" style="display: none">
+        <{foreach $dataAll['diy_cate']['fontextArr'] as $kitem}>
+        <{if $kitem eq 1}>
+        <div class="panel-title">生肖</div>
+        <div class="panel-content"><ul class="part-col-6">
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe000;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe001;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe002;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe003;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe004;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe005;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe006;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe007;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe008;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe009;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe00a;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe00b;</a></li>
+        </ul></div>
+        <{/if}>
+        <{if $kitem eq 2}>
+        <div class="panel-title">罗马数字</div><!--罗马数字（连）-->
+        <div class="panel-content"><ul class="part-col-6">
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe010;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe011;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe012;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe013;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe014;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe015;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe016;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe017;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe018;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe019;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe01a;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe01b;</a></li>
+        </ul></div>
+        <{/if}>
+        <{if $kitem eq 3}>
+        <div class="panel-title">十二星座</div>
+        <div class="panel-content"><ul class="part-col-6">
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe030;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe031;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe032;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe033;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe034;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe035;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe036;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe037;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe038;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe039;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe03a;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe03b;</a></li>
+        </ul></div>
+        <{/if}>
+        <{if $kitem eq 4}>
+        <div class="panel-title">罗马数字</div><!--罗马数字（不连）-->
+        <div class="panel-content"><ul class="part-col-6">
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe020;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe021;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe022;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe023;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe024;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe025;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe026;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe027;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe028;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe029;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe02a;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe02b;</a></li>
+        </ul></div>
+        <{/if}>
+        <{if $kitem eq 5}>
+        <div class="panel-title">特殊图案</div><!--特殊图案[戒指]-->
+        <div class="panel-content"><ul class="part-col-6">
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe040;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe041;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe042;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe043;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe044;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe045;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe046;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe047;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe048;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe049;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe04a;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe04b;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe04c;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe04d;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe04e;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe04f;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe050;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe051;</a></li>
+        </ul></div>
+        <{/if}>
+        <{if $kitem eq 6}>
+        <div class="panel-title">特殊图案</div><!--特殊图案[项链]-->
+        <div class="panel-content"><ul class="part-col-6">
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe060;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe061;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe062;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe063;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe064;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe065;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe066;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe067;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe068;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe069;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe06a;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe06b;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe06c;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe06d;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe06e;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe06f;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe070;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe071;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe072;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe073;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe074;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe075;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0b0;</a></li>
+        </ul></div>
+        <{/if}>
+        <{if $kitem eq 7}>
+        <div class="panel-title">节日元素</div><!--节日元素[戒指]-->
+        <div class="panel-content"><ul class="part-col-6">
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe080;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe081;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe082;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe083;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe084;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe085;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe086;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe087;</a></li>
+        </ul></div>
+        <{/if}>
+        <{if $kitem eq 8}>
+        <div class="panel-title">节日元素</div><!--节日元素[项链]-->
+        <div class="panel-content"><ul class="part-col-6">
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe090;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe091;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe092;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe093;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe094;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe095;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe096;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe097;</a></li>
+        </ul></div>
+        <{/if}>
+        <{if $kitem eq 9}>
+        <div class="panel-title">叠影</div><!--素原叠影[项链]-->
+        <div class="panel-content"><ul class="part-col-6">
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c0;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c1;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c2;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c3;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c4;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c5;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c6;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c7;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c8;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c9;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0ca;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0cb;</a></li>
+            <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0cc;</a></li>
+        </ul></div>
+        <{/if}>
+        <{/foreach}>
+    </div>
+    <{/if}>
+</div>
+
+<{if $isMobile == 1 && $dataAll['diy_cate']['fontext'] neq '' }>
+    <div class="panel panel-swiper panel-<{$item.unit_name}>-shop">
+        <div class="panel-title">
+            <span class="title">请选择<{$item.unit_showname}>符号</span>
+            <img class="panel-back" src="__MSTATIC__/imgs/diy_ddd_common/back.png" alt="">
+        </div>
+        <div class="panel-swiper-content">
+            <div class="swiper-container swiper-container-order swiper-container-<{$item.unit_name}>">
+                <div class="swiper-wrapper">
+                    <{foreach $dataAll['diy_cate']['fontextArr'] as $kitem}>
+                    <div class="swiper-slide">
+                        <div class="swiper-container swiper-container-child swiper-container-<{$item.unit_name}>-<{$kitem}>">
+                            <div class="swiper-wrapper">
+                                <{if $kitem eq 1}>
+                                <!--<h3>生肖</h3>-->
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe000;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe001;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe002;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe003;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe004;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe005;</a></li></ul>
+                                </div>
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe006;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe007;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe008;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe009;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe00a;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe00b;</a></li></ul>
+                                </div>
+                                <{/if}>
+                                <{if $kitem eq 2}>
+                                <!--罗马数字（连）-->
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe010;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe011;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe012;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe013;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe014;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe015;</a></li></ul>
+                                </div>
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe016;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe017;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe018;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe019;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe01a;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe01b;</a></li></ul>
+                                </div>
+                                <{/if}>
+                                <{if $kitem eq 3}>
+                                <!--<h3>十二星座</h3>-->
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe030;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe031;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe032;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe033;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe034;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe035;</a></li></ul>
+                                </div>
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe036;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe037;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe038;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe039;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe03a;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe03b;</a></li></ul>
+                                </div>
+                                <{/if}>
+                                <{if $kitem eq 4}>
+                                <!--罗马数字（不连）-->
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe020;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe021;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe022;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe023;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe024;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe025;</a></li></ul>
+                                </div>
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe026;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe027;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe028;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe029;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe02a;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe02b;</a></li></ul>
+                                </div>
+                                <{/if}>
+                                <{if $kitem eq 5}>
+                                <!--特殊图案[戒指]-->
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe040;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe041;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe042;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe043;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe044;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe045;</a></li></ul>
+                                </div>
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe046;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe047;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe048;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe049;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe04a;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe04b;</a></li></ul>
+                                </div>
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe04c;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe04d;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe04e;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe04f;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe050;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe051;</a></li></ul>
+                                </div>
+
+                                <{/if}>
+                                <{if $kitem eq 6}>
+                                <!--特殊图案[项链]-->
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe060;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe061;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe062;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe063;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe064;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe065;</a></li></ul>
+                                </div>
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe066;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe067;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe068;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe069;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe06a;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe06b;</a></li></ul>
+                                </div>
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe06c;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe06d;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe06e;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe06f;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe070;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe071;</a></li></ul>
+                                </div>
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe072;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe073;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe074;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe075;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0b0;</a></li></ul>
+                                </div>
+                                <{/if}>
+                                <{if $kitem eq 7}>
+                                <!--节日元素[戒指]-->
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe080;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe081;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe082;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe083;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe084;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe085;</a></li></ul>
+                                </div>
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe086;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe087;</a></li></ul>
+                                </div>
+                                <{/if}>
+                                <{if $kitem eq 8}>
+                                <!--节日元素[项链]-->
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe090;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe091;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe092;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe093;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe094;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe095;</a></li></ul>
+                                </div>
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe096;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe097;</a></li></ul>
+                                </div>
+                                <{/if}>
+                                <{if $kitem eq 9}>
+                                <!--素原叠影[项链]-->
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c0;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c1;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c2;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c3;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c4;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c5;</a></li></ul>
+                                </div>
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c6;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c7;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c8;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0c9;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0ca;</a></li>
+                                        <li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0cb;</a></li></ul>
+                                </div>
+                                <div class="swiper-slide">
+                                    <ul><li class="diy-element-item" mname="<{$item.unit_name}>"><a href="javascript:void(0)">&#xe0cc;</a></li></ul>
+                                </div>
+                                <{/if}>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination swiper-pagination-child swiper-pagination-<{$item.unit_name}>-<{$kitem}>"></div>
+                    </div>
+                    <{/foreach}>
+                </div>
+            </div>
+            <div class="swiper-pagination swiper-pagination-order swiper-pagination-<{$item.unit_name}>"></div>
+        </div>
+    </div>
+
+    <script>
+
+    (function () {
+        var id2EmojiName = {
+            1: "生肖",
+            2: "罗马数字", //[连]
+            3: "十二星座",
+            4: "罗马数字", //[不连]
+            5: "特殊图案", //[戒指]
+            6: "特殊图案", //[项链]
+            7: "节日元素", //[戒指]
+            8: "节日元素", //[项链]
+            9: "素原叠影" //[项链]
+        };
+
+        var hdv = 10;
+
+        var usedEmojiName_<{$item.unit_name}> = [];
+        <{foreach $dataAll['diy_cate']['fontextArr'] as $kitem}>
+            usedEmojiName_<{$item.unit_name}>.push(<{$kitem}>);
+            var swiper_<{$item.unit_name}>_<{$kitem}> = new Swiper ('.swiper-container-<{$item.unit_name}>-<{$kitem}>', {
+                paginationClickable: true,
+                pagination: '.swiper-pagination-<{$item.unit_name}>-<{$kitem}>',
+                onTouchStart: function(swiper, event) {
+                    if(swiper.isEnd || swiper.isBeginning) swiper.z_x = event.touches[0].clientX;
+                },
+
+                onTouchMove: function(swiper, event) {
+                    if(swiper.isEnd || swiper.isBeginning) swiper.z_x_c = event.touches[0].clientX - swiper.z_x;
+                },
+
+                onTouchEnd: function(swiper) {
+                    if(swiper.isEnd) {
+                        if(swiper.z_x_c < -hdv) {
+                            swiper_<{$item.unit_name}>.slideNext();
+                        }
+                    } else if(swiper.isBeginning) {
+                        if(swiper.z_x_c > hdv) {
+                            swiper_<{$item.unit_name}>.slidePrev();
+                        }
+                    }
+                }
+            });
+        <{/foreach}>
+
+        var swiper_<{$item.unit_name}> = new Swiper ('.swiper-container-<{$item.unit_name}>', {
+            paginationClickable: true,
+            pagination: '.swiper-pagination-<{$item.unit_name}>',
+            paginationBulletRender: function (index, className) {
+                var name = id2EmojiName[usedEmojiName_<{$item.unit_name}>[index]];
+                return '<div class="' + className + '"><div>' + name + '</div></div>';
+            }
+        });
+
+        $(".swiper-pagination-<{$item.unit_name}> .swiper-pagination-bullet").css({
+            width: 100/usedEmojiName_<{$item.unit_name}>.length + "%",
+            float: "left"
+        });
+
+        $(".panel-swiper").hide(); // 默认隐藏元素面板
+    })();
+    </script>
+<{/if}>

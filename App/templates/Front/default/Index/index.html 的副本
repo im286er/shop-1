@@ -1,0 +1,86 @@
+<doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>3DCity - 3D城 | 珠宝首饰 | 设计师 | 极客 | DIY创意 | 3D打印</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/init.css?v121804" media="all">
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/doge.css?v121804" media="all">
+<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/jquery-ui.css" media="all">
+<script src="__NEOSTATIC__/js/jquery-1.11.2.min.js"></script>
+<script src="__NEOSTATIC__/js/jquery-ui.min.js"></script>
+</head>
+<body class="page-<{$header|default:"default"}>">
+<div class="header header-full" style="height: 850px; background:url(__NEOSTATIC__/imgs/__tmp__/land/bg.jpg) no-repeat; background-size: cover;">
+	<div class="container topbar" style=" padding-top: 30px;">
+		<div class="search" style="">
+			<form action="__DOC__/index.php/product-index" method="post"> 
+				<button class="btn-action" type="submit">搜索</button>
+				<input type="text" name="tags" value="" style=" border: 1px solid #FFF;" placeholder="搜索达人或创意商品...">
+			</form>
+		</div>
+		<{if !$item_header}>
+		<div class="userinfo">
+			<ul>
+				<{if $isLogin}>
+				<li><a class="avatar" href="__USERIDX__/sales/ordermanage"><img style=" border: 1px solid #CCC;" src="__UPLOAD__/avatar/<{$userBasic.u_avatar|replace:'/o/':'/s/96_96_'}>"></a></li>
+				<li><a class="userid withdrop" href="__USERIDX__/sales/ordermanage" style=" border-bottom: none; color: #FFF;"><{$userBasic.u_dispname}></a></li>
+				<li><a class="notification" href="#">0</a></li>
+				<{else}>
+				<li><a class="signin" href="__USERIDX__/login">登录</a></li>
+				<li><a class="signup skew" href="__USERIDX__/register"><span>&nbsp;</span>新注册用户</a></li>
+				<{/if}>
+			</ul>
+			<div class="dropmenu drop-usermenu">
+				<div class="drop-content">
+					<ol class="usermenu-list">
+						<li><a href="__USERIDX__/sales/ordermanage">我的订单</a></li>
+						<li><a href="__USERIDX__/sales/sum">财务管理</a></li>
+						<li class="hr"></li>
+						<li><a href="__APP__/help-index-id-85">申请入住3DCity</a></li>
+						<li class="hr"></li>
+						<li><a href="__USERIDX__/profile/u/uid/<{$userBasic.u_id}>">我的主页</a></li>
+						<li><a href="__USERIDX__/userconf">设置</a></li>
+						<li><a href="__USERIDX__/mydiy/jewelrylist">我的定制</a></li>
+						<li class="hr"></li>
+						<li><a href="__USERIDX__/logout">注销</a></li>
+					</ol>
+				</div>
+				<div class="baseline"></div>
+			</div>
+		</div>
+		<{/if}> 
+	</div>
+	<div class="clear"></div>
+	<div class="mlogo" style=" margin:  80px auto 0; text-align: center">
+	 
+	<a href="__APP__/jewelry"><img src="__NEOSTATIC__/imgs/__tmp__/land/hlogo.png" width="164" alt=""/></a></div>
+	<a href="__APP__/jewelry" style=" text-align: center; font-size: 28px; color: #FFF; padding: 36px 0 0;display:block;">最酷炫的个性化定制平台</a>
+	<style>
+		.gates { padding-top: 150px; max-width: 960px; margin: 0 auto; }
+		.gates li { width: 33.3%; float: left; text-align: center;}
+		.gates li img { width: 60%;}
+		.gates li h2 { text-align: center; color: #FFF; font-size: 18px; margin-top: 16px; }
+	</style>
+	
+	<ul class="gates">
+		<li><a href="__APP__/jewelry"><img src="__NEOSTATIC__/imgs/__tmp__/land/light-video2.png" alt=""/><h2>定制首饰</h2></a></li>
+		<li><a href="__APP__/square"><img src="__NEOSTATIC__/imgs/__tmp__/land/light-video1.png" alt=""/><h2>发现设计师</h2></a></li>
+		<li><a href="#"><img src="__NEOSTATIC__/imgs/__tmp__/land/light-video3.png" alt=""/><h2 style=" color: #666;">即将到来...</h2></a></li>
+	</ul>
+</div>
+<div class="clear"></div>
+
+<!--{include file=C('AHEAD_START')}>
+<{include file=C('AHEAD_END')}>
+
+<div class="hana-index container content-root">
+	<div class="welcome"></div>
+	<div class="clear"></div>
+	<div class="square fl">广场Banner</div>
+	<div class="jewelry fr">创意首饰Banner</div>
+</div>
+
+<div class="clear"></div-->
+<{include file=C('AFOOT')}>

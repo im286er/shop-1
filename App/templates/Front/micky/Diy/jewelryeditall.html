@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title><{$dataAll.diy_cate.cate_name}></title>
+<script src="__NEOSTATIC__/js/ZBasic.js"></script>
+<script type="text/javascript" src="__NEOSTATIC__/js/countUp.js"></script>
+<{if $mmode}>
+    <!----------------------第三版手机版--------------------------------------->
+    <{if $type == 'iwx'}>
+        <{include file=C('KITTYMHEAD_START') wxtitle="IGNITE - 3D城 | 珠宝首饰 | 设计师 | 极客 | DIY创意 | 3D打印"}>
+        <link rel="stylesheet" type="text/css" href="__MSTATIC__/css/doge.mobile.diyediter.css">
+        <link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/jquery.qtip.min.css">
+        <script src="__NEOSTATIC__/js/nstslider.jquery.js"></script>
+        <script src="__NEOSTATIC__/js/jquery.qtip.min.js"></script>
+        <script src="__NEOSTATIC__/js/doge.webglchk.js"></script>
+        <script src="__NEOSTATIC__/js/ZInputTextManager.js"></script>
+        <script src="__NEOSTATIC__/diy/seajs-2.3.0/dist/sea.js"></script>
+        <script src="__NEOSTATIC__/diy/config.js"></script>
+
+        <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/bootstrap.min.css">
+        <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/fonts.css">
+        <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/top.css">
+        <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/footer.css">
+        <{include file=C('IWXHEADER_END')}>
+    <!----------------------第三版手机版--------------------------------------->
+
+    <{else}>
+        <!----------------------第二版手机版--------------------------------------->
+        <{include file=C('KITTYMHEAD_START') wxtitle="IGNITE - 3D城 | 珠宝首饰 | 设计师 | 极客 | DIY创意 | 3D打印"}>
+        <link rel="stylesheet" type="text/css" href="__MSTATIC__/css/doge.mobile.diyediter.css">
+        <link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/jquery.qtip.min.css">
+        <script src="__NEOSTATIC__/js/nstslider.jquery.js"></script>
+        <script src="__NEOSTATIC__/js/jquery.qtip.min.js"></script>
+        <script src="__NEOSTATIC__/js/doge.webglchk.js"></script>
+        <script src="__NEOSTATIC__/js/ZInputTextManager.js"></script>
+        <script src="__NEOSTATIC__/diy/seajs-2.3.0/dist/sea.js"></script>
+        <script src="__NEOSTATIC__/diy/config.js"></script>
+        <{if $showtype!==10}>
+        <{include file=C('KITTYMHEAD_END') wxtitle="IGNITE" ch="dft"}>
+        <{/if}>
+        <!----------------------第二版手机版--------------------------------------->
+    <{/if}>
+<{else}>
+    <link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/doge.diyediter.css">
+    <link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/jquery.qtip.min.css">
+    <script src="__NEOSTATIC__/js/jquery-1.11.2.min.js"></script>
+    <script src="__NEOSTATIC__/js/nstslider.jquery.js"></script>
+    <script src="__NEOSTATIC__/js/jquery.qtip.min.js"></script>
+    <script src="__NEOSTATIC__/js/doge.webglchk.js"></script>
+    <script src="__NEOSTATIC__/js/ZInputTextManager.js"></script>
+    <script src="__NEOSTATIC__/diy/seajs-2.3.0/dist/sea.js"></script>
+    <script src="__NEOSTATIC__/diy/config.js"></script>
+    <!-- <script src="__PUBLIC__/js/messenger.js"></script> -->
+    <script src="__DOC__/Public/static/IgniteBridge.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/bootstrap.min.css">
+
+<{/if}>
+<{if !$mmode}>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<script src="__NEOSTATIC__/js/html5shim.js"></script>
+<{/if}>
+<{if !$mmode}>
+	<link rel="stylesheet" type="text/css" href="__NEOSTATIC__/css/doge.css">
+    <!--<script src="__NEOSTATIC__/js/jquery-1.11.2.min.js?v121804"></script>-->
+<{else}>
+<!--
+	<link rel="stylesheet" type="text/css" href="__DOC__/m/doge/css/doge.mobile.css">
+-->
+<{/if}>
+
+<body class="page-jewelry">
+<form id="diyf" name="diyf" method="post" role="form" onSubmit="return false;">
+    <input type="hidden" value="<{$udinfo.id}>" name="pid" id="pid">
+    <input type="hidden" value="<{$code}>" name="code" >
+    <input type="hidden" value="<{$mmode}>" name="mmode">
+    <input type="hidden" value="<{$udinfo.cover}>" name="cover" id="cover">
+    <input type="hidden" value="<{$dataAll.diy_cate.cid}>" name="cid" id="cid">
+    <input type="hidden" value="<{$udinfo.price}>" name="price" id="price">
+    <input type="hidden" id="stype" name="stype" value="<{$stype}>">
+    <input type="hidden" value="<{$code}>" name="code" >
+    <input type="hidden" value="<{$type}>" name="mtype">
+ <!--<input type="text" value="25" name="clientUserId" id="clientUserId">
+    <input type="text" id="productKey" value="abcdefg" name="productKey">
+    <input type="text" id="clientStorage" value="ClientVisitIdentity" name="clientStorage">-->
+    <input type="hidden" id="agentid" value="<{$agentId}>" name="agentid">
+    <input type="hidden" id="clientUserId" value="<{$clientUserId}>" name="clientUserId">
+    <input type="hidden" id="productKey" value="<{$productKey}>" name="productKey">
+    <input type="hidden" id="clientStorage" value="" name="clientStorage">
+
+    <div id="editor">
+         <div id="edt-preview">
+            <{if $showtype==10 && $clientUserId==1}>
+             展示URL:<{$currentUrl}>
+             <{/if}>
+             <canvas id="web3dViewport" class="diyeditor-canvas"></canvas>
+         </div>
+         <div id="edt-control">
+             <{if $mmode == 0}>
+             <div>
+                 <p class="edt_prd_title"><{$dataAll.diy_cate.cate_name}><span>DIY</span></p>
+                 <p class="edt_prd_desc"><{$dataAll.diy_cate.intro1}></p>
+                 <p class="edt_prd_promotion"></p>
+                 <div class="edt_prd_price">
+                     <span class=" priceText">￥<span id="showprice"><{$udinfo.price}></span></span>
+                     <div class="edt_prd_like" id="zan" pid="<{$productInfo.p_id}>" style="cursor:pointer;"><i id="zannum"><{$productInfo.p_zans}></i></div>
+                 </div>
+             </div>
+             <{/if}>
+
+             <{if $showtype==10}>
+                 <div class="panel-main" style="display: none;">
+             <{else}>
+                 <div class="panel-main">
+             <{/if}>
+                 <div class="panel-container">
+                 <{foreach $dataAll.diy_unit as $item}>
+                     <{if $item.fieldtype eq 'INPUT'}> <!--input-->
+                       <{include file="Diy/jewelryeditall/input_part.html" isMobile=$mmode}>
+                    <{elseif $item.fieldtype eq 'SELECT'}> <!--select-->
+                        <{include file="Diy/jewelryeditall/select_part.html" isMobile=$mmode}>
+                    <{elseif $item.fieldtype eq 'NECKLACE'}> <!--necklace-->
+                        <{include file="Diy/jewelryeditall/necklace_part.html" isMobile=$mmode}>
+                    <{elseif $item.fieldtype eq 'MATERIAL'}> <!--material-->
+                        <{include file="Diy/jewelryeditall/material_part.html" isMobile=$mmode}>
+                    <{elseif $item.fieldtype eq 'INPUTSLIDER'}> <!--slider-->
+                        <{include file="Diy/jewelryeditall/inputslider_part.html" isMobile=$mmode}>
+                    <{/if}>
+                    <input type="hidden" value="<{$item.fieldvalue}>" class="form_unit" name="<{$item.unit_name}>">
+                <{/foreach}>
+                </div>
+            </div>
+            <{if $mmode == 0}>
+                <{if $clientUserId !== 'cabf326dODwTyVBA'}>
+                    <{if !$agentId}>
+                        <{include file="Diy/jewelryeditall/submit_share_part.html"}>
+                    <{else}>
+                        <button type="button" class="btn-buy btn-default arcbuynow"  id="web3dSaveBuy" data-loading-text="<span class='' aria-hidden='true' style='display:inline-block;float:left;height:45px;line-height:45px;padding:0 5px 0 0;'>
+                        <img src='__NEOSTATIC__/imgs/jewelry/loading.gif' width='20' height='20'/></span>正在提交..." autocomplete="off">放入购物袋</button>
+                    <{/if}>
+                <{else}>
+                    <button type="button" class="btn-buy btn-default arcbuynow"  id="web3dSaveBuy" style="display: none;" >
+                <{/if}>
+            <{/if}>
+        </div>
+    </div>
+
+    <{if $mmode eq 1}>
+    <!--底部价格 start-->
+        <{if $showtype ==10}>
+            <div class="arcbar buildit" style="display: none;">
+         <{else}>
+              <div class="arcbar buildit">
+         <{/if}>
+            <label class="price">价格: <span class="price-cost">￥<span id="showprice"></span></span></label>
+            <button type="button" class="btn btn-default arcbuynow"  id="web3dSaveBuy" data-loading-text="<span class='' aria-hidden='true' style='display:inline-block;float:left;height:45px;line-height:45px;padding:0 5px 0 0;'><img src='__NEOSTATIC__/imgs/jewelry/loading.gif' width='20' height='20'/></span>正在提交..." autocomplete="off">立即购买</button>
+    </div>
+    <!--底部价格 end-->
+    <{/if}>
+</form>
+<{if $mmode eq 0}>
+    <div class="frm-img frm-img_ring pa" >
+        <a href="javascript:void(0)" class="clos" >X</a>
+    </div>
+    <div class="frm-img frm-img_nec pa" >
+        <a href="javascript:void(0)" class="clos" >X</a>
+    </div>
+<{elseif $mmode eq 1}>
+    <div class="frm-img frm-img_ring pa" >
+        <a href="javascript:void(0)" class="clos" >X</a>
+        <img src="__NEOSTATIC__/imgs/jewelry/rin_phone.png" width="100%"/>
+    </div>
+    <div class="frm-img frm-img_nec pa" >
+        <a href="javascript:void(0)" class="clos" >X</a>
+        <img src="__NEOSTATIC__/imgs/jewelry/nec_phone.png" width="100%"/>
+    </div>
+<{/if}>
+<style>
+    .diy-rin {color: #000 !important;}
+
+    .diy-inf{border-radius:100%;background:#D6F0E8;width:20px;height:20px;line-height:15px;text-align:center;margin-top:5px;display:inline-block;border:1px solid #000000; vertical-align:middle;margin-top:-5px;}
+    .frm-img{display:none;top:50%;left:50%;margin-left:-360px;margin-top:-300px;width:700px;height:550px;border:1px solid #999;z-index:40000;}
+    .frm-img img{width:100%;height:100%;}
+    .frm-img a{display:block;text-align:right;width:100%;position:relative;z-index:44444;padding:20px;font-size:25px;font-weight:bold;color: #7FD1BA;}
+    .frm-img_nec{background:url(/doge/imgs/jewelry/frm-img_nec.jpg) center center no-repeat;background-size:cover;}
+    .frm-img_ring{background:url(/doge/imgs/jewelry/frm-img_rin.jpg) center center no-repeat;background-size:cover;}
+
+    .btn-default.disabled{background-color: #cd6466!important;}
+    .frm-img{width:100%;height:100%;position:fixed;top:0px;left:0px;margin:auto;}
+    .frm-img img{ width:100%;}
+    .frm-img_nec{background:none;}
+    .frm-img a{position:absolute;top:0px;}
+    .frm-img_ring{background:none;}
+
+</style>
+<!--<{$show_neck}> -->
+<script>
+    $(".diy-inf.nck").click(function(){
+        $(".frm-img_nec").fadeToggle();
+    });
+    $(".diy-inf.rin").click(function(){
+
+        $(".frm-img_ring").fadeToggle();
+    });
+    $(".diy-rin").click(function(){
+        $(".frm-img_ring").fadeToggle();
+    });
+    $(".diy-nck").click(function(){
+        $(".frm-img_nec").fadeToggle();
+    });
+    $(".clos").click(function(){
+        $(".frm-img").hide();
+    });
+
+//    function chat() {
+//        $('.guide').tooltip("hide");
+//	    clearTimeout(interval);
+//    }
+//	$('.guide').tooltip("show");
+//	var interval = setInterval(function(){
+//		$('.guide').tooltip("hide");
+//		clearTimeout(interval);
+//	},5000);
+
+
+    // zhengweifu code --------------start--------------
+    seajs.config({
+        alias : {
+            // 'intersectionjs' :  "__NEOSTATIC__/diy/js/<{$dataAll.diy_cate['jspath']}>",
+            'intersectionjs' :  "<{$dataAll.diy_cate['jspath']}>"
+        }
+    });
+
+    seajs.use(["index.js", "common/ZUtils.js"], function(execute, utils) {
+    	// 检测是否支持webgl
+		if(!isSupportWebGL()) {
+			alert("亲，您的当前浏览器不支持webgl, 请预览非DIY产品。");
+			if(utils.IsMobile.Any()) {
+				window.location.href='__DOC__/index/wx-jewelrylist';
+			} else {
+				window.location.href='__DOC__/index/jewelry';
+			}
+		}
+
+
+        var parameters = {
+			rootpath : "__DOC__",
+            webpath : "__NEOSTATIC__/diy",
+            neostatic : "__NEOSTATIC__",
+            isMobile : <{$mmode}>,
+            canvas : document.getElementById("web3dViewport"),
+            globalChainStyleIDName : "<{$dataAll.diy_cate.idprefix}>Chaintype",
+            globalMaterialStyleIDName : "<{$dataAll.diy_cate.idprefix}>Material",
+            islogin : parseInt("<{$islogin}>"),
+            startprice : "<{$udinfo.startprice}>",
+            pid : document.getElementById("pid").value,
+            cameraMatrix:"<{$dataAll.diy_cate.cameramatrix}>",
+            chainMatrix:"<{$dataAll.diy_cate.chainmatrix}>",
+            chainMeshPaths:"<{$dataAll.diy_cate.chainmeshpaths}>"
+        };
+
+        var dom = parameters.canvas;
+        if(parameters.isMobile) dom = null;
+        utils.reportTipPanel(dom, "精彩即将到来...", "__DOC__");
+
+        <{foreach $mcate as $res}>
+        parameters["pma_diy_formula_s_<{$res.pma_id}>"]="(<{$res.pma_diy_formula_s}>)*<{$dataAll.diy_cate.price_per}>";
+        parameters["pma_diy_formula_b_<{$res.pma_id}>"]="(<{$res.pma_diy_formula_b}>)*<{$dataAll.diy_cate.price_per}>";
+        <{if $dataAll.diy_cate.cate_group==2}>
+             parameters["pma_necklace_price_<{$res.pma_id}>"]=parseInt("<{$res.pma_necklace_price}>")*("<{$dataAll.diy_cate.price_per}>");
+        <{else}>
+             parameters["pma_necklace_price_<{$res.pma_id}>"]=0;
+        <{/if}>
+        <{/foreach}>
+        execute(parameters);
+
+        if($('.nstSlider').length > 0) {
+            $('.nstSlider').nstSlider({
+                "left_grip_selector": ".leftGrip",
+                "value_changed_callback": function(cause, leftValue, rightValue) {
+                    var _value = (leftValue/100).toFixed(1);
+                    $(this).parent().parent().parent().find('.unit-inputslider').val(_value);
+                    $(".form_unit[name=" + $(this).attr("name") + "]").val(_value);
+                },
+
+                "user_mouseup_callback": function(leftValue, rightValue) {
+                    $(this).parent().parent().parent().find('.unit-inputslider').change();
+                }
+            });
+        }
+
+    });
+    // zhengweifu code ---------------end------------------
+    $(function(){
+        $("#zan").click(function(){
+            var zan =$(this);
+            var pid = zan.attr("pid"); //对应id
+            zan.css("opacity",0);
+            zan.animate({opacity:1});
+            $.ajax({
+                type:"GET",
+                url:"__USERIDX__/myzan/add/id/"+pid,
+                data:"",
+                cache:false, //不缓存此页面
+                success:function(data){
+                    $('#zannum').html(data);
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<script>
+    IgniteBridge.setDataToThird(function(messenger, target, message) {
+        if(message === 'ignite-submit') {
+            var saveElementBuy = document.getElementById("web3dSaveBuy");
+            saveElementBuy.click();
+            var toThData = '<{$diyInfoJson}>';
+            messenger.targets[target].send(toThData);
+        }
+    });
+</script>
+</body>
+</html>

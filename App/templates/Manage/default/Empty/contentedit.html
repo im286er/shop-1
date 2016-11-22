@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    
+	    <meta charset="utf-8">
+        <title>{$site.SITE_INFO.name}</title>
+<link rel="stylesheet" type="text/css" href="__DOC__/doge/css/doge.diyediter.css">
+        <php>
+            $addCss="";
+            $addJs="";
+            $currentNav =$currentNav;
+        </php>
+    <include file="Common:intohead" />
+</head>
+<script>
+var htmlbl='{$HtmlName}';
+if(htmlbl){
+	KindEditor.ready(function(K) {
+		var editor1 = K.create('textarea[name='+ htmlbl +']', {
+			cssPath : '__PUBLIC__/kindeditor/plugins/code/prettify.css',
+			uploadJson : '__PUBLIC__/kindeditor/php/upload_json.php',
+			fileManagerJson : '__PUBLIC__/kindeditor/php/file_manager_json.php',
+			allowFileManager : true,
+			afterCreate : function() {
+				var self = this;
+				K.ctrl(document, 13, function() {
+					self.sync();
+					K('form[name=example]')[0].submit();
+				});
+				K.ctrl(self.edit.doc, 13, function() {
+					self.sync();
+					K('form[name=example]')[0].submit();
+				});
+			}
+		});
+		prettyPrint();
+	});
+}
+</script>
+
+
+<if condition="$MimgName">
+	<input type='hidden' name='s' width=100 id='imgid'>
+<script type="text/javascript">
+	var path='__MIMGSTYLE__';
+	var url='__URL__';
+</script>
+<script type="text/javascript" src="__MIMGSTYLE__/js/jquery.js"></script>
+<script type="text/javascript" src="__MIMGSTYLE__/js/swfupload.js"></script>
+<script type="text/javascript" src="__MIMGSTYLE__/js/handlers.js"></script>
+<link href="__MIMGSTYLE__/css/default.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+		var swfu;
+		
+		window.onload = function () {
+			var avalue=$('#{$MimgName}').val();
+			$('#imgid').val(avalue);
+			var imginfo='{$pinfo}';
+			var imgArr=eval('('+imginfo+')');
+			for(var ki=0;ki<imgArr.length;ki++){
+				var temp_id=imgArr[ki].id;
+				var $imgstr=JSON.stringify(imgArr[ki]); 
+				if(imgArr[ki]['imgpath']){
+					addImage($imgstr);
+				}
+			}
+			swfu = new SWFUpload({
+				upload_url: "__URL__/uploadImg/",
+				post_params: {"PHPSESSID": "<?php echo session_id();?>"},
+				file_size_limit : "2 MB",
+				file_types : "*.jpg;*.png;*.gif;*.bmp",
+				file_types_description : "JPG Images",
+				file_upload_limit : "100",
+				file_queue_error_handler : fileQueueError,
+				file_dialog_complete_handler : fileDialogComplete,
+				upload_progress_handler : uploadProgress,
+				upload_error_handler : uploadError,
+				upload_success_handler : uploadSuccess,
+				upload_complete_handler : uploadComplete,
+				button_image_url : "__MIMGSTYLE__/images/upload.png",
+				button_placeholder_id : "spanButtonPlaceholder",
+				button_width: 113,
+				button_height: 33,
+				button_text : '',
+				button_text_style : '.spanButtonPlaceholder { font-family: Helvetica, Arial, sans-serif; font-size: 14pt;} ',
+				button_text_top_padding: 0,
+				button_text_left_padding: 0,
+				button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+				button_cursor: SWFUpload.CURSOR.HAND,			
+				flash_url : "__MIMGSTYLE__/swf/swfupload.swf",
+				custom_settings : {
+					upload_target : "divFileProgressContainer"
+				},				
+				debug: false
+			});
+		};
+	</script>
+</if> 
+<body>
+    <div class="wrap"> <include file="Common:head" />
+        <div class="mainBody"> <include file="Common:left" />
+            <div id="Right">
+                <div class="contentArea">
+                    <div class="Item hr">
+                        <div class="current">{$currentNav}</div>
+                    </div>
+               		{$showfrom}
+             <!--<div style="width: 610px; height: auto; border: 1px solid #e1e1e1; font-size: 12px; padding: 10px;">
+                 <span id="spanButtonPlaceholder"></span>
+                 <div id="divFileProgressContainer"></div>
+                 <div id="thumbnails">
+             	    <ul id="pic_list" style="margin: 5px;"></ul>
+                 <div style="clear: both;"></div>
+                 </div>
+                 </div> -->
+         
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+<include file="Common:foot" />
+</body>
+</html>
+
+

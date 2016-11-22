@@ -1,0 +1,71 @@
+<include file="Common:pageheader_start" />
+<include file="Common:pageheader_end" />
+<div class="contents">
+	<form method="post" action="__APP__/printer_material/add">
+		<h3>添加材料</h3>
+		<if condition="$ErrInfo"><div class="errorinfo">{$ErrInfo}</div></if>
+		<div>材料名称<br/>
+			<input type="text" name="name" value="{$Post['name']}" /><span class="verify"></span>
+		</div>
+		<div>父级材料<br/>
+			<select name="parentid">
+				<option value="0">我就是父级材料</option>
+				<volist name="PMOption" id="item">
+				<if condition=" $Post.parentid eq $item.pma_id ">
+				<option value="{$item.pma_id}" selected="selected">{$item.pma_name}</option>
+				<else/>
+				<option value="{$item.pma_id}">{$item.pma_name}</option>
+				</if>
+				</volist>
+			</select>
+		</div>
+		<div>起始价格<br/>
+			<input type="text" name="startprice" value="{$Post['startprice']}" /><span class="verify"></span>
+		</div>
+		<div>材料单价<br/>
+			<input type="text" name="unitprice" value="{$Post['unitprice']}" /><span class="verify"></span>
+		</div>
+		<div>参考比重<br/>
+			<input type="text" name="density" value="{$Post['density']}" /><span class="verify"></span>
+		</div>
+		<div>价格因子<br/>
+			<input type="text" name="factor" value="{$Post['factor']}" /><span class="verify"></span>
+		</div>
+		<div>最大长<br/>
+			<input type="text" name="maxlength" value="{$Post['maxlength']}" /><span class="verify"></span>
+		</div>
+		<div>最大宽<br/>
+			<input type="text" name="maxwidth" value="{$Post['maxwidth']}" /><span class="verify"></span>
+		</div>
+		<div>最大高<br/>
+			<input type="text" name="maxheight" value="{$Post['maxheight']}" /><span class="verify"></span>
+		</div>
+		<div>参考比率<br/>
+			<input type="text" name="rationref" value="{$Post['rationref']}" /><span class="verify"></span>
+		</div>
+		<div>单件模型制作费<br/>
+			<input type="text" name="singlepartfee" value="{$Post['singlepartfee']}" /><span class="verify"></span>
+		</div>
+		<div>打印单位小时价格<br/>
+			<input type="text" name="pricehour" value="{$Post['pricehour']}" /><span class="verify"></span>
+		</div>
+		<div>打印构建速度<br/>
+			<input type="text" name="fabspeed" value="{$Post['fabspeed']}" /><span class="verify"></span>
+		</div>
+		<div>
+			<input type="submit" name="submit" value="添加" /> <a href="__APP__/printer_material/index">取消...</a>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+	(function ($) {
+		var verified = '<b>√</b>';
+		var notverified = '<b>X</b>';
+		var fadeTime = 100;
+		
+		$(document).ready(function () {
+			
+		});
+	})(jQuery);
+</script>
+<include file="Common:pagefooter" />

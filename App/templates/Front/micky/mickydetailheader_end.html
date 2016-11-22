@@ -1,0 +1,557 @@
+<!--百度统计-----Start-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?2882261a9ea7c30daa303ff64d127130";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<!--百度统计-----End-->
+
+<link rel="stylesheet" href="__PUBLIC__/css/fonts.css">
+<link rel="stylesheet" href="__PUBLIC__/css/menu_new.css">
+<link rel="stylesheet" href="__PUBLIC__/css/list.css">
+<script type="text/javascript">
+    $(function(){
+        var loginHover = $(".logoHover"),
+                menuEr = $(".menu-er");
+        loginHover.hover(function(){
+            menuEr.stop().slideDown();
+        }, function () {
+            menuEr.slideUp();
+        })
+    })
+</script>
+<!--导航Start-->
+<script>
+    $(document).on("scroll",function(){
+        //noinspection JSValidateTypes
+        if($(document).scrollTop() >= 70){
+            $(".logoImg").stop().animate({
+                top:'-55px'
+            },200);
+            $(".nav").stop().animate({
+                top:'-92px'
+            },200);
+            $(".logoRight").stop().animate({
+                top:'70px'
+            },200);
+//                $(".logoRight").addClass("change");
+//                $(".sousuo").addClass("change1");
+
+        }else{
+            $(".logoImg").stop().animate({
+                top:'0'
+            },200);
+            $(".nav").stop().animate({
+                top:'0'
+            },200);
+            $(".logoRight").stop().animate({
+                top:'0'
+            },200);
+//                $(".logoRight").removeClass("change");
+//                $(".sousuo").removeClass("change1");
+        }
+    });
+    $(function(){
+        //  菜单  二级
+        $(".all_shop").hover(function () {
+            $(this).find(".er_menu").show();
+        }, function () {
+            $(this).find(".er_menu").hide();
+        });
+        // 购物车
+        $(".gouwudai").hover(function(){
+            $(this).find($(".gouwuche-erji")).stop(true,true).slideDown();
+        },function(){
+            $(this).find($(".gouwuche-erji")).slideUp();
+        });
+        // 登录
+        $("#denglu_fix").hover(function(){
+            $(this).find($(".gouwuche-erji")).stop(true,true).slideDown();
+        },function(){
+            $(this).find($(".gouwuche-erji")).slideUp();
+        })
+    })
+</script>
+<!--导航End-->
+<script>
+    <{if $mobileAgent !=3  }>
+    window.location.href='__APP__/wx';
+    <{/if}>
+    $(document).ready(function(){
+        $("#doge-close").click(function(){
+            $(".dogeattention").fadeOut();
+        });
+        $(".notification").click(function(){
+            $(".dogeattention").fadeIn();
+        });
+        $(".dogeattention").click(function(){
+            $(".dogeattention").fadeOut();
+        });
+
+    });
+</script>
+<style>
+    .menu-er{
+        position: absolute;
+        width: 125px;
+        z-index: 111;
+        display: none;
+    }
+    .drop-content{
+        padding: 10px;
+        background: #EFEBE8;
+        border-top: 1px solid #eee;
+        line-height: 30px;
+        font-size: 12px;
+    }
+    .logoHover .menu-er ul li a{
+        color: #57464a;
+    }
+    .logoHover .menu-er ul li:hover a{
+        color: #a9784d;
+    }
+    .hr{
+        margin-bottom: 3px;
+        border-top: 1px solid #ECECEC;
+        line-height: 2;
+        height: 0;
+    }
+</style>
+</head>
+<body>
+<!-- 顶部 -->
+<!--<div class="top">
+    <div class="topCenter">
+        &lt;!&ndash; 登录 &ndash;&gt;
+        <div class="topCenterTop">
+            <{if ($isLogin) }>
+            <div class="topCenterLogin fl" style="height: 29px;display: block;">
+                <ul style="overflow: hidden;">
+                    <li class="fl" style="width: 30px;height: 30px;margin-right: 10px;border: 1px solid #aaa;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius:50%;" >
+                        <a href="__USERIDX__/sales/ordermanage" style="display: block;">
+                            <{if $userBasic.u_avatar neq ''}>
+                            <img src="__UPLOAD__/avatar/<{$userBasic.u_avatar|replace:'/o/':'/s/96_96_'}>" alt="" style="width: 100%;vertical-align: top;border-radius: 50%;"/>
+                            <{else}>
+                            <img src="__KITTYPUBLIC__/images/avatar/default.png" alt="" style="width: 100%;vertical-align: top;border-radius: 50%;"/>
+                            <{/if}>
+                        </a>
+                    </li>
+                    <li class="fl">
+                        <div class="logoHover fl" style="cursor:pointer;">
+                            <h5 style="position: relative;"><{$userBasic.showusername}>
+                                <img src="__PUBLIC__/images/btn-drop.png" alt=""/>
+                            </h5>
+                            <div class="menu-er">
+                                <ul class="drop-content">
+                                    <li>
+                                        <a href="__USERIDX__/sales/ordermanage">我的订单</a>
+                                    </li>
+                                    <li>
+                                        <a href="__APP__/cashecoupon/showca">我的代金券</a>
+                                    </li>
+                                    <li>
+                                        <a href="__APP__/coupon/mycoupon">我的优惠券</a>
+                                    </li>
+                                    <li class="hr"></li>
+                                    <li>
+                                        <a href="__USERIDX__/userconf">账户管理</a>
+                                    </li>
+                                    <li>
+                                        <a href="__USERIDX__/mydiy/jewelrylist">我的DIY</a>
+                                    </li>
+                                    <li class="hr"></li>
+                                    <li>
+                                        <a href="__USERIDX__/logout">注销</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        &lt;!&ndash; 购物袋 &ndash;&gt;
+                        <a href="__DOC__/user.php/cart" style="margin-left: 10px;color: #333;font-size: 12px;"><i class="iconfont icon-gouwudai"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <{else}>
+            <div class="topCenterLogin fl">
+                <a href="__DOC__/user.php/login">登录</a>
+                <span>/</span>
+                <a href="__DOC__/user.php/register">注册</a>
+                <span></span>
+                <a href="" style="margin-left: 10px;color: #333;font-size: 12px;"><i class="iconfont icon-gouwudai"></i></a>
+            </div>
+            <{/if}>
+            <div class="logo">
+                <a href="__DOC__/index.php">
+                    <img src="__PUBLIC__/images/logo_list.png" alt="" style="width: 100%;">
+                </a>
+            </div>
+            &lt;!&ndash; 地球 &ndash;&gt;
+
+            <div class="search fr" style="width: 144px;border: 0;">
+                <span class="iconfont icon-tel"></span>
+                <input type="text" placeholder="021-54340650" style="width: 112px;background-color:#fff;" disabled/>
+            </div>
+            <div class="search fr marginright" style="width: 144px;">
+                <form action="__DOC__/index.php/product-index" method="post">
+                    <button type="submit" class="iconfont icon-sousuo" style="border: 0;background: none;line-height: 28px;"></button>
+                    <input type="text" name="tags" value="" placeholder="Search" />
+                </form>
+            </div>
+            &lt;!&ndash;<div class="diqiu fr marginright">&ndash;&gt;
+                &lt;!&ndash;<span class="iconfont icon-earth"></span>&ndash;&gt;
+            &lt;!&ndash;</div>&ndash;&gt;
+            <div style="clear: both;"></div>
+        </div>
+        &lt;!&ndash; 菜单 &ndash;&gt;
+        <ul class="topCenterMenu" style="width: 615px;">
+            <{if $category ==''}>
+            <li class="first">
+                <{else}>
+            <li>
+                <{/if}>
+                <a href="__DOC__/index.php">
+                    <i class="iconfont icon-jiajuyongpin"></i>
+                    <span>首页</span>
+                </a>
+            </li>
+            <{if $category =='1272'}>
+            <li class="index">
+                <{else}>
+            &lt;!&ndash;<li>&ndash;&gt;
+                &lt;!&ndash;<{/if}>&ndash;&gt;
+                &lt;!&ndash;<a href="__DOC__/index.php/jewelry-jewelrylist-cate-1272.html">&ndash;&gt;
+                    &lt;!&ndash;<i class="iconfont icon-jiajuyongpin"></i>&ndash;&gt;
+                    &lt;!&ndash;<span>智绘首饰</span>&ndash;&gt;
+                &lt;!&ndash;</a>&ndash;&gt;
+            &lt;!&ndash;</li>&ndash;&gt;
+            <{if $category =='1266'}>
+            <li class="index">
+                <{else}>
+            <li>
+                <{/if}>
+                <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1266.html">
+                    <i class="iconfont icon-jiajuyongpin"></i>
+                    <span>项链/吊坠</span>
+                </a>
+            </li>
+            <{if $category =='1264'}>
+            <li class="index">
+                <{else}>
+            <li>
+                <{/if}>
+                <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1264.html">
+                    <i class="iconfont icon-jiajuyongpin"></i>
+                    <span>戒指</span>
+                </a>
+            </li>
+            <{if $category =='1265'}>
+            <li class="index">
+                <{else}>
+            <li>
+                <{/if}>
+                <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1265.html">
+                    <i class="iconfont icon-jiajuyongpin"></i>
+                    <span>耳环/耳钉</span>
+                </a>
+            </li>
+            <{if $category =='1267'}>
+            <li class="index">
+                <{else}>
+            <li>
+                <{/if}>
+                <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1267.html">
+                    <i class="iconfont icon-jiajuyongpin"></i>
+                    <span>手链/手镯</span>
+                </a>
+            </li>
+            <{if $category =='1269'}>
+            <li class="index">
+                <{else}>
+            <li>
+                <{/if}>
+                <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1269.html">
+                    <i class="iconfont icon-jiajuyongpin"></i>
+                    <span>胸针/徽章</span>
+                </a>
+            </li>
+            <{if $category =='1268'}>
+            <li class="index">
+                <{else}>
+            <li>
+                <{/if}>
+                <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1268.html">
+                    <i class="iconfont icon-jiajuyongpin"></i>
+                    <span>袖扣</span>
+                </a>
+            </li>
+            <{if $category =='1274'}>
+            <li class="index">
+                <{else}>
+            &lt;!&ndash;<li>&ndash;&gt;
+                &lt;!&ndash;<{/if}>&ndash;&gt;
+                &lt;!&ndash;<a href="__DOC__/index.php/jewelry-jewelrylist-cate-1274.html">&ndash;&gt;
+                    &lt;!&ndash;<i class="iconfont icon-jiajuyongpin"></i>&ndash;&gt;
+                    &lt;!&ndash;<span>商业礼品</span>&ndash;&gt;
+                &lt;!&ndash;</a>&ndash;&gt;
+            &lt;!&ndash;</li>&ndash;&gt;
+        </ul>
+
+    </div>
+</div>-->
+<div class="nav-box">
+    <div class="nav">
+        <div class="nav-center">
+            <!--左边-->
+            <div class="nav-center-left fl">
+                <!--logo 图标-->
+                <div class="logo" id="logo">
+                    <a href="__DOC__/index.php">
+                        <img style="height: 100%;" src="__PUBLIC__/images/logo1.png" alt=""/>
+                    </a>
+                </div>
+                <!-- 菜单 -->
+                <ul class="topCenterMenu">
+                    <div class="logoImgBox">
+                        <div class="logoImg">
+                            <div class="logoI Ignite">
+                                <a href="__DOC__/index.php"><img src="__PUBLIC__/images/logo22.png" alt=""></a>
+                            </div>
+                            <div class="logoI yigena">
+                                <a href="__DOC__/index.php"><img src="__PUBLIC__/images/logo3.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <li class="first1">
+                        <a href="__DOC__/index.php">
+                            <i class="iconfont icon-jiajuyongpin"></i>
+                            <span>首页</span>
+                        </a>
+                    </li>
+                    <li class="all_shop">
+                        <!--<a href="__DOC__/index.php/jewelry-jewelrylist-cate-1263.html">
+                            <i class="iconfont icon-jiajuyongpin"></i>
+                            <span>所有产品</span>
+                        </a>-->
+                        <a style="cursor:pointer;">
+                            <i class="iconfont icon-jiajuyongpin"></i>
+                            <span>所有分类</span>
+                        </a>
+                        <!--二级菜单-->
+                        <div class="er_menu">
+                            <div class="er_menu_center">
+                                <ul>
+                                    <li>
+                                        <!--<span class="type_menu">所有宝贝</span>-->
+                                        <span class="er_menu_list er_hot">
+                                            <a class="menu_hot" href="__DOC__/index.php/jewelry-jewelrylist-cate-1263.html">全部商品</a>
+                                            <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1266.html">项链/吊坠</a>
+                                            <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1264.html">戒指</a>
+                                            <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1265.html">耳饰</a>
+                                            <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1267.html">手链/手镯</a>
+                                            <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1269.html">胸针</a>
+                                            <a href="__DOC__/index.php/jewelry-jewelrylist-cate-1268.html">袖扣</a>
+                                        </span>
+                                    </li>
+                                    <!--<li>
+                                        <span class="type_menu">按用途</span>
+                                        <span class="er_menu_list">
+                                            <a href="__DOC__/index.php/product-index-tags-日常">日常</a>
+                                            <a href="__DOC__/index.php/product-index-tags-聚会">聚会</a>
+                                            <a href="__DOC__/index.php/product-index-tags-情侣">情侣</a>
+                                            <a href="__DOC__/index.php/product-index-tags-送礼">送礼</a>
+                                            <a href="__DOC__/index.php/product-index-tags-职场">职场</a>
+                                            <a href="__DOC__/index.php/product-index-tags-婚庆">婚庆</a>
+                                        </span>
+                                    </li>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <{if $sjshownav}>
+                    <li class="index">
+                    <{else}>
+                    <li>
+                    <{/if}>
+                        <a href="__DOC__/index.php/diy-smartjewelry-cid-1.html">
+                            <i class="iconfont icon-jiajuyongpin"></i>
+                            <span>智绘首饰</span>
+                        </a>
+                    </li>
+                    <li class="all_shop">
+                        <a style="cursor:pointer;">
+                            <i class="iconfont icon-jiajuyongpin"></i>
+                            <span>畅销榜单</span>
+                        </a>
+                        <!--二级菜单-->
+                        <div class="er_menu" style="height: 255px;">
+                            <div class="er_menu_center">
+                                <div class="erji_imgbox">
+                                    <div class="er_menu_img">
+                                        <a href="__DOC__/index.php/product-index-tags-天空之城"><img src="__PUBLIC__/images/tiankong.jpg" alt=""></a>
+                                    </div>
+                                    <div class="er_menu_img">
+                                        <a href="__DOC__/index.php/product-index-tags-多面娇娃"><img src="__PUBLIC__/images/face.jpg" alt=""></a>
+                                    </div>
+                                    <div class="er_menu_img">
+                                        <a href="__DOC__/index.php/product-index-tags-凌晨一点"><img src="__PUBLIC__/images/yidian.jpg" alt=""></a>
+                                    </div>
+                                    <div class="er_menu_img">
+                                        <a href="__DOC__/index.php/product-index-tags-女皇的权杖"><img src="__PUBLIC__/images/zhan.jpg" alt=""></a>
+                                    </div>
+                                    <div class="er_menu_img">
+                                        <a href="__DOC__/index.php/product-index-tags-青春的小雀斑"><img src="__PUBLIC__/images/queban.jpg" alt=""></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="__DOC__/index.php/jewelry-jewelrylist-diy-1">
+                            <i class="iconfont icon-jiajuyongpin"></i>
+                            <span>轻定制</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="__DOC__/index.php/help-brandstory">
+                            <i class="iconfont icon-jiajuyongpin"></i>
+                            <span>了解IGNITE</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--右边 登录-->
+            <div class="logoRight_box">
+                <div class="logoRight fr">
+                    <{if !$isLogin }>
+                    <!-- 未登录-->
+                    <div class="logoRightLogin">
+                        <!--登录-->
+                        <a class="iconfont icon-iconfontdenglu" href="__DOC__/user.php/login"></a>
+                    </div>
+                    <{else}>
+                    <!--已登录-->
+                    <div class="logoRightLogin" id="denglu_fix">
+                        <!--登录-->
+                        <a class="user_img">
+                            <{if $userBasic.u_avatar neq ''}>
+                            <img src="__UPLOAD__/avatar/<{$userBasic.u_avatar|replace:'/o/':'/s/96_96_'}>" alt="" style="width: 100%;vertical-align: top;border-radius: 50%;"/>
+                            <{else}>
+                            <img src="__KITTYPUBLIC__/images/avatar/default.png" alt="" style="width: 100%;vertical-align: top;border-radius: 50%;"/>
+                            <{/if}>
+                        </a>
+                        <!-- 登录 下拉 -->
+                        <div class="gouwuche-erji">
+                            <!-- 用户名 -->
+                            <div class="denglu-xiala">
+                                <!-- 跳到个人中心 -->
+                                <a href="__USERIDX__/userconf"><{$userBasic.showusername}></a>
+                            </div>
+                            <ul style="padding-top: 0" class="denglu-xinxi">
+                                <li>
+                                    <a href="__USERIDX__/sales/ordermanage">
+                                        <span>我的订单</span>
+                                    </a>
+                                </li>
+                                <!--<li>
+                                    <a href="">
+                                        <span>我的优惠券</span>
+                                    </a>
+                                </li>-->
+                                <li>
+                                    <a href="__USERIDX__/coupon/mycoupon">
+                                        <span>我的优惠券</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="__USERIDX__/userconf">
+                                        <span>账户管理</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="__USERIDX__/mydiy/jewelrylist">
+                                        <span>我的作品</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="__USERIDX__/logout">
+                                        <span>注销</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <{/if}>
+                    <{if !$isLogin}>
+                    <!--购物袋-->
+                    <div class="logoRightLogin">
+                        <a href="__DOC__/user.php/login" class="iconfont icon-gouwudai1"></a>
+                    </div>
+                    <{else}>
+                    <!-- 购物袋-->
+                    <div class="logoRightLogin gouwudai">
+                        <a href="__DOC__/user.php/cart" class="iconfont icon-gouwudai1">
+                            <{if $cartnum eq 0}>
+                            <{else}>
+                            <div class="gouwudai-num">
+                                <{$cartnum}>
+                            </div>
+                            <{/if}>
+                        </a>
+                        <!-- 购物车下拉 -->
+                        <{if $cartnum eq 0}>
+                        <{else}>
+                        <div class="gouwuche-erji">
+                            <ul>
+                                <{foreach $cartlist as $Product}>
+                                <li>
+                                    <{if $Product['p_producttype'] ==4}><!-- DIY产品-用户生成 -->
+                                    <a href="__DOC__/index/diy-jewelry-pid-<{$Product['p_diy_id']}>-cid-<{$Product['p_cate_4']}>-showtype-10.html">
+                                        <{elseif $Product['p_producttype'] ==5}><!-- 非DIY产品 -->
+                                        <a href="__DOC__/index/<{$Product['modellink']}>-detail-id-<{$Product[$DBF_P->BelongPid]}>.html" >
+                                            <{else}>
+                                            <a href="__DOC__/index/<{$Product['modellink']}>-detail-id-<{$Product[$DBF_P->ID]}>.html">
+                                                <{/if}>
+                                                <div class="gwd-img">
+                                                    <img src="__DOC__<{$Product['p_cover']|replace:'/o/':'/s/64_64_'}>" style="width:27px;height:27px;">
+                                                    <!--测试图片-->
+                                                    <!--<img src="__PUBLIC__/images/aaa.png" alt=""/>-->
+                                                </div>
+                                                <span><{$Product[$DBF_P->Name]|substr:0:16}></span>
+                                            </a>
+                                </li>
+                                <{/foreach}>
+                            </ul>
+                            <div class="look-cart"><a href="__USERIDX__/cart">查看我的购物袋 ></a></div>
+                        </div>
+                        <{/if}>
+                    </div>
+                    <{/if}>
+                    <!-- 搜索-->
+                    <div class="logoRightLogin sousuo">
+                        <form action="__DOC__/index.php/product-index" method="post">
+                            <div class="search fl">
+                                <button type="submit" style="border: 0;background:none;cursor:pointer;">
+                                    <img src="__PUBLIC__/images/sousuo.png" alt="" style="vertical-align: 0;"/>
+                                </button>
+                            </div>
+                            <div class="fr" style="height: 100%;">
+                                <input type="text" name="tags" value="项链" maxlength="10" autocomplete="off" id="sousuo" style="color: #999;" onchange="valuechange(this);"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function valuechange(value){
+        value.style.color = '#000';
+    }
+</script>

@@ -1,0 +1,62 @@
+.runtime { position: fixed; right: 0px; bottom: 0px; width: 100%; height: 16px; _position: absolute; _margin-top: expression(this.style.pixelHeight+document.documentElement.scrollTop-20); _bottom: 20px; line-height: 14px; padding: 5px 0; }
+.runtime.face { color: #FFF; font-size: 12px; text-align: left; z-index: 99; font-family: Tahoma, Geneva, sans-serif; text-indent: 15px; }
+html .runtime.bg { background: #333; filter:alpha(Opacity=80);-moz-opacity:0.8;opacity: 0.8; }
+#think_page_trace_open { z-index: 9999 }
+
+.ucenter { padding: 40px 40px 10px; }
+.ucenter h1 { font-weight: normal; line-height: 40px; font: 28px/1 "Microsoft Yahei", "微软雅黑", "STHeiti Light", SimSun; padding: 0 0 25px; }
+.ucenter .spanclass { display: block; color: #999; }
+
+html .ucenter .form .formrow { padding: 5px 0 }
+.ucenter .form label { display: block; font-size: 14px; line-height: 20px; padding-bottom: 5px; color: #333; width: 280px; }
+html .login .form input { width: 260px; height: 26px;}
+html .signup .form input { width: 360px; height: 28px;}
+.ucenter .form .vimg { top: 55px; left: 30px; border: 1px solid #CCC; width: 240px; height: 50px; padding: 5px; margin-top: 5px; background: #FFF; display: none; position: absolute; }
+.ucenter .form .vimg div { float: left; } 
+.ucenter .form .vimg .rf{ padding-left: 10px; cursor: pointer; }
+.ucenter .form .vimg .rf:hover { background: #F4F4F4; }
+.form .tipsinfo { display: block; border: 1px solid #FF9D9D; background: #FFD2D2; padding: 15px; color: #C00; font-size: 14px; margin-bottom: 10px; width: 80% }
+
+.login .leftpanel { }
+.login .rightpanel { width: 375px; padding-top: 45px; float: right; }
+.login .loginside { padding: 25px 0 0 45px;}
+
+.signup .leftpanel { }
+.signup .rightpanel { width: 650px; padding-top: 10px; float: right; }
+.signup .loginside { padding: 10px 0 0 45px;}
+/* nagi ~ controls ~ textbox */
+.ucenter input[type="text"], .ucenter input[type="password"], .ucenter textarea { height: 24px; width: 180px; padding: 0px 10px; color: #333; font-size: 12px; -moz-box-shadow: 0px 0px 3px #CCC inset; -webkit-box-shadow: 0px 0px 3px #CCC inset; border: 1px solid #C0C0C0; box-shadow: 0px 0px 3px #CCC inset; line-height: 24px; }
+html .ucenter textarea { width: 260px; height: 95px; margin-bottom: 5px;}
+.ucenter input[type="text"]:focus, .ucenter input[type="password"]:focus, .ucenter textarea:focus  { background: #FFFBFB; border: 1px solid #FF8080; }
+.ucenter input[type="text"]:hover, .ucenter input[type="password"]:hover, .ucenter textarea:hover  { border: 1px solid #999 }
+
+.ucenter input.error{
+    background: #f8dbdb;
+    border-color: #e77776;
+}
+.ucenter .buttonbar { padding: 20px 0 25px }
+.ucenter .buttonbar button { margin-right: 10px }
+.ucenter .buttonbar.fr button { margin-left: 10px; margin-right: 0px; }
+
+.ucenter button { height: 35px; margin: 0; padding: 0 15px; color: #FFF; font-size: 14px; cursor: pointer; font-family: \5fae\8f6f\96c5\9ed1 , Arial, sans-serif; overflow: visible; -moz-box-shadow: 0px 0px 3px #CCC; -webkit-box-shadow: 0px 0px 3px #666; box-shadow: 0px 0px 3px #CCC; text-shadow: 0px 0px 1px #333; }
+/* buttons ~ styles */
+.ucenter button.full { height: 35px }
+.ucenter button.thin { height: 32px }
+.ucenter button.blue { border: 1px solid #0085E8; background: #0072C6; }
+.ucenter button.blue:active { border: 1px solid #0072C6 }
+.ucenter button.blue:hover { border: 1px solid #0D98FF; background: #0082E1; }
+.ucenter button.lightgray { border: 1px solid #AAA; background: #999; }
+.ucenter button.lightgray:active { border: 1px solid #999 }
+.ucenter button.lightgray:hover { border: 1px solid #999; background: #888; }
+.ucenter button.gray { border: 1px solid #888; background: #777; }
+.ucenter button.gray:active { border: 1px solid #777 }
+.ucenter button.gray:hover { border: 1px solid #999; background: #888; }
+.ucenter button.darkgray { border: 1px solid #6E6E6E; background: #555; }
+.ucenter button.darkgray:active { border: 1px solid #555 }
+.ucenter button.darkgray:hover { border: 1px solid #8B8B8B; background: #676767; }
+.ucenter button.red { border: 1px solid #F4735B; background: #F25237; }
+.ucenter button.red:active { border: 1px solid #F25237 }
+.ucenter button.red:hover { border: 1px solid #F79280; background: #F3664E; }
+.ucenter button.green { border: 1px solid #74B923; background: #5EAC1A; }
+.ucenter button.green:active { border: 1px solid #5EAC1A }
+.ucenter button.green:hover { border: 1px solid #8FD935; background: #6AC01D; }

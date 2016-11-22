@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--一定放 herd中-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>购物指南</title>
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/fonts.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/top.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/css/app_gwzn.css">
+    <link rel="stylesheet" href="__MICKYMOBILESTATIC__/new/css/footer2.css">
+    <!--
+
+        注意： 底部不一样   我用了footer2.css 样式
+
+              只有头部一样
+
+    -->
+    <script src="__MICKYMOBILESTATIC__/new/js/jquery.js"></script>
+    <script src="__MICKYMOBILESTATIC__/new/js/top.js"></script>
+    <script src="__MICKYMOBILESTATIC__/js/gwzn.js"></script>
+</head>
+<{include file=C('IWXHEADER_END')}>
+
+
+<!--购物指南-->
+<div class="app_gwzn">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="app_gwzn_title">
+                <ul>
+                    <li class="col-xs-4 app_index">
+                        购物流程
+                    </li>
+                    <li class="col-xs-4">
+                        在线支付
+                    </li>
+                    <li class="col-xs-4">
+                        配送说明
+                    </li>
+                </ul>
+            </div>
+            <div class="app_gwzn_con">
+                <!--购物流程-->
+                <div class="gwlc_bg">
+                    <div>
+                        <img src="__MICKYMOBILESTATIC__/images/gwzn/gwlc.png" alt="">
+                    </div>
+                </div>
+                <!-- 在线支付 -->
+                <div class="gwlc_bg dis">
+                    <div>
+                        <img src="__MICKYMOBILESTATIC__/images/gwzn/zxzf.jpg" alt="">
+                    </div>
+                </div>
+                <!-- 配送说明 -->
+                <div class="gwlc_bg dis">
+                    <div>
+                        <img src="__MICKYMOBILESTATIC__/images/gwzn/pssm.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 底部 -->
+<!-- 上划 出现的内容-->
+<{include file=C('IWXHELPFOOT')}>
+
+
+
+
+</body>
+</html>

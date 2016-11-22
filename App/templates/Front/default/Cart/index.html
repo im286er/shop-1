@@ -1,0 +1,76 @@
+<{include file=C('HEADPAGE_START')}>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/st-danny.css" media="all" />
+<script type="text/javascript" src="__PUBLIC__/js/ajaxload.js"></script>
+<script type="text/javascript">
+function gobrowse(){
+	window.location.href="__APP__/models-index-order-vid-count-20-filter-or";
+}
+</script>
+<{include file=C('HEADPAGE_END')}>
+<div id="shopping-cart">
+	<div class="flow-shopping">
+		<ul>
+			<li>
+				<span class="over">购物车</span>
+				<span class="line line-now"></span>
+			</li>
+			<li>
+				<span class="now">确认订单</span>
+				<span class="line line-over"></span>
+			</li>
+			<li>
+				<span>付款</span>
+				<span class="line"></span>
+			</li>
+			<li>
+				<span>完成支付</span>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="shopping-list">
+		<div class="table radius shadow">
+           
+			<ul>
+             <{if $TotalPrice gt 0}>
+				<li class="title">
+					<div class="t1">模型</div>
+					<div class="t2">单价</div>
+					<div class="t3">操作</div>
+				</li>
+				<{foreach $ProductList as $Product}>
+				<li>
+					<div class="t1">
+						<div class="img"><img src="__DOC__<{$Product[$DBF_P->Cover]|replace:'/o/':'/s/64_64_'}>" /></div>
+						<div class="info">
+							<p class="name"><a href="__APP__/models-detail-id-<{$Product[$DBF_P->ID]}>" target="_blank"><{$Product[$DBF_P->Name]}></a></p>
+						</div>
+					</div>
+					<div class="t2 red b f16">￥<{$Product[$DBF_P->Price]|string_format:"%.2f"}></div>
+					<div class="t3">
+						<span><a href="<{$U_MyFavor}><{$Product[$DBF_P->ID]}>">收藏</a></span>
+						&nbsp;&nbsp; / &nbsp;&nbsp;
+						<span><a href="<{$U_Delete}>/<{$Product[$DBF_P->ID]}>">删除</a></span>
+					</div>
+				</li>
+				<{/foreach}>
+				<li class="total"> 
+					<span class="red f16 fl b">总计：￥<{$TotalPrice|string_format:"%.2f"}></span> 
+					<form action="<{$U_Pay}>" method="post"><input type="hidden" name="oid" value="<{$oid}>">
+                    	<input type="submit" value="去结算 >>" class="red-btn btn fr">&nbsp;
+					</form>
+				</li>
+                
+            <{else}>
+   				<li class="total totaltext"><span>您的购物车还是空的，请继续 <a href="__APP__/models-index-order-vid-count-20-filter-or">浏览模型</a> 后添加，谢谢！</span><input type="button" value="浏览模型" class="red-btn fr" onClick="gobrowse();"></li>
+    		<{/if}>
+                
+			</ul>
+            
+
+		</div>
+
+	</div>
+ 
+</div>
+<{include file=C('FOOTPAGE')}>
